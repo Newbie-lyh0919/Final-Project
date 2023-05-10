@@ -1,5 +1,5 @@
 package shop.HealthJava.dao;
 
-public class TestDAO {
+public interface ProductDAO {
 
 }

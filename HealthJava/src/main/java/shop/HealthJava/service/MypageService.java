@@ -1,5 +1,5 @@
 package shop.HealthJava.service;
 
-public class TestService {
+public interface MypageService {
 
 }

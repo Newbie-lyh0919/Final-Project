@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>마이페이지 수정</title>
 </head>
 <body>
-
+	<h1>접속 성공!</h1>
 </body>
 </html>
