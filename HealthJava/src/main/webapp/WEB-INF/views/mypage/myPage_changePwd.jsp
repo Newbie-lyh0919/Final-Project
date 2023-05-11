@@ -9,431 +9,345 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> <%-- CDN 절대링크 --%>
 <script type="text/javascript" src = "./js/jquery.js"></script>
 <script src="<%=request.getContextPath()%>/js/updateInfo.js"></script>
-<title>PuppyHome 마이페이지</title>
+
+<title>HealthJava 마이페이지</title>
+
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico" type="image/x-icon"> <%-- 파비콘 --%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/header.css"> <%-- header.css --%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/footer.css"> <%-- footer.css --%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/fontium/css/fontium.css"/>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/page/mypage/css/mypage.css">
 <%-- <link rel="stylesheet" href="./shop/puppyhome/controller_mypage/css/mypage.css">--%>
+
 <style type="text/css">
-
-   /*MyPage CSS*/
-
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
-
-section.notice {
-	padding: 20px 0;
-	/*추가*/
-	width: 1000px;
-	min-height: 200px;
-	margin: 2px;
-	/* border: solid 2px #000000;
-        background-color: #c2ff73; */
-}
-
-aside {
-	margin-top: 150px;
-	margin-left: 150px;
-	width: 180px;
-	min-height: 700px;
-	float: left;
-	text-align: left;
-}
-
-li{
-	padding-top: 10px;
-}
-
-
-nav {
-	min-height: 600px;
-	margin-bottom: 50px;
-	/*border: solid 2px #000000;
-	background-color: #67a9ff;*/
-}
-
-
-
-#subspan {
-	color: #808080;
-}
-
-div.page-title {
-	width: 1000px;
-	min-height: 10px;
-	padding: 0px 10px;
-	text-align: left;
-}
-
- h3.page-title {
-	font-size: 25px;
-	color: black;
-	font-weight: 400;
-	text-align: left;
-}
-
-.memBasicInfo {
-	height: 120px;
-	/*border: 1px solid red;*/
-	padding: 20px;
-	float: left;
-}
-
-#board-search .search-window {
-	width: 1000px;
-	min-height: 80px;
-	padding: 15px 0;
-	text-align: left;
-}
-/*
-#board-search .search-window .search-wrap {
-	position: relative;
-	margin: 0 auto;
-	width: 80%;
-	max-width: 564px;
-}
-
-#board-search .search-window .search-wrap input {
-	height: 40px;
-	width: 100%;
-	font-size: 14px;
-	padding: 7px 14px;
-	border: 1px solid #ccc;
-}
-
-#board-search .search-window .search-wrap input:focus {
-	border-color: #333;
-	outline: 0;
-	border-width: 1px;
-}
-
-#board-search .search-window .search-wrap .btn {
-	position: absolute;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	width: 108px;
-	padding: 0;
-	font-size: 16px;
-}
-*/
-.board-table {
-	font-size: 13px;
-	width: 100%;
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
-}
-/*
-.board-table a {
-	color: #333;
-	display: inline-block;
-	line-height: 1.4;
-	word-break: break-all;
-	vertical-align: middle;
-	text-decoration: none;
-} 
-
-.board-table a:hover {
-	text-decoration: underline;
-} */
-
-.board-table th {
-	text-align: center;
-	border-top-style: solid;
-	border-top-color: black;
-	border-top-width: 2px;
-}
-
-.board-table .th-num {
-	width: 100px;
-	text-align: center;
-}
-
-table th.th-title {
-	font-size: 15px;
-	width: 200px;
-}
-
-table td.td-title {
-	font-size: 13px;
-}
-
-table th.th-date {
-	font-size: 15px;
-	width: 80px;
-}
-
-table th.th-date1 {
-	font-size: 15px;
-	width: 50px;
-}
-
-table th.th-date2 {
-	font-size: 15px;
-	width: 150px;
-}
-
-
-.board-table .th-inputInfo {
+	/*MyPage CSS*/
 	
-}
-
-.board-table th, .board-table td {
-	padding-top: 14px;
-	padding-bottom: 14px;
-}
-
-.board-table tbody td {
-	border-top: 1px solid #e7e7e7;
-	text-align: center;
-	font-size: 15px;
-}
-
-.board-table tbody th {
-	font-size: 15px;
-	border-top: 1px solid #e7e7e7;
-	text-align: center;
-}
-
-.board-table thead th {
-	text-align: center;
-}
-
-.board-table tbody th p {
-	display: none;
-}
-
-.th-list{
-	text-align:center;
-	margin-top : 20px;
-	margin-bottom: 20px;
-	padding: 10px;
-	background-color: #F4A460;
-	border-bottom-color: white;
-	border-bottom-width: 0.2px;
-	border-bottom-style: solid;
+	table {
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
 	
-}
-
-.td-inputInfo{
-	text-align:left;
-	padding-left: 20px;
-	padding-top: 20px;
-}
-
-.td-infoPs{
- text-align : left;
- padding-left: 20px;
- padding-top: 5px;
- padding-bottom: 15px;
- border-bottom-color: gray;
- border-bottom-width: 0.2px;
- border-bottom-style: solid;
- font-size: 12px; 
- font-weight: bold;
- color: red;
- 
-}
-div.submitBtn{
-	float: left;
-	margin-left: 100px;
-}
-
-#updateBtn{
-padding: 20px 80px; 
-background-color: #FC5400; 
-border: 1px solid white; 
-color: white; font-size: 20px; font-weight: bold
-}
-
-
-#resetBtn{
-padding: 20px 120px;
-background-color: white;
-border: 1px solid lightgray;
-font-size: 20px; font-weight: bold;"
-}
-
-#withdrawalBtn{
-padding: 20px 100px; 
-background-color: #FC5400; 
-border: 1px solid white; 
-color: white; font-size: 20px; font-weight: bold
-}
-
-#changePwdBtn{
-padding: 20px 120px; 
-background-color: #FC5400; 
-border: 1px solid white; 
-color: white; font-size: 20px; font-weight: bold
-}
-
-/*
-.btn {
-	display: inline-block;
-	padding: 0 30px;
-	font-size: 15px;
-	font-weight: 400;
-	background: transparent;
-	text-align: center;
-	white-space: nowrap;
-	vertical-align: middle;
-	-ms-touch-action: manipulation;
-	touch-action: manipulation;
-	cursor: pointer;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	border: 1px solid transparent;
-	text-transform: uppercase;
-	-webkit-border-radius: 0;
-	-moz-border-radius: 0;
-	border-radius: 0;
-	-webkit-transition: all 0.3s;
-	-moz-transition: all 0.3s;
-	-ms-transition: all 0.3s;
-	-o-transition: all 0.3s;
-	transition: all 0.3s;
-}
-
-.btn-dark {
-	background: #555;
-	color: #fff;
-}
-
-.btn-dark:hover, .btn-dark:focus {
-	background: #373737;
-	border-color: #373737;
-	color: #fff;
-}
-
-.btn-dark {
-	background: #555;
-	color: #fff;
-}
-
-.btn-dark:hover, .btn-dark:focus {
-	background: #373737;
-	border-color: #373737;
-	color: #fff;
-}
-
-/* reset */
-* {
-	list-style: none;
-	text-decoration: none;
-	padding: 0;
-	margin: 0;
-	box-sizing: border-box;
-} 
-
-.clearfix:after {
-	content: '';
-	display: block;
-	clear: both;
-}
-
-div.myPageTitle {
-	width: 1100px;
-	margin: 0 auto;
-	border: 1px solid red;
-}
-
-div.container {
-	width: 1000px;
-	margin: 20px 0px;
-	/*border: 1px solid red;*/
-}
-
-.innerWrap {
-	width: 1000px;
-	min-height: 700px;
-	padding: 20px;
-	float: left;
-	margin-top: 100px;
-	margin-left: 100px;
-	/*	border: solid 2px #000000;
-	background-color: red;*/
-}
-
-.blind {
-	position: absolute;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	margin: -1px;
-	width: 1px;
-	height: 1px;
-}
-
-.clear {
-	clear: both; /*float 속성을 제거함으로써 잘못 된 ui 적용을 막아줌 */
-}
-
-
-a:link.liList {
-	text-decoration: none;
-	color: #808080;
-}
-
-a:visited.liList {
-	text-decoration: none;
-	color: #808080;
-}
-
-a:hover.liList{
-	text-decoration: underline;
-	color: #FC5400;
-}
-
-a:active.liList {
-	text-decoration: none;
-	color: #FC5400;
-}
-
-table a:link.orderList {
-	text-decoration: none; 
-	color: black;
-}
-
-table a:visited.orderList {
-	text-decoration: none;
-	color: black;
-}
-
-table a:hover.orderList{
-	text-decoration: underline;
-	color: #FC5400;
-	cursor: pointer;
-}
-
-table a:active.orderList {
-	text-decoration: none;
-	color: #FC5400;
-}
-
-
-/*footer*/
-@font-face {
-	font-family: 'KIMM_Bold';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2')
-		format('woff2');
-	font-weight: 700;
-	font-style: normal;
-}
-
-/* 메인 컨텐츠 부분 */
-#wrap {
-	width: 100%;
-	height: 100%;
-	text-align: center;
-}
+	
+	section.notice {
+		padding: 20px 0;
+		/*추가*/
+		width: 1000px;
+		min-height: 200px;
+		margin: 2px;
+		/* border: solid 2px #000000;
+	        background-color: #c2ff73; */
+	}
+	
+	.aside_left {
+		margin-top: 45px;
+		margin-left: 60px;
+		width: 180px;
+		min-height: 700px;
+		float: left;
+		text-align: left;
+		/*border: solid 2px #000000;
+		background-color: #c267ff;*/
+	}
+	
+	.aside_left nav {
+		min-height: 600px;
+		margin-bottom: 50px;
+		/*border: solid 2px #000000;
+		background-color: #67a9ff;*/
+	}
+	
+	.aside_left li {
+		padding-top: 8.2px;
+		padding-bottom: 2px;
+		list-style: none;
+	}
+	
+	li{
+		padding-top: 10px;
+	}
+	
+	
+	nav {
+		min-height: 600px;
+		margin-bottom: 50px;
+		/*border: solid 2px #000000;
+		background-color: #67a9ff;*/
+	}
+	
+	
+	
+	#subspan {
+		color: #808080;
+	}
+	
+	div.page-title {
+		width: 1000px;
+		min-height: 10px;
+		padding: 0px 10px;
+		text-align: left;
+	}
+	
+	 h3.page-title {
+		font-size: 25px;
+		color: black;
+		font-weight: 400;
+		text-align: left;
+	}
+	
+	.memBasicInfo {
+		height: 120px;
+		/*border: 1px solid red;*/
+		padding: 20px;
+		float: left;
+	}
+	
+	#board-search .search-window {
+		width: 1000px;
+		min-height: 80px;
+		padding: 15px 0;
+		text-align: left;
+	}
+	
+	.board-table {
+		font-size: 13px;
+		width: 100%;
+		border-top: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+	}
+	
+	.board-table th {
+		text-align: center;
+		border-top-style: solid;
+		border-top-color: black;
+		border-top-width: 2px;
+	}
+	
+	.board-table .th-num {
+		width: 100px;
+		text-align: center;
+	}
+	
+	table th.th-title {
+		font-size: 15px;
+		width: 200px;
+	}
+	
+	table td.td-title {
+		font-size: 13px;
+	}
+	
+	table th.th-date {
+		font-size: 15px;
+		width: 80px;
+	}
+	
+	table th.th-date1 {
+		font-size: 15px;
+		width: 50px;
+	}
+	
+	table th.th-date2 {
+		font-size: 15px;
+		width: 150px;
+	}
+	
+	
+	.board-table .th-inputInfo {
+		
+	}
+	
+	.board-table th, .board-table td {
+		padding-top: 14px;
+		padding-bottom: 14px;
+	}
+	
+	.board-table tbody td {
+		border-top: 1px solid #e7e7e7;
+		text-align: center;
+		font-size: 15px;
+	}
+	
+	.board-table tbody th {
+		font-size: 15px;
+		border-top: 1px solid #e7e7e7;
+		text-align: center;
+	}
+	
+	.board-table thead th {
+		text-align: center;
+	}
+	
+	.board-table tbody th p {
+		display: none;
+	}
+	
+	.th-list{
+		text-align:center;
+		margin-top : 20px;
+		margin-bottom: 20px;
+		padding: 10px;
+		background-color: #F4A460;
+		border-bottom-color: white;
+		border-bottom-width: 0.2px;
+		border-bottom-style: solid;
+		
+	}
+	
+	.td-inputInfo{
+		text-align:left;
+		padding-left: 20px;
+		padding-top: 20px;
+	}
+	
+	.td-infoPs{
+		text-align : left;
+		padding-left: 20px;
+		padding-top: 5px;
+		padding-bottom: 15px;
+		border-bottom-color: gray;
+		border-bottom-width: 0.2px;
+		border-bottom-style: solid;
+		font-size: 12px; 
+		font-weight: bold;
+		color: red;
+	 
+	}
+	div.submitBtn{
+		float: left;
+		margin-left: 100px;
+	}
+	
+	#updateBtn{
+		padding: 20px 80px; 
+		background-color: #FC5400; 
+		border: 1px solid white; 
+		color: white; 
+		font-size: 20px; 
+		font-weight: bold
+	}
+	
+	#resetBtn{
+		padding: 20px 120px;
+		background-color: white;
+		border: 1px solid lightgray;
+		font-size: 20px; 
+		font-weight: bold;
+	}
+	
+	#withdrawalBtn{
+		padding: 20px 100px; 
+		background-color: #FC5400; 
+		border: 1px solid white; 
+		color: white; 
+		font-size: 20px; 
+		font-weight: bold
+	}
+	
+	#changePwdBtn{
+		padding: 20px 120px; 
+		background-color: #FC5400; 
+		border: 1px solid white; 
+		color: white; 
+		font-size: 20px; 
+		font-weight: bold
+	}
+	
+	/* reset */
+	* {
+		list-style: none;
+		text-decoration: none;
+		padding: 0;
+		margin: 0;
+		box-sizing: border-box;
+	} 
+	
+	.clearfix:after {
+		content: '';
+		display: block;
+		clear: both;
+	}
+	
+	div.myPageTitle {
+		width: 1100px;
+		margin: 0 auto;
+		border: 1px solid red;
+	}
+	
+	div.container {
+		width: 1000px;
+		margin: 20px 0px;
+	}
+	
+	.innerWrap {
+		width: 1000px;
+		min-height: 700px;
+		padding: 20px;
+		float: left;
+		margin-top: 100px;
+		margin-left: 100px;
+	}
+	
+	.blind {
+		position: absolute;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		margin: -1px;
+		width: 1px;
+		height: 1px;
+	}
+	
+	.clear {
+		clear: both; /*float 속성을 제거함으로써 잘못 된 ui 적용을 막아줌 */
+	}
+	
+	
+	a:link.liList {
+		text-decoration: none;
+		color: #808080;
+	}
+	
+	a:visited.liList {
+		text-decoration: none;
+		color: #808080;
+	}
+	
+	a:hover.liList{
+		text-decoration: underline;
+		color: #FC5400;
+	}
+	
+	a:active.liList {
+		text-decoration: none;
+		color: #FC5400;
+	}
+	
+	table a:link.orderList {
+		text-decoration: none; 
+		color: black;
+	}
+	
+	table a:visited.orderList {
+		text-decoration: none;
+		color: black;
+	}
+	
+	table a:hover.orderList{
+		text-decoration: underline;
+		color: #FC5400;
+		cursor: pointer;
+	}
+	
+	table a:active.orderList {
+		text-decoration: none;
+		color: #FC5400;
+	}
+	
+	/* 메인 컨텐츠 부분 */
+	#wrap {
+		width: 100%;
+		height: 100%;
+		text-align: center;
+	}
 
   /* 폰트 CSS */ 
    @font-face {
@@ -474,20 +388,19 @@ table a:active.orderList {
        position: relative;
    }
    .main { 
-      font-family: 'KIMM_Bold';		
-      width: 1400px;
-      height: 2000px; /* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / section이랑 px 맞춰야함 */
-      position : relative;
-      top: 105px;
-      left: 50%;
+		width: 1600px;
+		height: 1200px; /* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / section이랑 px 맞춰야함 */
+		position : relative;
+		top: 105px;
+		left: 50%;
         transform: translateX( -50% );
-      background-color: rgb(179, 255, 213);  /* 영역 보기 편하라고 배경색 지정함 : 연초록 */
-   }
-/*   section {
+		/* background-color: rgb(179, 255, 213); */ /* 영역 보기 편하라고 배경색 지정함 : 연초록 */
+	}
+   section {
       height: 2000px;  UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / .main이랑 px 맞춰야함 
       background-color: rgb(236, 226, 202);  영역 보기 편하라고 배경색 지정함 : 연주황 
    }
-      */ 
+
    /* 클리어 */
 
    .clear {
@@ -508,53 +421,48 @@ table a:active.orderList {
        input[type=password]{
         font-family:"굴림";
     }
-/** {
-	border: 1px solid black;
-}*/
-
-/*a링크 효과*/
-a:link.liList {
-	text-decoration: none;
-	color: #808080;
-}
-
-a:visited.liList {
-	text-decoration: none;
-	color: #808080;
-}
-
-a:hover.liList{
-	text-decoration: underline;
-	color: #FC5400;
-}
-
-a:active.liList {
-	text-decoration: none;
-	color: #FC5400;
-}
-
-table a:link.orderList {
-	text-decoration: none; 
-	color: black;
-}
-
-table a:visited.orderList {
-	text-decoration: none;
-	color: black;
-}
-
-table a:hover.orderList{
-	text-decoration: underline;
-	color: #FC5400;
-	cursor: pointer;
-}
-
-table a:active.orderList {
-	text-decoration: none;
-	color: #FC5400;
-}
-
-
+	
+	/* a 링크 : 메뉴바 */	
+	a:link.liList {
+		text-decoration: none;
+		color: #a399a2;
+	}
+	
+	a:visited.liList {
+		text-decoration: none;
+		color: #a399a2;
+	}
+	
+	a:hover.liList{
+		text-decoration: underline;
+		color: #AC76B0;
+	}
+	
+	a:active.liList {
+		text-decoration: none;
+		color: #AC76B0;
+	}
+	
+	table a:link.orderList {
+		text-decoration: none; 
+		color: black;
+	}
+	
+	table a:visited.orderList {
+		text-decoration: none;
+		color: black;
+	}
+	
+	table a:hover.orderList{
+		text-decoration: underline;
+		color: #FC5400;
+		cursor: pointer;
+	}
+	
+	table a:active.orderList {
+		text-decoration: none;
+		color: #FC5400;
+	}
 </style>
 
 </head>
@@ -566,39 +474,29 @@ table a:active.orderList {
          <%-- header include --%>
          <jsp:include page="../include/header.jsp"/>
       </header>
-      <%-- 본문 영역(ui깨질시 본인이 ui 수정바람..) --%>
- 
+    	<%-- 메뉴바 --%>
+		<section>
+			<div class="main">
+				<%-- main 화면 상단 캐러셀 (캐러셀 필요 없는 페이지는 삭제 바람!)--%>
+				<aside class="aside_left">
+					<nav>
+						<ul>
+							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 쇼핑</li>
+							<li><a href="myPage_Main" class="liList">주문ㆍ배송</a></li>
+							<li><a href="myPage_orderCancel" class="liList">교환/반품/환불</a></li>
+							<li><a href="like" class="liList">찜 목록</a></li>
+							<li style="margin-bottom: 30px;"><a href="basket" class="liList">장바구니</a></li>
 
-<aside>
-			<nav>
-				<ul>
-					<li
-						style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;">
-						나의 쇼핑</li>
-					<li><a href="myPage_Main" class="liList"
-						style="color: #FC5400; font-weight: bold;">주문ㆍ배송</a></li>
-					<li><a href="myPage_orderCancel" class="liList">주문취소</a></li>
-					<li><a href="javascript:void(0);" onclick="openPopup_company_introduce();" class="liList">교환/반품하기</a></li>
-					<li><a href="like" class="liList">찜 목록</a></li>
-					<li style="margin-bottom: 30px;"><a href="basket"
-						class="liList">장바구니</a></li>
-
-					<li
-						style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;">
-						회원 정보</li>
-					<li><a href="myPage_updateInfo" class="liList">회원정보 변경</a></li>
-					<li><a href="myPage_changePwd" class="liList">비밀번호 변경</a></li>
-					<li><a href="myPage_user_Withdrawal" class="liList">회원탈퇴</a></li>
-					<li style="margin-bottom: 30px;"><a href="myPage_updateAddress"
-						class="liList">배송지 관리</a></li>
-
-					<li
-						style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;">
-						나의 상품후기</li>
-					<li><a href="review" class="liList">나의 상품후기</a></li>
-				</ul>
-			</nav>
-		</aside>
+							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
+							<li><a href="myPage_updateInfo" class="liList">회원정보 변경</a></li>
+							<li><a href="myPage_changePwd" class="liList">비밀번호 변경</a></li>
+							<li><a href="myPage_user_Withdrawal" class="liList">회원탈퇴</a></li>
+							<li style="margin-bottom: 30px;"><a href="myPage_updateAddress" class="liList">배송지 관리</a></li>
+							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 상품후기</li>
+							<li><a href="review" class="liList">나의 상품후기</a></li>
+						</ul>
+					</nav>
+				</aside>
 
 	<%-- 본문 영역(ui깨질시 본인이 ui 수정바람..) --%>
 	<div class="innerWrap">
@@ -639,7 +537,8 @@ table a:active.orderList {
 						<td class="td-infoPs">*비밀번호는 8자 이상 입력 해야합니다.</td>
 					</tr>
 
-		<%--			<!--새 비밀번호  확인-->
+					<%--			
+					<!--새 비밀번호  확인-->
 					<tr>
 						<th rowspan="2" class="th-list">새 비밀번호 확인</th>
 						<td class="td-inputInfo"><input type="password" name="new_pwd_check" id="new_pwd_check" size="70"></td>
@@ -647,7 +546,8 @@ table a:active.orderList {
 
 					<tr>
 						<td class="td-infoPs">* 영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자</td>
-					</tr> --%>
+					</tr> 
+					--%>
 
 				</table>
 				
@@ -659,7 +559,8 @@ table a:active.orderList {
 				</form>
 			</div>
 		</section>
-		         <%-- top버튼 삭제 X --%>
+		         
+		 <%-- top버튼 삭제 X --%>
          <div id="topBtn">
             <span class="fonti um-arrow-circle-up um-3x icon"></span>TOP
          </div>
