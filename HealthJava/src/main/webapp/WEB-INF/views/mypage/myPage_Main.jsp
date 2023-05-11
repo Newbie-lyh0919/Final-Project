@@ -4,31 +4,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<%--
-<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-<script
-	src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-<%-- CDN 절대링크 --%>
+<link rel="stylesheet" href="style.css">
+<%-- <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> <%-- CDN 절대링크 --%>
 <script type="text/javascript" src="./js/jquery.js"></script>
-<title>PuppyHome 마이페이지</title>
-<link rel="shortcut icon"
-	href="<%=request.getContextPath()%>/images/favicon.ico?ver1"
-	type="image/x-icon">
-<%-- 파비콘 --%>
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/views/include/css/header.css">
-<%-- header.css --%>
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/views/include/css/footer.css">
-<%-- footer.css --%>
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/fontium/css/fontium.css" />
-<link rel="stylesheet" type="text/css"
-	href="./WEB-INF/views/mypage/css/mypage.css?ver=1">
-<%-- <link rel="stylesheet" href="./shop/puppyhome/controller_mypage/css/mypage.css">--%>
-<style type="text/css">
-   /*MyPage CSS*/
 
+<title>PuppyHome 마이페이지</title>
+
+<%--<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico?ver1" type="image/x-icon"> <%-- 파비콘 --%>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/views/include/css/header.css"> <%-- header.css --%>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/views/include/css/footer.css"> <%-- footer.css --%>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/fontium/css/fontium.css" /> 
+<link rel="stylesheet" type="text/css" href="./WEB-INF/views/mypage/css/mypage.css?ver=1">
+<%-- <link rel="stylesheet" href="./shop/puppyhome/controller_mypage/css/mypage.css">--%>
+
+<style type="text/css">
+
+/*MyPage CSS*/
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
@@ -425,18 +417,6 @@ table a:active.orderList {
 	text-decoration: none;
 	color: #FC5400;
 }
-
-
-/*footer*/
-@font-face {
-	font-family: 'KIMM_Bold';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2')
-		format('woff2');
-	font-weight: 700;
-	font-style: normal;
-}
-
 /* 메인 컨텐츠 부분 */
 #wrap {
 	width: 100%;
@@ -447,9 +427,7 @@ table a:active.orderList {
 /* 폰트 CSS */
 @font-face {
 	font-family: 'KIMM_Bold';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2')
-		format('woff2'); /* CDN 절대링크  */
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2') format('woff2'); /* CDN 절대링크  */
 	font-weight: 700;
 	font-style: normal;
 }
@@ -499,7 +477,7 @@ footer {
 	top: 105px;
 	left: 50%;
 	transform: translateX(-50%);
-	background-color: rgb(179, 255, 213); /* 영역 보기 편하라고 배경색 지정함 : 연초록 */
+	/* background-color: rgb(179, 255, 213);  영역 보기 편하라고 배경색 지정함 : 연초록 */
 }
 /*   section {
       height: 2000px;  UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / .main이랑 px 맞춰야함 
