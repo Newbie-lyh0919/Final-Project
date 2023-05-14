@@ -178,11 +178,11 @@
 		margin-top : 20px;
 		margin-bottom: 20px;
 		padding: 10px;
-		background-color: #F4A460;
+		background-color: #AC76B0;
 		border-bottom-color: white;
 		border-bottom-width: 0.2px;
 		border-bottom-style: solid;
-		
+		color: white;
 	}
 	
 	.td-inputInfo{
@@ -211,11 +211,11 @@
 	
 	#updateBtn{
 		padding: 20px 80px; 
-		background-color: #FC5400; 
+		background-color: #AC76B0; 
 		border: 1px solid white; 
 		color: white; 
 		font-size: 20px; 
-		font-weight: bold
+		font-weight: bold;
 	}
 	
 	#resetBtn{
@@ -335,7 +335,6 @@
 		color: #FC5400;
 	}
 	
-	
 	/* 메인 컨텐츠 부분 */
 	#wrap {
 		width: 100%;
@@ -409,12 +408,9 @@
 	.container {
 		width: 100%;
 	}
-	/* 캐러셀 */
-	#carouselExampleControls {
-		width: 1100px;
-		position: relative;
-		left: 50%;
-		transform: translateX(-50%);
+	/* '기본정보' '*필수사항' 중간 여백  */
+	.indent {
+		margin-left: 749px;
 	}
 </style>
 
@@ -456,12 +452,7 @@
 			<!-- board list area -->
 			<div class="page-title">
 			<b style="text-align: left; font-size: 20px; margin-left:50px;">기본정보</b>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<b style="font-size: 13px;">* 필수 입력사항</b>
+			<b class="indent" style="font-size: 13px;">* 필수 입력사항</b>
 			</div>
 			<br>
 			<div class="page-title" style="margin-left: 50px;">
@@ -469,11 +460,9 @@
 				<table>
 					<!--아이디 -->
 					<tr>
-						<th rowspan="2" class="th-list" width="170px"
-							style="border-top-color: black; border-top-style: solid; border-top-width: 3px;">
+						<th rowspan="2" class="th-list" width="170px" style="border-top-color: black; border-top-style: solid; border-top-width: 3px;">
 							아이디</th>
-						<td class="td-inputInfo"
-							style="border-top-color: black; border-top-style: solid; border-top-width: 3px;">
+						<td class="td-inputInfo" style="border-top-color: black; border-top-style: solid; border-top-width: 3px;">
 							<input type="text" name="user_id" id="user_id" value="${m.user_id}" size="70" style="background-color: #ECECEC;" readonly>
 						</td>
 					</tr>
@@ -546,19 +535,6 @@
 					<tr>
 						<td class="td-infoPs"></td>
 					</tr>
-					
-			<%--		<!--SMS 수신여부-->
-					<tr>
-						<th rowspan="2" class="th-list">SMS 수신여부 *</th>
-						<td class="td-inputInfo">  
-						<input type='radio' name='SMS' value='SMS_OK'/>&nbsp;&nbsp;수신함
-  						<input type='radio' name='SMS' value='SMS_NO'/>&nbsp;&nbsp;수신안함
-  						</td>
-					</tr>
-
-					<tr>
-						<td class="td-infoPs">* 쇼핑몰에서 제공하는 유익한 이벤트 소식을 SMS로 받으실 수 있습니다</td>
-					</tr> --%>
 
 				</table>
 				

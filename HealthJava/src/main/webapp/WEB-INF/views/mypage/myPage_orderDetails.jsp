@@ -488,12 +488,11 @@
 				</table>	
 				<br>
 				<div align="right" style="margin-right: 50px;">
-					
 					<b style="font-size: 20px;">총액 : 100000원</b>
 					
 				</div>
 				<br><br>
-				<input type="button" id="updateBtn" onclick="location.href='mypagemain.shop'" value="주문내역 목록">
+				<input type="button" id="updateBtn" onclick="location.href='myPage_Main'" value="주문내역 목록">
 			</div>
 		</div>
          <%-- top버튼 삭제 X --%>

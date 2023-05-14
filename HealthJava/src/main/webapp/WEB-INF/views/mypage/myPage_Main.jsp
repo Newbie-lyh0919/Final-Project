@@ -203,14 +203,12 @@
 	}
 	
 	#updateBtn{
-		padding: 20px 80px; 
-		background-color: #FC5400; 
+		padding: 7px 15px; 
 		border: 1px solid white; 
-		color: white; 
-		font-size: 20px; 
+		color: #AC76B0; 
+		font-size: 10px; 
 		font-weight: bold
-	}
-	
+	}	
 	
 	#resetBtn{
 		padding: 20px 120px;
@@ -445,7 +443,8 @@
 				</div>
 
 				<div class="memBasicInfo" style="width: 750px; text-align: left;">
-					<b style="font-size: 20px;">실험용계정</b>
+					<b style="font-size: 20px;">Test 계정</b>&nbsp;
+					<input type="button" id="updateBtn" onclick="location.href='myPage_updateInfo'" value="수정">
 				</div>
 
 				<%-- 	

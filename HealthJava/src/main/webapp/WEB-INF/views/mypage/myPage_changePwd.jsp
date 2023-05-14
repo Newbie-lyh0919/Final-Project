@@ -25,8 +25,8 @@
 	table {
 		border-collapse: collapse;
 		border-spacing: 0;
+		width: 100%;
 	}
-	
 	
 	section.notice {
 		padding: 20px 0;
@@ -70,11 +70,7 @@
 	nav {
 		min-height: 600px;
 		margin-bottom: 50px;
-		/*border: solid 2px #000000;
-		background-color: #67a9ff;*/
-	}
-	
-	
+	}	
 	
 	#subspan {
 		color: #808080;
@@ -151,6 +147,23 @@
 		width: 150px;
 	}
 	
+	/* 테이블 칸 : 기존 비밀번호 */
+	input#user_pwd {
+	    font-family: "굴림";
+	    margin: 0;
+	    font-family: inherit;
+	    font-size: inherit;
+	    line-height: inherit;
+	}
+	
+	/* 테이블 칸 : 새 비밀번호 */
+	input#new_pwd {
+	    font-family: "굴림";
+	    margin: 0;
+	    font-family: inherit;
+	    font-size: inherit;
+	    line-height: inherit;
+	}
 	
 	.board-table .th-inputInfo {
 		
@@ -186,11 +199,11 @@
 		margin-top : 20px;
 		margin-bottom: 20px;
 		padding: 10px;
-		background-color: #F4A460;
+		background-color: #AC76B0;
 		border-bottom-color: white;
 		border-bottom-width: 0.2px;
 		border-bottom-style: solid;
-		
+		color: white;
 	}
 	
 	.td-inputInfo{
@@ -214,7 +227,6 @@
 	}
 	div.submitBtn{
 		float: left;
-		margin-left: 100px;
 	}
 	
 	#updateBtn{
@@ -227,7 +239,7 @@
 	}
 	
 	#resetBtn{
-		padding: 20px 120px;
+		padding: 20px 100px;
 		background-color: white;
 		border: 1px solid lightgray;
 		font-size: 20px; 
@@ -243,15 +255,16 @@
 		font-weight: bold
 	}
 	
+	/* 확인 버튼*/
 	#changePwdBtn{
-		padding: 20px 120px; 
-		background-color: #FC5400; 
+		padding: 20px 100px; 
+		background-color: #AC76B0; 
 		border: 1px solid white; 
 		color: white; 
 		font-size: 20px; 
 		font-weight: bold
 	}
-	
+
 	/* reset */
 	* {
 		list-style: none;
