@@ -114,4 +114,13 @@ public class MypageController {
 		
 		return wm;
 	}
+	
+	//문의 내역 확인
+	@RequestMapping("/inquiry")
+	public ModelAndView myPage_inquiry(HttpServletRequest request, HttpServletResponse response ) {
+		
+		ModelAndView wm=new ModelAndView("mypage/myPage_inquiry");//생성자 인자값으로 뷰페이지 경로 설정=>/WEB-INF/
+		
+		return wm;
+	}
 }
