@@ -24,6 +24,71 @@
 <%-- <link rel="stylesheet" href="./shop/puppyhome/controller_mypage/css/mypage.css">--%>
 
 <style type="text/css">
+
+	/* 폰트 CSS */
+	@font-face {
+		font-family: 'KIMM_Bold';
+		src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2') format('woff2'); /* CDN 절대링크  */
+		font-weight: 700;
+		font-style: normal;
+	}
+	/* 되도록 안건드리는 영역 */
+	* {
+		box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		font-family: 'KIMM_Bold', sans-serif;
+	}
+	
+	html {
+		height: 100%;
+	}
+	
+	body {
+		margin: 0px;
+		height: 100%;
+		padding: 0px;
+	}
+	
+	header {
+		width: 100%;
+		position: fixed;
+		z-index: 2;
+	}
+	
+	footer {
+		bottom: 0;
+		z-index: 5;
+		position: relative;
+	}
+	
+	.wrap {
+		margin-top: -110px;
+		min-height: 100%;
+		position: relative;
+	}
+	
+	.main {
+		width: 1600px;
+		height: 1200px;
+		position: relative;
+		top: 105px;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+	
+	section {
+		height: 1200px;
+	}
+	/* 클리어 */
+	.clear {
+		clear: both;
+	}
+	/* 밑의 영역부터 css시작 */
+	.container {
+		width: 100%;
+	}
+	
 	/*MyPage CSS*/
 	table {
 		border-collapse: collapse;
@@ -44,15 +109,11 @@
 		min-height: 700px;
 		float: left;
 		text-align: left;
-		/*border: solid 2px #000000;
-		background-color: #c267ff;*/
 	}
 	
 	.aside_left nav {
 		min-height: 600px;
 		margin-bottom: 50px;
-		/*border: solid 2px #000000;
-		background-color: #67a9ff;*/
 	}
 	
 	.aside_left li {
@@ -174,15 +235,15 @@
 	}
 	
 	.th-list{
-		text-align:center;
-		margin-top : 20px;
-		margin-bottom: 20px;
-		padding: 10px;
-		background-color: #AC76B0;
-		border-bottom-color: white;
-		border-bottom-width: 0.2px;
-		border-bottom-style: solid;
-		color: white;
+	    text-align: center;
+	    margin-top: 20px;
+	    margin-bottom: 20px;
+	    padding: 10px;
+	    background-color: #b21949;
+	    border-bottom-color: white;
+	    border-bottom-width: 0.2px;
+	    border-bottom-style: solid;
+	    color: white;
 	}
 	
 	.td-inputInfo{
@@ -209,21 +270,23 @@
 		margin-left: 100px;
 	}
 	
+	/* 수정 버튼 */
 	#updateBtn{
-		padding: 20px 80px; 
-		background-color: #AC76B0; 
-		border: 1px solid white; 
-		color: white; 
-		font-size: 20px; 
-		font-weight: bold;
-	}
+	    padding: 20px 120px;
+	    background-color: #b21949;
+	    border: 2px solid #b21949;
+	    font-size: 20px;
+	    font-weight: bold;
+	    color: white;
+	}	
 	
 	#resetBtn{
-		padding: 20px 120px;
-		background-color: white;
-		border: 1px solid lightgray;
-		font-size: 20px; 
-		font-weight: bold;
+	    padding: 20px 120px;
+	    background-color: white;
+	    border: 2px solid #b21949;
+	    font-size: 20px;
+	    font-weight: bold;
+	    color: #b21949;
 	}
 	
 	#withdrawalBtn{
@@ -276,7 +339,7 @@
 		min-height: 700px;
 		padding: 20px;
 		float: left;
-		margin-top: 100px;
+		margin-top: 10px;
 		margin-left: 100px;
 	}
 	
@@ -306,12 +369,12 @@
 	
 	a:hover.liList{
 		text-decoration: underline;
-		color: #AC76B0;
+		color: #B21948;
 	}
 	
 	a:active.liList {
 		text-decoration: none;
-		color: #AC76B0;
+		color: #B21948;
 	}
 	
 	table a:link.orderList {
@@ -335,79 +398,6 @@
 		color: #FC5400;
 	}
 	
-	/* 메인 컨텐츠 부분 */
-	#wrap {
-		width: 100%;
-		height: 100%;
-		text-align: center;
-	}
-	/* 폰트 CSS */
-	@font-face {
-		font-family: 'KIMM_Bold';
-		src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2') format('woff2'); /* CDN 절대링크  */
-		font-weight: 700;
-		font-style: normal;
-	}
-	
-	/* 되도록 안건드리는 영역 */
-	* {
-		box-sizing: border-box;
-		-webkit-box-sizing: border-box;
-		-moz-box-sizing: border-box;
-	}
-	
-	html {
-		height: 100%;
-	}
-	
-	body {
-		font-family: 'KIMM_Bold';
-		margin: 0px;
-		height: 100%;
-		padding: 0px;
-	}
-	
-	header {
-		width: 100%;
-		position: fixed;
-		z-index: 2;
-	}
-	
-	footer {
-		bottom: 0;
-		z-index: 5;
-		position: relative;
-	}
-	
-	.wrap {
-		font-family: 'KIMM_Bold';
-		margin-top: -110px;
-		min-height: 100%;
-		position: relative;
-	}
-	
-	.main { 
-		width: 1600px;
-		height: 1200px; /* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / section이랑 px 맞춰야함 */
-		position : relative;
-		top: 105px;
-		left: 50%;
-        transform: translateX( -50% );
-		/* background-color: rgb(179, 255, 213); */ /* 영역 보기 편하라고 배경색 지정함 : 연초록 */
-	}
-	section {
-		height: 2000px;  /*UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / .main이랑 px 맞춰야함*/ 
-		/*background-color: rgb(236, 226, 202);  영역 보기 편하라고 배경색 지정함 : 연주황*/ 
-	}
-	
-	/* 클리어 */
-	.clear {
-		clear: both;
-	}
-	/* 밑의 영역부터 css시작 */
-	.container {
-		width: 100%;
-	}
 	/* '기본정보' '*필수사항' 중간 여백  */
 	.indent {
 		margin-left: 749px;
@@ -437,7 +427,7 @@
 							<li style="margin-bottom: 30px;"><a href="basket" class="liList">장바구니</a></li>
 
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
-							<li><a href="myPage_updateInfo" class="liList">회원정보 변경</a></li>
+							<li><a href="myPage_updateInfo" class="liList" style="color: #B21948;">회원정보 변경</a></li>
 							<li><a href="myPage_changePwd" class="liList">비밀번호 변경</a></li>
 							<li><a href="myPage_user_Withdrawal" class="liList">회원탈퇴</a></li>
 							<li style="margin-bottom: 30px;"><a href="myPage_updateAddress" class="liList">배송지 관리</a></li>
@@ -529,13 +519,11 @@
 						<td class="td-inputInfo">
 								<input type="text" name="user_phone" id="user_phone" size="70" value="${m.user_phone}" placeholder="예)010-1234-5678 -> 01012345678">
 						</td>
-							
 					</tr>
 					
 					<tr>
 						<td class="td-infoPs"></td>
 					</tr>
-
 				</table>
 				
 			<br><br>
@@ -545,19 +533,20 @@
 				<input id="resetBtn" type="reset" value="취소">
 				</div>
 				</form>
-				<br><br><br>
-			</div>
 
-			         <%-- top버튼 삭제 X --%>
-         <div id="topBtn">
-            <span class="fonti um-arrow-circle-up um-3x icon"></span>TOP
-         </div>
+			</div>
+			</section>		
+			</div>
+			</div>
+			<%-- top버튼 삭제 X --%>
+	         <div id="topBtn">
+	            <span class="fonti um-arrow-circle-up um-3x icon"></span>TOP
+	         </div>
          
 		</section>
 		
-			</div>
-		<br><br><br><br><br><br>
 		<div class="clear"></div>
+		
 		<%-- 푸터 영역 --%>
 		<footer>
 			<!-- footer -->

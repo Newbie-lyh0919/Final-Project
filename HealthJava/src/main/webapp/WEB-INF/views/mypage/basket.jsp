@@ -452,7 +452,8 @@
 		border-bottom: 2px solid rgb(217, 217, 217);
 		text-align: left;
 	}
-	/* a 링크 : 메뉴바 */
+	
+	/* a 링크 : 메뉴바 */	
 	a:link.liList {
 		text-decoration: none;
 		color: #a399a2;
@@ -463,14 +464,14 @@
 		color: #a399a2;
 	}
 	
-	a:hover.liList {
+	a:hover.liList{
 		text-decoration: underline;
-		color: #AC76B0;
+		color: #B21948;
 	}
 	
 	a:active.liList {
 		text-decoration: none;
-		color: #AC76B0;
+		color: #B21948;
 	}
 </style>
 
@@ -494,7 +495,7 @@
 							<li><a href="myPage_Main" class="liList">주문ㆍ배송</a></li>
 							<li><a href="myPage_orderCancel" class="liList">교환/반품/환불</a></li>
 							<li><a href="like" class="liList">찜 목록</a></li>
-							<li style="margin-bottom: 30px;"><a href="basket" class="liList">장바구니</a></li>
+							<li style="margin-bottom: 30px;"><a href="basket" class="liList" style="color: #B21948;">장바구니</a></li>
 
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
 							<li><a href="myPage_updateInfo" class="liList">회원정보 변경</a></li>

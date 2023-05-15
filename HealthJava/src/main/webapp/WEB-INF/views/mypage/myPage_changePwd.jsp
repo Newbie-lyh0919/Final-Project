@@ -199,7 +199,7 @@
 		margin-top : 20px;
 		margin-bottom: 20px;
 		padding: 10px;
-		background-color: #AC76B0;
+		background-color: #B21948;
 		border-bottom-color: white;
 		border-bottom-width: 0.2px;
 		border-bottom-style: solid;
@@ -229,21 +229,13 @@
 		float: left;
 	}
 	
-	#updateBtn{
-		padding: 20px 80px; 
-		background-color: #FC5400; 
-		border: 1px solid white; 
-		color: white; 
-		font-size: 20px; 
-		font-weight: bold
-	}
-	
 	#resetBtn{
 		padding: 20px 100px;
 		background-color: white;
-		border: 1px solid lightgray;
+		border: 2px solid #B21948;
 		font-size: 20px; 
 		font-weight: bold;
+		color: #B21948;
 	}
 	
 	#withdrawalBtn{
@@ -252,13 +244,13 @@
 		border: 1px solid white; 
 		color: white; 
 		font-size: 20px; 
-		font-weight: bold
+		font-weight: bold;
 	}
 	
 	/* 확인 버튼*/
 	#changePwdBtn{
 		padding: 20px 100px; 
-		background-color: #AC76B0; 
+		background-color: #B21948;; 
 		border: 1px solid white; 
 		color: white; 
 		font-size: 20px; 
@@ -312,28 +304,7 @@
 	.clear {
 		clear: both; /*float 속성을 제거함으로써 잘못 된 ui 적용을 막아줌 */
 	}
-	
-	
-	a:link.liList {
-		text-decoration: none;
-		color: #808080;
-	}
-	
-	a:visited.liList {
-		text-decoration: none;
-		color: #808080;
-	}
-	
-	a:hover.liList{
-		text-decoration: underline;
-		color: #FC5400;
-	}
-	
-	a:active.liList {
-		text-decoration: none;
-		color: #FC5400;
-	}
-	
+
 	table a:link.orderList {
 		text-decoration: none; 
 		color: black;
@@ -362,76 +333,72 @@
 		text-align: center;
 	}
 
-  /* 폰트 CSS */ 
-   @font-face {
-      font-family: 'KIMM_Bold';
-      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2') format('woff2'); /* CDN 절대링크  */
-      font-weight: 700;
-      font-style: normal;
-   }
-   /* 되도록 안건드리는 영역 */
-   * {
-      box-sizing: border-box;
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-   }
-   html {
-      height: 100%;
-   }
-   body {
-   	  font-family: 'KIMM_Bold';
-      margin: 0px;
-      height: 100%;
-      padding: 0px;
-   }
-   header {
-      width: 100%;
-       position: fixed;
-      z-index: 2;
-   }
-   footer {
-      bottom: 0;
-      z-index: 5;
-      position: relative;
-   }
-   .wrap {
-        font-family: 'KIMM_Bold';
-      margin-top: -110px;
-      min-height: 100%;
-       position: relative;
-   }
-   .main { 
+	/* 폰트 CSS */
+	@font-face {
+		font-family: 'KIMM_Bold';
+		src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2') format('woff2'); /* CDN 절대링크  */
+		font-weight: 700;
+		font-style: normal;
+	}
+	/* 되도록 안건드리는 영역 */
+	* {
+		box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		font-family: 'KIMM_Bold', sans-serif;
+	}
+	
+	html {
+		height: 100%;
+	}
+	
+	body {
+		margin: 0px;
+		height: 100%;
+		padding: 0px;
+	}
+	
+	header {
+		width: 100%;
+		position: fixed;
+		z-index: 2;
+	}
+	
+	footer {
+		bottom: 0;
+		z-index: 5;
+		position: relative;
+	}
+	
+	.wrap {
+		margin-top: -110px;
+		min-height: 100%;
+		position: relative;
+	}
+	
+	.main {
 		width: 1600px;
-		height: 1200px; /* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / section이랑 px 맞춰야함 */
-		position : relative;
+		height: 1200px;
+		/* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / section이랑 px 맞춰야함 */
+		position: relative;
 		top: 105px;
 		left: 50%;
-        transform: translateX( -50% );
-		/* background-color: rgb(179, 255, 213); */ /* 영역 보기 편하라고 배경색 지정함 : 연초록 */
+		transform: translateX(-50%);
 	}
-   section {
-      height: 2000px;  UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / .main이랑 px 맞춰야함 
-      background-color: rgb(236, 226, 202);  영역 보기 편하라고 배경색 지정함 : 연주황 
-   }
-
-   /* 클리어 */
-
-   .clear {
-      clear: both;
-   }
-   /* 밑의 영역부터 css시작 */
-   .container {
-      width: 100%;
-   }
-   /* 캐러셀 */
-   #carouselExampleControls {
-      width: 1100px;
-      position : relative;
-      left: 50%;
-        transform: translateX( -50% );
-   }
+	
+	section {
+		height: 1200px;
+	}
+	/* 클리어 */
+	.clear {
+		clear: both;
+	}
+	/* 밑의 영역부터 css시작 */
+	.container {
+		width: 100%;
+	}
    
-       input[type=password]{
+   	input[type=password]{
         font-family:"굴림";
     }
 	
@@ -448,12 +415,12 @@
 	
 	a:hover.liList{
 		text-decoration: underline;
-		color: #AC76B0;
+		color: #B21948;
 	}
 	
 	a:active.liList {
 		text-decoration: none;
-		color: #AC76B0;
+		color: #B21948;
 	}
 	
 	table a:link.orderList {
@@ -502,7 +469,7 @@
 
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
 							<li><a href="myPage_updateInfo" class="liList">회원정보 변경</a></li>
-							<li><a href="myPage_changePwd" class="liList">비밀번호 변경</a></li>
+							<li><a href="myPage_changePwd" class="liList" style="color: #B21948;">비밀번호 변경</a></li>
 							<li><a href="myPage_user_Withdrawal" class="liList">회원탈퇴</a></li>
 							<li style="margin-bottom: 30px;"><a href="myPage_updateAddress" class="liList">배송지 관리</a></li>
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 상품후기</li>
@@ -571,13 +538,14 @@
 				</div>
 				</form>
 			</div>
+			
 		</section>
-		         
+		 </div></div>       
 		 <%-- top버튼 삭제 X --%>
          <div id="topBtn">
             <span class="fonti um-arrow-circle-up um-3x icon"></span>TOP
          </div>
-			</div>
+		</section>
 		<div class="clear"></div>
 		<%-- 푸터 영역 --%>
 		<footer>
