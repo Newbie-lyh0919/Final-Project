@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="style.css">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> <%-- CDN 절대링크 --%>
-<script type="text/javascript" src="./js/jquery.js"></script>
+<!-- <script type="text/javascript" src="./js/jquery.js"></script> -->
 
 <title>HealthJava 마이페이지</title>
 
@@ -19,8 +19,84 @@
 <%-- <link rel="stylesheet" href="./shop/puppyhome/controller_mypage/css/mypage.css">--%>
 
 <style type="text/css">
-
-	/*MyPage CSS*/
+	/* 메인 컨텐츠 부분 */
+	#wrap {
+		width: 100%;
+		height: 100%;
+		text-align: center;
+	}
+	
+	/* 폰트 CSS */
+	@font-face {
+		font-family: 'KIMM_Bold';
+		src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2') format('woff2'); /* CDN 절대링크  */
+		font-weight: 700;
+		font-style: normal;
+	}
+	/* 되도록 안건드리는 영역 */
+	* {
+		box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+	}
+	
+	html {
+		height: 100%;
+	}
+	
+	body {
+		font-family: 'KIMM_Bold';
+		margin: 0px;
+		height: 100%;
+		padding: 0px;
+	}
+	
+	header {
+		width: 100%;
+		position: fixed;
+		z-index: 2;
+	}
+	
+	footer {
+		bottom: 0;
+		z-index: 5;
+		position: relative;
+	}
+	
+	.wrap {
+		font-family: 'KIMM_Bold';
+		margin-top: -110px;
+		min-height: 100%;
+		position: relative;
+	}
+	
+	.main { 
+		width: 1600px;
+		height: 1200px; /* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / section이랑 px 맞춰야함 */
+		position : relative;
+		top: 105px;
+		left: 50%;
+        transform: translateX( -50% );
+	}
+	
+	section {
+		height: 1200px;  /*UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함  .main이랑 px 맞춰야함*/  
+	}
+	
+	/* 클리어 */
+	.clear {
+		clear: both;
+	}
+	
+	/* 밑의 영역부터 css시작 */
+	.container {
+		width: 100%;
+		margin: 20px 0px;
+	}	
+	
+	/******************************************************************/
+	
+	/*MyPage_Main CSS*/
 	table {
 		border-collapse: collapse;
 		border-spacing: 0;
@@ -40,15 +116,11 @@
 		min-height: 700px;
 		float: left;
 		text-align: left;
-		/*border: solid 2px #000000;
-		background-color: #c267ff;*/
 	}
 	
 	.aside_left nav {
 		min-height: 600px;
 		margin-bottom: 50px;
-		/*border: solid 2px #000000;
-		background-color: #67a9ff;*/
 	}
 	
 	.aside_left li {
@@ -60,6 +132,7 @@
 	li{
 		padding-top: 10px;
 	}
+	
 	nav {
 		min-height: 600px;
 		margin-bottom: 50px;
@@ -95,6 +168,7 @@
 		padding: 15px 0;
 		text-align: left;
 	}
+	
 	.board-table {
 		font-size: 13px;
 		width: 100%;
@@ -137,7 +211,6 @@
 		font-size: 15px;
 		width: 150px;
 	}
-	
 	
 	.board-table .th-inputInfo {
 		
@@ -197,44 +270,23 @@
 		font-weight: bold;
 		color: red;
 	}
+	
 	div.submitBtn{
 		float: left;
 		margin-left: 100px;
 	}
 	
+	/* 수정 버튼 */
 	#updateBtn{
-		padding: 7px 15px; 
-		border: 1px solid white; 
-		color: #AC76B0; 
-		font-size: 10px; 
-		font-weight: bold
+	    padding: 7px 15px;
+	    border: 1px solid #B21948;
+	    color: white;
+	    font-size: 15px;
+	    font-weight: bold;
+	    background: #b21949;
 	}	
 	
-	#resetBtn{
-		padding: 20px 120px;
-		background-color: white;
-		border: 1px solid lightgray;
-		font-size: 20px; 
-		font-weight: bold;"
-	}
-	
-	#withdrawalBtn{
-		padding: 20px 100px; 
-		background-color: #FC5400; 
-		border: 1px solid white; 
-		color: white; 
-		font-size: 20px; 
-		font-weight: bold
-	}
-	
-	#changePwdBtn{
-		padding: 20px 120px; 
-		background-color: #FC5400; 
-		border: 1px solid white; 
-		color: white; font-size: 20px; font-weight: bold
-	}
-	
-	/* reset */
+	/* 메뉴바 */
 	* {
 		list-style: none;
 		text-decoration: none;
@@ -254,18 +306,13 @@
 		margin: 0 auto;
 		border: 1px solid red;
 	}
-	
-	div.container {
-		width: 1000px;
-		margin: 20px 0px;
-	}
-	
+		
 	.innerWrap {
 		width: 1000px;
 		min-height: 700px;
 		padding: 20px;
 		float: left;
-		margin-top: 100px;
+		margin-top: 10px;
 		margin-left: 100px;
 	}
 	
@@ -277,10 +324,7 @@
 		width: 1px;
 		height: 1px;
 	}
-	
-	.clear {
-		clear: both; /*float 속성을 제거함으로써 잘못 된 ui 적용을 막아줌 */
-	}
+		
 	/* a 링크 : 메뉴바 */	
 	a:link.liList {
 		text-decoration: none;
@@ -294,12 +338,12 @@
 	
 	a:hover.liList{
 		text-decoration: underline;
-		color: #AC76B0;
+		color: #B21948;
 	}
 	
 	a:active.liList {
 		text-decoration: none;
-		color: #AC76B0;
+		color: #B21948;
 	}
 	
 	table a:link.orderList {
@@ -322,78 +366,6 @@
 		text-decoration: none;
 		color: #FC5400;
 	}
-	/* 메인 컨텐츠 부분 */
-	#wrap {
-		width: 100%;
-		height: 100%;
-		text-align: center;
-	}
-	
-	/* 폰트 CSS */
-	@font-face {
-		font-family: 'KIMM_Bold';
-		src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2') format('woff2'); /* CDN 절대링크  */
-		font-weight: 700;
-		font-style: normal;
-	}
-	/* 되도록 안건드리는 영역 */
-	* {
-		box-sizing: border-box;
-		-webkit-box-sizing: border-box;
-		-moz-box-sizing: border-box;
-	}
-	
-	html {
-		height: 100%;
-	}
-	
-	body {
-		font-family: 'KIMM_Bold';
-		margin: 0px;
-		height: 100%;
-		padding: 0px;
-	}
-	
-	header {
-		width: 100%;
-		position: fixed;
-		z-index: 2;
-	}
-	
-	footer {
-		bottom: 0;
-		z-index: 5;
-		position: relative;
-	}
-	
-	.wrap {
-		font-family: 'KIMM_Bold';
-		margin-top: -110px;
-		min-height: 100%;
-		position: relative;
-	}
-	
-	.main { 
-		width: 1600px;
-		height: 1200px; /* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / section이랑 px 맞춰야함 */
-		position : relative;
-		top: 105px;
-		left: 50%;
-        transform: translateX( -50% );
-		/* background-color: rgb(179, 255, 213); */ /* 영역 보기 편하라고 배경색 지정함 : 연초록 */
-	}
-	section {
-		height: 2000px;  /*UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / .main이랑 px 맞춰야함*/ 
-		 /*background-color: rgb(236, 226, 202); 영역 보기 편하라고 배경색 지정함 : 연주황*/ 
-	}
-	/* 클리어 */
-	.clear {
-		clear: both;
-	}
-	/* 밑의 영역부터 css시작 */
-	.container {
-		width: 100%;
-	}
 </style>
 
 </head>
@@ -407,29 +379,29 @@
 		</header>
 		<%-- 메뉴바 --%>
 		<section>
-			<div class="main">
-				<%-- main 화면 상단 캐러셀 (캐러셀 필요 없는 페이지는 삭제 바람!)--%>
-				<aside class="aside_left">
-					<nav>
-						<ul>
-							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 쇼핑</li>
-							<li><a href="myPage_Main" class="liList">주문ㆍ배송</a></li>
-							<li><a href="myPage_orderCancel" class="liList">교환/반품/환불</a></li>
-							<li><a href="like" class="liList">찜 목록</a></li>
-							<li style="margin-bottom: 30px;"><a href="basket" class="liList">장바구니</a></li>
+		<div class="main">
+			<%-- main 화면 상단 캐러셀 --%>
+			<aside class="aside_left">
+				<nav>
+					<ul>
+						<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 쇼핑</li>
+						<li><a href="myPage_Main" class="liList" style="color: #B21948;">주문ㆍ배송</a></li>
+						<li><a href="myPage_orderCancel" class="liList">교환/반품/환불</a></li>
+						<li><a href="like" class="liList">찜 목록</a></li>
+						<li style="margin-bottom: 30px;"><a href="basket" class="liList">장바구니</a></li>
 
-							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
-							<li><a href="myPage_updateInfo" class="liList">회원정보 변경</a></li>
-							<li><a href="myPage_changePwd" class="liList">비밀번호 변경</a></li>
-							<li><a href="myPage_user_Withdrawal" class="liList">회원탈퇴</a></li>
-							<li style="margin-bottom: 30px;"><a href="myPage_updateAddress" class="liList">배송지 관리</a></li>
-							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 상품후기</li>
-							<li><a href="review" class="liList">나의 상품후기</a></li>
-						</ul>
-					</nav>
-				</aside>
+						<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
+						<li><a href="myPage_updateInfo" class="liList">회원정보 변경</a></li>
+						<li><a href="myPage_changePwd" class="liList">비밀번호 변경</a></li>
+						<li><a href="myPage_user_Withdrawal" class="liList">회원탈퇴</a></li>
+						<li style="margin-bottom: 30px;"><a href="myPage_updateAddress" class="liList">배송지 관리</a></li>
+						<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 상품후기</li>
+						<li><a href="review" class="liList">나의 상품후기</a></li>
+					</ul>
+				</nav>
+			</aside>
 
-		<%-- 본문 영역(ui깨질시 본인이 ui 수정바람..) --%>
+		<%-- 본문 영역 --%>
 		<div class="innerWrap">
 			<section class="notice">
 				<div class="page-title">
@@ -446,16 +418,7 @@
 					<b style="font-size: 20px;">Test 계정</b>&nbsp;
 					<input type="button" id="updateBtn" onclick="location.href='myPage_updateInfo'" value="수정">
 				</div>
-
-				<%-- 	
-				<div class="memBasicInfo" style="width: 200px; text-align: right; font-size: 5px;">
-					<b>찜목록 ㅣ 장바구니 ㅣ 상품후기</b>
-				</div>
-				--%>
-
 			</section>
-
-			<div class="clear"></div>
 
 			<!-- board seach area -->
 			<section class="notice">
@@ -478,7 +441,8 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:if test="${!empty olist }">
+								<%-- 주문 테이블 --%>
+								<c:if test="${!empty olist }"> <!-- 주문내역이 있을 경우 -->
 									<c:forEach var="o" items="${olist}">
 										<tr>
 											<td>${o.order_no}</td>
@@ -493,18 +457,28 @@
 												value="후기작성" onclick="openPopup_review_write()"></td>
 										</tr>
 										</c:forEach>
-										</c:if>
+									</c:if>
+									
+									<c:if test="${empty olist }"> <!-- 주문 내역이 없을 경우 -->
+									<tr>
+										<th colspan="7">현재 주문한 제품이 없습니다.</th>
+									</tr>
+									</c:if>
 							</tbody>
 						</table>
-					</div>
+					</div> <!-- end container -->
 				</div>
+				</section>
+				</div>
+				
+				</div> <!--end innerWrap -->
 				<%-- top버튼 삭제 X --%>
 				<div id="topBtn">
 					<span class="fonti um-arrow-circle-up um-3x icon"></span>TOP
 				</div>
-			</div>
+			
 			</section>
-		<div class="clear"></div>
+			<div class="clear"></div>
 		<%-- 푸터 영역 --%>
 		<footer>
 			<!-- footer -->

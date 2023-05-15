@@ -606,7 +606,7 @@
 		color: black;
 	}
 	
-	/* a 링크 : 메뉴바 */
+	/* a 링크 : 메뉴바 */	
 	a:link.liList {
 		text-decoration: none;
 		color: #a399a2;
@@ -617,14 +617,14 @@
 		color: #a399a2;
 	}
 	
-	a:hover.liList {
+	a:hover.liList{
 		text-decoration: underline;
-		color: #AC76B0;
+		color: #B21948;
 	}
 	
 	a:active.liList {
 		text-decoration: none;
-		color: #AC76B0;
+		color: #B21948;
 	}
 	
 	#allDelete {
@@ -656,7 +656,7 @@
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 쇼핑</li>
 							<li><a href="myPage_Main" class="liList">주문ㆍ배송</a></li>
 							<li><a href="myPage_orderCancel" class="liList">교환/반품/환불</a></li>
-							<li><a href="like" class="liList">찜 목록</a></li>
+							<li><a href="like" class="liList" style="color: #B21948;">찜 목록</a></li>
 							<li style="margin-bottom: 30px;"><a href="basket" class="liList">장바구니</a></li>
 
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
@@ -710,7 +710,7 @@
 														type : "post",
 														data : { chbox : checkArr },
 														success : function(){
-															location.href = "like.shop"; // 현재 페이지로 새로고침
+															location.href = "like"; // 현재 페이지로 새로고침
 														}
 													});
 												} 
@@ -1092,7 +1092,7 @@
 	        var page_left = Math.ceil((window.screen.width - page_width)/2);
 	        var page_top = Math.ceil((window.screen.height - page_height)/2);
 	
-	    window.open("review_write.shop", "review_write",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
+	    window.open("review_write", "review_write",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
 	    
 	    }
 		

@@ -232,7 +232,6 @@
 <body style="overflow-x:hidden; overflow-y:hidden;">
 	<div class="wrap">
 		<div class="headerBox">
-			<div class="titleBox">
 				<span id="titleText">리뷰쓰기</span>
 			</div>
 		</div>

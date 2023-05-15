@@ -510,7 +510,7 @@
 		content: "\f00c"; /*폰트어썸 유니코드*/
 		font-family: "Font Awesome 5 free"; /*폰트어썸 아이콘 사용*/
 		font-weight: 900; /*폰트어썸 설정*/
-		color: blue;
+		color: #B21948;
 		background-color: white;
 		border-color: #000;
 		font-size: 13px;
@@ -541,7 +541,7 @@
 		content: "\f00c"; /*폰트어썸 유니코드*/
 		font-family: "Font Awesome 5 free"; /*폰트어썸 아이콘 사용*/
 		font-weight: 900; /*폰트어썸 설정*/
-		color: blue;
+		color: #B21948;
 		background-color: white;
 		border-color: #000;
 		font-size: 13px;
@@ -552,7 +552,7 @@
 		content: "\f00c"; /*폰트어썸 유니코드*/
 		font-family: "Font Awesome 5 free"; /*폰트어썸 아이콘 사용*/
 		font-weight: 900; /*폰트어썸 설정*/
-		color: blue;
+		color: #B21948;
 		background-color: white;
 		border-color: #000;
 		font-size: 13px;
@@ -622,12 +622,12 @@
 	
 	a:hover.liList{
 		text-decoration: underline;
-		color: #AC76B0;
+		color: #B21948;
 	}
 	
 	a:active.liList {
 		text-decoration: none;
-		color: #AC76B0;
+		color: #B21948;
 	}
 </style>
 </head>
@@ -650,7 +650,7 @@
 							<li><a href="myPage_Main" class="liList">주문ㆍ배송</a></li>
 							<li><a href="myPage_orderCancel" class="liList">교환/반품/환불</a></li>
 							<li><a href="like" class="liList">찜 목록</a></li>
-							<li style="margin-bottom: 30px;"><a href="basket.shop" class="liList">장바구니</a></li>
+							<li style="margin-bottom: 30px;"><a href="basket" class="liList">장바구니</a></li>
 
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
 							<li><a href="myPage_updateInfo" class="liList">회원정보 변경</a></li>
@@ -658,7 +658,7 @@
 							<li><a href="myPage_user_Withdrawal" class="liList">회원탈퇴</a></li>
 							<li style="margin-bottom: 30px;"><a href="myPage_updateAddress" class="liList">배송지 관리</a></li>
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 상품후기</li>
-							<li><a href="review" class="liList">나의 상품후기</a></li>
+							<li><a href="review" class="liList" style="color: #B21948;">나의 상품후기</a></li>
 						</ul>
 					</nav>
 				</aside>
@@ -673,9 +673,43 @@
 								<ul>
 									<li class="item item-heading">
 										<%-- 체크 박스 --%>
-										<input type="checkbox" id="chk_all" />
-										<label for="chk_all"> 선택후기 삭제</label>
+										<input type="checkbox" name="chk_all" id="chk_all" /><label for="chk_all"> 선택후기 삭제</label>
 										<%-- 클릭시 전체 삭제할지 물어봐야함 --%>
+										<script>
+											$("#chk_all").click(function(){
+											 var chk = $("#chk_all").prop("checked");
+											 if(chk) {
+											  $(".chBox").prop("checked", true);
+											 } else {
+											  $(".chBox").prop("checked", false);
+											 }
+											});
+										</script>
+									</li>
+									<li class="item-heading2">
+										<button id="allDelete">선택 항목 삭제</button>
+										<script>
+											$("#allDelete").click(function(){
+												var confirm_val = confirm("정말 삭제하시겠습니까?");
+											 
+												if(confirm_val) {
+													var checkArr = new Array();
+											  
+													$("input[class='chBox']:checked").each(function(){
+														checkArr.push($(this).attr("data-cartNum"));
+													});
+											   
+													$.ajax({
+														url : "deleteOK.shop", // deleteOK?
+														type : "post",
+														data : { chbox : checkArr },
+														success : function(){
+															location.href = "like"; // 현재 페이지로 새로고침
+														}
+													});
+												} 
+											});
+										</script>
 									</li>
 								</ul>
 							</div>
@@ -703,6 +737,11 @@
 										<img id="shopping_deleteImg" src="<%=request.getContextPath()%>/images/X.png" alt="삭제">
 									</button>
 								</div>
+								<script>
+									 $(".chBox").click(function(){
+									 	$("#chk_all").prop("checked", false);
+									 });
+								</script>
 							</div>
 							<div class="basket-product">
 								<%-- 체크 박스 --%>
@@ -753,6 +792,11 @@
 										<img id="shopping_deleteImg" src="<%=request.getContextPath()%>/images/X.png" alt="삭제">
 									</button>
 								</div>
+								<script>
+									 $(".chBox").click(function(){
+									 	$("#chk_all").prop("checked", false);
+									 });
+								</script>
 							</div>
 							<div class="basket-product">
 								<%-- 체크 박스 --%>
@@ -978,7 +1022,7 @@
 	        var page_left = Math.ceil((window.screen.width - page_width)/2);
 	        var page_top = Math.ceil((window.screen.height - page_height)/2);
 	
-	    window.open("review_write.shop", "review_write",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
+	    window.open("review_write", "review_write",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
 	    
 	    }
 		

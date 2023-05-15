@@ -302,12 +302,12 @@
 	
 	a:hover.liList{
 		text-decoration: underline;
-		color: #AC76B0;
+		color: #B21948;
 	}
 	
 	a:active.liList {
 		text-decoration: none;
-		color: #AC76B0;
+		color: #B21948;
 	}
 	
 	table a:link.orderList {
@@ -337,66 +337,70 @@
 		height: 100%;
 		text-align: center;
 	}
-  /* 폰트 CSS */ 
-   @font-face {
-      font-family: 'KIMM_Bold';
-      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2') format('woff2'); /* CDN 절대링크  */
-      font-weight: 700;
-      font-style: normal;
-   }
-   /* 되도록 안건드리는 영역 */
-   * {
-      box-sizing: border-box;
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-   }
-   html {
-      height: 100%;
-   }
-   body {
-   	  font-family: 'KIMM_Bold';
-      margin: 0px;
-      height: 100%;
-      padding: 0px;
-   }
-   header {
-      width: 100%;
-       position: fixed;
-      z-index: 2;
-   }
-   footer {
-      bottom: 0;
-      z-index: 5;
-      position: relative;
-   }
-   .wrap {
-        font-family: 'KIMM_Bold';
-      margin-top: -110px;
-      min-height: 100%;
-       position: relative;
-   }
-   .main { 
+	/* 폰트 CSS */
+	@font-face {
+		font-family: 'KIMM_Bold';
+		src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2') format('woff2'); /* CDN 절대링크  */
+		font-weight: 700;
+		font-style: normal;
+	}
+	/* 되도록 안건드리는 영역 */
+	* {
+		box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		font-family: 'KIMM_Bold', sans-serif;
+	}
+	
+	html {
+		height: 100%;
+	}
+	
+	body {
+		margin: 0px;
+		height: 100%;
+		padding: 0px;
+	}
+	
+	header {
+		width: 100%;
+		position: fixed;
+		z-index: 2;
+	}
+	
+	footer {
+		bottom: 0;
+		z-index: 5;
+		position: relative;
+	}
+	
+	.wrap {
+		margin-top: -110px;
+		min-height: 100%;
+		position: relative;
+	}
+	
+	.main {
 		width: 1600px;
-		height: 1200px; /* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / section이랑 px 맞춰야함 */
-		position : relative;
+		height: 1200px;
+		/* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / section이랑 px 맞춰야함 */
+		position: relative;
 		top: 105px;
 		left: 50%;
-        transform: translateX( -50% );
-		/* background-color: rgb(179, 255, 213); */ /* 영역 보기 편하라고 배경색 지정함 : 연초록 */
+		transform: translateX(-50%);
 	}
+	
 	section {
-      height: 2000px;  /*UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / .main이랑 px 맞춰야함*/ 
-      /*background-color: rgb(236, 226, 202);  영역 보기 편하라고 배경색 지정함 : 연주황*/ 
-   }
-
-   /* 클리어 */
-   .clear {
-      clear: both;
-   }
-   /* 밑의 영역부터 css시작 */
-   .container {
-      width: 100%;
-   }
+		height: 1200px;
+	}
+	/* 클리어 */
+	.clear {
+		clear: both;
+	}
+	/* 밑의 영역부터 css시작 */
+	.container {
+		width: 100%;
+	}
 </style>
 
 </head>
@@ -495,12 +499,14 @@
 				<input type="button" id="updateBtn" onclick="location.href='myPage_Main'" value="주문내역 목록">
 			</div>
 		</div>
+		
+		</section>
+		</div>
          <%-- top버튼 삭제 X --%>
          <div id="topBtn">
             <span class="fonti um-arrow-circle-up um-3x icon"></span>TOP
          </div>
-				</section>
-			</div>
+		</div>
 		<div class="clear"></div>
 		<%-- 푸터 영역 --%>
 		<footer>

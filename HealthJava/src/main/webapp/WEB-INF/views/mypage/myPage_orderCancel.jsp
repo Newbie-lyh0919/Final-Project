@@ -20,6 +20,71 @@
 <%-- <link rel="stylesheet" href="./shop/puppyhome/controller_mypage/css/mypage.css">--%>
 
 <style type="text/css">
+	
+	/* 폰트 CSS */
+	@font-face {
+		font-family: 'KIMM_Bold';
+		src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2') format('woff2'); /* CDN 절대링크  */
+		font-weight: 700;
+		font-style: normal;
+	}
+	/* 되도록 안건드리는 영역 */
+	* {
+		box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		font-family: 'KIMM_Bold', sans-serif;
+	}
+	
+	html {
+		height: 100%;
+	}
+	
+	body {
+		margin: 0px;
+		height: 100%;
+		padding: 0px;
+	}
+	
+	header {
+		width: 100%;
+		position: fixed;
+		z-index: 2;
+	}
+	
+	footer {
+		bottom: 0;
+		z-index: 5;
+		position: relative;
+	}
+	
+	.wrap {
+		margin-top: -110px;
+		min-height: 100%;
+		position: relative;
+	}
+	
+	.main {
+		width: 1600px;
+		height: 1200px;
+		/* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / section이랑 px 맞춰야함 */
+		position: relative;
+		top: 105px;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+	
+	section {
+		height: 1200px;
+	}
+	/* 클리어 */
+	.clear {
+		clear: both;
+	}
+	/* 밑의 영역부터 css시작 */
+	.container {
+		width: 100%;
+	}
 	/*MyPage CSS*/
 	table {
 		border-collapse: collapse;
@@ -40,15 +105,11 @@
 		min-height: 700px;
 		float: left;
 		text-align: left;
-		/*border: solid 2px #000000;
-		background-color: #c267ff;*/
 	}
 	
 	.aside_left nav {
 		min-height: 600px;
 		margin-bottom: 50px;
-		/*border: solid 2px #000000;
-		background-color: #67a9ff;*/
 	}
 	
 	.aside_left li {
@@ -289,7 +350,7 @@
 		clear: both; /*float 속성을 제거함으로써 잘못 된 ui 적용을 막아줌 */
 	}
 	
-	/* a 링크 : 메뉴바 */	
+		/* a 링크 : 메뉴바 */	
 	a:link.liList {
 		text-decoration: none;
 		color: #a399a2;
@@ -302,12 +363,12 @@
 	
 	a:hover.liList{
 		text-decoration: underline;
-		color: #AC76B0;
+		color: #B21948;
 	}
 	
 	a:active.liList {
 		text-decoration: none;
-		color: #AC76B0;
+		color: #B21948;
 	}
 	
 	table a:link.orderList {
@@ -329,81 +390,6 @@
 	table a:active.orderList {
 		text-decoration: none;
 		color: #FC5400;
-	}
-	
-	
-	/* 메인 컨텐츠 부분 */
-	#wrap {
-		width: 100%;
-		height: 100%;
-		text-align: center;
-	}
-	/* 폰트 CSS */
-	@font-face {
-		font-family: 'KIMM_Bold';
-		src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2') format('woff2'); /* CDN 절대링크  */
-		font-weight: 700;
-		font-style: normal;
-	}
-	
-	/* 되도록 안건드리는 영역 */
-	* {
-		box-sizing: border-box;
-		-webkit-box-sizing: border-box;
-		-moz-box-sizing: border-box;
-	}
-	
-	html {
-		height: 100%;
-	}
-	
-	body {
-		font-family: 'KIMM_Bold';
-		margin: 0px;
-		height: 100%;
-		padding: 0px;
-	}
-	
-	header {
-		width: 100%;
-		position: fixed;
-		z-index: 2;
-	}
-	
-	footer {
-		bottom: 0;
-		z-index: 5;
-		position: relative;
-	}
-	
-	.wrap {
-		font-family: 'KIMM_Bold';
-		margin-top: -110px;
-		min-height: 100%;
-		position: relative;
-	}
-	
-	.main { 
-		width: 1600px;
-		height: 1200px; /* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / section이랑 px 맞춰야함 */
-		position : relative;
-		top: 105px;
-		left: 50%;
-        transform: translateX( -50% );
-		/* background-color: rgb(179, 255, 213); */ /* 영역 보기 편하라고 배경색 지정함 : 연초록 */
-	}
-	section {
-		height: 2000px;  /*UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / .main이랑 px 맞춰야함*/ 
-		/*background-color: rgb(236, 226, 202);  영역 보기 편하라고 배경색 지정함 : 연주황*/ 
-	}
-	
-	/* 클리어 */
-	.clear {
-		clear: both;
-	}
-	/* 밑의 영역부터 css시작 */
-	.container {
-		width: 100%;
 	}
 
 </style>
@@ -434,6 +420,7 @@ function cancel_btn() {
 			<%-- header include --%>
 			<jsp:include page="../include/header.jsp" />
 		</header>
+		
 		<%-- 메뉴바 --%>
 		<section>
 			<div class="main">
@@ -443,7 +430,7 @@ function cancel_btn() {
 						<ul>
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 쇼핑</li>
 							<li><a href="myPage_Main" class="liList">주문ㆍ배송</a></li>
-							<li><a href="myPage_orderCancel" class="liList">교환/반품/환불</a></li>
+							<li><a href="myPage_orderCancel" class="liList" style="color: #B21948;">교환/반품/환불</a></li>
 							<li><a href="like" class="liList">찜 목록</a></li>
 							<li style="margin-bottom: 30px;"><a href="basket" class="liList">장바구니</a></li>
 
@@ -459,12 +446,10 @@ function cancel_btn() {
 				</aside>
 
 
-		<%-- 본문 영역(ui깨질시 본인이 ui 수정바람..) --%>
+		<%-- 본문 영역 --%>
 		<div class="innerWrap">
 
-			<div class="clear"></div>
-
-			<!-- board seach area -->
+			<%-- board seach area --%>
 			<section class="notice">
 				<div class="page-title">
 					<b style="text-align: left; font-size: 20px;">주문내역</b><br>
@@ -500,18 +485,28 @@ function cancel_btn() {
 										</tr>
 									</c:forEach>
 								</c:if>
+								<c:if test="${empty olist }">
+									<tr>
+										<th colspan="7">현재 주문한 제품이 없습니다.</th>
+									</tr>
+								</c:if>
+								
 							</tbody>
 						</table>
 						</form>
 					</div>
 				</div>
+				</section>
+				</div></div>
 				<%-- top버튼 삭제 X --%>
 				<div id="topBtn">
 					<span class="fonti um-arrow-circle-up um-3x icon"></span>TOP
-				</div>
-			</section>
-		</div>
+				</div>				
+			
+		</section>
+		
 		<div class="clear"></div>
+		
 		<%-- 푸터 영역 --%>
 		<footer>
 			<!-- footer -->
