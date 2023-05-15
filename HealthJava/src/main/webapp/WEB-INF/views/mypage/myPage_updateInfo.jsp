@@ -424,7 +424,8 @@
 							<li><a href="myPage_Main" class="liList">주문ㆍ배송</a></li>
 							<li><a href="myPage_orderCancel" class="liList">교환/반품/환불</a></li>
 							<li><a href="like" class="liList">찜 목록</a></li>
-							<li style="margin-bottom: 30px;"><a href="basket" class="liList">장바구니</a></li>
+							<li><a href="basket" class="liList">장바구니</a></li>
+							<li style="margin-bottom: 30px;"><a href="inquiry" class="liList">문의 내역</a></li>
 
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
 							<li><a href="myPage_updateInfo" class="liList" style="color: #B21948;">회원정보 변경</a></li>
@@ -442,7 +443,7 @@
 			<!-- board list area -->
 			<div class="page-title">
 			<b style="text-align: left; font-size: 20px; margin-left:50px;">기본정보</b>
-			<b class="indent" style="font-size: 13px;">* 필수 입력사항</b>
+				<b class="indent" style="font-size: 13px;">* 필수 입력사항</b>
 			</div>
 			<br>
 			<div class="page-title" style="margin-left: 50px;">

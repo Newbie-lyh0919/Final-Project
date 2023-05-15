@@ -11,12 +11,11 @@
 
 <title>HealthJava 마이페이지</title>
 
-<%--<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico?ver1" type="image/x-icon"> <%-- 파비콘 --%>
+<%--<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico?ver1" type="image/x-icon">  파비콘 --%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/views/include/css/header.css"> <%-- header.css --%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/views/include/css/footer.css"> <%-- footer.css --%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/fontium/css/fontium.css" /> 
 <link rel="stylesheet" type="text/css" href="./WEB-INF/views/mypage/css/mypage.css?ver=1">
-<%-- <link rel="stylesheet" href="./shop/puppyhome/controller_mypage/css/mypage.css">--%>
 
 <style type="text/css">
 	/* 메인 컨텐츠 부분 */
@@ -108,7 +107,7 @@
 		height: 200px;
 		margin: 2px;
 	}
-	
+	/*사이드바 스타일*/
 	.aside_left {
 		margin-top: 45px;
 		margin-left: 60px;
@@ -231,10 +230,8 @@
 		font-size: 15px;
 		border-top: 1px solid #e7e7e7;
 		text-align: center;
-	}
-	
-	.board-table thead th {
-		text-align: center;
+	    padding: 140px 0 36px;
+	    background: url(../images/bg_no_list.png) no-repeat 50% 40px;
 	}
 	
 	.board-table tbody th p {
@@ -367,7 +364,6 @@
 		color: #FC5400;
 	}
 </style>
-
 </head>
 <body>
 	<%-- 전체 영역 --%>
@@ -380,7 +376,7 @@
 		<%-- 메뉴바 --%>
 		<section>
 		<div class="main">
-			<%-- main 화면 상단 캐러셀 --%>
+		
 			<aside class="aside_left">
 				<nav>
 					<ul>
@@ -388,7 +384,8 @@
 						<li><a href="myPage_Main" class="liList" style="color: #B21948;">주문ㆍ배송</a></li>
 						<li><a href="myPage_orderCancel" class="liList">교환/반품/환불</a></li>
 						<li><a href="like" class="liList">찜 목록</a></li>
-						<li style="margin-bottom: 30px;"><a href="basket" class="liList">장바구니</a></li>
+						<li><a href="basket" class="liList">장바구니</a></li>
+						<li style="margin-bottom: 30px;"><a href="inquiry" class="liList">문의 내역</a></li>
 
 						<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
 						<li><a href="myPage_updateInfo" class="liList">회원정보 변경</a></li>
@@ -400,6 +397,7 @@
 					</ul>
 				</nav>
 			</aside>
+	
 
 		<%-- 본문 영역 --%>
 		<div class="innerWrap">
@@ -415,8 +413,7 @@
 				</div>
 
 				<div class="memBasicInfo" style="width: 750px; text-align: left;">
-					<b style="font-size: 20px;">Test 계정</b>&nbsp;
-					<input type="button" id="updateBtn" onclick="location.href='myPage_updateInfo'" value="수정">
+					<b style="font-size: 20px;">Test 계정</b>
 				</div>
 			</section>
 

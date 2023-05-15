@@ -129,10 +129,10 @@
 	}
 	/* 장바구니 전체 틀 */
 	.basket {
-		width: 800px;
-		padding-bottom: 20px;
-		height: 900px;
-		margin: 0px 20px;
+	    width: 800px;
+	    padding-bottom: 20px;
+	    height: 850px;
+	    margin: 0px 20px;
 	}
 	
 	.basket-module {
@@ -473,6 +473,82 @@
 		text-decoration: none;
 		color: #B21948;
 	}
+		/* 페이징 처리 */
+	/* 페이징 전체 틀 */
+	.pagination-container {
+		margin: 10px auto;
+		display: flex;
+	    justify-content: center;
+	}
+	
+	.pagination {
+		position: relative;
+	}
+	/* 'PREV' 전체 틀 */
+	#pagination a {
+		position: relative;
+		display: inline-block;
+		color: #B21948; /* 글자색상 */
+		text-decoration: none;
+		font-size: 1.2rem;
+		padding: 8px 16px 10px;
+	}
+	/* 'PREV' 부분 */
+	#pagination a:before {
+		z-index: -1;
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		content: "";
+		top: 0;
+		left: 0;
+		background-color: #B21948;
+		border-radius: 24px;
+		-webkit-transform: scale(0);
+		transform: scale(0);
+		transition: all 0.2s;
+	}
+	#pagination a:hover, #pagination a #pagination-active {
+		color: #fff;
+	}
+	
+	#pagination a:hover:before, #pagination a #pagination-active:before {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
+	
+	#pagination #pagination-active {
+		color: #fff;
+	}
+	
+	#pagination #pagination-active:before {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
+	/*'NEXT' 전체 틀 */
+	#pagination-newer {
+		margin-right: 50px;
+	}
+	
+	#pagination-older {
+		margin-left: 50px;
+	}
+	.productList tr{
+		border-bottom: 1px solid #B21948;
+	}
+	.meau {
+		padding-top: 30px;
+		padding-left: 800px;
+		font-family: 'KIMM_Bold';
+	}
+	
+	.meau a {
+		color: white;
+		text-decoration: none;
+	}
+	select {
+		padding : 5px 5px;
+	}
 </style>
 
 </head>
@@ -495,7 +571,8 @@
 							<li><a href="myPage_Main" class="liList">주문ㆍ배송</a></li>
 							<li><a href="myPage_orderCancel" class="liList">교환/반품/환불</a></li>
 							<li><a href="like" class="liList">찜 목록</a></li>
-							<li style="margin-bottom: 30px;"><a href="basket" class="liList" style="color: #B21948;">장바구니</a></li>
+							<li><a href="basket" class="liList" style="color: #B21948;">장바구니</a></li>
+							<li style="margin-bottom: 30px;"><a href="inquiry" class="liList">문의 내역</a></li>
 
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
 							<li><a href="myPage_updateInfo" class="liList">회원정보 변경</a></li>
@@ -644,7 +721,93 @@
 						</div>
 					</aside>
 				</div>
-			</div>
+								<%-- 페이징 처리 --%>
+				<div id="pagination">
+					<!-- 검색 칸 공백 시 페이징 사라지지 않게 -->
+	               <c:if test="${find_name == ''}"> <%--검색필드와 검색어가 없는 경우 --%>
+	                 <c:if test="${page <= 1}">
+	                  PREV&nbsp;
+	                 </c:if>
+	                 <c:if test="${page>1}">
+	                  <a href="like?page=${page-1}">PREV</a>&nbsp;
+	                 </c:if>
+	                 
+	                 <%--현재 쪽번호 출력 --%>
+	                 <c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
+	                   <c:if test="${a == page}"> <%-- 현재 페이지가 선택된 경우 --%>
+	                      [&nbsp;${a}&nbsp;]
+	                   </c:if>
+	                   <c:if test="${a != page}"> <%--현재 쪽번호가 선택 안 된 경우--%>
+	                    <a href="like?page=${a}">[&nbsp;${a}&nbsp;]</a>&nbsp;
+	                   </c:if>
+	                 </c:forEach>
+	                   
+	                
+	                <c:if test="${page >= maxpage}">
+	                  &nbsp;NEXT
+	                </c:if>
+	                <c:if test="${page < maxpage}">
+	                 <a href="like?page=${page+1}">NEXT</a>
+	                </c:if>
+	               </c:if>
+	               <!-- 검색 칸 공백 시 페이징 사라지지 않게 -->
+				    <%--검색 전 페이징 --%>
+				    <c:if test="${(empty find_field) && (empty find_name)}"> <%--검색필드와 검색어가 없는 경우 --%>
+				     <c:if test="${page <= 1}">
+				      PREV&nbsp;
+				     </c:if>
+				     <c:if test="${page>1}">
+				      <a href="like?page=${page-1}">PREV</a>&nbsp;
+				     </c:if>
+				     
+				     <%--현재 쪽번호 출력 --%>
+				     <c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
+				       <c:if test="${a == page}"> <%-- 현재 페이지가 선택된 경우 --%>
+				       	[&nbsp;${a}&nbsp;]
+				       </c:if>
+				       <c:if test="${a != page}"> <%--현재 쪽번호가 선택 안 된 경우--%>
+				        <a href="like?page=${a}">[&nbsp;${a}&nbsp;]</a>&nbsp;
+				       </c:if>
+				     </c:forEach>
+				       
+				    
+				    <c:if test="${page >= maxpage}">
+				      &nbsp;NEXT
+				    </c:if>
+				    <c:if test="${page < maxpage}">
+				     <a href="like?page=${page+1}">NEXT</a>
+				    </c:if>
+				   </c:if>
+				    
+				    <%--검색이후 페이징(쪽나누기) --%>
+				    <c:if test="${(!empty find_field) && (!empty find_name)}"> <%--검색필드와 검색어가 있는 경우 --%>
+				     <c:if test="${page <= 1}">
+				      PREV&nbsp;
+				     </c:if>
+				     <c:if test="${page>1}">
+				      <a href="like?page=${page-1}&find_field=${find_field}&find_name=${find_name}">PREV</a>&nbsp;
+				      <%-- &(엠퍼센트) 구분기호로 구분하면서 find_field=검색필드&find_name= 검색어를 get방식으로 전달해야 검색 이후 페이징 목록을 유지한다.그렇지 않으면 검색전 전체 페이징 목록으로 이동해서 검색 효과가 사라진다. --%>
+				     </c:if>
+				     
+				     <%--현재 쪽번호 출력 --%>
+				     <c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
+				       <c:if test="${a == page}"> <%-- 현재 페이지가 선택된 경우 --%>
+				        [&nbsp;${a}&nbsp;]
+				       </c:if>
+				       <c:if test="${a != page}"> <%--현재 쪽번호가 선택 안 된 경우--%>
+				        <a href="like?page=${a}&find_field=${find_field}&find_name=${find_name}">[&nbsp;${a}&nbsp;]</a>&nbsp;
+				       </c:if>
+				     </c:forEach>      
+				    
+				    <c:if test="${page >= maxpage}">
+				      &nbsp;NEXT
+				    </c:if>
+				    <c:if test="${page < maxpage}">
+				     <a href="like?page=${page+1}&find_field=${find_field}&find_name=${find_name}">NEXT</a>
+				    </c:if>
+				   </c:if> 
+				   </div> <%-- end 페이징처리 --%>
+				</div>			
 			<%-- top버튼 삭제 X --%>
 			<div id="topBtn">
 				<span class="fonti um-arrow-circle-up um-3x icon"></span>TOP
