@@ -148,7 +148,7 @@
 	}
 	
 	/* 테이블 칸 : 기존 비밀번호 */
-	input#user_pwd {
+	input #user_pwd {
 	    font-family: "굴림";
 	    margin: 0;
 	    font-family: inherit;
@@ -157,7 +157,7 @@
 	}
 	
 	/* 테이블 칸 : 새 비밀번호 */
-	input#new_pwd {
+	input #new_pwd {
 	    font-family: "굴림";
 	    margin: 0;
 	    font-family: inherit;
@@ -378,13 +378,17 @@
 	
 	.main {
 		width: 1600px;
-		height: auto;
+		height: 1200px;
+		/* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / section이랑 px 맞춰야함 */
 		position: relative;
 		top: 105px;
 		left: 50%;
 		transform: translateX(-50%);
 	}
 	
+	section {
+		height: 1200px;
+	}
 	/* 클리어 */
 	.clear {
 		clear: both;
@@ -457,21 +461,20 @@
 				<aside class="aside_left">
 					<nav>
 						<ul>
-							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"><a href="myPage_Main" style="text-decoration: none; color: black;">나의 쇼핑</a></li>
-							<li><a href="myPage_orderCancel" class="liList">주문ㆍ배송</a></li>
-							<li><a href="myPage_orderDetails" class="liList">교환/반품/환불</a></li>
-							<li><a href="myPage_like" class="liList">찜 목록</a></li>
-							<li><a href="myPage_basket" class="liList">장바구니</a></li>
-							<li style="margin-bottom: 30px;"><a href="myPage_inquiry" class="liList">문의 내역</a></li>
-	
+							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 쇼핑</li>
+							<li><a href="myPage_Main" class="liList">주문ㆍ배송</a></li>
+							<li><a href="myPage_orderCancel" class="liList">교환/반품/환불</a></li>
+							<li><a href="like" class="liList">찜 목록</a></li>
+							<li><a href="basket" class="liList">장바구니</a></li>
+							<li style="margin-bottom: 30px;"><a href="inquiry" class="liList">문의 내역</a></li>
+
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
 							<li><a href="myPage_updateInfo" class="liList">회원정보 변경</a></li>
 							<li><a href="myPage_changePwd" class="liList" style="color: #B21948;">비밀번호 변경</a></li>
 							<li><a href="myPage_user_Withdrawal" class="liList">회원탈퇴</a></li>
 							<li style="margin-bottom: 30px;"><a href="myPage_updateAddress" class="liList">배송지 관리</a></li>
-							
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 상품후기</li>
-							<li><a href="myPage_review" class="liList">나의 상품후기</a></li>
+							<li><a href="review" class="liList">나의 상품후기</a></li>
 						</ul>
 					</nav>
 				</aside>
@@ -483,7 +486,7 @@
 		<section class="notice">
 			<!-- board list area -->
 			<div class="page-title" style="margin-left: 80px;">
-			<form method="post" action="changepwd_ok.shop" onsubmit="return pwd_check();">
+			<form method="post" action="changePwd_ok" onsubmit="return pwd_check();">
 			<div class="page-title">
 			<b style="text-align: left; font-size: 20px;">비밀번호 변경</b>
 			</div>
@@ -505,17 +508,16 @@
 					</tr>
 					
 					<!--새 비밀번호 -->					
-						<tr>
+					<tr>
 						<th rowspan="2" class="th-list">새 비밀번호</th>
-						<td class="td-inputInfo"><input type="password" name="new_pwd" id="new_pwd"
-							size="70"></td>
+						<td class="td-inputInfo"><input type="password" name="new_pwd" id="new_pwd" size="70"></td>
 					</tr>
 
 					<tr>
 						<td class="td-infoPs">*비밀번호는 8자 이상 입력 해야합니다.</td>
 					</tr>
 
-					<%--			
+								
 					<!--새 비밀번호  확인-->
 					<tr>
 						<th rowspan="2" class="th-list">새 비밀번호 확인</th>
@@ -525,14 +527,14 @@
 					<tr>
 						<td class="td-infoPs">* 영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자</td>
 					</tr> 
-					--%>
+					
 
 				</table>
 				
 				<br>
 				<div class="submitBtn" style="margin-left: 200px;">
-				<input id="changePwdBtn" type="submit" value="확인">
-				<input id="resetBtn" type="reset" value="취소">
+					<input id="changePwdBtn" type="submit" value="확인">
+					<input id="resetBtn" type="reset" value="취소">
 				</div>
 				</form>
 			</div>

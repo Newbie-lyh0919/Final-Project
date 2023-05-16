@@ -14,4 +14,10 @@ public interface MemberService {
 
 	MemberVO getMember(String id); //회원정보 불러오기
 
+	void updateMember(MemberVO m); //회원정보수정완료
+
+	void delMem(MemberVO dm); //회원탈퇴
+
+	void updatePwd(MemberVO m); //비밀번호 수정
+
 }
