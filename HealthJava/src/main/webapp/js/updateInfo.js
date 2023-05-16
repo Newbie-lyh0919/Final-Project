@@ -10,6 +10,10 @@ function update_check(){
 		alert("생년월일 입력하세요!");		
 		return false;
 	}
+	if($.trim($("#user_gender").val())==""){
+		alert("성별을 입력하세요!");		
+		return false;
+	}
 	if($.trim($("#postCode").val())==""){
 		alert("우편번호를 입력하세요!");		
 		return false;
@@ -37,6 +41,7 @@ function update_check(){
 function pwd_check(){
 	$user_pwd=$.trim($("#user_pwd").val());
 	$new_pwd=$.trim($("#new_pwd").val());
+	$new_pwd_check=$.trim($("#new_pwd_check").val());
 	
 	if($.trim($("#user_pwd").val())==""){
 		alert("현재 비밀번호를 입력하세요!");
@@ -49,13 +54,25 @@ function pwd_check(){
 		$("#new_pwd").val("").focus();
 		return false;
 	}
-
+	if($.trim($("#new_pwd_check").val())==""){
+		alert("새 비밀번호 확인을 입력하세요!");
+		$("#new_pwd").val("").focus();
+		return false;
+	}
+	if($new_pwd != $new_pwd_check){
+		alert("새 비밀번호 확인이 다릅니다!");
+		$("#user_pwd").val("");
+		$("#new_pwd").val("");
+		$("#new_pwd_check").val("");
+		$("#user_pwd").focus();
+		return false;
+	}
 }
 
 function withdrawal_check(){
 	$user_id=$.trim($("#user_id").val());
 	$user_pwd=$.trim($("#user_pwd").val());
-	$user_pwd_check=$.trim($("#user_pwd_check").val());
+	//$user_pwd_check=$.trim($("#user_pwd_check").val());
 	
 	if($.trim($("#user_id").val())==""){
 		alert("아이디를 입력하세요!");
@@ -68,13 +85,13 @@ function withdrawal_check(){
 		$("#user_pwd").val("").focus();
 		return false;
 	}
-	 
+/*	 
 	if($.trim($("#user_pwd_check").val())==""){
 		alert("비밀번호 확인을 입력하세요!");
 		$("#user_pwd_check").val("").focus();
 		return false;
 	}
-
+*/
 	if($user_pwd != $user_pwd_check){
 		alert("비번이 다릅니다!");
 		$("#user_pwd").val("");

@@ -70,7 +70,7 @@
 	
 	.main {
 		width: 1600px;
-		height: auto;
+		height: 1200px;
 		position: relative;
 		top: 105px;
 		left: 50%;
@@ -78,7 +78,7 @@
 	}
 	
 	section {
-		height: 1000px;
+		height: 1200px;
 	}
 	/* 클리어 */
 	.clear {
@@ -420,21 +420,20 @@
 				<aside class="aside_left">
 					<nav>
 						<ul>
-							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"><a href="myPage_Main" style="text-decoration: none; color: black;">나의 쇼핑</a></li>
-							<li><a href="myPage_orderCancel" class="liList"">주문ㆍ배송</a></li>
-							<li><a href="myPage_orderDetails" class="liList">교환/반품/환불</a></li>
-							<li><a href="myPage_like" class="liList">찜 목록</a></li>
-							<li><a href="myPage_basket" class="liList">장바구니</a></li>
-							<li style="margin-bottom: 30px;"><a href="myPage_inquiry" class="liList">문의 내역</a></li>
-	
+							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 쇼핑</li>
+							<li><a href="myPage_Main" class="liList">주문ㆍ배송</a></li>
+							<li><a href="myPage_orderCancel" class="liList">교환/반품/환불</a></li>
+							<li><a href="like" class="liList">찜 목록</a></li>
+							<li><a href="basket" class="liList">장바구니</a></li>
+							<li style="margin-bottom: 30px;"><a href="inquiry" class="liList">문의 내역</a></li>
+
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
 							<li><a href="myPage_updateInfo" class="liList" style="color: #B21948;">회원정보 변경</a></li>
 							<li><a href="myPage_changePwd" class="liList">비밀번호 변경</a></li>
 							<li><a href="myPage_user_Withdrawal" class="liList">회원탈퇴</a></li>
 							<li style="margin-bottom: 30px;"><a href="myPage_updateAddress" class="liList">배송지 관리</a></li>
-							
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 상품후기</li>
-							<li><a href="myPage_review" class="liList">나의 상품후기</a></li>
+							<li><a href="review" class="liList">나의 상품후기</a></li>
 						</ul>
 					</nav>
 				</aside>
@@ -448,14 +447,14 @@
 			</div>
 			<br>
 			<div class="page-title" style="margin-left: 50px;">
-			<form method="post" action="updateinfo_ok.shop" onsubmit="return update_check();">
+			<form method="post" action="member_update_ok" onsubmit="return update_check();">
 				<table>
 					<!--아이디 -->
 					<tr>
 						<th rowspan="2" class="th-list" width="170px" style="border-top-color: black; border-top-style: solid; border-top-width: 3px;">
 							아이디</th>
 						<td class="td-inputInfo" style="border-top-color: black; border-top-style: solid; border-top-width: 3px;">
-							<input type="text" name="user_id" id="user_id" value="${m.user_id}" size="70" style="background-color: #ECECEC;" readonly>
+							<input type="text" name="user_id" id="user_id" value="${em.user_id}" size="70" style="background-color: #ECECEC;" readonly>
 						</td>
 					</tr>
 
@@ -466,7 +465,7 @@
 					<!--이름-->
 					<tr>
 						<th rowspan="2" class="th-list">이름 *</th>
-						<td class="td-inputInfo"><input type="text" name="user_name" id="user_name" value="${m.user_name}" size="70" placeholder="예)홍길동"></td>
+						<td class="td-inputInfo"><input type="text" name="user_name" id="user_name" value="${em.user_name}" size="70" placeholder="예)홍길동"></td>
 					</tr>
 										
 					<tr>
@@ -479,26 +478,39 @@
 						<th rowspan="2" class="th-list" >
 						생년월일 *</th>
 						<td class="td-inputInfo">
-								<input type="text" name="user_birth" id="user_birth" value="${m.user_birth}" size="70" placeholder="예)1999년 1월 1일 -> 19990101">
+								<input type="text" name="user_birth" id="user_birth" value="${em.user_birth}" size="70" placeholder="예)1999년 1월 1일 -> 19990101">
 						</td>
 					
 					<tr>
 						<td class="td-infoPs"></td>
 					</tr>
-							<!--주소-->
+					
+					<!--성별-->
+					<tr>
+						<th rowspan="2" class="th-list" >
+						성별 *</th>
+						<td class="td-inputInfo">
+								<input type="text" name="user_gender" id="user_gender" value="${em.user_gender}" size="70" placeholder="예)남자 or 여자">
+						</td>
+					
+					<tr>
+						<td class="td-infoPs"></td>
+					</tr>
+					
+					<!--주소-->
 					<tr>
 						<th rowspan="4" class="th-list">주소 *</th>
-						<td class="td-inputInfo"><input type="text" name="postCode" id="postCode" value="${m.postCode}" size="20" placeholder="우편번호"/>&nbsp;&nbsp;
+						<td class="td-inputInfo"><input type="text" name="postCode" id="postCode" value="${em.postCode}" size="20" placeholder="우편번호"/>&nbsp;&nbsp;
 						<input type="button" value="주소검색" onclick="post()" style="font-weight: bold; padding: 2px;"/>
 						</td>
 					</tr>
 
 					<tr>
-						<td class="td-inputInfo"><input type="text" name="roadAddr" id="roadAddr" value="${m.roadAddr}"	size="70" placeholder="주소"></td>
+						<td class="td-inputInfo"><input type="text" name="roadAddr" id="roadAddr" value="${em.roadAddr}"	size="70" placeholder="주소"></td>
 					</tr>
 
 					<tr>
-						<td class="td-inputInfo"><input type="text" name="detailAddr" id="detailAddr" value="${m.detailAddr}" size="70" placeholder="상세주소"></td>
+						<td class="td-inputInfo"><input type="text" name="detailAddr" id="detailAddr" value="${em.detailAddr}" size="70" placeholder="상세주소"></td>
 					</tr>
 					
 					<tr>
@@ -508,7 +520,7 @@
 					<!--이메일-->
 					<tr>
 						<th class="th-list" rowspan="2" >이메일 *</th>
-						<td class="td-inputInfo"><input type="email" name="user_email" id="user_email" value="${m.user_email}"size="70" placeholder="예) abcdefg11@naver.com"></td>
+						<td class="td-inputInfo"><input type="email" name="user_email" id="user_email" value="${em.user_email}"size="70" placeholder="예) abcdefg11@naver.com"></td>
 					</tr>
 					
 					<tr>
@@ -519,7 +531,7 @@
 					<tr>
 						<th rowspan="2" class="th-list">휴대전화 *</th>
 						<td class="td-inputInfo">
-								<input type="text" name="user_phone" id="user_phone" size="70" value="${m.user_phone}" placeholder="예)010-1234-5678 -> 01012345678">
+								<input type="text" name="user_phone" id="user_phone" size="70" value="${em.user_phone}" placeholder="예)010-1234-5678 -> 01012345678">
 						</td>
 					</tr>
 					
