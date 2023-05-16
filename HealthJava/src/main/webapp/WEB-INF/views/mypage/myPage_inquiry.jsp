@@ -66,17 +66,13 @@
 	
 	.main {
 		width: 1600px;
-		height: 1200px;
-		/* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / section이랑 px 맞춰야함 */
+		height: auto;
 		position: relative;
 		top: 105px;
 		left: 50%;
 		transform: translateX(-50%);
 	}
 	
-	section {
-		height: 1200px;
-	}
 	/* 클리어 */
 	.clear {
 		clear: both;
@@ -93,9 +89,8 @@
 	section.notice {
 		padding: 20px 0;
 		/*추가*/
-		width: 1000px;
+		width: 1200px;
 		min-height: 200px;
-		margin: 2px;
 	}
 	
 	.aside_left {
@@ -321,9 +316,8 @@
 	}
 	
 	div.container {
-		width: 1000px;
+		width: 1200px;
 		margin: 20px 0px;
-		/*border: 1px solid red;*/
 	}
 	
 	.innerWrap {
@@ -389,7 +383,7 @@
 		text-decoration: none;
 		color: #FC5400;
 	}
-			/* 페이징 처리 */
+	/* 페이징 처리 */
 	/* 페이징 전체 틀 */
 	.pagination-container {
 		margin: 10px auto;
@@ -497,27 +491,28 @@ function cancel_btn() {
 		<%-- 메뉴바 --%>
 		<section>
 			<div class="main">
-				<%-- main 화면 상단 캐러셀 (캐러셀 필요 없는 페이지는 삭제 바람!)--%>
-				<aside class="aside_left">
-					<nav>
-						<ul>
-							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 쇼핑</li>
-							<li><a href="myPage_Main" class="liList">주문ㆍ배송</a></li>
-							<li><a href="myPage_orderCancel" class="liList">교환/반품/환불</a></li>
-							<li><a href="like" class="liList">찜 목록</a></li>
-							<li><a href="basket" class="liList">장바구니</a></li>
-							<li style="margin-bottom: 30px;"><a href="inquiry" class="liList" style="color: #B21948;">문의 내역</a></li>
+			<%-- main 화면 상단 캐러셀 (캐러셀 필요 없는 페이지는 삭제 바람!)--%>
+			<aside class="aside_left">
+				<nav>
+					<ul>
+						<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"><a href="myPage_Main" style="text-decoration: none; color: black;">나의 쇼핑</a></li>
+						<li><a href="myPage_orderCancel" class="liList">주문ㆍ배송</a></li>
+						<li><a href="myPage_orderDetails" class="liList">교환/반품/환불</a></li>
+						<li><a href="myPage_like" class="liList">찜 목록</a></li>
+						<li><a href="myPage_basket" class="liList">장바구니</a></li>
+						<li style="margin-bottom: 30px;"><a href="myPage_inquiry" class="liList" style="color: #B21948;">문의 내역</a></li>
 
-							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
-							<li><a href="myPage_updateInfo" class="liList">회원정보 변경</a></li>
-							<li><a href="myPage_changePwd" class="liList">비밀번호 변경</a></li>
-							<li><a href="myPage_user_Withdrawal" class="liList">회원탈퇴</a></li>
-							<li style="margin-bottom: 30px;"><a href="myPage_updateAddress" class="liList">배송지 관리</a></li>
-							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 상품후기</li>
-							<li><a href="review" class="liList">나의 상품후기</a></li>
-						</ul>
-					</nav>
-				</aside>
+						<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
+						<li><a href="myPage_updateInfo" class="liList">회원정보 변경</a></li>
+						<li><a href="myPage_changePwd" class="liList">비밀번호 변경</a></li>
+						<li><a href="myPage_user_Withdrawal" class="liList">회원탈퇴</a></li>
+						<li style="margin-bottom: 30px;"><a href="myPage_updateAddress" class="liList">배송지 관리</a></li>
+						
+						<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 상품후기</li>
+						<li><a href="myPage_review" class="liList">나의 상품후기</a></li>
+					</ul>
+				</nav>
+			</aside>
 
 
 		<%-- 본문 영역 --%>
@@ -554,7 +549,7 @@ function cancel_btn() {
 					</div>
 				</div>
 				<%-- 페이징 처리 --%>
-				<div id="pagination">
+				<div id="pagination" style="width: 1200px;">
 					<!-- 검색 칸 공백 시 페이징 사라지지 않게 -->
 	               <c:if test="${find_name == ''}"> <%--검색필드와 검색어가 없는 경우 --%>
 	                 <c:if test="${page <= 1}">

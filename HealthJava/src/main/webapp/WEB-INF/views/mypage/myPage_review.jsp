@@ -1,12 +1,14 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script> <%-- CDN 절대링크 --%>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> <%-- CDN 절대링크 --%>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"> <%-- CDN 절대링크 --%>
 
-<title>HealthJava 장바구니</title>
+<title>HealthJava 나의 상품 후기</title>
 
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico" type="image/x-icon"> <%-- 파비콘 --%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/header.css"> <%-- header.css --%>
@@ -14,6 +16,7 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/fontium/css/fontium.css"/>
 
 <style type="text/css">
+
 	/* 폰트 CSS */
 	@font-face {
 		font-family: 'KIMM_Bold';
@@ -78,7 +81,6 @@
 	.container {
 		width: 100%;
 	}
-	
 	/******************/
 	p {
 		margin: 0.75rem 0 0;
@@ -102,9 +104,7 @@
 		width: 100%;
 	}
 	
-	input, .summary-checkout button, .basket, .basket-module, .basket-labels,
-		.item, .price, .quantity, .subtotal, .basket-product, .product-image,
-		.product-details {
+	input, .summary-checkout button, .basket, .basket-module, .basket-labels, .item, .price, .quantity, .subtotal, .basket-product, .product-image, .product-details {
 		float: left;
 	}
 	
@@ -127,12 +127,11 @@
 		-moz-box-sizing: border-box;
 		box-sizing: border-box;
 	}
-	/* 장바구니 전체 틀 */
+	
 	.basket {
-	    width: 800px;
-	    padding-bottom: 20px;
-	    height: 850px;
-	    margin: 0px 20px;
+		width: 100%;
+		padding-bottom: 20px;
+		height: 900px;
 	}
 	
 	.basket-module {
@@ -190,7 +189,7 @@
 	}
 	
 	.item {
-		width: 55%;
+		width: 75%;
 	}
 	
 	.price, .quantity, .subtotal {
@@ -201,25 +200,62 @@
 		text-align: right;
 	}
 	
-	.remove {
+	.btnAdd {
+		margin-left: 50px;
+		font-size: 22px;
+	}
+	/* 삭제 버튼 */
+	.removeCart {
 		bottom: 1.125rem;
 		float: right;
 		position: absolute;
+		top: 10%;
 		right: 0;
 		text-align: right;
-		width: 45%;
+		width: 3%;
+		height: 20%;
+		margin-right: 8px;
+		background-color: white;
+		font-size: 22px;
+		text-align: center;
+		border: 1px solid white;
+	}
+	
+	.removeCart:hover {
+		cursor: pointer;
+	}
+	
+	.removeText {
+		font-size: 15px;
+		/* color: #2f348f; */
+		position: relative;
+		top: -5%;
+		left: 10%
+	}
+	
+	#shopping_cartImg {
+		width: 25px;
+		height: 25px;
+		margin: 8px 10px 10px 15px;
+	}
+	
+	#shopping_deleteImg {
+		width: 25px;
+		height: 25px;
+		position: relative;
+		top: 8%;
+	}
+	
+	#allDelete {
+		cursor: pointer;
+    	margin-left: 150px;
 	}
 	
 	.remove button {
 		background-color: transparent;
-		color: #777;
 		float: none;
-		text-decoration: underline;
+		text-decoration: none;
 		text-transform: uppercase;
-	}
-	
-	.remove button:hover {
-		cursor: pointer;
 	}
 	
 	.item-heading {
@@ -227,6 +263,7 @@
 		-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;
 		box-sizing: border-box;
+		text-align: left;
 	}
 	
 	.basket-product {
@@ -251,6 +288,7 @@
 		width: 75%;
 		padding-left: 5px;
 		text-align: left;
+		margin: 5px 0px 0px 8px;
 	}
 	
 	.quantity-field {
@@ -260,7 +298,6 @@
 		font-size: 0.625rem;
 		padding: 2px;
 		width: 3.75rem;
-		height: 20px;
 		margin-left: 30px;
 	}
 	
@@ -276,10 +313,10 @@
 		padding: 1rem;
 		position: fixed;
 		width: 250px;
+		-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;
 		box-sizing: border-box;
 		margin-top: 25px;
-		margin-left: 50px;
 	}
 	
 	.summary-total-items {
@@ -452,7 +489,130 @@
 		border-bottom: 2px solid rgb(217, 217, 217);
 		text-align: left;
 	}
+	/* 체크박스 */
+	/*input 은 숨겨주기*/
+	input#chk_all {
+		display: none;
+	}
+	/*input 바로 다음의 label*/
+	input#chk_all+label {
+		cursor: pointer;
+	}
 	
+	/*input 바로 다음의 label:before 에 체크하기 전 CSS 설정*/
+	input#chk_all+label:before {
+		content: "";
+		display: inline-block;
+		width: 18px;
+		height: 18px;
+		line-height: 18px;
+		border: 1px solid #cbcbcb;
+		vertical-align: middle; /*체크 전과 체크 후 높이 차이 때문에 설정*/
+	}
+	
+	/*checked된 input 바로 다음의 label:before 에 체크 후 CSS 설정*/
+	input#chk_all:checked+label:before {
+		content: "\f00c"; /*폰트어썸 유니코드*/
+		font-family: "Font Awesome 5 free"; /*폰트어썸 아이콘 사용*/
+		font-weight: 900; /*폰트어썸 설정*/
+		color: #B21948;
+		border-color: #000;
+		font-size: 13px;
+		text-align: center;
+	}
+	
+	input#chk_select {
+		display: none;
+	}
+	/*input 바로 다음의 label*/
+	input#chk_select+label {
+		cursor: pointer;
+	}
+	
+	/*input 바로 다음의 label:before 에 체크하기 전 CSS 설정*/
+	input#chk_select+label:before {
+		content: "";
+		display: inline-block;
+		width: 18px;
+		height: 18px;
+		line-height: 18px;
+		border: 1px solid #cbcbcb;
+		vertical-align: middle; /*체크 전과 체크 후 높이 차이 때문에 설정*/
+	}
+	
+	/*checked된 input 바로 다음의 label:before 에 체크 후 CSS 설정*/
+	input#chk_select:checked+label:before {
+		content: "\f00c"; /*폰트어썸 유니코드*/
+		font-family: "Font Awesome 5 free"; /*폰트어썸 아이콘 사용*/
+		font-weight: 900; /*폰트어썸 설정*/
+		color: #B21948;
+		background-color: white;
+		border-color: #000;
+		font-size: 13px;
+		text-align: center;
+	}
+	/*checked된 input 바로 다음의 label:before 에 체크 후 CSS 설정*/
+	input#chk_all:checked+label:before {
+		content: "\f00c"; /*폰트어썸 유니코드*/
+		font-family: "Font Awesome 5 free"; /*폰트어썸 아이콘 사용*/
+		font-weight: 900; /*폰트어썸 설정*/
+		color: #B21948;
+		background-color: white;
+		border-color: #000;
+		font-size: 13px;
+		text-align: center;
+	}
+	
+	input#chk_select2 {
+		display: none;
+	}
+	/*input 바로 다음의 label*/
+	input#chk_select2+label {
+		cursor: pointer;
+	}
+	
+	/*input 바로 다음의 label:before 에 체크하기 전 CSS 설정*/
+	input#chk_select2+label:before {
+		content: "";
+		display: inline-block;
+		width: 18px;
+		height: 18px;
+		line-height: 18px;
+		border: 1px solid #cbcbcb;
+		vertical-align: middle; /*체크 전과 체크 후 높이 차이 때문에 설정*/
+	}
+	
+	/*checked된 input 바로 다음의 label:before 에 체크 후 CSS 설정*/
+	input#chk_select2:checked+label:before {
+		content: "\f00c"; /*폰트어썸 유니코드*/
+		font-family: "Font Awesome 5 free"; /*폰트어썸 아이콘 사용*/
+		font-weight: 900; /*폰트어썸 설정*/
+		color: blue;
+		background-color: white;
+		border-color: #000;
+		font-size: 13px;
+		text-align: center;
+	}
+	
+	#chk_selectLabel {
+		float: left;
+		margin-right: 10px;
+	}
+	
+	#chk_selectLabel2 {
+		float: left;
+		margin-right: 10px;
+	}
+	
+	.product-details a {
+		text-decoration: none;
+		color: black;
+	}
+	
+	.product-details a:hover {
+		text-decoration: underline;
+		color: black;
+	}
 	/* a 링크 : 메뉴바 */	
 	a:link.liList {
 		text-decoration: none;
@@ -473,7 +633,7 @@
 		text-decoration: none;
 		color: #B21948;
 	}
-		/* 페이징 처리 */
+				/* 페이징 처리 */
 	/* 페이징 전체 틀 */
 	.pagination-container {
 		margin: 10px auto;
@@ -550,7 +710,6 @@
 		padding : 5px 5px;
 	}
 </style>
-
 </head>
 <body>
 	<%-- 전체 영역 --%>
@@ -567,161 +726,215 @@
 				<aside class="aside_left">
 					<nav>
 						<ul>
-							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 쇼핑</li>
-							<li><a href="myPage_Main" class="liList">주문ㆍ배송</a></li>
-							<li><a href="myPage_orderCancel" class="liList">교환/반품/환불</a></li>
-							<li><a href="like" class="liList">찜 목록</a></li>
-							<li><a href="basket" class="liList" style="color: #B21948;">장바구니</a></li>
-							<li style="margin-bottom: 30px;"><a href="inquiry" class="liList">문의 내역</a></li>
-
+							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"><a href="myPage_Main" style="text-decoration: none; color: black;">나의 쇼핑</a></li>
+							<li><a href="myPage_orderCancel" class="liList">주문ㆍ배송</a></li>
+							<li><a href="myPage_orderDetails" class="liList">교환/반품/환불</a></li>
+							<li><a href="myPage_like" class="liList">찜 목록</a></li>
+							<li><a href="myPage_basket" class="liList">장바구니</a></li>
+							<li style="margin-bottom: 30px;"><a href="myPage_inquiry" class="liList">문의 내역</a></li>
+	
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
 							<li><a href="myPage_updateInfo" class="liList">회원정보 변경</a></li>
 							<li><a href="myPage_changePwd" class="liList">비밀번호 변경</a></li>
 							<li><a href="myPage_user_Withdrawal" class="liList">회원탈퇴</a></li>
 							<li style="margin-bottom: 30px;"><a href="myPage_updateAddress" class="liList">배송지 관리</a></li>
+							
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 상품후기</li>
-							<li><a href="review" class="liList">나의 상품후기</a></li>
+							<li><a href="myPage_review" class="liList" style="color: #B21948;">나의 상품후기</a></li>
 						</ul>
 					</nav>
 				</aside>
 				<%-- 본문 영역(ui깨질시 본인이 ui 수정바람..) --%>
 				<div class="wishBox">
 					<div class="listTitleBox">
-						<span id="listTitle">장바구니</span>
+						<span id="listTitle">나의 상품 후기</span>
 					</div>
 					<div class="basketcontentBox">
 						<div class="basket">
 							<div class="basket-labels">
 								<ul>
-									<li class="item item-heading">상품명</li>
-									<li class="price">판매가</li>
-									<li class="quantity">수량</li>
-									<li class="subtotal">합계 금액</li>
+									<li class="item item-heading">
+										<%-- 체크 박스 --%>
+										<input type="checkbox" name="chk_all" id="chk_all" /><label for="chk_all">&nbsp;&nbsp;선택후기 삭제</label>
+										<%-- 클릭시 전체 삭제할지 물어봐야함 --%>
+										<script>
+											$("#chk_all").click(function(){
+											 var chk = $("#chk_all").prop("checked");
+											 if(chk) {
+											  $(".chBox").prop("checked", true);
+											 } else {
+											  $(".chBox").prop("checked", false);
+											 }
+											});
+										</script>
+									</li>
+									<li class="item-heading2">
+										<button id="allDelete">선택 항목 삭제</button>
+										<script>
+											$("#allDelete").click(function(){
+												var confirm_val = confirm("정말 삭제하시겠습니까?");
+											 
+												if(confirm_val) {
+													var checkArr = new Array();
+											  
+													$("input[class='chBox']:checked").each(function(){
+														checkArr.push($(this).attr("data-cartNum"));
+													});
+											   
+													$.ajax({
+														url : "deleteOK.shop", // deleteOK?
+														type : "post",
+														data : { chbox : checkArr },
+														success : function(){
+															location.href = "like"; // 현재 페이지로 새로고침
+														}
+													});
+												} 
+											});
+										</script>
+									</li>
 								</ul>
 							</div>
 							<div class="basket-product">
+								<%-- 체크 박스 --%>
+								<input type="checkbox" id="chk_select" />
+								<label for="chk_select" id="chk_selectLabel"></label>
+								<%-- 체크 박스 끝 --%>
 								<div class="item">
 									<div class="product-image">
 										<img src="https://img-cf.kurly.com/cdn-cgi/image/width=676,format=auto/shop/data/goods/1637924624422l0.jpeg" alt="상품 이미지" class="product-frame">
 									</div>
 									<div class="product-details">
-										<span id="productTitle"><strong>청송 사과 1.5kg(5~7입)</strong></span>
+										<span id="productTitle">2023.03.29</span>
+									</div>
+									<div class="product-details">
+										<span id="productTitle"><strong><a href="#">청송 사과 1.5kg(5~7입)</a></strong></span>
+									</div>
+									<div class="product-details">
+										<span id="productTitle">빨갛고 맛있는 사과! 배송도 빠르네요!</span>
 									</div>
 								</div>
-								<div class="price">8900원</div>
-								<div class="quantity">
-									<input type="number" value="1" min="1" class="quantity-field">
-								</div>
-								<div class="subtotal">8900</div>
 								<div class="remove">
-									<button>삭제하기</button>
+									<button class="removeCart">
+										<img id="shopping_deleteImg" src="<%=request.getContextPath()%>/images/X.png" alt="삭제">
+									</button>
 								</div>
+								<script>
+									 $(".chBox").click(function(){
+									 	$("#chk_all").prop("checked", false);
+									 });
+								</script>
 							</div>
 							<div class="basket-product">
+								<%-- 체크 박스 --%>
+								<input type="checkbox" id="chk_select2" /> <label
+									for="chk_select2" id="chk_selectLabel2"></label>
+								<%-- 체크 박스 끝 --%>
 								<div class="item">
 									<div class="product-image">
 										<img src="https://img-cf.kurly.com/cdn-cgi/image/width=676,format=auto/shop/data/goods/1657692098340l0.jpg" alt="상품 이미지2" class="product-frame">
 									</div>
 									<div class="product-details">
-										<span id="productTitle"><strong>[다향오리] 훈제오리 슬라이스 150g X 3개입</strong></span>
+										<span id="productTitle">2023.03.29</span>
+									</div>
+									<div class="product-details">
+										<span id="productTitle"><strong><a href="#">[다향오리] 훈제오리 슬라이스 150g X 3개입</a></strong></span>
+									</div>
+									<div class="product-details">
+										<span id="productTitle">촉촉하고 맛있는 오리 슬라이스! 배송도 빠르네요!</span>
 									</div>
 								</div>
-								<div class="price">9900원</div>
-								<div class="quantity">
-									<input type="number" value="1" min="1" class="quantity-field">
-								</div>
-								<div class="subtotal">9900</div>
 								<div class="remove">
-									<button>삭제하기</button>
+									<button class="removeCart">
+										<img id="shopping_deleteImg" src="<%=request.getContextPath()%>/images/X.png" alt="삭제">
+									</button>
 								</div>
 							</div>
 							<div class="basket-product">
+								<%-- 체크 박스 --%>
+								<input type="checkbox" id="chk_select" /> <label
+									for="chk_select" id="chk_selectLabel"></label>
+								<%-- 체크 박스 끝 --%>
 								<div class="item">
 									<div class="product-image">
 										<img src="https://img-cf.kurly.com/cdn-cgi/image/width=676,format=auto/shop/data/goods/1637924624422l0.jpeg" alt="상품 이미지" class="product-frame">
 									</div>
 									<div class="product-details">
-										<span id="productTitle"><strong>청송 사과 1.5kg(5~7입)</strong></span>
+										<span id="productTitle">2023.03.29</span>
+									</div>
+									<div class="product-details">
+										<span id="productTitle"><strong><a href="#">청송 사과 1.5kg(5~7입)</a></strong></span>
+									</div>
+									<div class="product-details">
+										<span id="productTitle">빨갛고 맛있는 사과! 배송도 빠르네요!</span>
 									</div>
 								</div>
-								<div class="price">8900원</div>
-								<div class="quantity">
-									<input type="number" value="1" min="1" class="quantity-field">
-								</div>
-								<div class="subtotal">8900</div>
 								<div class="remove">
-									<button>삭제하기</button>
+									<button class="removeCart">
+										<img id="shopping_deleteImg" src="<%=request.getContextPath()%>/images/X.png" alt="삭제">
+									</button>
 								</div>
+								<script>
+									 $(".chBox").click(function(){
+									 	$("#chk_all").prop("checked", false);
+									 });
+								</script>
 							</div>
 							<div class="basket-product">
+								<%-- 체크 박스 --%>
+								<input type="checkbox" id="chk_select" /> <label
+									for="chk_select" id="chk_selectLabel"></label>
+								<%-- 체크 박스 끝 --%>
 								<div class="item">
 									<div class="product-image">
 										<img src="https://img-cf.kurly.com/cdn-cgi/image/width=676,format=auto/shop/data/goods/1657692098340l0.jpg" alt="상품 이미지2" class="product-frame">
 									</div>
 									<div class="product-details">
-										<span id="productTitle"><strong>[다향오리] 훈제오리 슬라이스 150g X 3개입</strong></span>
+										<span id="productTitle">2023.03.29</span>
+									</div>
+									<div class="product-details">
+										<span id="productTitle"><strong><a href="#">[다향오리] 훈제오리 슬라이스 150g X 3개입</a></strong></span>
+									</div>
+									<div class="product-details">
+										<span id="productTitle">촉촉하고 맛있는 오리 슬라이스! 배송도 빠르네요!</span>
 									</div>
 								</div>
-								<div class="price">9900원</div>
-								<div class="quantity">
-									<input type="number" value="1" min="1" class="quantity-field">
-								</div>
-								<div class="subtotal">9900</div>
 								<div class="remove">
-									<button>삭제하기</button>
+									<button class="removeCart">
+										<img id="shopping_deleteImg" src="<%=request.getContextPath()%>/images/X.png" alt="삭제">
+									</button>
 								</div>
 							</div>
 							<div class="basket-product">
+								<%-- 체크 박스 --%>
+								<input type="checkbox" id="chk_select" /> <label
+									for="chk_select" id="chk_selectLabel"></label>
+								<%-- 체크 박스 끝 --%>
 								<div class="item">
 									<div class="product-image">
 										<img src="https://img-cf.kurly.com/cdn-cgi/image/width=676,format=auto/shop/data/goods/1637924624422l0.jpeg" alt="상품 이미지" class="product-frame">
 									</div>
 									<div class="product-details">
-										<span id="productTitle"><strong>청송 사과 1.5kg(5~7입)</strong></span>
+										<span id="productTitle">2023.03.29</span>
+									</div>
+									<div class="product-details">
+										<span id="productTitle"><strong><a href="#">청송 사과 1.5kg(5~7입)</a></strong></span>
+									</div>
+									<div class="product-details">
+										<span id="productTitle">빨갛고 맛있는 사과! 배송도 빠르네요!</span>
 									</div>
 								</div>
-								<div class="price">8900원</div>
-								<div class="quantity">
-									<input type="number" value="1" min="1" class="quantity-field">
-								</div>
-								<div class="subtotal" id="sum">8900</div>
 								<div class="remove">
-									<button>삭제하기</button>
+									<button class="removeCart">
+										<img id="shopping_deleteImg" src="<%=request.getContextPath()%>/images/X.png" alt="삭제">
+									</button>
 								</div>
 							</div>
 						</div>
-					</div>
-					<aside class="aside_right">
-						<div class="summary">
-							<div class="summary-total-items">
-								<span class="total-items"></span>개의 상품이 담겼습니다.
-							</div>
-							<div class="summary-subtotal">
-								<div class="total-title">
-									배송 형태<br>배송비
-								</div>
-								<div class="subtotal-value">
-									택배배송<br>배송비<strong>무료</strong>
-								</div>
-								<div class="summary-promo hide">
-									<div class="promo-title">Promotion</div>
-									<div class="promo-value final-value" id="basket-promo"></div>
-								</div>
-							</div>
-							<div class="summary-delivery"></div>
-							<div class="summary-total">
-								<div class="total-title">합계 금액</div>
-								<div class="total-value final-value" id="basket-total">
-									<span class="total-price"></span>원
-								</div>
-							</div>
-							<div class="summary-checkout">
-								<button class="checkout-cta">구매하기</button>
-							</div>
-						</div>
-					</aside>
+					</div>					
 				</div>
-								<%-- 페이징 처리 --%>
+				
+				<%-- 페이징 처리 --%>
 				<div id="pagination">
 					<!-- 검색 칸 공백 시 페이징 사라지지 않게 -->
 	               <c:if test="${find_name == ''}"> <%--검색필드와 검색어가 없는 경우 --%>
@@ -807,7 +1020,7 @@
 				    </c:if>
 				   </c:if> 
 				   </div> <%-- end 페이징처리 --%>
-				</div>			
+			</div>
 			<%-- top버튼 삭제 X --%>
 			<div id="topBtn">
 				<span class="fonti um-arrow-circle-up um-3x icon"></span>TOP
@@ -858,10 +1071,6 @@
 
 		$(document).ready(function() {
 			updateSumItems();
-		});
-
-		$(document).ready(function() {
-			readyPrice();
 		});
 
 		$('.promo-code-cta').click(function() {
@@ -960,19 +1169,6 @@
 			});
 			$('.total-items').text(sumItems);
 		}
-		
-		function readyPrice() {
-			$('#sum').text();
-
-			var content_div = document.getElementById("sum");
-			console.log(content_div.innerText);
-			
-			var sumPrice = 0;
-			$(content_div.innerText).each(function() {
-				sumPrice += parseInt($(content_div.innerText).val());
-			});
-			$('.total-price').text(sumPrice);
-		}
 
 		/* Remove item from cart */
 		function removeItem(removeButton) {
@@ -995,9 +1191,10 @@
 	        var page_left = Math.ceil((window.screen.width - page_width)/2);
 	        var page_top = Math.ceil((window.screen.height - page_height)/2);
 	
-	    window.open("review_write.shop", "review_write",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
+	    window.open("review_write", "review_write",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
 	    
 	    }
+		
 	</script>
 </body>
 </html>

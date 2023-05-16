@@ -163,6 +163,14 @@
 		text-align: center;
 	}
 	
+	.board-table tbody th.nonList {
+		font-size: 15px;
+		border-top: 1px solid #e7e7e7;
+		text-align: center;
+	    padding: 140px 0 36px;
+	    background: url(../images/bg_no_list.png) no-repeat 50% 40px;
+	}
+	
 	.board-table thead th {
 		text-align: center;
 	}
@@ -208,7 +216,7 @@
 	
 	#updateBtn{
 		padding: 20px 80px; 
-		background-color: #FC5400; 
+		background-color: #B21948;; 
 		border: 1px solid white; 
 		color: white; 
 		font-size: 20px; 
@@ -229,7 +237,7 @@
 		border: 1px solid white; 
 		color: white; 
 		font-size: 20px; 
-		font-weight: bold
+		font-weight: bold;
 	}
 	
 	#changePwdBtn{
@@ -322,7 +330,7 @@
 	
 	table a:hover.orderList{
 		text-decoration: underline;
-		color: #FC5400;
+		color: #B21948;
 		cursor: pointer;
 	}
 	
@@ -382,17 +390,13 @@
 	
 	.main {
 		width: 1600px;
-		height: 1200px;
-		/* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / section이랑 px 맞춰야함 */
+		height: auto;
 		position: relative;
 		top: 105px;
 		left: 50%;
 		transform: translateX(-50%);
 	}
 	
-	section {
-		height: 1200px;
-	}
 	/* 클리어 */
 	.clear {
 		clear: both;
@@ -402,7 +406,18 @@
 		width: 100%;
 	}
 	.indent {
-		margin-left: 749px;
+		margin-left: 650px;
+	}
+	
+	.quantity-field {
+		background-color: white;
+		border: 1px solid #aaa;
+		border-radius: 4px;
+		font-size: 0.625rem;
+		padding: 2px;
+		width: 3.75rem;
+		height: 20px;
+		margin-left: 30px;
 	}
 </style>
 
@@ -415,30 +430,31 @@
          <%-- header include --%>
          <jsp:include page="../include/header.jsp"/>
       </header>
-      <%-- 메뉴바 --%>
+ 	<%-- 메뉴바 --%>
 		<section>
-			<div class="main">
-				<%-- main 화면 상단 캐러셀 (캐러셀 필요 없는 페이지는 삭제 바람!)--%>
-				<aside>
-					<nav>
-						<ul>
-							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 쇼핑</li>
-							<li><a href="myPage_Main" class="liList">주문ㆍ배송</a></li>
-							<li><a href="myPage_orderCancel" class="liList">교환/반품/환불</a></li>
-							<li><a href="like" class="liList">찜 목록</a></li>
-							<li><a href="basket" class="liList">장바구니</a></li>
-							<li style="margin-bottom: 30px;"><a href="inquiry" class="liList">문의 내역</a></li>
+		<div class="main">
+		
+			<aside class="aside_left">
+				<nav>
+					<ul>
+						<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"><a href="myPage_Main" style="text-decoration: none; color: black;">나의 쇼핑</a></li>
+						<li><a href="myPage_orderCancel" class="liList">주문ㆍ배송</a></li>
+						<li><a href="myPage_orderDetails" class="liList" style="color: #B21948;">교환/반품/환불</a></li>
+						<li><a href="myPage_like" class="liList">찜 목록</a></li>
+						<li><a href="myPage_basket" class="liList">장바구니</a></li>
+						<li style="margin-bottom: 30px;"><a href="myPage_inquiry" class="liList">문의 내역</a></li>
 
-							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
-							<li><a href="myPage_updateInfo" class="liList">회원정보 변경</a></li>
-							<li><a href="myPage_changePwd" class="liList">비밀번호 변경</a></li>
-							<li><a href="myPage_user_Withdrawal" class="liList">회원탈퇴</a></li>
-							<li style="margin-bottom: 30px;"><a href="myPage_updateAddress" class="liList">배송지 관리</a></li>
-							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 상품후기</li>
-							<li><a href="review" class="liList">나의 상품후기</a></li>
-						</ul>
-					</nav>
-				</aside>
+						<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
+						<li><a href="myPage_updateInfo" class="liList">회원정보 변경</a></li>
+						<li><a href="myPage_changePwd" class="liList">비밀번호 변경</a></li>
+						<li><a href="myPage_user_Withdrawal" class="liList">회원탈퇴</a></li>
+						<li style="margin-bottom: 30px;"><a href="myPage_updateAddress" class="liList">배송지 관리</a></li>
+						
+						<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 상품후기</li>
+						<li><a href="myPage_review" class="liList">나의 상품후기</a></li>
+					</ul>
+				</nav>
+			</aside>
 
 		<%-- 본문 영역(ui깨질시 본인이 ui 수정바람..) --%>
 		<div class="innerWrap">
@@ -460,38 +476,38 @@
 							<th scope="col" class="th-date">주문 수량</th>
 							<th scope="col" class="th-title">개당 가격</th>
 							<th scope="col" class="th-date">합계</th>
+							<th scope="col" class="th-date">비고</th>
 						</tr>
 					</thead>
 					<tbody>
-
+					<%-- <c:if test="${!empty list }" > --%>
 						<tr>
 							<th><a href="#" class="orderList">소고기맛 개껌입니다</a></th>
-							<td>달러</td>
-							<td>달러</td>
-							<td>달러</td>
+							<td><div class="quantity">
+								<input type="number" value="1" min="1" class="quantity-field">
+								</div>
+							</td>
+							<td><div class="price">10000원</div></td>
+							<td><div class="subtotal" id="sum">10000</div></td>
+							<td>
+								<input type="button" onclick="" value="교환">&nbsp;
+								<input type="button" onclick="" value="반품">&nbsp;
+								<input type="button" onclick="" value="환불">
+							</td>
 						</tr>
-
+					<%-- </c:if> --%>
+					
+					<%-- <c:if test="${empty list }">
 						<tr>
-							<th><a href="#" class="orderList">소고기맛 개껌입니다</a></th>
-							<td>달러</td>
-							<td>달러</td>
-							<td>달러</td>
+							<th colspan="5" class="nonList">현재 주문한 제품이 없습니다.</th>
 						</tr>
-						
-						
-						<tr>
-							<th><a href="#" class="orderList">소고기맛 개껌입니다</a></th>
-							<td>달러</td>
-							<td>달러</td>
-							<td>달러</td>
-						</tr>
-						
+					</c:if> --%>
 					</tbody>
 				</table>	
 				<br>
+				
 				<div align="right" style="margin-right: 50px;">
 					<b style="font-size: 20px;">총액 : 100000원</b>
-					
 				</div>
 				<br><br>
 				<input type="button" id="updateBtn" onclick="location.href='myPage_Main'" value="주문내역 목록">
@@ -504,7 +520,10 @@
          <div id="topBtn">
             <span class="fonti um-arrow-circle-up um-3x icon"></span>TOP
          </div>
+         
 		</div>
+		
+		</section>
 		<div class="clear"></div>
 		<%-- 푸터 영역 --%>
 		<footer>
@@ -575,7 +594,7 @@
 			}
 		});
 
-		/* Recalculate cart */
+		/* 합계 */
 		function recalculateCart(onlyTotal) {
 			var subtotal = 0;
 
@@ -647,6 +666,18 @@
 				sumItems += parseInt($(this).val());
 			});
 			$('.total-items').text(sumItems);
+		}
+		function readyPrice() {
+			$('#sum').text();
+
+			var content_div = document.getElementById("sum");
+			console.log(content_div.innerText);
+			
+			var sumPrice = 0;
+			$(content_div.innerText).each(function() {
+				sumPrice += parseInt($(content_div.innerText).val());
+			});
+			$('.total-price').text(sumPrice);
 		}
 
 		/* Remove item from cart */
