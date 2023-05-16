@@ -212,6 +212,12 @@
 		font-size: 15px;
 		border-top: 1px solid #e7e7e7;
 		text-align: center;
+	}
+	
+	.board-table tbody th.nonList {
+		font-size: 15px;
+		border-top: 1px solid #e7e7e7;
+		text-align: center;
 	    padding: 140px 0 36px;
 	    background: url(../images/bg_no_list.png) no-repeat 50% 40px;
 	}
@@ -535,31 +541,34 @@ function cancel_btn() {
 									<th scope="col" class="th-title">제품명</th>
 									<th scope="col" class="th-date">주문일자</th>
 									<th scope="col" class="th-date">주문수량</th>
-									<th scope="col" class="th-date">제품당 가격</th>
+									<th scope="col" class="th-date">송장번호</th>
 									<th scope="col" class="th-date">총 주문금액</th>
 									<th scope="col" class="th-date2">주문상태</th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:if test="${!empty olist }">
-									<c:forEach var="o" items="${olist}">
+								<%-- <c:if test="${!empty olist }"> --%>
+									<%-- <c:forEach var="o" items="${olist}"> --%>
 										<tr>
-											<td><input type="hidden" name="order_no" value="${o.order_no}" />
-											${o.order_no}</td>
-											<th><a class="orderList" onclick="location='product_dsc.shop?product_title=${o.product_title}'">${o.product_title}</a></th>
-											<td>${o.order_date}</td>
-											<td>${o.order_cnt}개</td>
-											<td>${o.product_price}원</td>
-											<td>${o.total_price}원</td>
-											<td><input type="button" id="order_cancel" onclick="return cancel_btn()" value="주문취소"></td>
+											<td>
+											<%-- <input type="hidden" name="order_no" value="${o.order_no}" /> --%>
+											1</td>
+											<th>소고기맛 개껌</th>
+											<td>2023.05.16</td>
+											<td>1개</td>
+											<td>
+											<a href="https://www.cjlogistics.com/ko/tool/parcel/tracking" style="text-decoration: none;">
+											1234567-1234567</a></td>
+											<td>10,000원</td>
+											<td>접수완료</td>
 										</tr>
-									</c:forEach>
-								</c:if>
-								<c:if test="${empty olist }">
+									<%-- </c:forEach>
+								</c:if> --%>
+								<%-- <c:if test="${empty olist }">
 									<tr>
 										<th colspan="7"  class="nonList">현재 주문한 제품이 없습니다.</th>
 									</tr>
-								</c:if>
+								</c:if> --%>
 								
 							</tbody>
 						</table>
@@ -616,7 +625,6 @@ function cancel_btn() {
 				       </c:if>
 				     </c:forEach>
 				       
-				    
 				    <c:if test="${page >= maxpage}">
 				      &nbsp;NEXT
 				    </c:if>

@@ -117,27 +117,23 @@
 		width: 100px;
 		text-align: center;
 	}
-	
+	/* 제품명 */
 	table th.th-title {
 		font-size: 15px;
-		width: 200px;
+		width: 500px;
 	}
-	
-	table td.td-title {
-		font-size: 13px;
-	}
-	
+	/* 주문 수량 */
 	table th.th-date {
 		font-size: 15px;
-		width: 80px;
+		width: 90px;
 	}
-	
-	table th.th-date1 {
+	/* 개당 가격 */
+	table th.th-price {
 		font-size: 15px;
-		width: 50px;
+		width: 100px;
 	}
-	
-	table th.th-date2 {
+	/* 합계 */
+	table th.th-total {
 		font-size: 15px;
 		width: 150px;
 	}
@@ -419,6 +415,13 @@
 		height: 20px;
 		margin-left: 30px;
 	}
+	#btn {
+		background-color: #B21948;
+    	border: 1px solid white;
+    	color: white;
+    	padding: 5px 7px;
+    	font-size: 10px;
+	}
 </style>
 
 </head>
@@ -473,28 +476,61 @@
 					<thead>
 						<tr>
 							<th scope="col" class="th-title">제품명</th>
+							<th scope="col" class="th-price">개당 가격</th>
 							<th scope="col" class="th-date">주문 수량</th>
-							<th scope="col" class="th-title">개당 가격</th>
-							<th scope="col" class="th-date">합계</th>
-							<th scope="col" class="th-date">비고</th>
+							<th scope="col" class="th-total">합계</th>
+							<th scope="col" class="th-etc">비고</th>
 						</tr>
 					</thead>
 					<tbody>
 					<%-- <c:if test="${!empty list }" > --%>
 						<tr>
 							<th><a href="#" class="orderList">소고기맛 개껌입니다</a></th>
+							<td><div class="price">10,000원</div></td>
 							<td><div class="quantity">
 								<input type="number" value="1" min="1" class="quantity-field">
 								</div>
 							</td>
-							<td><div class="price">10000원</div></td>
-							<td><div class="subtotal" id="sum">10000</div></td>
+							<td><div class="subtotal" id="sum">10000 원</div></td>
 							<td>
-								<input type="button" onclick="" value="교환">&nbsp;
-								<input type="button" onclick="" value="반품">&nbsp;
-								<input type="button" onclick="" value="환불">
+								<input id="btn" type="button" onclick="" value="교환">&nbsp;
+								<input id="btn" type="button" onclick="" value="반품">&nbsp;
+								<input id="btn" type="button" onclick="" value="환불">
 							</td>
 						</tr>
+						<script>
+						window.onload = function() {
+							  // 주문 수량이 변경될 때마다 합계 금액을 업데이트.
+							  var quantityField = document.querySelector(".quantity-field");
+							  var subtotalElement = document.getElementById("sum");
+							  var totalPriceElement = document.getElementById("totalPrice");
+							  
+							  var price = 10000; // 개당 가격 설정
+
+							  quantityField.addEventListener("change", function() {
+							    var quantity = parseInt(quantityField.value);
+							    var subtotal = quantity * price;
+
+							    // 합계 금액을 원화로 변환하여 출력.
+							    var formattedSubtotal = new Intl.NumberFormat("ko-KR", { currency: "KRW", currencyDisplay: "symbol" }).format(subtotal);
+							    subtotalElement.textContent = formattedSubtotal + "원";
+
+							    // 총액 계산
+							    var totalPrice = calculateTotalPrice(quantity);
+							    totalPriceElement.textContent = totalPrice;
+							  });
+
+							  // 총액 계산 함수
+							  function calculateTotalPrice(quantity) {
+							    var totalPrice = quantity * price;
+
+							    // 총액을 원화로 변환하여 반환합니다.
+							    var formattedTotalPrice = new Intl.NumberFormat("ko-KR", { currency: "KRW", currencyDisplay: "symbol" }).format(totalPrice);
+							    return formattedTotalPrice;
+							  }
+							};
+
+						</script>
 					<%-- </c:if> --%>
 					
 					<%-- <c:if test="${empty list }">
@@ -507,10 +543,10 @@
 				<br>
 				
 				<div align="right" style="margin-right: 50px;">
-					<b style="font-size: 20px;">총액 : 100000원</b>
+					<div class="totalPrice" style="font-size: 20px;"><b>총액 : <span id="totalPrice">0</span>원</div></b>
 				</div>
 				<br><br>
-				<input type="button" id="updateBtn" onclick="location.href='myPage_Main'" value="주문내역 목록">
+				<input type="button" id="updateBtn" onclick="location.href='myPage_orderCancel'" value="주문내역 목록">
 			</div>
 		</div>
 		
@@ -551,160 +587,7 @@
 				$("#topBtn").css("opacity", 1); // TOP 버튼 나타내기
 			}
 		});
-		
-		<%-- 장바구니 부분 --%>
-		/* Set values + misc */
-		var promoCode;
-		var promoPrice;
-		var fadeTime = 300;
 
-		/* Assign actions */
-		$('.quantity input').change(function() {
-			updateQuantity(this);
-		});
-
-		$('.remove button').click(function() {
-			removeItem(this);
-		});
-
-		$(document).ready(function() {
-			updateSumItems();
-		});
-
-		$('.promo-code-cta').click(function() {
-
-			promoCode = $('#promo-code').val();
-
-			if (promoCode == '10off' || promoCode == '10OFF') {
-				//If promoPrice has no value, set it as 10 for the 10OFF promocode
-				if (!promoPrice) {
-					promoPrice = 10;
-				} else if (promoCode) {
-					promoPrice = promoPrice * 1;
-				}
-			} else if (promoCode != '') {
-				alert("Invalid Promo Code");
-				promoPrice = 0;
-			}
-			//If there is a promoPrice that has been set (it means there is a valid promoCode input) show promo
-			if (promoPrice) {
-				$('.summary-promo').removeClass('hide');
-				$('.promo-value').text(promoPrice.toFixed(0) + "원");
-				recalculateCart(true);
-			}
-		});
-
-		/* 합계 */
-		function recalculateCart(onlyTotal) {
-			var subtotal = 0;
-
-			/* Sum up row totals */
-			$('.basket-product').each(function() {
-				subtotal += parseFloat($(this).children('.subtotal').text());
-			});
-
-			/* Calculate totals */
-			var total = subtotal;
-
-			//If there is a valid promoCode, and subtotal < 10 subtract from total
-			var promoPrice = parseFloat($('.promo-value').text());
-			if (promoPrice) {
-				if (subtotal >= 10) {
-					total -= promoPrice;
-				} else {
-					alert('Order must be more than £10 for Promo code to apply.');
-					$('.summary-promo').addClass('hide');
-				}
-			}
-
-			/*If switch for update only total, update only total display*/
-			if (onlyTotal) {
-				/* Update total display */
-				$('.total-value').fadeOut(fadeTime, function() {
-					$('#basket-total').html(total.toFixed(0) + "원");
-					$('.total-value').fadeIn(fadeTime);
-				});
-			} else {
-				/* Update summary display. */
-				$('.final-value').fadeOut(fadeTime, function() {
-					$('#basket-subtotal').html(subtotal.toFixed(0) + "원");
-					$('#basket-total').html(total.toFixed(0) + "원");
-					if (total == 0) {
-						$('.checkout-cta').fadeOut(fadeTime);
-					} else {
-						$('.checkout-cta').fadeIn(fadeTime);
-					}
-					$('.final-value').fadeIn(fadeTime);
-				});
-			}
-		}
-
-		/* Update quantity */
-		function updateQuantity(quantityInput) {
-			/* Calculate line price */
-			var productRow = $(quantityInput).parent().parent();
-			var price = parseFloat(productRow.children('.price').text());
-			var quantity = $(quantityInput).val();
-			var linePrice = price * quantity;
-
-			/* Update line price display and recalc cart totals */
-			productRow.children('.subtotal').each(function() {
-				$(this).fadeOut(fadeTime, function() {
-					$(this).text(linePrice.toFixed(0) + "원");
-					recalculateCart();
-					$(this).fadeIn(fadeTime);
-				});
-			});
-
-			productRow.find('.item-quantity').text(quantity);
-			updateSumItems();
-		}
-
-		function updateSumItems() {
-			var sumItems = 0;
-			$('.quantity input').each(function() {
-				sumItems += parseInt($(this).val());
-			});
-			$('.total-items').text(sumItems);
-		}
-		function readyPrice() {
-			$('#sum').text();
-
-			var content_div = document.getElementById("sum");
-			console.log(content_div.innerText);
-			
-			var sumPrice = 0;
-			$(content_div.innerText).each(function() {
-				sumPrice += parseInt($(content_div.innerText).val());
-			});
-			$('.total-price').text(sumPrice);
-		}
-
-		/* Remove item from cart */
-		function removeItem(removeButton) {
-			/* Remove row from DOM and recalc cart total */
-			var productRow = $(removeButton).parent().parent();
-			productRow.slideUp(fadeTime, function() {
-				productRow.remove();
-				recalculateCart();
-				updateSumItems();
-			});
-		}
-		
-		<%-- 리뷰 작성 페이지 부분 --%>
-		// 왼쪽 사이드바의 '나의 후기' 텍스트 클릭시 새창 열기
-		function openPopup_review_write() {
-	        var page_width = '490';
-	        var page_height = '900';
-	    
-	        // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
-	        var page_left = Math.ceil((window.screen.width - page_width)/2);
-	        var page_top = Math.ceil((window.screen.height - page_height)/2);
-	
-	    window.open("http://localhost:8046/MVC/page/mypage2/review_write.jsp", "review_write",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
-	    
-	    }
-		
 	</script>
 </body>
 </html>

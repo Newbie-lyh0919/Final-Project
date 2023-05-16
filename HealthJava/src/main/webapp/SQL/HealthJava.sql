@@ -3,12 +3,12 @@ CREATE TABLE tbl_member(
     user_no number(38)  PRIMARY KEY -- 회원 수(unique)
     , user_id varchar2(100) -- 회원 아이디
     , user_pwd varchar2(100) -- 회원 비밀번호
-    , roadAddr varchar2(100) -- 회원 도로명 주소
     , user_token varchar2(100) -- null: 일반회원 not null: 카카오회원
     , user_name varchar2(100) -- 회원 이름
     , user_birth varchar2(100) -- 회원 생년월일
     , user_gender varchar2(50) -- 회원 성별
     , postcode varchar2(100) -- 회원 우편번호
+    , roadAddr varchar2(100) -- 회원 도로명 주소
     , detailAddr varchar2(100) -- 회원 상세 주소
     , user_email varchar2(100) -- 회원 이메일
     , user_phone varchar2(100) -- 회원 휴대폰번호
