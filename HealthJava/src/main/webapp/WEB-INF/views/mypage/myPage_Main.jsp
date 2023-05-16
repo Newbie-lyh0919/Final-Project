@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="css/style.css">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> <%-- CDN 절대링크 --%>
-<!-- <script type="text/javascript" src="./js/jquery.js"></script> -->
 
 <title>HealthJava 마이페이지</title>
 
@@ -15,7 +14,6 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/views/include/css/header.css"> <%-- header.css --%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/views/include/css/footer.css"> <%-- footer.css --%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/fontium/css/fontium.css" /> 
-<link rel="stylesheet" type="text/css" href="./WEB-INF/views/mypage/css/mypage.css?ver=1">
 
 <style type="text/css">
 	/* 메인 컨텐츠 부분 */
@@ -28,7 +26,9 @@
 	/* 폰트 CSS */
 	@font-face {
 		font-family: 'KIMM_Bold';
-		src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2') format('woff2'); /* CDN 절대링크  */
+		src:
+			url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2')
+			format('woff2'); /* CDN 절대링크  */
 		font-weight: 700;
 		font-style: normal;
 	}
@@ -69,17 +69,19 @@
 		position: relative;
 	}
 	
-	.main { 
+	.main {
 		width: 1600px;
-		height: 1200px; /* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / section이랑 px 맞춰야함 */
-		position : relative;
+		height: 1200px;
+		/* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / section이랑 px 맞춰야함 */
+		position: relative;
 		top: 105px;
 		left: 50%;
-        transform: translateX( -50% );
+		transform: translateX(-50%);
 	}
 	
 	section {
-		height: 1200px;  /*UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함  .main이랑 px 맞춰야함*/  
+		height: 1200px;
+		/*UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함  .main이랑 px 맞춰야함*/
 	}
 	
 	/* 클리어 */
@@ -91,7 +93,7 @@
 	.container {
 		width: 100%;
 		margin: 20px 0px;
-	}	
+	}
 	
 	/******************************************************************/
 	
@@ -100,6 +102,7 @@
 		border-collapse: collapse;
 		border-spacing: 0;
 	}
+	
 	section.notice {
 		padding: 20px 0;
 		/*추가*/
@@ -128,7 +131,7 @@
 		list-style: none;
 	}
 	
-	li{
+	li {
 		padding-top: 10px;
 	}
 	
@@ -148,7 +151,7 @@
 		text-align: left;
 	}
 	
-	 h3.page-title {
+	h3.page-title {
 		font-size: 25px;
 		color: black;
 		font-weight: 400;
@@ -230,17 +233,17 @@
 		font-size: 15px;
 		border-top: 1px solid #e7e7e7;
 		text-align: center;
-	    padding: 140px 0 36px;
-	    background: url(../images/bg_no_list.png) no-repeat 50% 40px;
+		padding: 140px 0 36px;
+		background: url(../images/bg_no_list.png) no-repeat 50% 40px;
 	}
 	
 	.board-table tbody th p {
 		display: none;
 	}
 	
-	.th-list{
-		text-align:center;
-		margin-top : 20px;
+	.th-list {
+		text-align: center;
+		margin-top: 20px;
 		margin-bottom: 20px;
 		padding: 10px;
 		background-color: #F4A460;
@@ -249,39 +252,39 @@
 		border-bottom-style: solid;
 	}
 	
-	.td-inputInfo{
-		text-align:left;
+	.td-inputInfo {
+		text-align: left;
 		padding-left: 20px;
 		padding-top: 20px;
 	}
 	
-	.td-infoPs{
-		text-align : left;
+	.td-infoPs {
+		text-align: left;
 		padding-left: 20px;
 		padding-top: 5px;
 		padding-bottom: 15px;
 		border-bottom-color: gray;
 		border-bottom-width: 0.2px;
 		border-bottom-style: solid;
-		font-size: 12px; 
+		font-size: 12px;
 		font-weight: bold;
 		color: red;
 	}
 	
-	div.submitBtn{
+	div.submitBtn {
 		float: left;
 		margin-left: 100px;
 	}
 	
 	/* 수정 버튼 */
-	#updateBtn{
-	    padding: 7px 15px;
-	    border: 1px solid #B21948;
-	    color: white;
-	    font-size: 15px;
-	    font-weight: bold;
-	    background: #b21949;
-	}	
+	#updateBtn {
+		padding: 7px 15px;
+		border: 1px solid #B21948;
+		color: white;
+		font-size: 15px;
+		font-weight: bold;
+		background: #b21949;
+	}
 	
 	/* 메뉴바 */
 	* {
@@ -290,7 +293,7 @@
 		padding: 0;
 		margin: 0;
 		box-sizing: border-box;
-	} 
+	}
 	
 	.clearfix:after {
 		content: '';
@@ -303,7 +306,7 @@
 		margin: 0 auto;
 		border: 1px solid red;
 	}
-		
+	
 	.innerWrap {
 		width: 1000px;
 		min-height: 700px;
@@ -321,8 +324,8 @@
 		width: 1px;
 		height: 1px;
 	}
-		
-	/* a 링크 : 메뉴바 */	
+	
+	/* a 링크 : 메뉴바 */
 	a:link.liList {
 		text-decoration: none;
 		color: #a399a2;
@@ -333,7 +336,7 @@
 		color: #a399a2;
 	}
 	
-	a:hover.liList{
+	a:hover.liList {
 		text-decoration: underline;
 		color: #B21948;
 	}
@@ -344,7 +347,7 @@
 	}
 	
 	table a:link.orderList {
-		text-decoration: none; 
+		text-decoration: none;
 		color: black;
 	}
 	
@@ -353,7 +356,7 @@
 		color: black;
 	}
 	
-	table a:hover.orderList{
+	table a:hover.orderList {
 		text-decoration: underline;
 		color: #FC5400;
 		cursor: pointer;
@@ -375,25 +378,25 @@
 		</header>
 		<%-- 메뉴바 --%>
 		<section>
-		<div class="main">
-		
+		<div class="main">		
 			<aside class="aside_left">
 				<nav>
 					<ul>
-						<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 쇼핑</li>
-						<li><a href="myPage_Main" class="liList" style="color: #B21948;">주문ㆍ배송</a></li>
-						<li><a href="myPage_orderCancel" class="liList">교환/반품/환불</a></li>
-						<li><a href="like" class="liList">찜 목록</a></li>
-						<li><a href="basket" class="liList">장바구니</a></li>
-						<li style="margin-bottom: 30px;"><a href="inquiry" class="liList">문의 내역</a></li>
+						<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"><a href="myPage_Main" style="text-decoration: none; color: #B21948;">나의 쇼핑</a></li>
+						<li><a href="myPage_orderCancel" class="liList">주문ㆍ배송</a></li>
+						<li><a href="myPage_orderDetails" class="liList">교환/반품/환불</a></li>
+						<li><a href="myPage_like" class="liList">찜 목록</a></li>
+						<li><a href="myPage_basket" class="liList">장바구니</a></li>
+						<li style="margin-bottom: 30px;"><a href="myPage_inquiry" class="liList">문의 내역</a></li>
 
 						<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
 						<li><a href="myPage_updateInfo" class="liList">회원정보 변경</a></li>
 						<li><a href="myPage_changePwd" class="liList">비밀번호 변경</a></li>
 						<li><a href="myPage_user_Withdrawal" class="liList">회원탈퇴</a></li>
 						<li style="margin-bottom: 30px;"><a href="myPage_updateAddress" class="liList">배송지 관리</a></li>
+						
 						<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 상품후기</li>
-						<li><a href="review" class="liList">나의 상품후기</a></li>
+						<li><a href="myPage_review" class="liList">나의 상품후기</a></li>
 					</ul>
 				</nav>
 			</aside>
@@ -413,14 +416,15 @@
 				</div>
 
 				<div class="memBasicInfo" style="width: 750px; text-align: left;">
-					<b style="font-size: 20px;">Test 계정</b>
+					<b style="font-size: 20px;">황호준님 계정</b>
 				</div>
 			</section>
 
 			<!-- board seach area -->
 			<section class="notice">
 				<div class="page-title">
-					<b style="text-align: left; font-size: 20px;">주문내역</b><br>
+					<b style="text-align: left; font-size: 20px;">&nbsp;&nbsp;주문내역</b>
+					<a href="myPage_orderCancel" class="liList" style="margin-left: 820px;  text-decoration-line: none;">[더보기]</a><br>
 				</div>
 				<!-- board list area -->
 				<div id="board-list">
@@ -464,6 +468,37 @@
 							</tbody>
 						</table>
 					</div> <!-- end container -->
+				</div>
+				<br><br>
+				<div class="page-title">
+					<b style="text-align: left; font-size: 20px;">&nbsp;&nbsp;문의내역</b>
+					<a href="myPage_inquiry" class="liList" style="margin-left: 820px; text-decoration-line: none;">[더보기]</a><br><br>
+				</div>
+				<!-- board list area -->
+				<div id="board-list">
+					<div class="container">
+					<form method="post" id="cancel_Form" action="order_cancel_ok.shop">
+						<table class="board-table">
+							<thead>
+								<tr>
+									<th scope="col" class="th-date1">No</th>
+									<th scope="col" class="th-title">문의 유형</th>
+									<th scope="col" class="th-date">제목</th>
+									<th scope="col" class="th-date">작성일</th>
+									<th scope="col" class="th-date">처리 현황</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:if test="${empty olist }">
+									<tr>
+										<th colspan="5" class="nonList">현재 문의한 내역이 없습니다.</th>
+									</tr>
+								</c:if>
+								
+							</tbody>
+						</table>
+						</form>
+					</div>
 				</div>
 				</section>
 				</div>

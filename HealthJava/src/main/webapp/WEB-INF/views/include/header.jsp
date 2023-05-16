@@ -198,29 +198,34 @@
             </div>
             <div class="navbarbox">
                <div id="dropdownbox">
-                    <button id="dropbtn" value="강아지 식품" onclick="location='puppy_product'">사료</button>
-                    <div id="dropdown-content">
+                    <button id="dropbtn" value="소도구" onclick="#">브랜드</button>
+                    <!-- <div id="dropdown-content">
                         <a href="puppy_product">퍼피</a>
                         <a href="adult_product">어덜트<br>(전연령)</a>
                         <a href="senior_productp">시니어</a>
+                    </div> -->
+                </div>
+                <div id="dropdownbox">
+                    <button id="dropbtn" value="소도구" onclick="#">제품</button>
+                    <div id="dropdown-content">
+                        <a href="#">신제품</a>
+                        <a href="#">매트</a>
+                        <a href="#">롤러</a>
+                        <a href="#">짐 볼</a>
+                        <a href="#">특별할인</a>
                     </div>
                 </div>
                 <div id="dropdownbox">
-                    <button id="dropbtn" value="강아지 식품" onclick="location='gum_product'">간식</button>
+                    <button id="dropbtn" value="소도구" onclick="#">커뮤니티</button>
                     <div id="dropdown-content">
-                        <a href="gum_product ">개껌</a>
-                        <a href="gansik_product ">일반간식</a>
+                        <a href="#">공지사항</a>
+                        <a href="#">뉴스/이벤트</a>
+                        <a href="#">상품 Q&A</a>
+                        <a href="#">자료실</a>
                     </div>
                 </div>
-                <div id="dropdownbox">
-                    <button id="dropbtn" value="강아지 식품" onclick="location='probio_product '">영양제</button>
-                    <div id="dropdown-content">
-                        <a href="probio_product ">유산균</a>
-                        <a href="omega3_product ">오메가3</a>
-                    </div>
-                </div>
-                <a id="a2" href="cs_notice ">고객 센터</a>
-                <a id="a3" href="location ">찾아오시는 길</a>
+                <a id="a2" href="cs_notice">고객 센터</a>
+                <a id="a3" href="location">찾아오시는 길</a>
             </div>
             <div class="searchbox">
 	            <input type="text" id="search" placeholder="검색어를 입력해주세요.">
@@ -231,39 +236,44 @@
         </div>
     </div>
     <% if(id.equals("admin")){%> <%-- 관리자 일때 --%>
-       <div class="headerbox">
+    <div class="headerbox">
         <div class="menubox">
-            <a href="main_product ">
+            <a href="main_product">
                 <img src="<%=request.getContextPath()%>/images/logo1.png" id="logoImage" width="200" height="90" alt="로고 사진">
             </a>
             <div class="memberbox">
-                <a href="adminMain ">관리자 계정</a> | <a href="member_logout ">로그아웃</a> <!-- a태그 링크 변경하여 회원가입/로그인 구현 -->
+                <a href="myPage_Main"><%=id %> 님</a> | <a href="member_logout">로그아웃</a> <!-- a태그 링크 변경하여 회원가입/로그인 구현 -->
             </div>
             <div class="navbarbox">
                <div id="dropdownbox">
-                    <button id="dropbtn" value="강아지 식품" onclick="location='puppy_product '">사료</button>
+                    <button id="dropbtn" value="소도구" onclick="#">브랜드</button>
+                    <!-- <div id="dropdown-content">
+                        <a href="puppy_product">퍼피</a>
+                        <a href="adult_product">어덜트<br>(전연령)</a>
+                        <a href="senior_productp">시니어</a>
+                    </div> -->
+                </div>
+                <div id="dropdownbox">
+                    <button id="dropbtn" value="소도구" onclick="#">제품</button>
                     <div id="dropdown-content">
-                        <a href="puppy_product ">퍼피</a>
-                        <a href="adult_product ">어덜트<br>(전연령)</a>
-                        <a href="senior_product ">시니어</a>
+                        <a href="#">신제품</a>
+                        <a href="#">매트</a>
+                        <a href="#">롤러</a>
+                        <a href="#">짐 볼</a>
+                        <a href="#">특별할인</a>
                     </div>
                 </div>
                 <div id="dropdownbox">
-                    <button id="dropbtn" value="강아지 식품" onclick="location='gum_product '">간식</button>
+                    <button id="dropbtn" value="소도구" onclick="#">커뮤니티</button>
                     <div id="dropdown-content">
-                        <a href="gum_product ">개껌</a>
-                        <a href="gansik_product ">일반간식</a>
+                        <a href="#">공지사항</a>
+                        <a href="#">뉴스/이벤트</a>
+                        <a href="#">상품 Q&A</a>
+                        <a href="#">자료실</a>
                     </div>
                 </div>
-                <div id="dropdownbox">
-                    <button id="dropbtn" value="강아지 식품" onclick="location='probio_product '">영양제</button>
-                    <div id="dropdown-content">
-                        <a href="probio_product ">유산균</a>
-                        <a href="omega3_product ">오메가3</a>
-                    </div>
-                </div>
-                <a id="a2" href="cs_notice ">고객 센터</a>
-                <a id="a3" href="location ">찾아오시는 길</a>
+                <a id="a2" href="cs_notice">고객 센터</a>
+                <a id="a3" href="location">찾아오시는 길</a>
             </div>
             <div class="searchbox">
 	            <input type="text" id="search" placeholder="검색어를 입력해주세요.">
@@ -277,38 +287,42 @@
     <%} else { %> <%-- 비회원일떄 --%>
     <div class="headerbox">
         <div class="menubox">
-            <a href="main_product ">
+            <a href="main_product">
                 <img src="<%=request.getContextPath()%>/images/logo1.png" id="logoImage" width="200" height="90" alt="로고 사진">
             </a>
             <div class="memberbox">
-                <a href="member_join ">회원가입</a> | <a href="member_login ">로그인</a> <!-- a태그 링크 변경하여 회원가입/로그인 구현 -->
-            </div>            
+                <a href="myPage_Main"><%=id %> 님</a> | <a href="member_logout">로그아웃</a> <!-- a태그 링크 변경하여 회원가입/로그인 구현 -->
+            </div>
             <div class="navbarbox">
                <div id="dropdownbox">
-                    <button id="dropbtn" value="강아지 식품" onclick="location='puppy_product '">사료</button>
+                    <button id="dropbtn" value="소도구" onclick="#">브랜드</button>
+                    <!-- <div id="dropdown-content">
+                        <a href="puppy_product">퍼피</a>
+                        <a href="adult_product">어덜트<br>(전연령)</a>
+                        <a href="senior_productp">시니어</a>
+                    </div> -->
+                </div>
+                <div id="dropdownbox">
+                    <button id="dropbtn" value="소도구" onclick="#">제품</button>
                     <div id="dropdown-content">
-                        <a href="puppy_product ">퍼피</a>
-                        <a href="adult_product ">어덜트<br>(전연령)</a>
-                        <a href="senior_product ">시니어</a>
+                        <a href="#">신제품</a>
+                        <a href="#">매트</a>
+                        <a href="#">롤러</a>
+                        <a href="#">짐 볼</a>
+                        <a href="#">특별할인</a>
                     </div>
                 </div>
                 <div id="dropdownbox">
-                    <button id="dropbtn" value="강아지 식품" onclick="location='gum_product '">간식</button>
+                    <button id="dropbtn" value="소도구" onclick="#">커뮤니티</button>
                     <div id="dropdown-content">
-                        <a href="gum_product ">개껌</a>
-                        <a href="gansik_product ">일반간식</a>
+                        <a href="#">공지사항</a>
+                        <a href="#">뉴스/이벤트</a>
+                        <a href="#">상품 Q&A</a>
+                        <a href="#">자료실</a>
                     </div>
                 </div>
-                <div id="dropdownbox">
-                    <button id="dropbtn" value="강아지 식품" onclick="location='probio_product '">영양제</button>
-                    <div id="dropdown-content">
-                        <a href="probio_product ">유산균</a>
-                        <a href="omega3_product ">오메가3</a>
-                    </div>
-                </div>
-                <a id="a2" href="cs_notice ">고객 센터</a>
-                <a id="a3" href="location ">찾아오시는 길</a>
-
+                <a id="a2" href="cs_notice">고객 센터</a>
+                <a id="a3" href="location">찾아오시는 길</a>
             </div>
             <div class="searchbox">
 	            <input type="text" id="search" placeholder="검색어를 입력해주세요.">
@@ -316,7 +330,6 @@
 	                <img src="<%=request.getContextPath()%>/images/searchIcon.png" width="24px" height="24px">
 	            </button>
             </div>
-            
         </div>
     </div>
     <%} %>

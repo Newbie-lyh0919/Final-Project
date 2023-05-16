@@ -44,10 +44,10 @@ public class MypageController {
 	}
 	
 	//마이페이지 주문상세
-	@RequestMapping("/myPage_orderDedails")
-	public ModelAndView myPage_orderDedails(HttpServletRequest request, HttpServletResponse response ) {
+	@RequestMapping("/myPage_orderDetails")
+	public ModelAndView myPage_orderDetails(HttpServletRequest request, HttpServletResponse response ) {
 		
-		ModelAndView wm=new ModelAndView("mypage/myPage_orderDedails");//생성자 인자값으로 뷰페이지 경로 설정=>/WEB-INF/
+		ModelAndView wm=new ModelAndView("mypage/myPage_orderDetails");//생성자 인자값으로 뷰페이지 경로 설정=>/WEB-INF/
 		
 		return wm;
 	}
@@ -80,43 +80,43 @@ public class MypageController {
 	}
 	
 	//마이페이지 장바구니
-	@RequestMapping("/basket")
-	public ModelAndView basket(HttpServletRequest request, HttpServletResponse response ) {
+	@RequestMapping("/myPage_basket")
+	public ModelAndView myPage_basket(HttpServletRequest request, HttpServletResponse response ) {
 		
-		ModelAndView wm=new ModelAndView("mypage/basket");//생성자 인자값으로 뷰페이지 경로 설정=>/WEB-INF/
+		ModelAndView wm=new ModelAndView("mypage/myPage_basket");//생성자 인자값으로 뷰페이지 경로 설정=>/WEB-INF/
 		
 		return wm;
 	}
 	
 	//마이페이지 찜
-	@RequestMapping("/like")
-	public ModelAndView like(HttpServletRequest request, HttpServletResponse response ) {
+	@RequestMapping("/myPage_like")
+	public ModelAndView myPage_like(HttpServletRequest request, HttpServletResponse response ) {
 		
-		ModelAndView wm=new ModelAndView("mypage/like");//생성자 인자값으로 뷰페이지 경로 설정=>/WEB-INF/
+		ModelAndView wm=new ModelAndView("mypage/myPage_like");//생성자 인자값으로 뷰페이지 경로 설정=>/WEB-INF/
 		
 		return wm;
 	}
 	
 	//마이페이지 리뷰
-	@RequestMapping("/review")
-	public ModelAndView reviewlike(HttpServletRequest request, HttpServletResponse response ) {
+	@RequestMapping("/myPage_review")
+	public ModelAndView myPage_review(HttpServletRequest request, HttpServletResponse response ) {
 		
-		ModelAndView wm=new ModelAndView("mypage/review");//생성자 인자값으로 뷰페이지 경로 설정=>/WEB-INF/
+		ModelAndView wm=new ModelAndView("mypage/myPage_review");//생성자 인자값으로 뷰페이지 경로 설정=>/WEB-INF/
 		
 		return wm;
 	}
 	
 	//마이페이지 리뷰 작성
-	@RequestMapping("/review_write")
+	@RequestMapping("/myPage_review_write")
 	public ModelAndView review_write(HttpServletRequest request, HttpServletResponse response ) {
 		
-		ModelAndView wm=new ModelAndView("mypage/review_write");//생성자 인자값으로 뷰페이지 경로 설정=>/WEB-INF/
+		ModelAndView wm=new ModelAndView("mypage/myPage_review_write");//생성자 인자값으로 뷰페이지 경로 설정=>/WEB-INF/
 		
 		return wm;
 	}
 	
 	//문의 내역 확인
-	@RequestMapping("/inquiry")
+	@RequestMapping("/myPage_inquiry")
 	public ModelAndView myPage_inquiry(HttpServletRequest request, HttpServletResponse response ) {
 		
 		ModelAndView wm=new ModelAndView("mypage/myPage_inquiry");//생성자 인자값으로 뷰페이지 경로 설정=>/WEB-INF/
