@@ -17,7 +17,6 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/footer.css"> <%-- footer.css --%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/fontium/css/fontium.css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/page/mypage/css/mypage.css?ver=1">
-<%-- <link rel="stylesheet" href="./shop/puppyhome/controller_mypage/css/mypage.css">--%>
 
 <style type="text/css">
 	
@@ -66,17 +65,13 @@
 	
 	.main {
 		width: 1600px;
-		height: 1200px;
-		/* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / section이랑 px 맞춰야함 */
+		height: auto;
 		position: relative;
 		top: 105px;
 		left: 50%;
 		transform: translateX(-50%);
-	}
+	}	
 	
-	section {
-		height: 1200px;
-	}
 	/* 클리어 */
 	.clear {
 		clear: both;
@@ -91,11 +86,8 @@
 		border-spacing: 0;
 	}
 	section.notice {
-		padding: 20px 0;
-		/*추가*/
 		width: 1000px;
 		min-height: 200px;
-		margin: 2px;
 	}
 	
 	.aside_left {
@@ -220,6 +212,8 @@
 		font-size: 15px;
 		border-top: 1px solid #e7e7e7;
 		text-align: center;
+	    padding: 140px 0 36px;
+	    background: url(../images/bg_no_list.png) no-repeat 50% 40px;
 	}
 	
 	.board-table thead th {
@@ -323,9 +317,8 @@
 	}
 	
 	div.container {
-		width: 1000px;
+		width: 1200px;
 		margin: 20px 0px;
-		/*border: 1px solid red;*/
 	}
 	
 	.innerWrap {
@@ -397,6 +390,7 @@
 		margin: 10px auto;
 		display: flex;
 	    justify-content: center;
+	    width: 1200px;
 	}
 	
 	.pagination {
@@ -503,20 +497,21 @@ function cancel_btn() {
 				<aside class="aside_left">
 					<nav>
 						<ul>
-							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 쇼핑</li>
-							<li><a href="myPage_Main" class="liList">주문ㆍ배송</a></li>
-							<li><a href="myPage_orderCancel" class="liList" style="color: #B21948;">교환/반품/환불</a></li>
-							<li><a href="like" class="liList">찜 목록</a></li>
-							<li><a href="basket" class="liList">장바구니</a></li>
-							<li style="margin-bottom: 30px;"><a href="inquiry" class="liList">문의 내역</a></li>
-
+							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"><a href="myPage_Main" style="text-decoration: none; color: black;">나의 쇼핑</a></li>
+							<li><a href="myPage_orderCancel" class="liList" style="color: #B21948;">주문ㆍ배송</a></li>
+							<li><a href="myPage_orderDetails" class="liList">교환/반품/환불</a></li>
+							<li><a href="myPage_like" class="liList">찜 목록</a></li>
+							<li><a href="myPage_basket" class="liList">장바구니</a></li>
+							<li style="margin-bottom: 30px;"><a href="myPage_inquiry" class="liList">문의 내역</a></li>
+	
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
 							<li><a href="myPage_updateInfo" class="liList">회원정보 변경</a></li>
 							<li><a href="myPage_changePwd" class="liList">비밀번호 변경</a></li>
 							<li><a href="myPage_user_Withdrawal" class="liList">회원탈퇴</a></li>
 							<li style="margin-bottom: 30px;"><a href="myPage_updateAddress" class="liList">배송지 관리</a></li>
+							
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 상품후기</li>
-							<li><a href="review" class="liList">나의 상품후기</a></li>
+							<li><a href="myPage_review" class="liList">나의 상품후기</a></li>
 						</ul>
 					</nav>
 				</aside>
@@ -562,7 +557,7 @@ function cancel_btn() {
 								</c:if>
 								<c:if test="${empty olist }">
 									<tr>
-										<th colspan="7">현재 주문한 제품이 없습니다.</th>
+										<th colspan="7"  class="nonList">현재 주문한 제품이 없습니다.</th>
 									</tr>
 								</c:if>
 								
@@ -573,7 +568,7 @@ function cancel_btn() {
 				</div>
 				
 				<%-- 페이징 처리 --%>
-				<div id="pagination">
+				<div id="pagination" style="width: 1200px;">
 					<!-- 검색 칸 공백 시 페이징 사라지지 않게 -->
 	               <c:if test="${find_name == ''}"> <%--검색필드와 검색어가 없는 경우 --%>
 	                 <c:if test="${page <= 1}">
