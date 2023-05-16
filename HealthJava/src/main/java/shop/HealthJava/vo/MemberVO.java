@@ -7,13 +7,14 @@ import lombok.Setter;
 @Getter
 public class MemberVO { /* 되도록이면 member 테이블 컬럼명과 일치하는 빈클래스 변수명을 정의, 데이터 저장빈 클래스 */
 
+	private int user_no;//회원 번호
 	private String user_id; // 회원아이디
 	private String user_pwd; // 비번
-	private String user_token; // null:일반회원, not null:카카오회원
+	private String user_token = null; // null:일반회원, not null:카카오회원
 	private String user_name; // 회원이름
 	private String user_birth; // 회원생년월일
 	private String user_gender; // 회원성별
-	private String postcode; // 우편번호
+	private String postCode; // 우편번호
 	private String roadAddr; // 도로명주소
 	private String detailAddr; // 상세주소
 	private String user_email; // 회원이메일
@@ -24,7 +25,7 @@ public class MemberVO { /* 되도록이면 member 테이블 컬럼명과 일치�
 	private String join_date; // 가입날짜
 	private String del_date; // 탈퇴날짜
 	private String del_cont; // 탈퇴사유
-/*
+
 	// 관리자 회원목록에서 페이징(쪽나누기) 관련변수
 	private int startrow; // 시작행 번호
 	private int endrow; // 끝행번호
@@ -32,7 +33,7 @@ public class MemberVO { /* 되도록이면 member 테이블 컬럼명과 일치�
 	// 관리자 회원목록에서 검색기능 관련변수->검색필드와 검색어
 	private String find_name; // 검색어
 	private String find_field; // 검색 필드
-*/
+
 }
 
 /*
