@@ -25,6 +25,7 @@
 		border-collapse: collapse;
 		border-spacing: 0;
 	}
+
 	section.notice {
 		padding: 20px 0;
 		/*추가*/
@@ -134,6 +135,15 @@
 	table th.th-date2 {
 		font-size: 15px;
 		width: 150px;
+	}
+	
+	
+	/* 테이블 칸 : 비밀번호 */
+	#user_pwd {
+	    font-family: "굴림";
+	    margin: 0;
+	    font-size: inherit;
+	    line-height: inherit;
 	}
 	
 	.board-table .th-inputInfo {
@@ -362,14 +372,17 @@
 	
 	.main {
 		width: 1600px;
-		height: auto;
+		height: 1200px;
+		/* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / section이랑 px 맞춰야함 */
 		position: relative;
 		top: 105px;
 		left: 50%;
 		transform: translateX(-50%);
 	}
 	
-	
+	section {
+		height: 1200px;
+	}
 	/* 클리어 */
 	.clear {
 		clear: both;
@@ -397,21 +410,20 @@
 				<aside class="aside_left">
 					<nav>
 						<ul>
-							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"><a href="myPage_Main" style="text-decoration: none; color: black;">나의 쇼핑</a></li>
-							<li><a href="myPage_orderCancel" class="liList">주문ㆍ배송</a></li>
-							<li><a href="myPage_orderDetails" class="liList">교환/반품/환불</a></li>
-							<li><a href="myPage_like" class="liList">찜 목록</a></li>
-							<li><a href="myPage_basket" class="liList">장바구니</a></li>
-							<li style="margin-bottom: 30px;"><a href="myPage_inquiry" class="liList">문의 내역</a></li>
-	
+							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 쇼핑</li>
+							<li><a href="myPage_Main" class="liList">주문ㆍ배송</a></li>
+							<li><a href="myPage_orderCancel" class="liList">교환/반품/환불</a></li>
+							<li><a href="like" class="liList">찜 목록</a></li>
+							<li><a href="basket" class="liList">장바구니</a></li>
+							<li style="margin-bottom: 30px;"><a href="inquiry" class="liList">문의 내역</a></li>
+
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
 							<li><a href="myPage_updateInfo" class="liList">회원정보 변경</a></li>
 							<li><a href="myPage_changePwd" class="liList">비밀번호 변경</a></li>
 							<li><a href="myPage_user_Withdrawal" class="liList" style="color: #B21948;">회원탈퇴</a></li>
 							<li style="margin-bottom: 30px;"><a href="myPage_updateAddress" class="liList">배송지 관리</a></li>
-							
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 상품후기</li>
-							<li><a href="myPage_review" class="liList">나의 상품후기</a></li>
+							<li><a href="review" class="liList">나의 상품후기</a></li>
 						</ul>
 					</nav>
 				</aside>
@@ -423,7 +435,7 @@
 		<section class="notice">
 			<!-- board list area -->
 			<div class="container" style="margin-left: 80px;">
-			<form method="post" action="user_withdrawal_ok.shop" onsubmit="return withdrawal_check();">
+			<form method="post" action="user_Withdrawal_ok" onsubmit="return withdrawal_check();">
 			<div class="page-title">
 			<b style="text-align: left; font-size: 20px;">회원탈퇴</b>
 			</div>
@@ -436,7 +448,7 @@
 							아이디</th>
 						<td class="td-inputInfo"
 							style="border-top-color: black; border-top-style: solid; border-top-width: 3px;">
-							<input type="text" name="user_id" id="user_id" size="70">
+							<input type="text" name="user_id" id="user_id" value="${dm.user_id}"  size="70" readonly>
 						</td>
 					</tr>
 
@@ -445,7 +457,7 @@
 					</tr>
 					
 					<!--비밀번호 -->					
-						<tr>
+					<tr>
 						<th rowspan="2" class="th-list">비밀번호</th>
 						<td class="td-inputInfo"><input type="password" name="user_pwd" id="user_pwd"
 							size="70"></td>
@@ -455,18 +467,18 @@
 						<td class="td-infoPs"></td>
 					</tr>
 
-					<!--비밀번호  확인-->
+					<!--탈퇴사유-->
 					<tr>
-						<th rowspan="2" class="th-list">비밀번호 확인</th>
-						<td class="td-inputInfo"><input type="password"
-							name="user_pwd_check" id="user_pwd_check" size="70"></td>
+						<th rowspan="2" class="th-list">
+							탈퇴사유</th>
+						<td class="td-inputInfo">
+							<input type="text" name="del_cont" id="del_cont" size="70">
+						</td>
 					</tr>
 
 					<tr>
 						<td class="td-infoPs"></td>
 					</tr>
-
-
 				</table>
 				
 				<br>

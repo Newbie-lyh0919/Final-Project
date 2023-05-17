@@ -56,6 +56,20 @@ CREATE TABLE tbl_product(
     product_date date -- 상품 등록 날짜(sysdate)
 );
 
+--더미데이터
+insert into tbl_product values(1, '상품명01','1000', '제조사01', '분류a','분류aa', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  5, 1, sysdate);
+insert into tbl_product values(2, '상품명02','2000', '제조사02', '분류b','분류b', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  2, 3, sysdate);
+insert into tbl_product values(3, '상품명03','3030', '제조사03', '분류b','분류bb', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  3, 5, sysdate);
+insert into tbl_product values(4, '상품명04','4200', '제조사04', '분류c','분류cc', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  4, 51, sysdate);
+insert into tbl_product values(5, '상품명05','5400', '제조사05', '분류d','분류dd', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  5, 23, sysdate);
+insert into tbl_product values(6, '상품명06','19384', '제조사06', '분류e','분류ee', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  1, 541, sysdate);
+insert into tbl_product values(7, '상품명07','36497', '제조사07', '분류f','분류ff', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  2, 231, sysdate);
+insert into tbl_product values(8, '상품명08','12538', '제조사08', '분류g','분류gg', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  3, 651, sysdate);
+insert into tbl_product values(9, '상품명09','2376', '제조사09', '분류h','분류hh', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  4, 46, sysdate);
+insert into tbl_product values(10, '상품명10','3586', '제조사10', '분류i','분류ii', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  2, 13, sysdate);
+insert into tbl_product values(11, '상품명11','3553533', '제조사11', '분류j','분류jj', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  5, 341, sysdate);
+
+
 -- 삭제 DROP table tbl_product;
 
 -- 상품 시퀀스 
@@ -256,3 +270,91 @@ select * from tbl_coupon;
 -- 저장 
 commit;
 
+
+-- 고객 게시판 테이블
+CREATE TABLE tbl_client (
+   client_no number(38) primary key -- 고객 문의 글 번호
+    , client_title varchar2(100) NOT NULL -- 고객 문의 글 제목
+    , client_cont varchar2(4000) NOT NULL -- 고객 문의 글 내용
+    , client_cont_reply varchar2(4000) default ' ' -- 고객 문의 글 답변 내용
+    , client_category varchar2(50) NOT NULL -- 회원정보, 상품확인, 주문/결제, 배송, 교환/취소/반품, 서비스
+    , client_date date -- 고객 문의 글 작성 날짜(sysdate)
+    , user_id varchar2(100) not null -- 회원아이디(fk)
+);
+
+insert into tbl_client values(1122, '비번좀', '뭐죠대체?', ' ', '로그인/정보', sysdate, 'test01');
+insert into tbl_client values(3123, '상품이말이죠', '왜이래요?', ' ', '상품', sysdate, 'test02');
+insert into tbl_client values(3232, '이게말이에요', '참나?', ' ', '주문/결제', sysdate, 'test03');
+insert into tbl_client values(3232, '야미야미', '잘오네', ' ', '배송문의', sysdate, 'test04');
+insert into tbl_client values(4232, '호롤롤로', '그대여', ' ', '교환/취소(반품)', sysdate, 'test05');
+insert into tbl_client values(42332, '호롤롤로', '그대여', '답변이다', '교환/취소(반품)', sysdate, 'test05');
+
+commit;
+
+select * from tbl_client;
+
+-- 고객 게시판 시퀀스
+create sequence client_no_seq
+    start with 1
+    increment by 1
+    nocache;
+    
+create table tbl_client_reply(
+    client_no number(38) not null
+    ,client_cont_reply varchar2(4000) not null
+    ,CONSTRAINT tbl_client_reply_client_no_fk foreign key(client_no) REFERENCES tbl_client(client_no)
+);
+
+
+    
+    
+create table tbl_faq(
+    faq_no number(38) primary key
+    ,faq_category varchar2(100) not null
+    ,faq_title varchar2(1000) not null
+    ,faq_cont varchar2(4000) not null
+);
+
+insert into tbl_faq values(1, '로그인/정보', '뭐죠대체?', '하놔 시부렝');
+insert into tbl_faq values(2, '상품', '박진영이라니!', '아니 나는 말이야');
+insert into tbl_faq values(3, '주문/결제', '저기요', '어케된거에요');
+insert into tbl_faq values(4, '배송문의', '헤헤헤', '잘왔어염');
+insert into tbl_faq values(5, '교환/취소(반품)', '이거 취소되나여', '미친거같은데;');
+
+commit;
+
+create sequence faq_no_seq
+    start with 1
+    increment by 1
+    nocache;
+    
+select * from tbl_faq;
+
+
+create table tbl_notice(
+    notice_no number(38) primary key
+    , notice_title varchar2(1000) NOT NULL 
+    , notice_cont varchar2(4000) NOT NULL
+    , notice_date date
+);
+
+insert into tbl_notice values(11211, '공지사항1', '공지사항 1번에 대한 내용입니다', sysdate);
+insert into tbl_notice values(22232, '공지사항2', '공지사항 2번에 대한 내용입니다', sysdate);
+insert into tbl_notice values(6368, '공지사항3', '공지사항 3번에 대한 내용입니다', sysdate);
+
+
+commit;
+
+select * from tbl_notice;
+
+select count(notice_no) from tbl_notice;
+
+delete from tbl_notice where notice_no=1;
+
+commit;
+
+create sequence notice_no_seq
+    start with 1
+    increment by 1
+    nocache;
+    
