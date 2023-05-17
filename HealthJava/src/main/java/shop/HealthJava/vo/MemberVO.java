@@ -7,6 +7,26 @@ import lombok.Setter;
 @Getter
 public class MemberVO { /* 되도록이면 member 테이블 컬럼명과 일치하는 빈클래스 변수명을 정의, 데이터 저장빈 클래스 */
 
+	/*
+    user_no number(38)  PRIMARY KEY -- 회원 수(unique)
+    , user_id varchar2(100) -- 회원 아이디
+    , user_pwd varchar2(100) -- 회원 비밀번호
+    , user_token varchar2(100) -- null: 일반회원 not null: 카카오회원
+    , user_name varchar2(100) -- 회원 이름
+    , user_birth varchar2(100) -- 회원 생년월일
+    , user_gender varchar2(50) -- 회원 성별
+    , postcode varchar2(100) -- 회원 우편번호
+    , roadAddr varchar2(100) -- 회원 도로명 주소
+    , detailAddr varchar2(100) -- 회원 상세 주소
+    , user_email varchar2(100) -- 회원 이메일
+    , user_phone varchar2(100) -- 회원 휴대폰번호
+    , user_state number(38) default 0 -- 회원 0, 블랙리스트 1, 탈퇴회원 2
+    , user_grade number(38) default 0 -- 사용자 등급(일반 사용자 0, 관리자 1)
+    , join_date date -- 가입 날짜(sysdate)
+    , del_date date -- 탈퇴 날짜(sysdate)
+    , del_cont varchar2(2000) -- 탈퇴사유
+	*/
+	
 	private int user_no;//회원 번호
 	private String user_id; // 회원아이디
 	private String user_pwd; // 비번
@@ -36,23 +56,3 @@ public class MemberVO { /* 되도록이면 member 테이블 컬럼명과 일치�
 
 }
 
-/*
-    user_no number(38)  PRIMARY KEY -- 회원 수(unique)
-    , user_id varchar2(100) -- 회원 아이디
-    , user_pwd varchar2(100) -- 회원 비밀번호
-    , user_token varchar2(100) -- null: 일반회원 not null: 카카오회원
-    , user_name varchar2(100) -- 회원 이름
-    , user_birth varchar2(100) -- 회원 생년월일
-    , user_gender varchar2(50) -- 회원 성별
-    , postcode varchar2(100) -- 회원 우편번호
-    , roadAddr varchar2(100) -- 회원 도로명 주소
-    , detailAddr varchar2(100) -- 회원 상세 주소
-    , user_email varchar2(100) -- 회원 이메일
-    , user_phone varchar2(100) -- 회원 휴대폰번호
-    , user_state number(38) default 0 -- 회원 0, 블랙리스트 1, 탈퇴회원 2
-    , user_grade number(38) default 0 -- 사용자 등급(일반 사용자 0, 관리자 1)
-    , join_date date -- 가입 날짜(sysdate)
-    , del_date date -- 탈퇴 날짜(sysdate)
-    , del_cont varchar2(2000) -- 탈퇴사유
-
-*/

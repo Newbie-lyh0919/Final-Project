@@ -43,23 +43,5 @@ public class MemberServiceImpl implements MemberService {
 		return this.memberDao.getMember(id);
 	}
 
-	//회원정보수정
-	@Override
-	public void updateMember(MemberVO m) {
-		this.memberDao.updateMember(m);
-	}
-
-	//회원탈퇴
-	@Override
-	public void delMem(MemberVO dm) {
-		this.memberDao.delMem(dm);	
-	}
-
-	//비밀번호 수정
-	@Override
-	public void updatePwd(MemberVO m) {
-		this.memberDao.updatePwd(m);
-	}
-
 	
 }

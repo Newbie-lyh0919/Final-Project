@@ -199,11 +199,13 @@
             <div class="navbarbox">
                <div id="dropdownbox">
                     <button id="dropbtn" value="소도구" onclick="#">브랜드</button>
-                    <!-- <div id="dropdown-content">
+                    <!-- 
+                    <div id="dropdown-content">
                         <a href="puppy_product">퍼피</a>
                         <a href="adult_product">어덜트<br>(전연령)</a>
                         <a href="senior_productp">시니어</a>
-                    </div> -->
+                    </div> 
+                    -->
                 </div>
                 <div id="dropdownbox">
                     <button id="dropbtn" value="소도구" onclick="#">제품</button>
@@ -220,7 +222,6 @@
                     <div id="dropdown-content">
                         <a href="#">공지사항</a>
                         <a href="#">뉴스/이벤트</a>
-                        <a href="#">상품 Q&A</a>
                         <a href="#">자료실</a>
                     </div>
                 </div>
@@ -268,7 +269,6 @@
                     <div id="dropdown-content">
                         <a href="#">공지사항</a>
                         <a href="#">뉴스/이벤트</a>
-                        <a href="#">상품 Q&A</a>
                         <a href="#">자료실</a>
                     </div>
                 </div>
@@ -317,7 +317,6 @@
                     <div id="dropdown-content">
                         <a href="#">공지사항</a>
                         <a href="#">뉴스/이벤트</a>
-                        <a href="#">상품 Q&A</a>
                         <a href="#">자료실</a>
                     </div>
                 </div>

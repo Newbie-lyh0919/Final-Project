@@ -41,23 +41,5 @@ public class MemberDAOImpl implements MemberDAO {
 		return this.sqlSession.selectOne("m_info", id);
 	}
 
-	//회원정보수정
-	@Override
-	public void updateMember(MemberVO m) {
-		this.sqlSession.update("edit_ok", m);
-	}
-
-	//회원탈퇴
-	@Override
-	public void delMem(MemberVO dm) {
-		this.sqlSession.update("m_del_ok", dm);
-	}
-
-	//비밀번호 수정
-	@Override
-	public void updatePwd(MemberVO m) {
-		this.sqlSession.update("change_pwd", m);
-	}
-
 
 }
