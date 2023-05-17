@@ -11,5 +11,12 @@
 		<typeAlias type="shop.HealthJava.vo.MemberVO" alias="member" /> <!-- MemberVO빈클래스 객체 별칭이름 member로 지정 -->
 		<typeAlias type="shop.HealthJava.vo.ProductVO" alias="product" /> <!-- ProductVO빈클래스 객체 별칭이름 product로 지정 -->
 		<typeAlias type="shop.HealthJava.vo.MypageVO" alias="mypage" /> <!-- MypageVO빈클래스 객체 별칭이름 mypage로 지정 -->
+ 
+ 		<!-- CS --><!-- CS --><!-- CS --><!-- CS --><!-- CS --><!-- CS --><!-- CS --><!-- CS --><!-- CS --><!-- CS --><!-- CS -->
+  		<typeAlias alias="csNotice" type="shop.HealthJava.vo.CSNoticeVO" />
+  	
+  		<typeAlias alias="csFAQ" type="shop.HealthJava.vo.CSFAQVO" />
+  	
+  		<typeAlias alias="csClient" type="shop.HealthJava.vo.CSClientVO" />
 	</typeAliases>
 </configuration>

@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>접속 성공!</h1>
+<h1>헬로 암 관리자</h1>
 </body>
 </html>
