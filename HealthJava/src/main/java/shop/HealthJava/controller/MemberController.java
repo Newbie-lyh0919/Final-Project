@@ -1,7 +1,9 @@
 package shop.HealthJava.controller;
 
 import java.io.PrintWriter;
+import java.util.Random;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -198,7 +200,7 @@ public class MemberController { // 사용자 관련 컨트롤러
 	} // end pwd_find_ok()
 
 	// 회원 정보 수정폼 
-	@RequestMapping("/member_edit")
+	@RequestMapping("/myPage_updateInfo")
 	public ModelAndView member_edit(HttpServletResponse response, HttpSession session) throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
 
@@ -206,10 +208,10 @@ public class MemberController { // 사용자 관련 컨트롤러
 
 		if(isLogin(session, response)) { // 로그인 된 상태 : ture
 			MemberVO em = this.memberService.getMember(id); // 아이디에 해당하는 회원정보를 구함
-
-			ModelAndView m = new ModelAndView();
+			ModelAndView m = new ModelAndView("mypage/myPage_updateInfo");
+			
 			m.addObject("em", em);
-			m.setViewName("mypage/myPage_updateInfo");
+			//m.setViewName("mypage/myPage_updateInfo");
 
 			return m;
 		}
@@ -217,7 +219,7 @@ public class MemberController { // 사용자 관련 컨트롤러
 		return null;
 	} // end member_edit
 
-/*
+
 	// 정보 수정 완료 
 	@RequestMapping("/member_update_ok")
 	public ModelAndView member_update_ok(MemberVO m, HttpServletResponse response, HttpSession session) throws Exception {
@@ -226,23 +228,112 @@ public class MemberController { // 사용자 관련 컨트롤러
 		String id=(String)session.getAttribute("id");
 
 		if(isLogin(session, response)) {
-			m.setMem_id(id);
-			m.setMem_pwd(PwdChange.getPassWordToXEMD5String(m.getMem_pwd())); // 정식 비밀번호 암호화
+			m.setUser_id(id);
+			//m.setUser_pwd(PwdChange.getPassWordToXEMD5String(m.getUser_pwd())); // 정식 비밀번호 암호화
 
 			this.memberService.updateMember(m); // 회원 정보 수정
-			// Q) 아이디를 기준으로 암호화된 비번, 회원 이름, 우편번호, 주소, 폰번호, 이메일가 수정되게 만들어보고 개발자 test까지 해보자
 
 			out.println("<script>");
 			out.println("alert('회원 정보 수정이 완료 되었습니다.');"); 
-			out.println("location='member_edit';");
+			out.println("location='myPage_updateInfo';");
 			out.println("</script>");
 		}
 
 		return null;
 	} // end member_update_ok
-/*
+
+	//마이페이지 비밀번호 변경폼
+	@RequestMapping("/myPage_changePwd")
+	public ModelAndView myPage_changePwd(HttpServletResponse response, HttpSession session) throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
+
+		String id = (String)session.getAttribute("id"); // 세션아이디를 구함
+
+		if(isLogin(session, response)) { // 로그인 된 상태 : ture
+			MemberVO em = this.memberService.getMember(id); // 아이디에 해당하는 회원정보를 구함
+			ModelAndView m = new ModelAndView("mypage/myPage_changePwd");
+			
+			//m.addObject("em", em);
+
+			return m;
+		}
+
+		return null;
+	}
+	/*
+	//마이페이지 비밀번호 변경완료
+	@RequestMapping("/changePwd_ok")
+	public ModelAndView myPage_changePwd_ok(HttpServletRequest request, HttpServletResponse response, HttpSession session, String user_pwd ) throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		String id = (String)session.getAttribute("id"); // 세션아이디를 구함
+		
+		if(isLogin(session, response)) { // 로그인 된 상태 : ture
+			user_pwd = PwdChange.getPassWordToXEMD5String(user_pwd);//비밀번호 암호화
+			MemberVO db_pwd = this.memberService.getMember(id);//db에 저장되있는 id에 해당하는 pwd
+			
+			if(!db_pwd.getUser_pwd().equals(user_pwd)) {
+				out.println("<script>");
+				out.println("alert('비밀번호가 다릅니다!');"); 
+				out.println("history.back();");
+				out.println("</script>");
+			} else {
+				//MemberVO dm = new MemberVO();
+				//dm.setUser_id(id);
+				
+				this.memberService.updatePwd(id);//비밀번호 수정
+
+				out.println("<script>");
+				out.println("alert('비밀번호 수정이 완료 되었습니다.');"); 
+				out.println("location='myPage_changePwd';");
+				out.println("</script>");
+
+			}
+			
+		}
+
+		
+		return null;
+	}
+	*/
+	// 비밀번호 수정 완료 
+	@RequestMapping("/changePwd_ok")
+	public ModelAndView myPage_changePwd_ok(MemberVO m, HttpServletResponse response, HttpSession session, String user_pwd, String new_pwd ) throws Exception {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		String id=(String)session.getAttribute("id");
+
+		if(isLogin(session, response)) {
+			user_pwd = PwdChange.getPassWordToXEMD5String(user_pwd);//비밀번호 암호화
+			//m.setUser_id(id);
+			m.setUser_pwd(PwdChange.getPassWordToXEMD5String(m.getUser_pwd())); // 정식 비밀번호 암호화
+			MemberVO db_pwd = this.memberService.getMember(id);//db에 저장되있는 id에 해당하는 pwd
+			if(!db_pwd.getUser_pwd().equals(user_pwd)) {
+				out.println("<script>");
+				out.println("alert('비밀번호가 다릅니다!');"); 
+				out.println("history.back();");
+				out.println("</script>");
+			} else {
+				//MemberVO dm = new MemberVO();
+				m.setUser_id(id);
+				new_pwd = PwdChange.getPassWordToXEMD5String(new_pwd);//비밀번호 암호화
+				m.setUser_pwd(new_pwd);
+				this.memberService.updatePwd(m); // 회원 정보 수정
+
+				out.println("<script>");
+				out.println("alert('비밀번호 수정이 완료 되었습니다.');"); 
+				out.println("location='myPage_changePwd';");
+				out.println("</script>");
+
+			}
+
+		}
+
+		return null;
+	} // end myPage_changePwd_ok
+	
 	// 회원 탈퇴
-	@RequestMapping("/member_del")
+	@RequestMapping("/myPage_user_Withdrawal")
 	public ModelAndView member_del(HttpSession session, HttpServletResponse response) throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -256,7 +347,7 @@ public class MemberController { // 사용자 관련 컨트롤러
 		} else {
 			MemberVO dm = this.memberService.getMember(id);
 
-			ModelAndView m = new ModelAndView("member/member_Del");
+			ModelAndView m = new ModelAndView("mypage/myPage_user_Withdrawal");
 			m.addObject("dm", dm);
 			return m;
 		}
@@ -265,9 +356,9 @@ public class MemberController { // 사용자 관련 컨트롤러
 	}//member_del()
 	
 	//회원탈퇴 완료
-	@RequestMapping("/member_del_ok")
+	@RequestMapping("/user_Withdrawal_ok")
 	public ModelAndView member_del_ok(HttpServletResponse response, HttpSession session,
-			String del_pwd, String del_cont) throws Exception{
+			String user_pwd, String del_cont) throws Exception{
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		String id = (String)session.getAttribute("id");
@@ -278,18 +369,18 @@ public class MemberController { // 사용자 관련 컨트롤러
 			out.println("location='member_login';");
 			out.println("</script>");
 		} else {
-			del_pwd = PwdChange.getPassWordToXEMD5String(del_pwd);//비밀번호 암호화
+			user_pwd = PwdChange.getPassWordToXEMD5String(user_pwd);//비밀번호 암호화
 			MemberVO db_pwd = this.memberService.getMember(id);
 			
-			if(!db_pwd.getMem_pwd().equals(del_pwd)) {
+			if(!db_pwd.getUser_pwd().equals(user_pwd)) {
 				out.println("<script>");
 				out.println("alert('비밀번호가 다릅니다!');"); 
 				out.println("history.back();");
 				out.println("</script>");
 			} else {
 				MemberVO dm = new MemberVO();
-				dm.setMem_id(id);
-				dm.setMem_delcont(del_cont);
+				dm.setUser_id(id);
+				dm.setDel_cont(del_cont);
 				
 				this.memberService.delMem(dm);//회원탈퇴
 
@@ -304,7 +395,7 @@ public class MemberController { // 사용자 관련 컨트롤러
 		
 		return null;
 	}//member_del_ok()
-*/
+
 
 	// 로그인을 하지 않은 상황에서 주소창을 쳐서 들어가는것을 막고 로그인페이지로 넘기기
 	public static boolean isLogin(HttpSession session, HttpServletResponse response) throws Exception {
