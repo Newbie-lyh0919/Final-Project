@@ -12,14 +12,41 @@ CREATE TABLE tbl_member(
     , detailAddr varchar2(100) -- 회원 상세 주소
     , user_email varchar2(100) -- 회원 이메일
     , user_phone varchar2(100) -- 회원 휴대폰번호
-    , user_state number(38) default 0 -- 회원 0, 블랙리스트 1, 탈퇴회원 2
+    , user_state number(38) default 0 -- 회원 0, 블랙리스트 1, 탈퇴회원 2, 비회원 3
     , user_grade number(38) default 0 -- 사용자 등급(일반 사용자 0, 관리자 1)
     , join_date date -- 가입 날짜(sysdate)
     , del_date date -- 탈퇴 날짜(sysdate)
     , del_cont varchar2(2000) -- 탈퇴사유
 );
--- 회원 table 생성 확인 조회
+
 select * from tbl_member;
+
+-- 추가 컬럼 : 기본 배송지, 추가 배송지 
+ALTER TABLE tbl_member
+ADD primary_Addr varchar2(100); -- 기본 배송 주소
+ALTER TABLE tbl_member
+ADD additional_Addr varchar2(100); -- 추가 배송 주소
+
+-- 배송지 table 
+create table tbl_addr (
+    addr_no NUMBER primary key, -- 주소 no 
+    user_id VARCHAR2(100) , --회원 id
+    postCode varchar2(100) , -- 회원 우편번호
+    roadAddr varchar2(100) ,-- 회원 도로명 주소
+    detailAddr varchar2(100) , -- 회원 상세 주소
+    addr_name varchar2(100) -- 배송지 별명
+);
+
+-- 삭제 drop table tbl_addr;
+select * from tbl_addr;
+
+create sequence addr_no_seq
+    start with 1
+    increment by 1
+    nocache;
+    
+select * from tbl_addr;
+
 
 -- 회원 table 시퀀스 생성 
 create sequence user_no_seq
@@ -29,8 +56,7 @@ create sequence user_no_seq
     
 -- 회원 table 삭제 drop table tbl_member; 
 
--- 시퀀스 삭제 
-DROP SEQUENCE user_no_seq;   
+-- 시퀀스 삭제 DROP SEQUENCE user_no_seq;   
 
 -- 중간 저장 
 commit;
@@ -222,7 +248,7 @@ commit;
 --  찜 목록 table 
 CREATE TABLE tbl_like (
     like_no NUMBER PRIMARY KEY, -- 찜 no
-    user_no NUMBER(38) , -- 회원 번호를 참조하는 외래 키
+    user_no NUMBER(38) , -- 회원 번호를 참조하는 외래 키 : user_id 
     product_no NUMBER(38) ,-- 제품 고유번호 : F = 상품no
     CONSTRAINT fk_like_user_no FOREIGN KEY (user_no) REFERENCES tbl_member(user_no),
     CONSTRAINT fk_like_product_no FOREIGN KEY (product_no) REFERENCES tbl_product(product_no)
@@ -240,7 +266,7 @@ create sequence like_no_seq
 -- 시퀀스 삭제 DROP SEQUENCE like_no_seq;
 
 -- 더미데이터 
-INSERT INTO tbl_like VALUES (like_no_seq.nextval, 'test01', 1);
+INSERT INTO tbl_like VALUES (like_no_seq.nextval, 2, 2);
 select * from tbl_product;
 
 -- 조회 
@@ -256,6 +282,13 @@ CREATE TABLE tbl_cart (
    cart_pro_id NUMBER(38) REFERENCES tbl_product(product_no)  , -- 제품 고유번호 : F 상품no
    cart_cnt  NUMBER(38)  -- 구매 수량
 );
+
+ALTER TABLE tbl_cart
+ADD product_cont1 varchar2(4000); -- 상품이미지1
+ALTER TABLE tbl_cart
+ADD product_title varchar2(100); -- 상품명
+ALTER TABLE tbl_cart
+ADD product_price varchar2(100); -- 상품가격
 
 -- 조회 
 select * from tbl_cart;
@@ -281,6 +314,12 @@ create sequence cart_no_seq
 --더미데이터 : 회원/비회원
 INSERT INTO tbl_cart VALUES (cart_no_seq.nextval, 'test01', 1, 2);
 INSERT INTO tbl_cart VALUES (cart_no_seq.nextval, SUBSTR(DBMS_RANDOM.STRING('U', 5), 1, 5), 2, 1);
+
+INSERT INTO tbl_cart VALUES (cart_no_seq.nextval, 'test02', 1, 2);
+INSERT INTO tbl_cart VALUES (cart_no_seq.nextval, 'test02', 2, 1);
+
+-- 더미데이터
+update tbl_cart set product_cont1= '상품이미지2', product_title='상품명2', product_price=2000 where cart_no=4;
 
 -- 조회 
 select * from tbl_cart;
