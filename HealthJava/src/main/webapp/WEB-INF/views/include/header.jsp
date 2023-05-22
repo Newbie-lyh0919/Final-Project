@@ -79,7 +79,7 @@
     #dropbtn{
         background-color: white;
         color: black;
-        padding: 16px;
+        padding: 15px;
         font-family: 'KIMM_Bold', sans-serif;
         font-size: larger;
         border: none;
@@ -129,9 +129,15 @@
     /* 검색창 관련 */
     .searchbox{
         position: fixed;
-        right: 4.8%;
+        right: 3%;
         top: 30%;
         transform: translateX( -10% );
+    }
+    .searchbox a{
+        color: black;
+        text-decoration: none;
+        font-family: 'KIMM_Bold', sans-serif;
+        font-size :100;
     }
     #search{
         width: 330px;
@@ -193,46 +199,25 @@
             <a href="main_product">
                 <img src="<%=request.getContextPath()%>/images/logo1.png" id="logoImage" width="200" height="90" alt="로고 사진">
             </a>
-            <div class="memberbox">
-                <a href="myPage_Main"><%=id %> 님</a> | <a href="member_logout">로그아웃</a> <!-- a태그 링크 변경하여 회원가입/로그인 구현 -->
-            </div>
+            
             <div class="navbarbox">
-               <div id="dropdownbox">
-                    <button id="dropbtn" value="소도구" onclick="#">브랜드</button>
-                    <!-- 
-                    <div id="dropdown-content">
-                        <a href="puppy_product">퍼피</a>
-                        <a href="adult_product">어덜트<br>(전연령)</a>
-                        <a href="senior_productp">시니어</a>
-                    </div> 
-                    -->
-                </div>
+               
                 <div id="dropdownbox">
                     <button id="dropbtn" value="소도구" onclick="#">제품</button>
                     <div id="dropdown-content">
-                        <a href="#">신제품</a>
+                       
                         <a href="#">매트</a>
-                        <a href="#">롤러</a>
-                        <a href="#">짐 볼</a>
-                        <a href="#">특별할인</a>
+                        
+                        <a href="#">짐볼</a>
+                        
                     </div>
                 </div>
-                <div id="dropdownbox">
-                    <button id="dropbtn" value="소도구" onclick="#">커뮤니티</button>
-                    <div id="dropdown-content">
-                        <a href="#">공지사항</a>
-                        <a href="#">뉴스/이벤트</a>
-                        <a href="#">자료실</a>
-                    </div>
-                </div>
+                
                 <a id="a2" href="cs_notice">고객 센터</a>
                 <a id="a3" href="location">찾아오시는 길</a>
             </div>
             <div class="searchbox">
-	            <input type="text" id="search" placeholder="검색어를 입력해주세요.">
-	            <button type="button" id="searchBtn" alt="검색 버튼" onclick="openPopup_company_introduce();">
-	                <img src="<%=request.getContextPath()%>/images/searchIcon.png" width="24px" height="24px">
-	            </button>
+	          <a href="myPage_Main"><%=id %> 님</a> | <a href="member_logout">로그아웃</a> | <a href="myPage_Main">찜목록</a> | <a href="member_logout">장바구니</a>
             </div>
         </div>
     </div>
@@ -242,44 +227,23 @@
             <a href="main_product">
                 <img src="<%=request.getContextPath()%>/images/logo1.png" id="logoImage" width="200" height="90" alt="로고 사진">
             </a>
-            <div class="memberbox">
-                <a href="myPage_Main"><%=id %> 님</a> | <a href="member_logout">로그아웃</a> <!-- a태그 링크 변경하여 회원가입/로그인 구현 -->
-            </div>
+           
             <div class="navbarbox">
-               <div id="dropdownbox">
-                    <button id="dropbtn" value="소도구" onclick="#">브랜드</button>
-                    <!-- <div id="dropdown-content">
-                        <a href="puppy_product">퍼피</a>
-                        <a href="adult_product">어덜트<br>(전연령)</a>
-                        <a href="senior_productp">시니어</a>
-                    </div> -->
-                </div>
+               
                 <div id="dropdownbox">
                     <button id="dropbtn" value="소도구" onclick="#">제품</button>
                     <div id="dropdown-content">
-                        <a href="#">신제품</a>
                         <a href="#">매트</a>
-                        <a href="#">롤러</a>
-                        <a href="#">짐 볼</a>
-                        <a href="#">특별할인</a>
+                        
+                        <a href="#">짐볼</a>
                     </div>
                 </div>
-                <div id="dropdownbox">
-                    <button id="dropbtn" value="소도구" onclick="#">커뮤니티</button>
-                    <div id="dropdown-content">
-                        <a href="#">공지사항</a>
-                        <a href="#">뉴스/이벤트</a>
-                        <a href="#">자료실</a>
-                    </div>
-                </div>
+                
                 <a id="a2" href="cs_notice">고객 센터</a>
                 <a id="a3" href="location">찾아오시는 길</a>
             </div>
-            <div class="searchbox">
-	            <input type="text" id="search" placeholder="검색어를 입력해주세요.">
-	            <button type="button" id="searchBtn" alt="검색 버튼" onclick="openPopup_company_introduce();">
-	                <img src="<%=request.getContextPath()%>/images/searchIcon.png" width="24px" height="24px">
-	            </button>
+           <div class="searchbox">
+	          <a href="myPage_Main"><%=id %> 님</a> | <a href="member_logout">로그아웃</a> | <a href="myPage_Main">찜목록</a> | <a href="member_logout">장바구니</a>
             </div>
         </div>
     </div>
@@ -290,44 +254,23 @@
             <a href="main_product">
                 <img src="<%=request.getContextPath()%>/images/logo1.png" id="logoImage" width="200" height="90" alt="로고 사진">
             </a>
-            <div class="memberbox">
-                <a href="myPage_Main"><%=id %> 님</a> | <a href="member_logout">로그아웃</a> <!-- a태그 링크 변경하여 회원가입/로그인 구현 -->
-            </div>
+            
             <div class="navbarbox">
-               <div id="dropdownbox">
-                    <button id="dropbtn" value="소도구" onclick="#">브랜드</button>
-                    <!-- <div id="dropdown-content">
-                        <a href="puppy_product">퍼피</a>
-                        <a href="adult_product">어덜트<br>(전연령)</a>
-                        <a href="senior_productp">시니어</a>
-                    </div> -->
-                </div>
+               
                 <div id="dropdownbox">
                     <button id="dropbtn" value="소도구" onclick="#">제품</button>
                     <div id="dropdown-content">
-                        <a href="#">신제품</a>
-                        <a href="#">매트</a>
-                        <a href="#">롤러</a>
-                        <a href="#">짐 볼</a>
-                        <a href="#">특별할인</a>
+                      <a href="#">매트</a>
+                        
+                        <a href="#">짐볼</a>
                     </div>
                 </div>
-                <div id="dropdownbox">
-                    <button id="dropbtn" value="소도구" onclick="#">커뮤니티</button>
-                    <div id="dropdown-content">
-                        <a href="#">공지사항</a>
-                        <a href="#">뉴스/이벤트</a>
-                        <a href="#">자료실</a>
-                    </div>
-                </div>
+                
                 <a id="a2" href="cs_notice">고객 센터</a>
                 <a id="a3" href="location">찾아오시는 길</a>
             </div>
             <div class="searchbox">
-	            <input type="text" id="search" placeholder="검색어를 입력해주세요.">
-	            <button type="button" id="searchBtn" alt="검색 버튼" onclick="openPopup_company_introduce();">
-	                <img src="<%=request.getContextPath()%>/images/searchIcon.png" width="24px" height="24px">
-	            </button>
+	          <a href="myPage_Main"><%=id %> 님</a> | <a href="member_logout">로그아웃</a> | <a href="myPage_Main">찜목록</a> | <a href="member_logout">장바구니</a>
             </div>
         </div>
     </div>
