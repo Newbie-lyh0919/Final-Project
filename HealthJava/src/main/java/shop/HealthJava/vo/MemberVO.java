@@ -25,6 +25,8 @@ public class MemberVO { /* 되도록이면 member 테이블 컬럼명과 일치�
     , join_date date -- 가입 날짜(sysdate)
     , del_date date -- 탈퇴 날짜(sysdate)
     , del_cont varchar2(2000) -- 탈퇴사유
+    , primary_Addr varchar2(100) -- 기본 배송지
+    , additional_Addr varchar2(100) -- 추가 배송지
 	*/
 	
 	private int user_no;//회원 번호
@@ -45,6 +47,8 @@ public class MemberVO { /* 되도록이면 member 테이블 컬럼명과 일치�
 	private String join_date; // 가입날짜
 	private String del_date; // 탈퇴날짜
 	private String del_cont; // 탈퇴사유
+	private String primary_Addr; // 기본 배송지
+	private String additional_Addr; //추가 배송지 
 
 	// 관리자 회원목록에서 페이징(쪽나누기) 관련변수
 	private int startrow; // 시작행 번호
@@ -54,5 +58,7 @@ public class MemberVO { /* 되도록이면 member 테이블 컬럼명과 일치�
 	private String find_name; // 검색어
 	private String find_field; // 검색 필드
 
+	private String Search_type; 
+	private String Search_field;
 }
 

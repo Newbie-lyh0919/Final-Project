@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,8 +20,6 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/header.css"> <%-- header.css --%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/footer.css"> <%-- footer.css --%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/fontium/css/fontium.css"/>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/page/mypage/css/mypage.css">
-<%-- <link rel="stylesheet" href="./shop/puppyhome/controller_mypage/css/mypage.css">--%>
 
 <style type="text/css">
 	/* 폰트 CSS */
@@ -133,13 +132,6 @@
 		width: 1000px;
 		min-height: 10px;
 		padding: 0px 10px;
-		text-align: left;
-	}
-	
-	 h3.page-title {
-		font-size: 25px;
-		color: black;
-		font-weight: 400;
 		text-align: left;
 	}
 	
@@ -266,7 +258,7 @@
 	/* 배송지 수정 버튼 */
 	#updateBtn{
 	    padding: 20px 80px;
-	    background-color: #B21948;;
+	    background-color: #B21948;
 	    border: 1px solid white;
 	    color: white;
 	    font-size: 20px;
@@ -280,22 +272,6 @@
 	    font-size: 20px;
 	    font-weight: bold;
 	    color: #B21948;
-	}
-	
-	#withdrawalBtn{
-		padding: 20px 100px; 
-		background-color: #FC5400; 
-		border: 1px solid white; 
-		color: white; 
-		font-size: 20px; 
-		font-weight: bold
-	}
-	
-	#changePwdBtn{
-		padding: 20px 120px; 
-		background-color: #FC5400; 
-		border: 1px solid white; 
-		color: white; font-size: 20px; font-weight: bold
 	}
 	
 	/* reset */
@@ -406,10 +382,10 @@
 					<nav>
 						<ul>
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"><a href="myPage_Main" style="text-decoration: none; color: black;">나의 쇼핑</a></li>
-							<li><a href="myPage_orderCancel" class="liList">주문ㆍ배송</a></li>
+							<li><a href="myPage_order" class="liList">주문ㆍ배송</a></li>
 							<li><a href="myPage_orderDetails" class="liList">교환/반품/환불</a></li>
 							<li><a href="myPage_like" class="liList">찜 목록</a></li>
-							<li><a href="myPage_basket" class="liList">장바구니</a></li>
+							<li><a href="myPage_cart" class="liList">장바구니</a></li>
 							<li style="margin-bottom: 30px;"><a href="myPage_inquiry" class="liList">문의 내역</a></li>
 	
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
@@ -431,52 +407,83 @@
 			<div class="page-title">
 			<b style="text-align: left; font-size: 20px; margin-left:50px;">배송지 관리</b>
 			</div>
+			<!-- 배송지 리스트 : 기본/추가 -->
+			<table border="1">
+			 <tr>
+				<th>배송지 이름</th> <th>우편번호</th> <th> 주소</th> <th>상세 주소</th> <th>비고</th>
+			</tr>
+			 <c:if test="${!empty mlist}">
+				<c:forEach var="m" items="${mlist }">
+				<tr>
+					<th> 기본주소 </th> <th> ${m.postCode }</th> <th>${m.roadAddr }</th> <th>${m.detailAddr }</th> 
+					<th>
+						<input type="button" value="수정">
+						<input type="button" value="삭제">
+					</th>
+				</tr>
+			</c:forEach >
+			<c:forEach var="a" items="${alist }">
+				<tr>
+					<th> ${a.addr_name } </th> <th> ${a.postCode }</th> <th>${a.roadAddr }</th> <th>${a.detailAddr }</th>
+					<th>
+						<input type="button" value="수정">
+						<input type="button" value="삭제">
+					</th>
+				</tr>
+			</c:forEach >
+			</c:if>
+			</table>
+			<form method="post" action="addr_ok">
+			<input type="hidden" name="user_id" value="${id }" />
 			<br>
 			<div class="page-title" style="margin-left: 50px;">
-			<form method="post" action="updateaddr_ok.shop" onsubmit="return addr_check();">
 				<table>
 					<!--주소-->
 					<tr>
-						<th rowspan="5" class="th-list" width="170px"
-							style="border-top-color: black; border-top-style: solid; border-top-width: 3px;">
-							배송지 주소</th>
-							<th width="170px"
-							style="border-top-color: black; border-top-style: solid; border-top-width: 3px;">
-							</th>
+						<th rowspan="5" class="th-list" width="170px" style="border-top-color: black; border-top-style: solid; border-top-width: 3px; border-bottom-color: black; border-bottom-width: 3px;">배송지 주소</th>
+						<th width="170px" style="border-top-color: black; border-top-style: solid; border-top-width: 3px;"></th>
 					</tr>
 					<tr>
-						<td class="td-inputInfo"><input type="text" name="postCode" id="postCode" size="20" placeholder="우편번호"/>&nbsp;&nbsp;
+						<td class="td-inputInfo">
+						<input type="text" name="addr_name" id="addr_name" size="20" placeholder="배송지 닉네임"/>&nbsp;&nbsp;
+						</td>
+					</tr>
+					<tr>
+						<td class="td-inputInfo">
+						<input type="text" name="postCode" id="postCode" size="20" placeholder="우편번호"/>&nbsp;&nbsp;
 						<input type="button" value="주소검색" onclick="post()" style="font-weight: bold; padding: 2px;"/>
 						</td>
 					</tr>
 					<tr>
-						<td class="td-inputInfo"><input type="text" name="roadAddr" id="roadAddr" size="70" placeholder="주소"></td>
+						<td class="td-inputInfo">
+							<input type="text" name="roadAddr" id="roadAddr" size="70" placeholder="주소">
+						</td>
 					</tr>
 
 					<tr>
-						<td class="td-inputInfo"><input type="text" name="detailAddr" id="detailAddr" size="70" placeholder="상세주소"></td>
-					</tr>
-					
-					<tr>
-						<td class="td-infoPs"></td>
+						<td class="td-inputInfo" style="border-bottom-color: black; border-bottom-width: 3px; padding: 20px;">
+							<input type="text" name="detailAddr" id="detailAddr" size="70" placeholder="상세주소">
+						</td>
 					</tr>
 					
 					<tr>
 						<td></td>
 					</tr>
 				</table>
-				
 			<br><br>
 			
 				<div class="submitBtn" style="margin-left: 200px;">
-				<input id="updateBtn" type="submit" value="배송지 수정">
-				<input id="resetBtn" type="reset" value="취소">
+					<!-- 배송지 추가 버튼 -->
+					<input type="submit" id="updateBtn" value="배송지 추가" >
+					<input id="resetBtn" type="reset" value="취소">
 				</div>
 				</form>
 			</div>
-
+			
+		
+		
 		</section>
-		</div>
+		</div>	
 		</div>
 		
         <%-- top버튼 삭제 X --%>
@@ -511,148 +518,7 @@
 				$("#topBtn").css("opacity", 1); // TOP 버튼 나타내기
 			}
 		});
-		
-		<%-- 장바구니 부분 --%>
-		/* Set values + misc */
-		var promoCode;
-		var promoPrice;
-		var fadeTime = 300;
-
-		/* Assign actions */
-		$('.quantity input').change(function() {
-			updateQuantity(this);
-		});
-
-		$('.remove button').click(function() {
-			removeItem(this);
-		});
-
-		$(document).ready(function() {
-			updateSumItems();
-		});
-
-		$('.promo-code-cta').click(function() {
-
-			promoCode = $('#promo-code').val();
-
-			if (promoCode == '10off' || promoCode == '10OFF') {
-				//If promoPrice has no value, set it as 10 for the 10OFF promocode
-				if (!promoPrice) {
-					promoPrice = 10;
-				} else if (promoCode) {
-					promoPrice = promoPrice * 1;
-				}
-			} else if (promoCode != '') {
-				alert("Invalid Promo Code");
-				promoPrice = 0;
-			}
-			//If there is a promoPrice that has been set (it means there is a valid promoCode input) show promo
-			if (promoPrice) {
-				$('.summary-promo').removeClass('hide');
-				$('.promo-value').text(promoPrice.toFixed(0) + "원");
-				recalculateCart(true);
-			}
-		});
-
-		/* Recalculate cart */
-		function recalculateCart(onlyTotal) {
-			var subtotal = 0;
-
-			/* Sum up row totals */
-			$('.basket-product').each(function() {
-				subtotal += parseFloat($(this).children('.subtotal').text());
-			});
-
-			/* Calculate totals */
-			var total = subtotal;
-
-			//If there is a valid promoCode, and subtotal < 10 subtract from total
-			var promoPrice = parseFloat($('.promo-value').text());
-			if (promoPrice) {
-				if (subtotal >= 10) {
-					total -= promoPrice;
-				} else {
-					alert('Order must be more than £10 for Promo code to apply.');
-					$('.summary-promo').addClass('hide');
-				}
-			}
-
-			/*If switch for update only total, update only total display*/
-			if (onlyTotal) {
-				/* Update total display */
-				$('.total-value').fadeOut(fadeTime, function() {
-					$('#basket-total').html(total.toFixed(0) + "원");
-					$('.total-value').fadeIn(fadeTime);
-				});
-			} else {
-				/* Update summary display. */
-				$('.final-value').fadeOut(fadeTime, function() {
-					$('#basket-subtotal').html(subtotal.toFixed(0) + "원");
-					$('#basket-total').html(total.toFixed(0) + "원");
-					if (total == 0) {
-						$('.checkout-cta').fadeOut(fadeTime);
-					} else {
-						$('.checkout-cta').fadeIn(fadeTime);
-					}
-					$('.final-value').fadeIn(fadeTime);
-				});
-			}
-		}
-
-		/* Update quantity */
-		function updateQuantity(quantityInput) {
-			/* Calculate line price */
-			var productRow = $(quantityInput).parent().parent();
-			var price = parseFloat(productRow.children('.price').text());
-			var quantity = $(quantityInput).val();
-			var linePrice = price * quantity;
-
-			/* Update line price display and recalc cart totals */
-			productRow.children('.subtotal').each(function() {
-				$(this).fadeOut(fadeTime, function() {
-					$(this).text(linePrice.toFixed(0) + "원");
-					recalculateCart();
-					$(this).fadeIn(fadeTime);
-				});
-			});
-
-			productRow.find('.item-quantity').text(quantity);
-			updateSumItems();
-		}
-
-		function updateSumItems() {
-			var sumItems = 0;
-			$('.quantity input').each(function() {
-				sumItems += parseInt($(this).val());
-			});
-			$('.total-items').text(sumItems);
-		}
-
-		/* Remove item from cart */
-		function removeItem(removeButton) {
-			/* Remove row from DOM and recalc cart total */
-			var productRow = $(removeButton).parent().parent();
-			productRow.slideUp(fadeTime, function() {
-				productRow.remove();
-				recalculateCart();
-				updateSumItems();
-			});
-		}
-		
-		<%-- 리뷰 작성 페이지 부분 --%>
-		// 왼쪽 사이드바의 '나의 후기' 텍스트 클릭시 새창 열기
-		function openPopup_review_write() {
-	        var page_width = '490';
-	        var page_height = '900';
-	    
-	        // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
-	        var page_left = Math.ceil((window.screen.width - page_width)/2);
-	        var page_top = Math.ceil((window.screen.height - page_height)/2);
-	
-	    window.open("http://localhost:8046/MVC/page/mypage2/review_write.jsp", "review_write",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
-	    
-	    }
-		
+				
 	</script>
 </body>
 </html>

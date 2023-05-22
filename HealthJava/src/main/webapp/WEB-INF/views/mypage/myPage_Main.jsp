@@ -383,10 +383,10 @@
 				<nav>
 					<ul>
 						<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"><a href="myPage_Main" style="text-decoration: none; color: #B21948;">나의 쇼핑</a></li>
-						<li><a href="myPage_orderCancel" class="liList">주문ㆍ배송</a></li>
+						<li><a href="myPage_order" class="liList">주문ㆍ배송</a></li>
 						<li><a href="myPage_orderDetails" class="liList">교환/반품/환불</a></li>
 						<li><a href="myPage_like" class="liList">찜 목록</a></li>
-						<li><a href="myPage_basket" class="liList">장바구니</a></li>
+						<li><a href="myPage_cart" class="liList">장바구니</a></li>
 						<li style="margin-bottom: 30px;"><a href="myPage_inquiry" class="liList">문의 내역</a></li>
 
 						<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
@@ -416,7 +416,7 @@
 				</div>
 
 				<div class="memBasicInfo" style="width: 750px; text-align: left;">
-					<b style="font-size: 20px;">황호준님 계정</b>
+					<b style="font-size: 20px;">마이페이지</b>
 				</div>
 			</section>
 
@@ -446,13 +446,15 @@
 								<c:if test="${!empty olist }"> <!-- 주문내역이 있을 경우 -->
 									<c:forEach var="o" items="${olist}">
 										<tr>
-											<td>${o.order_no}</td>
-											<th><a class="orderList" onclick="location='product_dsc.shop?product_title=${o.product_title}'">${o.product_title}</a></th>
-											<td>${o.order_date}</td>
-											<td>${o.order_cnt}개</td>
-											<td>${o.product_price}원</td>
-											<td>${o.total_price}원</td>
-											<td><input type="button"
+											<td>${o.order_no }</td>
+											<th><a class="orderList" onclick="location='myPage_orderCancle?product_title=${o.order_product_title}'">${o.order_product_title }</a></th>
+											<td>${o.order_date }</td>
+											<td>${o.order_cnt }</td>
+											<td>${o.order_invoice }</td>
+											<td>${o.order_total }</td>
+											<td>접수완료</td>
+											<td>
+											<input type="button"
 												onclick="window.open('https://www.hanjin.com/kor/CMS/DeliveryMgr/WaybillSch.do?mCode=MN038');"
 												value="배송조회">&nbsp;&nbsp;&nbsp;<input type="button"
 												value="후기작성" onclick="openPopup_review_write()"></td>
@@ -477,7 +479,6 @@
 				<!-- board list area -->
 				<div id="board-list">
 					<div class="container">
-					<form method="post" id="cancel_Form" action="order_cancel_ok.shop">
 						<table class="board-table">
 							<thead>
 								<tr>
@@ -497,12 +498,11 @@
 								
 							</tbody>
 						</table>
-						</form>
 					</div>
 				</div>
 				</section>
 				</div>
-				
+
 				</div> <!--end innerWrap -->
 				<%-- top버튼 삭제 X --%>
 				<div id="topBtn">

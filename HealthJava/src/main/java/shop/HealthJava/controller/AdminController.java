@@ -33,8 +33,8 @@ public class Admincontroller {
 	@RequestMapping("/admin_main")
 	public String Admin_Member(MemberVO mvo, Model model, HttpServletRequest request, HttpServletResponse response) {
 		
-	int member_count = this.adminService.getMemberCount(mvo);			
-	List<MemberVO> mlist = this.adminService.getMemberListBySearch(mvo);			
+	int member_count = this.adminService.getMemberCount(mvo); //관리자 - 검색에 따른 회원수
+	List<MemberVO> mlist = this.adminService.getMemberListBySearch(mvo); //관리자 - 회원 리스트 조회	
 	System.out.println(mlist);
 	
 	model.addAttribute("member_count", member_count);

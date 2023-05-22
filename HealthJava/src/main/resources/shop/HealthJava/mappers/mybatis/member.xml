@@ -38,23 +38,4 @@
 		WHERE user_id = #{user_id}
 	</select>
 	
-	<!-- 회원 정보 수정 : 암호화된 비번, 회원 이름, 우편번호, 주소, 폰번호, 이메일 | 아이디 기준 -->
-	<update id="edit_ok">
-		UPDATE tbl_member SET user_name = #{user_name}, user_birth = #{user_birth},
-		user_gender = #{user_gender}, postCode = #{postCode}, roadAddr = #{roadAddr},
-		detailAddr = #{detailAddr}, user_phone = #{user_phone}, user_email = #{user_email}
-		WHERE user_id = #{user_id}
-	</update>
-	
-	<!-- 회원탈퇴 -->
-	<update id="m_del_ok" >
-		UPDATE tbl_member SET del_cont = #{del_cont}, del_date = sysdate, 
-		user_state = 2 WHERE user_id = #{user_id}
-	</update>
-	
-	<!-- 비밀번호 수정 -->
-	<update id="change_pwd" >
-		UPDATE tbl_member SET user_pwd = #{user_pwd} 
-		WHERE user_id = #{user_id}
-	</update>
 </mapper>

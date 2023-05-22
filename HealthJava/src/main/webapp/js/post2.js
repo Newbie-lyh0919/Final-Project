@@ -28,12 +28,9 @@ function post() {
                     // 건물명이 있고, 공동주택일 경우 추가한다.
                     if(data.buildingName !== '' && data.apartment === 'Y'){
                         extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                    }
-                    
-                   
-                
-                } 
-			
+                    }               
+                                  
+                } 			
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('postCode').value = data.zonecode;

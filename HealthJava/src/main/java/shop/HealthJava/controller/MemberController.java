@@ -26,10 +26,9 @@ public class MemberController { // 사용자 관련 컨트롤러
 	// 로그인 폼 
 	@RequestMapping("/member_login") // 매핑 및 반환타입, 페이지 경로 예시
 	public ModelAndView member_login() {
-		//		System.out.println("로그인 폼 접속 시도");
+		// System.out.println("로그인 폼 접속 시도");
 		ModelAndView member_login = new ModelAndView("member/member_login"); // 페이지 경로
-		//		System.out.println("로그인 폼 접속 완료");
-
+		// System.out.println("로그인 폼 접속 완료");
 		return member_login; // 페이지 경로 반환
 	} // end member_login()
 
@@ -53,7 +52,6 @@ public class MemberController { // 사용자 관련 컨트롤러
 		
 		m.setUser_pwd(PwdChange.getPassWordToXEMD5String(m.getUser_pwd()));// 비번 암호화
 		this.memberService.insertMember(m); // 회원저장
-		// Q)탈퇴날짜 mem_deldate, 탈퇴사유 mem_delcont만 빼고 나머지는 저장되게 만들어 보고, 개발자 테스트까지 한다.
 		
 		return new ModelAndView("redirect:/member_login");
 	} //end member_join_ok()
@@ -77,7 +75,7 @@ public class MemberController { // 사용자 관련 컨트롤러
 		return null;
 	} //end member_idcheck()
 	
-/*	
+	/*	
 	//비밀번호 찾기
 	@RequestMapping("/pwd_find")
 	public ModelAndView pwd_find() {
@@ -117,7 +115,8 @@ public class MemberController { // 사용자 관련 컨트롤러
 		}
 		return null;
 	} // end pwd_find_ok()
-*/
+	 */
+	
 	// 로그인 인증 처리
 	@RequestMapping("/member_login_ok")
 	public ModelAndView member_login_ok(String login_id, String login_pwd, HttpServletResponse response, HttpSession session) throws Exception {
@@ -199,7 +198,7 @@ public class MemberController { // 사용자 관련 컨트롤러
 		return null;
 	} // end pwd_find_ok()
 
-	// 회원 정보 수정폼 
+	// 회원 정보 수정폼  : MypageController로 이동
 	@RequestMapping("/myPage_updateInfo")
 	public ModelAndView member_edit(HttpServletResponse response, HttpSession session) throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
@@ -211,15 +210,11 @@ public class MemberController { // 사용자 관련 컨트롤러
 			ModelAndView m = new ModelAndView("mypage/myPage_updateInfo");
 			
 			m.addObject("em", em);
-			//m.setViewName("mypage/myPage_updateInfo");
-
 			return m;
 		}
-
 		return null;
 	} // end member_edit
-
-
+	
 	// 정보 수정 완료 
 	@RequestMapping("/member_update_ok")
 	public ModelAndView member_update_ok(MemberVO m, HttpServletResponse response, HttpSession session) throws Exception {
@@ -242,7 +237,7 @@ public class MemberController { // 사용자 관련 컨트롤러
 		return null;
 	} // end member_update_ok
 
-	//마이페이지 비밀번호 변경폼
+	//마이페이지 비밀번호 변경폼 : MypageController 로 이동
 	@RequestMapping("/myPage_changePwd")
 	public ModelAndView myPage_changePwd(HttpServletResponse response, HttpSession session) throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
@@ -260,6 +255,7 @@ public class MemberController { // 사용자 관련 컨트롤러
 
 		return null;
 	}
+	
 	/*
 	//마이페이지 비밀번호 변경완료
 	@RequestMapping("/changePwd_ok")
@@ -290,12 +286,11 @@ public class MemberController { // 사용자 관련 컨트롤러
 
 			}
 			
-		}
-
-		
+		}		
 		return null;
 	}
 	*/
+	
 	// 비밀번호 수정 완료 
 	@RequestMapping("/changePwd_ok")
 	public ModelAndView myPage_changePwd_ok(MemberVO m, HttpServletResponse response, HttpSession session, String user_pwd, String new_pwd ) throws Exception {
@@ -328,7 +323,6 @@ public class MemberController { // 사용자 관련 컨트롤러
 			}
 
 		}
-
 		return null;
 	} // end myPage_changePwd_ok
 	
@@ -354,6 +348,7 @@ public class MemberController { // 사용자 관련 컨트롤러
 
 		return null;
 	}//member_del()
+	
 	
 	//회원탈퇴 완료
 	@RequestMapping("/user_Withdrawal_ok")

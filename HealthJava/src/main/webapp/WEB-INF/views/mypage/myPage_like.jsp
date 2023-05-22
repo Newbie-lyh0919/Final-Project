@@ -700,6 +700,14 @@
 	select {
 		padding : 5px 5px;
 	}
+	
+	.nonList {
+		font-size: 15px;
+		border-top: 1px solid #e7e7e7;
+		text-align: center;
+	    padding: 140px 0 36px;
+	    background: url(../images/bg_no_list.png) no-repeat 50% 40px;
+	}
 </style>
 </head>
 <body>
@@ -718,10 +726,10 @@
 					<nav>
 						<ul>
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"><a href="myPage_Main" style="text-decoration: none; color: black;">나의 쇼핑</a></li>
-							<li><a href="myPage_orderCancel" class="liList">주문ㆍ배송</a></li>
+							<li><a href="myPage_order" class="liList">주문ㆍ배송</a></li>
 							<li><a href="myPage_orderDetails" class="liList">교환/반품/환불</a></li>
 							<li><a href="myPage_like" class="liList" style="color: #B21948;">찜 목록</a></li>
-							<li><a href="myPage_basket" class="liList">장바구니</a></li>
+							<li><a href="myPage_cart" class="liList" >장바구니</a></li>
 							<li style="margin-bottom: 30px;"><a href="myPage_inquiry" class="liList">문의 내역</a></li>
 	
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
@@ -740,7 +748,7 @@
 					<div class="listTitleBox">
 						<span id="listTitle">찜 목록</span>
 					</div>
-					<%-- <div class="">총 개수 : ${ }개</div> --%>
+
 					<div class="basketcontentBox">
 						<div class="basket">
 							<div class="basket-labels">
@@ -786,254 +794,78 @@
 									</li>
 								</ul>
 							</div>
-							<div class="basket-product">
-								<%-- 체크 박스 --%>
-								<input type="checkbox" id="chk_select" name="chBox" class="chBox" data-cartNum="${cartList.cartNum}"/><label for="chk_select" id="chk_selectLabel"></label>
-								<%-- 체크 박스 끝 --%>
-								<div class="item">
-									<div class="product-image">
-										<img src="https://img-cf.kurly.com/cdn-cgi/image/width=676,format=auto/shop/data/goods/1637924624422l0.jpeg" alt="상품 이미지" class="product-frame">
-									</div>
-									<div class="product-details">
-										<span id="productTitle">2023.03.29</span>
-									</div>
-									<div class="product-details">
-										<span id="productTitle"><strong><a href="#">청송 사과 1.5kg(5~7입)</a></strong></span>
-									</div>
-									<div class="product-details">
-										<span id="productTitle"><strong style="font-size: 20px;">8900원</strong></span>
-									</div>
-								</div>
-								<button class="addCart" onclick="addOk()">
-									<img id="shopping_cartImg" src="<%=request.getContextPath()%>/images/shopping_cart.png" alt="쇼핑 카트"> <span class="addText">담기</span>
-								</button>
-								<div class="remove">
-									<button class="removeCart" onclick="deleteOk()">
-										<img id="shopping_deleteImg" src="<%=request.getContextPath()%>/images/recycle_bin.png" alt="휴지통"> <span class="removeText">삭제</span>
-									</button>
-								</div>
-								<script>
-									 $(".chBox").click(function(){
-									 	$("#chk_all").prop("checked", false);
-									 });
-								</script>
+							<div class="basket-product"> <%-- 체크 박스 --%>
+								<input type="checkbox" id="chk_select" name="chBox" class="chBox" data-cartNum="${cartList.cartNum}"/><label for="chk_select" id="chk_selectLabel"></label> <%-- 체크 박스 끝 --%>
+								
+								<%-- 찜목록 출력 --%>
+								<table>
+										<tr height="40px;" style="border-bottom: 2px solid #e7e7e7;">
+											<th width="85px;">No</th>
+											<th width="500px;">제품명</th>
+											<th width="200px;">날짜</th>
+											<th width="200px;">판매가</th>
+											<th width="300px;">비고</th>
+										</tr>
+									<%-- <c:if test="${!empty requestScope.Llist}">
+									<c:forEach var="l" items="${requestScope.Llist}">
+										<tr height="40px;" >
+											<td>${l.like_no}</td>
+											<td class="product-image">제목과 이미지 같이 출력 
+												<img src="" alt="상품 이미지" class="product_frame"> <a href="#">${l.product_title}</a>
+											</td>
+											<td class="product-details"><span id="productTitle">${product_date.substring(0, 10)}</span></td>
+											<td class="product_details"><span id="productTitle"><strong style="font-size: 20px;">${l.product_price}</strong></span></td>
+
+											<td>
+												<button class="addCart" onclick="addOk()">
+													<img id="shopping_cartImg" srcsrc="<%=request.getContextPath()%>/images/shopping_cart.png" alt="쇼핑 카트"> <span class="addText">담기</span>
+												</button>
+											</td>
+											<td>
+												<button>
+													<img id="shopping_deleteImg" src="<%=request.getContextPath()%>/images/recycle_bin.png" alt="휴지통"> <span class="removeText">삭제</span>
+												</button>
+											</td>
+										</tr>
+									</c:forEach>
+									</c:if> --%>
+									<c:if test="${empty requestScope.Llist}">
+									<tr height="40px;" >
+										<th colspan="5" class="nonList">현재 주문한 제품이 없습니다.</th>
+									</tr>
+								</c:if>
+								</table>
+
 							</div>
-							<div class="basket-product">
-								<%-- 체크 박스 --%>
-								<input type="checkbox" id="chk_select" name="chBox" class="chBox" data-cartNum="${cartList.cartNum}"/> <label for="chk_select" id="chk_selectLabel"></label>
-								<%-- 체크 박스 끝 --%>
-								<div class="item">
-									<div class="product-image">
-										<img src="https://img-cf.kurly.com/cdn-cgi/image/width=676,format=auto/shop/data/goods/1657692098340l0.jpg" alt="상품 이미지2" class="product-frame">
-									</div>
-									<div class="product-details">
-										<span id="productTitle">2023.03.29</span>
-									</div>
-									<div class="product-details">
-										<span id="productTitle"><strong><a href="#">[다향오리] 훈제오리 슬라이스 150g X 3개입</a></strong></span>
-									</div>
-									<div class="product-details">
-										<span id="productTitle"><strong style="font-size: 20px;">9900원</strong></span>
-									</div>
-								</div>
-								<button class="addCart" onclick="addOk()">
-									<img id="shopping_cartImg" src="<%=request.getContextPath()%>/images/shopping_cart.png" alt="쇼핑 카트"> <span class="addText">담기</span>
-								</button>
-								<div class="remove">
-									<button class="removeCart" onclick="deleteOk()">
-										<img id="shopping_deleteImg" src="<%=request.getContextPath()%>/images/recycle_bin.png" alt="휴지통"> <span class="removeText">삭제</span>
-									</button>
-								</div>
-								<script>
-									 $(".chBox").click(function(){
-									 	$("#chk_all").prop("checked", false);
-									 });
-								</script>
-							</div>
-							<div class="basket-product">
-								<%-- 체크 박스 --%>
-								<input type="checkbox" id="chk_select" name="chBox" class="chBox" data-cartNum="${cartList.cartNum}"/> <label for="chk_select" id="chk_selectLabel"></label>
-								<%-- 체크 박스 끝 --%>
-								<div class="item">
-									<div class="product-image">
-										<img src="https://img-cf.kurly.com/cdn-cgi/image/width=676,format=auto/shop/data/goods/1637924624422l0.jpeg" alt="상품 이미지" class="product-frame">
-									</div>
-									<div class="product-details">
-										<span id="productTitle">2023.03.29</span>
-									</div>
-									<div class="product-details">
-										<span id="productTitle"><strong><a href="#">청송 사과 1.5kg(5~7입)</a></strong></span>
-									</div>
-									<div class="product-details">
-										<span id="productTitle"><strong style="font-size: 20px;">8900원</strong></span>
-									</div>
-								</div>
-								<button class="addCart" onclick="addOk()">
-									<img id="shopping_cartImg" src="<%=request.getContextPath()%>/images/shopping_cart.png" alt="쇼핑 카트"> <span class="addText">담기</span>
-								</button>
-								<div class="remove">
-									<button class="removeCart" onclick="deleteOk()">
-										<img id="shopping_deleteImg" src="<%=request.getContextPath()%>/images/recycle_bin.png" alt="휴지통"> <span class="removeText">삭제</span>
-									</button>
-								</div>
-								<script>
-									 $(".chBox").click(function(){
-									 	$("#chk_all").prop("checked", false);
-									 });
-								</script>
-							</div>
-							<div class="basket-product">
-								<%-- 체크 박스 --%>
-								<input type="checkbox" id="chk_select" name="chBox" class="chBox" data-cartNum="${cartList.cartNum}"/> <label for="chk_select" id="chk_selectLabel"></label>
-								<%-- 체크 박스 끝 --%>
-								<div class="item">
-									<div class="product-image">
-										<img src="https://img-cf.kurly.com/cdn-cgi/image/width=676,format=auto/shop/data/goods/1657692098340l0.jpg" alt="상품 이미지2" class="product-frame">
-									</div>
-									<div class="product-details">
-										<span id="productTitle">2023.03.29</span>
-									</div>
-									<div class="product-details">
-										<span id="productTitle"><strong><a href="#">[다향오리] 훈제오리 슬라이스 150g X 3개입</a></strong></span>
-									</div>
-									<div class="product-details">
-										<span id="productTitle"><strong style="font-size: 20px;">9900원</strong></span>
-									</div>
-								</div>
-								<button class="addCart" onclick="addOk()">
-									<img id="shopping_cartImg" src="<%=request.getContextPath()%>/images/shopping_cart.png" alt="쇼핑 카트"> <span class="addText">담기</span>
-								</button>
-								<div class="remove">
-									<button class="removeCart" onclick="deleteOk()">
-										<img id="shopping_deleteImg" src="<%=request.getContextPath()%>/images/recycle_bin.png" alt="휴지통"> <span class="removeText">삭제</span>
-									</button>
-								</div>
-								<script>
-									 $(".chBox").click(function(){
-									 	$("#chk_all").prop("checked", false);
-									 });
-								</script>
-							</div>
-							<div class="basket-product">
-								<%-- 체크 박스 --%>
-								<input type="checkbox" id="chk_select" name="chBox" class="chBox" data-cartNum="${cartList.cartNum}"/> <label for="chk_select" id="chk_selectLabel"></label>
-								<%-- 체크 박스 끝 --%>
-								<div class="item">
-									<div class="product-image">
-										<img src="https://img-cf.kurly.com/cdn-cgi/image/width=676,format=auto/shop/data/goods/1637924624422l0.jpeg" alt="상품 이미지" class="product-frame">
-									</div>
-									<div class="product-details">
-										<span id="productTitle">2023.03.29</span>
-									</div>
-									<div class="product-details">
-										<span id="productTitle"><strong><a href="#">청송 사과 1.5kg(5~7입)</a></strong></span>
-									</div>
-									<div class="product-details">
-										<span id="productTitle"><strong style="font-size: 20px;">8900원</strong></span>
-									</div>
-								</div>
-								<button class="addCart" onclick="addOk()">
-									<img id="shopping_cartImg" src="<%=request.getContextPath()%>/images/shopping_cart.png" alt="쇼핑 카트"> <span class="addText">담기</span>
-								</button>
-								<div class="remove">
-									<button class="removeCart" onclick="deleteOk()">
-										<img id="shopping_deleteImg" src="<%=request.getContextPath()%>/images/recycle_bin.png" alt="휴지통"> <span class="removeText">삭제</span>
-									</button>
-								</div>
-								<script>
-									 $(".chBox").click(function(){
-									 	$("#chk_all").prop("checked", false);
-									 });
-								</script>
-							</div>
-						</div>
+						
 				<%-- 페이징 처리 --%>
 				<div id="pagination">
-					<!-- 검색 칸 공백 시 페이징 사라지지 않게 -->
-	               <c:if test="${find_name == ''}"> <%--검색필드와 검색어가 없는 경우 --%>
-	                 <c:if test="${page <= 1}">
-	                  PREV&nbsp;
-	                 </c:if>
-	                 <c:if test="${page>1}">
-	                  <a href="like?page=${page-1}">PREV</a>&nbsp;
-	                 </c:if>
-	                 
-	                 <%--현재 쪽번호 출력 --%>
-	                 <c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
-	                   <c:if test="${a == page}"> <%-- 현재 페이지가 선택된 경우 --%>
-	                      [&nbsp;${a}&nbsp;]
-	                   </c:if>
-	                   <c:if test="${a != page}"> <%--현재 쪽번호가 선택 안 된 경우--%>
-	                    <a href="like?page=${a}">[&nbsp;${a}&nbsp;]</a>&nbsp;
-	                   </c:if>
-	                 </c:forEach>
-	                   
-	                
-	                <c:if test="${page >= maxpage}">
-	                  &nbsp;NEXT
-	                </c:if>
-	                <c:if test="${page < maxpage}">
-	                 <a href="like?page=${page+1}">NEXT</a>
-	                </c:if>
-	               </c:if>
-	               <!-- 검색 칸 공백 시 페이징 사라지지 않게 -->
-				    <%--검색 전 페이징 --%>
-				    <c:if test="${(empty find_field) && (empty find_name)}"> <%--검색필드와 검색어가 없는 경우 --%>
-				     <c:if test="${page <= 1}">
-				      PREV&nbsp;
-				     </c:if>
-				     <c:if test="${page>1}">
-				      <a href="like?page=${page-1}">PREV</a>&nbsp;
-				     </c:if>
-				     
-				     <%--현재 쪽번호 출력 --%>
-				     <c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
-				       <c:if test="${a == page}"> <%-- 현재 페이지가 선택된 경우 --%>
-				       	[&nbsp;${a}&nbsp;]
-				       </c:if>
-				       <c:if test="${a != page}"> <%--현재 쪽번호가 선택 안 된 경우--%>
-				        <a href="like?page=${a}">[&nbsp;${a}&nbsp;]</a>&nbsp;
-				       </c:if>
-				     </c:forEach>
-				       
+				    <c:if test="${page <= 1}">
+				        PREV&nbsp;
+				    </c:if>
+				    <c:if test="${page > 1}">
+				        <a href="myPage_like?page=${page-1}">PREV</a>&nbsp;
+				    </c:if>
+				    
+				    <!-- 현재 쪽번호 출력 -->
+				    <c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
+				        <c:if test="${a == page}"> <%-- 현재 페이지가 선택된 경우 --%>
+				            [&nbsp;${a}&nbsp;]
+				        </c:if>
+				        <c:if test="${a != page}"> <%-- 현재 쪽번호가 선택 안 된 경우 --%>
+				            <a href="myPage_like?page=${a}">[&nbsp;${a}&nbsp;]</a>&nbsp;
+				        </c:if>
+				    </c:forEach>	                   
 				    
 				    <c:if test="${page >= maxpage}">
-				      &nbsp;NEXT
+				        &nbsp;NEXT
 				    </c:if>
 				    <c:if test="${page < maxpage}">
-				     <a href="like?page=${page+1}">NEXT</a>
+				        <a href="myPage_like?page=${page+1}">NEXT</a>
 				    </c:if>
-				   </c:if>
-				    
-				    <%--검색이후 페이징(쪽나누기) --%>
-				    <c:if test="${(!empty find_field) && (!empty find_name)}"> <%--검색필드와 검색어가 있는 경우 --%>
-				     <c:if test="${page <= 1}">
-				      PREV&nbsp;
-				     </c:if>
-				     <c:if test="${page>1}">
-				      <a href="like?page=${page-1}&find_field=${find_field}&find_name=${find_name}">PREV</a>&nbsp;
-				      <%-- &(엠퍼센트) 구분기호로 구분하면서 find_field=검색필드&find_name= 검색어를 get방식으로 전달해야 검색 이후 페이징 목록을 유지한다.그렇지 않으면 검색전 전체 페이징 목록으로 이동해서 검색 효과가 사라진다. --%>
-				     </c:if>
-				     
-				     <%--현재 쪽번호 출력 --%>
-				     <c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
-				       <c:if test="${a == page}"> <%-- 현재 페이지가 선택된 경우 --%>
-				        [&nbsp;${a}&nbsp;]
-				       </c:if>
-				       <c:if test="${a != page}"> <%--현재 쪽번호가 선택 안 된 경우--%>
-				        <a href="like?page=${a}&find_field=${find_field}&find_name=${find_name}">[&nbsp;${a}&nbsp;]</a>&nbsp;
-				       </c:if>
-				     </c:forEach>      
-				    
-				    <c:if test="${page >= maxpage}">
-				      &nbsp;NEXT
-				    </c:if>
-				    <c:if test="${page < maxpage}">
-				     <a href="like?page=${page+1}&find_field=${find_field}&find_name=${find_name}">NEXT</a>
-				    </c:if>
-				   </c:if> 
-				   </div> <%-- end 페이징처리 --%>
-					</div>
+				</div> <%-- end 페이징처리 --%>
+				
+				 </div>
 				</div>
 			</div>
 			<%-- top버튼 삭제 X --%>
