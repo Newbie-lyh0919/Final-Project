@@ -10,7 +10,7 @@
 <title>PuppyHome 리뷰 작성</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico" type="image/x-icon"> <%-- 파비콘 --%>
 <link rel="stylesheet" type="text/css" href=""> <%-- certificate.css --%>
-<style>
+<style type="text/css">
 	/* 폰트 CSS */
 	@font-face {
 		font-family: 'KIMM_Bold';
@@ -232,7 +232,6 @@
 <body style="overflow-x:hidden; overflow-y:hidden;">
 	<div class="wrap">
 		<div class="headerBox">
-			<div class="titleBox">
 				<span id="titleText">리뷰쓰기</span>
 			</div>
 		</div>

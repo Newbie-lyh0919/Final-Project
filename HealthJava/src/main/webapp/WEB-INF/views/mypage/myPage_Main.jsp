@@ -4,534 +4,369 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<%--
+<link rel="stylesheet" href="css/style.css">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-<script
-	src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-<%-- CDN 절대링크 --%>
-<script type="text/javascript" src="./js/jquery.js"></script>
-<title>PuppyHome 마이페이지</title>
-<link rel="shortcut icon"
-	href="<%=request.getContextPath()%>/images/favicon.ico?ver1"
-	type="image/x-icon">
-<%-- 파비콘 --%>
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/views/include/css/header.css">
-<%-- header.css --%>
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/views/include/css/footer.css">
-<%-- footer.css --%>
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/fontium/css/fontium.css" />
-<link rel="stylesheet" type="text/css"
-	href="./WEB-INF/views/mypage/css/mypage.css?ver=1">
-<%-- <link rel="stylesheet" href="./shop/puppyhome/controller_mypage/css/mypage.css">--%>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> <%-- CDN 절대링크 --%>
+
+<title>HealthJava 마이페이지</title>
+
+<%--<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico?ver1" type="image/x-icon">  파비콘 --%>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/views/include/css/header.css"> <%-- header.css --%>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/views/include/css/footer.css"> <%-- footer.css --%>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/fontium/css/fontium.css" /> 
+
 <style type="text/css">
-   /*MyPage CSS*/
-
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
-
-section.notice {
-	padding: 20px 0;
-	/*추가*/
-	width: 1000px;
-	min-height: 200px;
-	margin: 2px;
-	/* border: solid 2px #000000;
-        background-color: #c2ff73; */
-}
-
-aside {
-	margin-top: 150px;
-	margin-left: 150px;
-	width: 180px;
-	min-height: 700px;
-	float: left;
-	text-align: left;
-}
-
-li{
-	padding-top: 10px;
-}
-
-
-nav {
-	min-height: 600px;
-	margin-bottom: 50px;
-	/*border: solid 2px #000000;
-	background-color: #67a9ff;*/
-}
-
-
-
-#subspan {
-	color: #808080;
-}
-
-div.page-title {
-	width: 1000px;
-	min-height: 10px;
-	padding: 0px 10px;
-	text-align: left;
-}
-
- h3.page-title {
-	font-size: 25px;
-	color: black;
-	font-weight: 400;
-	text-align: left;
-}
-
-.memBasicInfo {
-	height: 120px;
-	/*border: 1px solid red;*/
-	padding: 20px;
-	float: left;
-}
-
-#board-search .search-window {
-	width: 1000px;
-	min-height: 80px;
-	padding: 15px 0;
-	text-align: left;
-}
-/*
-#board-search .search-window .search-wrap {
-	position: relative;
-	margin: 0 auto;
-	width: 80%;
-	max-width: 564px;
-}
-
-#board-search .search-window .search-wrap input {
-	height: 40px;
-	width: 100%;
-	font-size: 14px;
-	padding: 7px 14px;
-	border: 1px solid #ccc;
-}
-
-#board-search .search-window .search-wrap input:focus {
-	border-color: #333;
-	outline: 0;
-	border-width: 1px;
-}
-
-#board-search .search-window .search-wrap .btn {
-	position: absolute;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	width: 108px;
-	padding: 0;
-	font-size: 16px;
-}
-*/
-.board-table {
-	font-size: 13px;
-	width: 100%;
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
-}
-/*
-.board-table a {
-	color: #333;
-	display: inline-block;
-	line-height: 1.4;
-	word-break: break-all;
-	vertical-align: middle;
-	text-decoration: none;
-} 
-
-.board-table a:hover {
-	text-decoration: underline;
-} */
-
-.board-table th {
-	text-align: center;
-	border-top-style: solid;
-	border-top-color: black;
-	border-top-width: 2px;
-}
-
-.board-table .th-num {
-	width: 100px;
-	text-align: center;
-}
-
-table th.th-title {
-	font-size: 15px;
-	width: 200px;
-}
-
-table td.td-title {
-	font-size: 13px;
-}
-
-table th.th-date {
-	font-size: 15px;
-	width: 80px;
-}
-
-table th.th-date1 {
-	font-size: 15px;
-	width: 50px;
-}
-
-table th.th-date2 {
-	font-size: 15px;
-	width: 150px;
-}
-
-
-.board-table .th-inputInfo {
+	/* 메인 컨텐츠 부분 */
+	#wrap {
+		width: 100%;
+		height: 100%;
+		text-align: center;
+	}
 	
-}
-
-.board-table th, .board-table td {
-	padding-top: 14px;
-	padding-bottom: 14px;
-}
-
-.board-table tbody td {
-	border-top: 1px solid #e7e7e7;
-	text-align: center;
-	font-size: 15px;
-}
-
-.board-table tbody th {
-	font-size: 15px;
-	border-top: 1px solid #e7e7e7;
-	text-align: center;
-}
-
-.board-table thead th {
-	text-align: center;
-}
-
-.board-table tbody th p {
-	display: none;
-}
-
-.th-list{
-	text-align:center;
-	margin-top : 20px;
-	margin-bottom: 20px;
-	padding: 10px;
-	background-color: #F4A460;
-	border-bottom-color: white;
-	border-bottom-width: 0.2px;
-	border-bottom-style: solid;
+	/* 폰트 CSS */
+	@font-face {
+		font-family: 'KIMM_Bold';
+		src:
+			url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2')
+			format('woff2'); /* CDN 절대링크  */
+		font-weight: 700;
+		font-style: normal;
+	}
+	/* 되도록 안건드리는 영역 */
+	* {
+		box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+	}
 	
-}
-
-.td-inputInfo{
-	text-align:left;
-	padding-left: 20px;
-	padding-top: 20px;
-}
-
-.td-infoPs{
- text-align : left;
- padding-left: 20px;
- padding-top: 5px;
- padding-bottom: 15px;
- border-bottom-color: gray;
- border-bottom-width: 0.2px;
- border-bottom-style: solid;
- font-size: 12px; 
- font-weight: bold;
- color: red;
- 
-}
-div.submitBtn{
-	float: left;
-	margin-left: 100px;
-}
-
-#updateBtn{
-padding: 20px 80px; 
-background-color: #FC5400; 
-border: 1px solid white; 
-color: white; font-size: 20px; font-weight: bold
-}
-
-
-#resetBtn{
-padding: 20px 120px;
-background-color: white;
-border: 1px solid lightgray;
-font-size: 20px; font-weight: bold;"
-}
-
-#withdrawalBtn{
-padding: 20px 100px; 
-background-color: #FC5400; 
-border: 1px solid white; 
-color: white; font-size: 20px; font-weight: bold
-}
-
-#changePwdBtn{
-padding: 20px 120px; 
-background-color: #FC5400; 
-border: 1px solid white; 
-color: white; font-size: 20px; font-weight: bold
-}
-
-/*
-.btn {
-	display: inline-block;
-	padding: 0 30px;
-	font-size: 15px;
-	font-weight: 400;
-	background: transparent;
-	text-align: center;
-	white-space: nowrap;
-	vertical-align: middle;
-	-ms-touch-action: manipulation;
-	touch-action: manipulation;
-	cursor: pointer;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	border: 1px solid transparent;
-	text-transform: uppercase;
-	-webkit-border-radius: 0;
-	-moz-border-radius: 0;
-	border-radius: 0;
-	-webkit-transition: all 0.3s;
-	-moz-transition: all 0.3s;
-	-ms-transition: all 0.3s;
-	-o-transition: all 0.3s;
-	transition: all 0.3s;
-}
-
-.btn-dark {
-	background: #555;
-	color: #fff;
-}
-
-.btn-dark:hover, .btn-dark:focus {
-	background: #373737;
-	border-color: #373737;
-	color: #fff;
-}
-
-.btn-dark {
-	background: #555;
-	color: #fff;
-}
-
-.btn-dark:hover, .btn-dark:focus {
-	background: #373737;
-	border-color: #373737;
-	color: #fff;
-}
-
-/* reset */
-* {
-	list-style: none;
-	text-decoration: none;
-	padding: 0;
-	margin: 0;
-	box-sizing: border-box;
-} 
-
-.clearfix:after {
-	content: '';
-	display: block;
-	clear: both;
-}
-
-div.myPageTitle {
-	width: 1100px;
-	margin: 0 auto;
-	border: 1px solid red;
-}
-
-div.container {
-	width: 1000px;
-	margin: 20px 0px;
-	/*border: 1px solid red;*/
-}
-
-.innerWrap {
-	width: 1000px;
-	min-height: 700px;
-	padding: 20px;
-	float: left;
-	margin-top: 100px;
-	margin-left: 100px;
-	/*	border: solid 2px #000000;
-	background-color: red;*/
-}
-
-.blind {
-	position: absolute;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	margin: -1px;
-	width: 1px;
-	height: 1px;
-}
-
-.clear {
-	clear: both; /*float 속성을 제거함으로써 잘못 된 ui 적용을 막아줌 */
-}
-
-
-a:link.liList {
-	text-decoration: none;
-	color: #808080;
-}
-
-a:visited.liList {
-	text-decoration: none;
-	color: #808080;
-}
-
-a:hover.liList{
-	text-decoration: underline;
-	color: #FC5400;
-}
-
-a:active.liList {
-	text-decoration: none;
-	color: #FC5400;
-}
-
-table a:link.orderList {
-	text-decoration: none; 
-	color: black;
-}
-
-table a:visited.orderList {
-	text-decoration: none;
-	color: black;
-}
-
-table a:hover.orderList{
-	text-decoration: underline;
-	color: #FC5400;
-	cursor: pointer;
-}
-
-table a:active.orderList {
-	text-decoration: none;
-	color: #FC5400;
-}
-
-
-/*footer*/
-@font-face {
-	font-family: 'KIMM_Bold';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2')
-		format('woff2');
-	font-weight: 700;
-	font-style: normal;
-}
-
-/* 메인 컨텐츠 부분 */
-#wrap {
-	width: 100%;
-	height: 100%;
-	text-align: center;
-}
-
-/* 폰트 CSS */
-@font-face {
-	font-family: 'KIMM_Bold';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2')
-		format('woff2'); /* CDN 절대링크  */
-	font-weight: 700;
-	font-style: normal;
-}
-/* 되도록 안건드리는 영역 */
-* {
-	box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-}
-
-html {
-	height: 100%;
-}
-
-body {
-	font-family: 'KIMM_Bold';
-	margin: 0px;
-	height: 100%;
-	padding: 0px;
-}
-
-header {
-	width: 100%;
-	position: fixed;
-	z-index: 2;
-}
-
-footer {
-	bottom: 0;
-	z-index: 5;
-	position: relative;
-}
-
-.wrap {
-	font-family: 'KIMM_Bold';
-	margin-top: -110px;
-	min-height: 100%;
-	position: relative;
-}
-
-.main {
-	font-family: 'KIMM_Bold';
-	width: 1400px;
-	height: 2000px;
-	/* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / section이랑 px 맞춰야함 */
-	position: relative;
-	top: 105px;
-	left: 50%;
-	transform: translateX(-50%);
-	background-color: rgb(179, 255, 213); /* 영역 보기 편하라고 배경색 지정함 : 연초록 */
-}
-/*   section {
-      height: 2000px;  UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / .main이랑 px 맞춰야함 
-      background-color: rgb(236, 226, 202);  영역 보기 편하라고 배경색 지정함 : 연주황 
-   }
-      */
-/* 클리어 */
-.clear {
-	clear: both;
-}
-/* 밑의 영역부터 css시작 */
-.container {
-	width: 100%;
-}
-/* 캐러셀 */
-#carouselExampleControls {
-	width: 1100px;
-	position: relative;
-	left: 50%;
-	transform: translateX(-50%);
-}
-
-/** {
-	border: 1px solid black;
-}*/
-
-/*a링크 효과*/
-
-
-
+	html {
+		height: 100%;
+	}
+	
+	body {
+		font-family: 'KIMM_Bold';
+		margin: 0px;
+		height: 100%;
+		padding: 0px;
+	}
+	
+	header {
+		width: 100%;
+		position: fixed;
+		z-index: 2;
+	}
+	
+	footer {
+		bottom: 0;
+		z-index: 5;
+		position: relative;
+	}
+	
+	.wrap {
+		font-family: 'KIMM_Bold';
+		margin-top: -110px;
+		min-height: 100%;
+		position: relative;
+	}
+	
+	.main {
+		width: 1600px;
+		height: 1200px;
+		/* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / section이랑 px 맞춰야함 */
+		position: relative;
+		top: 105px;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+	
+	section {
+		height: 1200px;
+		/*UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함  .main이랑 px 맞춰야함*/
+	}
+	
+	/* 클리어 */
+	.clear {
+		clear: both;
+	}
+	
+	/* 밑의 영역부터 css시작 */
+	.container {
+		width: 100%;
+		margin: 20px 0px;
+	}
+	
+	/******************************************************************/
+	
+	/*MyPage_Main CSS*/
+	table {
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
+	
+	section.notice {
+		padding: 20px 0;
+		/*추가*/
+		/*width: 1200px;*/
+		height: 200px;
+		margin: 2px;
+	}
+	/*사이드바 스타일*/
+	.aside_left {
+		margin-top: 45px;
+		margin-left: 60px;
+		width: 180px;
+		min-height: 700px;
+		float: left;
+		text-align: left;
+	}
+	
+	.aside_left nav {
+		min-height: 600px;
+		margin-bottom: 50px;
+	}
+	
+	.aside_left li {
+		padding-top: 8.2px;
+		padding-bottom: 2px;
+		list-style: none;
+	}
+	
+	li {
+		padding-top: 10px;
+	}
+	
+	nav {
+		min-height: 600px;
+		margin-bottom: 50px;
+	}
+	
+	#subspan {
+		color: #808080;
+	}
+	
+	div.page-title {
+		width: 1000px;
+		min-height: 10px;
+		padding: 0px 10px;
+		text-align: left;
+	}
+	
+	h3.page-title {
+		font-size: 25px;
+		color: black;
+		font-weight: 400;
+		text-align: left;
+	}
+	
+	.memBasicInfo {
+		height: 120px;
+		padding: 20px;
+		float: left;
+	}
+	
+	#board-search .search-window {
+		width: 1000px;
+		min-height: 80px;
+		padding: 15px 0;
+		text-align: left;
+	}
+	
+	.board-table {
+		font-size: 13px;
+		width: 100%;
+		border-top: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+	}
+	
+	.board-table th {
+		text-align: center;
+		border-top-style: solid;
+		border-top-color: black;
+		border-top-width: 2px;
+	}
+	
+	.board-table .th-num {
+		width: 100px;
+		text-align: center;
+	}
+	
+	table th.th-title {
+		font-size: 15px;
+		width: 200px;
+	}
+	
+	table td.td-title {
+		font-size: 13px;
+	}
+	
+	table th.th-date {
+		font-size: 15px;
+		width: 80px;
+	}
+	
+	table th.th-date1 {
+		font-size: 15px;
+		width: 50px;
+	}
+	
+	table th.th-date2 {
+		font-size: 15px;
+		width: 150px;
+	}
+	
+	.board-table .th-inputInfo {
+		
+	}
+	
+	.board-table th, .board-table td {
+		padding-top: 14px;
+		padding-bottom: 14px;
+	}
+	
+	.board-table tbody td {
+		border-top: 1px solid #e7e7e7;
+		text-align: center;
+		font-size: 15px;
+	}
+	
+	.board-table tbody th {
+		font-size: 15px;
+		border-top: 1px solid #e7e7e7;
+		text-align: center;
+		padding: 140px 0 36px;
+		background: url(../images/bg_no_list.png) no-repeat 50% 40px;
+	}
+	
+	.board-table tbody th p {
+		display: none;
+	}
+	
+	.th-list {
+		text-align: center;
+		margin-top: 20px;
+		margin-bottom: 20px;
+		padding: 10px;
+		background-color: #F4A460;
+		border-bottom-color: white;
+		border-bottom-width: 0.2px;
+		border-bottom-style: solid;
+	}
+	
+	.td-inputInfo {
+		text-align: left;
+		padding-left: 20px;
+		padding-top: 20px;
+	}
+	
+	.td-infoPs {
+		text-align: left;
+		padding-left: 20px;
+		padding-top: 5px;
+		padding-bottom: 15px;
+		border-bottom-color: gray;
+		border-bottom-width: 0.2px;
+		border-bottom-style: solid;
+		font-size: 12px;
+		font-weight: bold;
+		color: red;
+	}
+	
+	div.submitBtn {
+		float: left;
+		margin-left: 100px;
+	}
+	
+	/* 수정 버튼 */
+	#updateBtn {
+		padding: 7px 15px;
+		border: 1px solid #B21948;
+		color: white;
+		font-size: 15px;
+		font-weight: bold;
+		background: #b21949;
+	}
+	
+	/* 메뉴바 */
+	* {
+		list-style: none;
+		text-decoration: none;
+		padding: 0;
+		margin: 0;
+		box-sizing: border-box;
+	}
+	
+	.clearfix:after {
+		content: '';
+		display: block;
+		clear: both;
+	}
+	
+	div.myPageTitle {
+		width: 1100px;
+		margin: 0 auto;
+		border: 1px solid red;
+	}
+	
+	.innerWrap {
+		width: 1000px;
+		min-height: 700px;
+		padding: 20px;
+		float: left;
+		margin-top: 10px;
+		margin-left: 100px;
+	}
+	
+	.blind {
+		position: absolute;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		margin: -1px;
+		width: 1px;
+		height: 1px;
+	}
+	
+	/* a 링크 : 메뉴바 */
+	a:link.liList {
+		text-decoration: none;
+		color: #a399a2;
+	}
+	
+	a:visited.liList {
+		text-decoration: none;
+		color: #a399a2;
+	}
+	
+	a:hover.liList {
+		text-decoration: underline;
+		color: #B21948;
+	}
+	
+	a:active.liList {
+		text-decoration: none;
+		color: #B21948;
+	}
+	
+	table a:link.orderList {
+		text-decoration: none;
+		color: black;
+	}
+	
+	table a:visited.orderList {
+		text-decoration: none;
+		color: black;
+	}
+	
+	table a:hover.orderList {
+		text-decoration: underline;
+		color: #FC5400;
+		cursor: pointer;
+	}
+	
+	table a:active.orderList {
+		text-decoration: none;
+		color: #FC5400;
+	}
 </style>
-
 </head>
 <body>
 	<%-- 전체 영역 --%>
@@ -541,41 +376,33 @@ footer {
 			<%-- header include --%>
 			<jsp:include page="../include/header.jsp" />
 		</header>
-		<%-- 본문 영역(ui깨질시 본인이 ui 수정바람..) --%>
+		<%-- 메뉴바 --%>
+		<section>
+		<div class="main">		
+			<aside class="aside_left">
+				<nav>
+					<ul>
+						<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"><a href="myPage_Main" style="text-decoration: none; color: #B21948;">나의 쇼핑</a></li>
+						<li><a href="myPage_order" class="liList">주문ㆍ배송</a></li>
+						<li><a href="myPage_orderDetails" class="liList">교환/반품/환불</a></li>
+						<li><a href="myPage_like" class="liList">찜 목록</a></li>
+						<li><a href="myPage_cart" class="liList">장바구니</a></li>
+						<li style="margin-bottom: 30px;"><a href="myPage_inquiry" class="liList">문의 내역</a></li>
 
+						<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
+						<li><a href="myPage_updateInfo" class="liList">회원정보 변경</a></li>
+						<li><a href="myPage_changePwd" class="liList">비밀번호 변경</a></li>
+						<li><a href="myPage_user_Withdrawal" class="liList">회원탈퇴</a></li>
+						<li style="margin-bottom: 30px;"><a href="myPage_updateAddress" class="liList">배송지 관리</a></li>
+						
+						<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 상품후기</li>
+						<li><a href="myPage_review" class="liList">나의 상품후기</a></li>
+					</ul>
+				</nav>
+			</aside>
+	
 
-		<aside>
-			<nav>
-				<ul>
-					<li
-						style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;">
-						나의 쇼핑</li>
-					<li><a href="myPage_Main" class="liList"
-						style="color: #FC5400; font-weight: bold;">주문ㆍ배송</a></li>
-					<li><a href="myPage_orderCancel" class="liList">주문취소</a></li>
-					<li><a href="javascript:void(0);" onclick="openPopup_company_introduce();" class="liList">교환/반품하기</a></li>
-					<li><a href="like" class="liList">찜 목록</a></li>
-					<li style="margin-bottom: 30px;"><a href="basket"
-						class="liList">장바구니</a></li>
-
-					<li
-						style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;">
-						회원 정보</li>
-					<li><a href="myPage_updateInfo" class="liList">회원정보 변경</a></li>
-					<li><a href="myPage_changePwd" class="liList">비밀번호 변경</a></li>
-					<li><a href="myPage_user_Withdrawal" class="liList">회원탈퇴</a></li>
-					<li style="margin-bottom: 30px;"><a href="myPage_updateAddress"
-						class="liList">배송지 관리</a></li>
-
-					<li
-						style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;">
-						나의 상품후기</li>
-					<li><a href="review" class="liList">나의 상품후기</a></li>
-				</ul>
-			</nav>
-		</aside>
-
-		<%-- 본문 영역(ui깨질시 본인이 ui 수정바람..) --%>
+		<%-- 본문 영역 --%>
 		<div class="innerWrap">
 			<section class="notice">
 				<div class="page-title">
@@ -585,28 +412,19 @@ footer {
 				</div>
 				<!--계정 -->
 				<div class="memBasicInfo">
-					<img src="<%=request.getContextPath()%>/images/profile.png"
-						alt="강쥐" style="width: 80px; height: 80px;">
+					<img src="<%=request.getContextPath()%>/images/profile.png" alt="프로필사진" style="width: 80px; height: 80px;">
 				</div>
 
 				<div class="memBasicInfo" style="width: 750px; text-align: left;">
-					<b style="font-size: 20px;">실험용계정</b>
+					<b style="font-size: 20px;">마이페이지</b>
 				</div>
-
-				<%-- 	<div class="memBasicInfo"
-				style="width: 200px; text-align: right; font-size: 5px;">
-				<b>찜목록 ㅣ 장바구니 ㅣ 상품후기</b>
-			</div>
---%>
-
 			</section>
-
-			<div class="clear"></div>
 
 			<!-- board seach area -->
 			<section class="notice">
 				<div class="page-title">
-					<b style="text-align: left; font-size: 20px;">주문내역</b><br>
+					<b style="text-align: left; font-size: 20px;">&nbsp;&nbsp;주문내역</b>
+					<a href="myPage_orderCancel" class="liList" style="margin-left: 780px; text-decoration-line: none;">[더보기]</a><br>
 				</div>
 				<!-- board list area -->
 				<div id="board-list">
@@ -624,33 +442,75 @@ footer {
 								</tr>
 							</thead>
 							<tbody>
-								<c:if test="${!empty olist }">
+								<%-- 주문 테이블 --%>
+								<c:if test="${!empty olist }"> <!-- 주문내역이 있을 경우 -->
 									<c:forEach var="o" items="${olist}">
 										<tr>
-											<td>${o.order_no}</td>
-											<th><a class="orderList" onclick="location='product_dsc.shop?product_title=${o.product_title}'">${o.product_title}</a></th>
-											<td>${o.order_date}</td>
-											<td>${o.order_cnt}개</td>
-											<td>${o.product_price}원</td>
-											<td>${o.total_price}원</td>
-											<td><input type="button"
+											<td>${o.order_no }</td>
+											<th><a class="orderList" onclick="location='myPage_orderCancle?product_title=${o.order_product_title}'">${o.order_product_title }</a></th>
+											<td>${o.order_date }</td>
+											<td>${o.order_cnt }</td>
+											<td>${o.order_invoice }</td>
+											<td>${o.order_total }</td>
+											<td>접수완료</td>
+											<td>
+											<input type="button"
 												onclick="window.open('https://www.hanjin.com/kor/CMS/DeliveryMgr/WaybillSch.do?mCode=MN038');"
 												value="배송조회">&nbsp;&nbsp;&nbsp;<input type="button"
 												value="후기작성" onclick="openPopup_review_write()"></td>
 										</tr>
 										</c:forEach>
-										</c:if>
+									</c:if>
+									
+									<c:if test="${empty olist }"> <!-- 주문 내역이 없을 경우 -->
+									<tr>
+										<th colspan="7">현재 주문한 제품이 없습니다.</th>
+									</tr>
+									</c:if>
+							</tbody>
+						</table>
+					</div> <!-- end container -->
+				</div>
+				<br><br>
+				<div class="page-title">
+					<b style="text-align: left; font-size: 20px;">&nbsp;&nbsp;문의내역</b>
+					<a href="myPage_inquiry" class="liList" style="margin-left: 780px; text-decoration-line: none;">[더보기]</a><br><br>
+				</div>
+				<!-- board list area -->
+				<div id="board-list">
+					<div class="container">
+						<table class="board-table">
+							<thead>
+								<tr>
+									<th scope="col" class="th-date1">No</th>
+									<th scope="col" class="th-title">문의 유형</th>
+									<th scope="col" class="th-date">제목</th>
+									<th scope="col" class="th-date">작성일</th>
+									<th scope="col" class="th-date">처리 현황</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:if test="${empty olist }">
+									<tr>
+										<th colspan="5" class="nonList">현재 문의한 내역이 없습니다.</th>
+									</tr>
+								</c:if>
+								
 							</tbody>
 						</table>
 					</div>
 				</div>
+				</section>
+				</div>
+
+				</div> <!--end innerWrap -->
 				<%-- top버튼 삭제 X --%>
 				<div id="topBtn">
 					<span class="fonti um-arrow-circle-up um-3x icon"></span>TOP
 				</div>
+			
 			</section>
-		</div>
-		<div class="clear"></div>
+			<div class="clear"></div>
 		<%-- 푸터 영역 --%>
 		<footer>
 			<!-- footer -->

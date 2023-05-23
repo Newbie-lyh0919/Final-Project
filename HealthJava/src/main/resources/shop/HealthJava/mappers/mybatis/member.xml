@@ -5,5 +5,37 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Member">
+
+	<!-- 회원저장 -->
+ 	<insert id="m_insert">
+		INSERT INTO tbl_member
+		(user_no,user_id,user_pwd,user_name,user_birth,user_gender,postcode,roadAddr,detailAddr,user_email,user_phone,join_date)
+		VALUES (user_no_seq.nextval,#{user_id},#{user_pwd},#{user_name},#{user_birth},#{user_gender},
+		#{postCode},#{roadAddr},#{detailAddr},#{user_email},#{user_phone},sysdate)
+	</insert>
+	
+	<!-- 아이디 중복 검색 -->
+ 	<select id="m_idCheck" resultType="member">
+		SELECT * FROM tbl_member WHERE user_id = #{user_id}
+	</select>
+ 
+ 	<!-- 로그인 인증 처리 : 아이디와 user_state가 2가 아닌 경우만 로그인 -->
+	<select id="m_loginCheck" resultType="member">
+		SELECT * FROM tbl_member WHERE
+		user_id = #{user_id} and user_state != 2
+	</select>
+ 
+ 	<!-- id 찾기 : 이름, 핸드폰번호로 찾기 -->
+	<select id="m_findId" parameterType="member" resultType="member">
+		SELECT *
+		FROM tbl_member WHERE user_name = #{user_name} AND user_phone = #{user_phone}
+	</select>
+	
+	
+	<!-- 아이디에 해당하는 회원정보를 보기 -->
+	<select id="m_info" resultType="member">
+		SELECT * FROM tbl_member
+		WHERE user_id = #{user_id}
+	</select>
 	
 </mapper>

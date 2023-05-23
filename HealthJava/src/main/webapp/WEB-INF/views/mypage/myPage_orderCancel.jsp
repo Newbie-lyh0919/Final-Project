@@ -4,540 +4,469 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-	crossorigin="anonymous">
-<%-- CDN 절대링크 --%>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-	crossorigin="anonymous"></script>
-<%-- CDN 절대링크 --%>
-<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-<%-- CDN 절대링크 --%>
-<script
-	src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-<%-- CDN 절대링크 --%>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> <%-- CDN 절대링크 --%>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script> <%-- CDN 절대링크 --%>
+<script src="https://code.jquery.com/jquery-3.6.3.js"></script> <%-- CDN 절대링크 --%>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> <%-- CDN 절대링크 --%>
 <script type="text/javascript" src="./js/jquery.js"></script>
-<title>PuppyHome 마이페이지</title>
-<link rel="shortcut icon"
-	href="<%=request.getContextPath()%>/images/favicon.ico"
-	type="image/x-icon">
-<%-- 파비콘 --%>
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/page/include/css/header.css">
-<%-- header.css --%>
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/page/include/css/footer.css">
-<%-- footer.css --%>
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/fontium/css/fontium.css" />
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/page/mypage/css/mypage.css?ver=1">
-<%-- <link rel="stylesheet" href="./shop/puppyhome/controller_mypage/css/mypage.css">--%>
+
+<title>HealthJava 마이페이지</title>
+
+<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico" type="image/x-icon"> <%-- 파비콘 --%>
+<link rel="stylesheet" type="text/css" 	href="<%=request.getContextPath()%>/page/include/css/header.css"> <%-- header.css --%>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/footer.css"> <%-- footer.css --%>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/fontium/css/fontium.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/page/mypage/css/mypage.css?ver=1">
+
 <style type="text/css">
-
-   /*MyPage CSS*/
-
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
-
-section.notice {
-	padding: 20px 0;
-	/*추가*/
-	width: 1000px;
-	min-height: 200px;
-	margin: 2px;
-	/* border: solid 2px #000000;
-        background-color: #c2ff73; */
-}
-
-aside {
-	margin-top: 150px;
-	margin-left: 150px;
-	width: 180px;
-	min-height: 700px;
-	float: left;
-	text-align: left;
-}
-
-li{
-	padding-top: 10px;
-}
-
-
-nav {
-	min-height: 600px;
-	margin-bottom: 50px;
-	/*border: solid 2px #000000;
-	background-color: #67a9ff;*/
-}
-
-
-
-#subspan {
-	color: #808080;
-}
-
-div.page-title {
-	width: 1000px;
-	min-height: 10px;
-	padding: 0px 10px;
-	text-align: left;
-}
-
- h3.page-title {
-	font-size: 25px;
-	color: black;
-	font-weight: 400;
-	text-align: left;
-}
-
-.memBasicInfo {
-	height: 120px;
-	/*border: 1px solid red;*/
-	padding: 20px;
-	float: left;
-}
-
-#board-search .search-window {
-	width: 1000px;
-	min-height: 80px;
-	padding: 15px 0;
-	text-align: left;
-}
-/*
-#board-search .search-window .search-wrap {
-	position: relative;
-	margin: 0 auto;
-	width: 80%;
-	max-width: 564px;
-}
-
-#board-search .search-window .search-wrap input {
-	height: 40px;
-	width: 100%;
-	font-size: 14px;
-	padding: 7px 14px;
-	border: 1px solid #ccc;
-}
-
-#board-search .search-window .search-wrap input:focus {
-	border-color: #333;
-	outline: 0;
-	border-width: 1px;
-}
-
-#board-search .search-window .search-wrap .btn {
-	position: absolute;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	width: 108px;
-	padding: 0;
-	font-size: 16px;
-}
-*/
-.board-table {
-	font-size: 13px;
-	width: 100%;
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
-}
-/*
-.board-table a {
-	color: #333;
-	display: inline-block;
-	line-height: 1.4;
-	word-break: break-all;
-	vertical-align: middle;
-	text-decoration: none;
-} 
-
-.board-table a:hover {
-	text-decoration: underline;
-} */
-
-.board-table th {
-	text-align: center;
-	border-top-style: solid;
-	border-top-color: black;
-	border-top-width: 2px;
-}
-
-.board-table .th-num {
-	width: 100px;
-	text-align: center;
-}
-
-table th.th-title {
-	font-size: 15px;
-	width: 200px;
-}
-
-table td.td-title {
-	font-size: 13px;
-}
-
-table th.th-date {
-	font-size: 15px;
-	width: 80px;
-}
-
-table th.th-date1 {
-	font-size: 15px;
-	width: 50px;
-}
-
-table th.th-date2 {
-	font-size: 15px;
-	width: 150px;
-}
-
-
-.board-table .th-inputInfo {
 	
-}
-
-.board-table th, .board-table td {
-	padding-top: 14px;
-	padding-bottom: 14px;
-}
-
-.board-table tbody td {
-	border-top: 1px solid #e7e7e7;
-	text-align: center;
-	font-size: 15px;
-}
-
-.board-table tbody th {
-	font-size: 15px;
-	border-top: 1px solid #e7e7e7;
-	text-align: center;
-}
-
-.board-table thead th {
-	text-align: center;
-}
-
-.board-table tbody th p {
-	display: none;
-}
-
-.th-list{
-	text-align:center;
-	margin-top : 20px;
-	margin-bottom: 20px;
-	padding: 10px;
-	background-color: #F4A460;
-	border-bottom-color: white;
-	border-bottom-width: 0.2px;
-	border-bottom-style: solid;
+	/* 폰트 CSS */
+	@font-face {
+		font-family: 'KIMM_Bold';
+		src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2') format('woff2'); /* CDN 절대링크  */
+		font-weight: 700;
+		font-style: normal;
+	}
+	/* 되도록 안건드리는 영역 */
+	* {
+		box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		font-family: 'KIMM_Bold', sans-serif;
+	}
 	
-}
-
-.td-inputInfo{
-	text-align:left;
-	padding-left: 20px;
-	padding-top: 20px;
-}
-
-.td-infoPs{
- text-align : left;
- padding-left: 20px;
- padding-top: 5px;
- padding-bottom: 15px;
- border-bottom-color: gray;
- border-bottom-width: 0.2px;
- border-bottom-style: solid;
- font-size: 12px; 
- font-weight: bold;
- color: red;
- 
-}
-div.submitBtn{
-	float: left;
-	margin-left: 100px;
-}
-
-#updateBtn{
-padding: 20px 80px; 
-background-color: #FC5400; 
-border: 1px solid white; 
-color: white; font-size: 20px; font-weight: bold
-}
-
-
-#resetBtn{
-padding: 20px 120px;
-background-color: white;
-border: 1px solid lightgray;
-font-size: 20px; font-weight: bold;"
-}
-
-#withdrawalBtn{
-padding: 20px 100px; 
-background-color: #FC5400; 
-border: 1px solid white; 
-color: white; font-size: 20px; font-weight: bold
-}
-
-#changePwdBtn{
-padding: 20px 120px; 
-background-color: #FC5400; 
-border: 1px solid white; 
-color: white; font-size: 20px; font-weight: bold
-}
-
-/*
-.btn {
-	display: inline-block;
-	padding: 0 30px;
-	font-size: 15px;
-	font-weight: 400;
-	background: transparent;
-	text-align: center;
-	white-space: nowrap;
-	vertical-align: middle;
-	-ms-touch-action: manipulation;
-	touch-action: manipulation;
-	cursor: pointer;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	border: 1px solid transparent;
-	text-transform: uppercase;
-	-webkit-border-radius: 0;
-	-moz-border-radius: 0;
-	border-radius: 0;
-	-webkit-transition: all 0.3s;
-	-moz-transition: all 0.3s;
-	-ms-transition: all 0.3s;
-	-o-transition: all 0.3s;
-	transition: all 0.3s;
-}
-
-.btn-dark {
-	background: #555;
-	color: #fff;
-}
-
-.btn-dark:hover, .btn-dark:focus {
-	background: #373737;
-	border-color: #373737;
-	color: #fff;
-}
-
-.btn-dark {
-	background: #555;
-	color: #fff;
-}
-
-.btn-dark:hover, .btn-dark:focus {
-	background: #373737;
-	border-color: #373737;
-	color: #fff;
-}
-
-/* reset */
-* {
-	list-style: none;
-	text-decoration: none;
-	padding: 0;
-	margin: 0;
-	box-sizing: border-box;
-} 
-
-.clearfix:after {
-	content: '';
-	display: block;
-	clear: both;
-}
-
-div.myPageTitle {
-	width: 1100px;
-	margin: 0 auto;
-	border: 1px solid red;
-}
-
-div.container {
-	width: 1000px;
-	margin: 20px 0px;
-	/*border: 1px solid red;*/
-}
-
-.innerWrap {
-	width: 1000px;
-	min-height: 700px;
-	padding: 20px;
-	float: left;
-	margin-top: 100px;
-	margin-left: 100px;
-	/*	border: solid 2px #000000;
-	background-color: red;*/
-}
-
-.blind {
-	position: absolute;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	margin: -1px;
-	width: 1px;
-	height: 1px;
-}
-
-.clear {
-	clear: both; /*float 속성을 제거함으로써 잘못 된 ui 적용을 막아줌 */
-}
-
-
-a:link.liList {
-	text-decoration: none;
-	color: #808080;
-}
-
-a:visited.liList {
-	text-decoration: none;
-	color: #808080;
-}
-
-a:hover.liList{
-	text-decoration: underline;
-	color: #FC5400;
-}
-
-a:active.liList {
-	text-decoration: none;
-	color: #FC5400;
-}
-
-table a:link.orderList {
-	text-decoration: none; 
-	color: black;
-}
-
-table a:visited.orderList {
-	text-decoration: none;
-	color: black;
-}
-
-table a:hover.orderList{
-	text-decoration: underline;
-	color: #FC5400;
-	cursor: pointer;
-}
-
-table a:active.orderList {
-	text-decoration: none;
-	color: #FC5400;
-}
-
-
-/*footer*/
-@font-face {
-	font-family: 'KIMM_Bold';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2')
-		format('woff2');
-	font-weight: 700;
-	font-style: normal;
-}
-
-/* 메인 컨텐츠 부분 */
-#wrap {
-	width: 100%;
-	height: 100%;
-	text-align: center;
-}
-/* 폰트 CSS */
-@font-face {
-	font-family: 'KIMM_Bold';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2')
-		format('woff2'); /* CDN 절대링크  */
-	font-weight: 700;
-	font-style: normal;
-}
-/* 되도록 안건드리는 영역 */
-* {
-	box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-}
-
-html {
-	height: 100%;
-}
-
-body {
-	font-family: 'KIMM_Bold';
-	margin: 0px;
-	height: 100%;
-	padding: 0px;
-}
-
-header {
-	width: 100%;
-	position: fixed;
-	z-index: 2;
-}
-
-footer {
-	bottom: 0;
-	z-index: 5;
-	position: relative;
-}
-
-.wrap {
-	font-family: 'KIMM_Bold';
-	margin-top: -110px;
-	min-height: 100%;
-	position: relative;
-}
-
-.main {
-	font-family: 'KIMM_Bold';
-	width: 1400px;
-	height: 2000px;
-	/* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / section이랑 px 맞춰야함 */
-	position: relative;
-	top: 105px;
-	left: 50%;
-	transform: translateX(-50%);
-	background-color: rgb(179, 255, 213); /* 영역 보기 편하라고 배경색 지정함 : 연초록 */
-}
-/*   section {
-      height: 2000px;  UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / .main이랑 px 맞춰야함 
-      background-color: rgb(236, 226, 202);  영역 보기 편하라고 배경색 지정함 : 연주황 
-   }
-      */
-/* 클리어 */
-.clear {
-	clear: both;
-}
-/* 밑의 영역부터 css시작 */
-.container {
-	width: 100%;
-}
-/* 캐러셀 */
-#carouselExampleControls {
-	width: 1100px;
-	position: relative;
-	left: 50%;
-	transform: translateX(-50%);
-}
-
-/** {
-	border: 1px solid black;
-}*/
-
-/*a링크 효과*/
+	html {
+		height: 100%;
+	}
+	
+	body {
+		margin: 0px;
+		height: 100%;
+		padding: 0px;
+	}
+	
+	header {
+		width: 100%;
+		position: fixed;
+		z-index: 2;
+	}
+	
+	footer {
+		bottom: 0;
+		z-index: 5;
+		position: relative;
+	}
+	
+	.wrap {
+		margin-top: -110px;
+		min-height: 100%;
+		position: relative;
+	}
+	
+	.main {
+		width: 1600px;
+		height: auto;
+		position: relative;
+		top: 105px;
+		left: 50%;
+		transform: translateX(-50%);
+	}	
+	
+	/* 클리어 */
+	.clear {
+		clear: both;
+	}
+	/* 밑의 영역부터 css시작 */
+	.container {
+		width: 100%;
+	}
+	/*MyPage CSS*/
+	table {
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
+	section.notice {
+		width: 1000px;
+		min-height: 200px;
+	}
+	
+	.aside_left {
+		margin-top: 45px;
+		margin-left: 60px;
+		width: 180px;
+		min-height: 700px;
+		float: left;
+		text-align: left;
+	}
+	
+	.aside_left nav {
+		min-height: 600px;
+		margin-bottom: 50px;
+	}
+	
+	.aside_left li {
+		padding-top: 8.2px;
+		padding-bottom: 2px;
+		list-style: none;
+	}
+	
+	li{
+		padding-top: 10px;
+	}
+	
+	nav {
+		min-height: 600px;
+		margin-bottom: 50px;
+	}
+	
+	#subspan {
+		color: #808080;
+	}
+	
+	div.page-title {
+		width: 1000px;
+		min-height: 10px;
+		padding: 0px 10px;
+		text-align: left;
+	}
+	
+	h3.page-title {
+		font-size: 25px;
+		color: black;
+		font-weight: 400;
+		text-align: left;
+	}
+	
+	.memBasicInfo {
+		height: 120px;
+		padding: 20px;
+		float: left;
+	}
+	
+	#board-search .search-window {
+		width: 1000px;
+		min-height: 80px;
+		padding: 15px 0;
+		text-align: left;
+	}
+	
+	.board-table {
+		font-size: 13px;
+		width: 100%;
+		border-top: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+	}
+	
+	.board-table th {
+		text-align: center;
+		border-top-style: solid;
+		border-top-color: black;
+		border-top-width: 2px;
+	}
+	
+	.board-table .th-num {
+		width: 100px;
+		text-align: center;
+	}
+	
+	table th.th-title {
+		font-size: 15px;
+		width: 200px;
+	}
+	
+	table td.td-title {
+		font-size: 13px;
+	}
+	
+	table th.th-date {
+		font-size: 15px;
+		width: 80px;
+	}
+	
+	table th.th-date1 {
+		font-size: 15px;
+		width: 50px;
+	}
+	
+	table th.th-date2 {
+		font-size: 15px;
+		width: 150px;
+	}
+	
+	.board-table .th-inputInfo {
+		
+	}
+	
+	.board-table th, .board-table td {
+		padding-top: 14px;
+		padding-bottom: 14px;
+	}
+	
+	.board-table tbody td {
+		border-top: 1px solid #e7e7e7;
+		text-align: center;
+		font-size: 15px;
+	}
+	
+	.board-table tbody th {
+		font-size: 15px;
+		border-top: 1px solid #e7e7e7;
+		text-align: center;
+	}
+	
+	.board-table tbody th.nonList {
+		font-size: 15px;
+		border-top: 1px solid #e7e7e7;
+		text-align: center;
+	    padding: 140px 0 36px;
+	    background: url(../images/bg_no_list.png) no-repeat 50% 40px;
+	}
+	
+	.board-table thead th {
+		text-align: center;
+	}
+	
+	.board-table tbody th p {
+		display: none;
+	}
+	
+	.th-list{
+		text-align:center;
+		margin-top : 20px;
+		margin-bottom: 20px;
+		padding: 10px;
+		background-color: #F4A460;
+		border-bottom-color: white;
+		border-bottom-width: 0.2px;
+		border-bottom-style: solid;
+		
+	}
+	
+	.td-inputInfo{
+		text-align:left;
+		padding-left: 20px;
+		padding-top: 20px;
+	}
+	
+	.td-infoPs{
+		text-align : left;
+		padding-left: 20px;
+		padding-top: 5px;
+		padding-bottom: 15px;
+		border-bottom-color: gray;
+		border-bottom-width: 0.2px;
+		border-bottom-style: solid;
+		font-size: 12px; 
+		font-weight: bold;
+		color: red; 
+	}
+	
+	div.submitBtn{
+		float: left;
+		margin-left: 100px;
+	}
+	
+	#updateBtn{
+		padding: 20px 80px; 
+		background-color: #FC5400; 
+		border: 1px solid white; 
+		color: white; 
+		font-size: 20px; 
+		font-weight: bold
+	}
+	
+	#resetBtn{
+		padding: 20px 120px;
+		background-color: white;
+		border: 1px solid lightgray;
+		font-size: 20px; 
+		font-weight: bold;
+	}
+	
+	#withdrawalBtn{
+		padding: 20px 100px; 
+		background-color: #FC5400; 
+		border: 1px solid white; 
+		color: white; 
+		font-size: 20px; 
+		font-weight: bold
+	}
+	
+	#changePwdBtn{
+		padding: 20px 120px; 
+		background-color: #FC5400; 
+		border: 1px solid white; 
+		color: white; 
+		font-size: 20px; 
+		font-weight: bold
+	}
+	
+	/* reset */
+	* {
+		list-style: none;
+		text-decoration: none;
+		padding: 0;
+		margin: 0;
+		box-sizing: border-box;
+	} 
+	
+	.clearfix:after {
+		content: '';
+		display: block;
+		clear: both;
+	}
+	
+	div.myPageTitle {
+		width: 1100px;
+		margin: 0 auto;
+		border: 1px solid red;
+	}
+	
+	div.container {
+		width: 1200px;
+		margin: 20px 0px;
+	}
+	
+	.innerWrap {
+		width: 1000px;
+		min-height: 700px;
+		padding: 20px;
+		float: left;
+		margin-top: 100px;
+		margin-left: 100px;
+	}
+	
+	.blind {
+		position: absolute;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		margin: -1px;
+		width: 1px;
+		height: 1px;
+	}
+	
+	.clear {
+		clear: both; /*float 속성을 제거함으로써 잘못 된 ui 적용을 막아줌 */
+	}
+	
+		/* a 링크 : 메뉴바 */	
+	a:link.liList {
+		text-decoration: none;
+		color: #a399a2;
+	}
+	
+	a:visited.liList {
+		text-decoration: none;
+		color: #a399a2;
+	}
+	
+	a:hover.liList{
+		text-decoration: underline;
+		color: #B21948;
+	}
+	
+	a:active.liList {
+		text-decoration: none;
+		color: #B21948;
+	}
+	
+	table a:link.orderList {
+		text-decoration: none; 
+		color: black;
+	}
+	
+	table a:visited.orderList {
+		text-decoration: none;
+		color: black;
+	}
+	
+	table a:hover.orderList{
+		text-decoration: underline;
+		color: #FC5400;
+		cursor: pointer;
+	}
+	
+	table a:active.orderList {
+		text-decoration: none;
+		color: #FC5400;
+	}
+	/* 페이징 처리 */
+	/* 페이징 전체 틀 */
+	.pagination-container {
+		margin: 10px auto;
+		display: flex;
+	    justify-content: center;
+	    width: 1200px;
+	}
+	
+	.pagination {
+		position: relative;
+	}
+	/* 'PREV' 전체 틀 */
+	#pagination a {
+		position: relative;
+		display: inline-block;
+		color: #B21948; /* 글자색상 */
+		text-decoration: none;
+		font-size: 1.2rem;
+		padding: 8px 16px 10px;
+	}
+	/* 'PREV' 부분 */
+	#pagination a:before {
+		z-index: -1;
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		content: "";
+		top: 0;
+		left: 0;
+		background-color: #B21948;
+		border-radius: 24px;
+		-webkit-transform: scale(0);
+		transform: scale(0);
+		transition: all 0.2s;
+	}
+	#pagination a:hover, #pagination a #pagination-active {
+		color: #fff;
+	}
+	
+	#pagination a:hover:before, #pagination a #pagination-active:before {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
+	
+	#pagination #pagination-active {
+		color: #fff;
+	}
+	
+	#pagination #pagination-active:before {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
+	/*'NEXT' 전체 틀 */
+	#pagination-newer {
+		margin-right: 50px;
+	}
+	
+	#pagination-older {
+		margin-left: 50px;
+	}
+	.productList tr{
+		border-bottom: 1px solid #B21948;
+	}
+	.meau {
+		padding-top: 30px;
+		padding-left: 800px;
+		font-family: 'KIMM_Bold';
+	}
+	
+	.meau a {
+		color: white;
+		text-decoration: none;
+	}
+	select {
+		padding : 5px 5px;
+	}
 </style>
 
 <script type="text/javascript">
@@ -566,47 +495,37 @@ function cancel_btn() {
 			<%-- header include --%>
 			<jsp:include page="../include/header.jsp" />
 		</header>
-		<%-- 본문 영역(ui깨질시 본인이 ui 수정바람..) --%>
+		
+		<%-- 메뉴바 --%>
+		<section>
+			<div class="main">
+				<%-- main 화면 상단 캐러셀 (캐러셀 필요 없는 페이지는 삭제 바람!)--%>
+				<aside class="aside_left">
+					<nav>
+						<ul>
+							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"><a href="myPage_Main" style="text-decoration: none; color: black;">나의 쇼핑</a></li>
+							<li><a href="myPage_orderCancel" class="liList" style="color: #B21948;">주문ㆍ배송</a></li>
+							<li><a href="myPage_orderDetails" class="liList">교환/반품/환불</a></li>
+							<li><a href="myPage_like" class="liList">찜 목록</a></li>
+							<li><a href="myPage_basket" class="liList">장바구니</a></li>
+							<li style="margin-bottom: 30px;"><a href="myPage_inquiry" class="liList">문의 내역</a></li>
+	
+							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
+							<li><a href="myPage_updateInfo" class="liList">회원정보 변경</a></li>
+							<li><a href="myPage_changePwd" class="liList">비밀번호 변경</a></li>
+							<li><a href="myPage_user_Withdrawal" class="liList">회원탈퇴</a></li>
+							<li style="margin-bottom: 30px;"><a href="myPage_updateAddress" class="liList">배송지 관리</a></li>
+							
+							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 상품후기</li>
+							<li><a href="myPage_review" class="liList">나의 상품후기</a></li>
+						</ul>
+					</nav>
+				</aside>
 
 
-		<aside>
-			<nav>
-				<ul>
-					<li
-						style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;">
-						나의 쇼핑</li>
-					<li><a href="myPage_Main" class="liList"
-						style="color: #FC5400; font-weight: bold;">주문ㆍ배송</a></li>
-					<li><a href="myPage_orderCancel" class="liList">주문취소</a></li>
-					<li><a href="javascript:void(0);" onclick="openPopup_company_introduce();" class="liList">교환/반품하기</a></li>
-					<li><a href="like" class="liList">찜 목록</a></li>
-					<li style="margin-bottom: 30px;"><a href="basket"
-						class="liList">장바구니</a></li>
-
-					<li
-						style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;">
-						회원 정보</li>
-					<li><a href="myPage_updateInfo" class="liList">회원정보 변경</a></li>
-					<li><a href="myPage_changePwd" class="liList">비밀번호 변경</a></li>
-					<li><a href="myPage_user_Withdrawal" class="liList">회원탈퇴</a></li>
-					<li style="margin-bottom: 30px;"><a href="myPage_updateAddress"
-						class="liList">배송지 관리</a></li>
-
-					<li
-						style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;">
-						나의 상품후기</li>
-					<li><a href="review" class="liList">나의 상품후기</a></li>
-				</ul>
-			</nav>
-		</aside>
-
-
-		<%-- 본문 영역(ui깨질시 본인이 ui 수정바람..) --%>
+		<%-- 본문 영역 --%>
 		<div class="innerWrap">
-
-			<div class="clear"></div>
-
-			<!-- board seach area -->
+			<%-- board seach area --%>
 			<section class="notice">
 				<div class="page-title">
 					<b style="text-align: left; font-size: 20px;">주문내역</b><br>
@@ -622,38 +541,139 @@ function cancel_btn() {
 									<th scope="col" class="th-title">제품명</th>
 									<th scope="col" class="th-date">주문일자</th>
 									<th scope="col" class="th-date">주문수량</th>
-									<th scope="col" class="th-date">제품당 가격</th>
+									<th scope="col" class="th-date">송장번호</th>
 									<th scope="col" class="th-date">총 주문금액</th>
 									<th scope="col" class="th-date2">주문상태</th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:if test="${!empty olist }">
-									<c:forEach var="o" items="${olist}">
+								<%-- <c:if test="${!empty olist }"> --%>
+									<%-- <c:forEach var="o" items="${olist}"> --%>
 										<tr>
-											<td><input type="hidden" name="order_no" value="${o.order_no}" />
-											${o.order_no}</td>
-											<th><a class="orderList" onclick="location='product_dsc.shop?product_title=${o.product_title}'">${o.product_title}</a></th>
-											<td>${o.order_date}</td>
-											<td>${o.order_cnt}개</td>
-											<td>${o.product_price}원</td>
-											<td>${o.total_price}원</td>
-											<td><input type="button" id="order_cancel" onclick="return cancel_btn()" value="주문취소"></td>
+											<td>
+											<%-- <input type="hidden" name="order_no" value="${o.order_no}" /> --%>
+											1</td>
+											<th>소고기맛 개껌</th>
+											<td>2023.05.16</td>
+											<td>1개</td>
+											<td>
+											<a href="https://www.cjlogistics.com/ko/tool/parcel/tracking" style="text-decoration: none;">
+											1234567-1234567</a></td>
+											<td>10,000원</td>
+											<td>접수완료</td>
 										</tr>
-									</c:forEach>
-								</c:if>
+									<%-- </c:forEach>
+								</c:if> --%>
+								<%-- <c:if test="${empty olist }">
+									<tr>
+										<th colspan="7"  class="nonList">현재 주문한 제품이 없습니다.</th>
+									</tr>
+								</c:if> --%>
+								
 							</tbody>
 						</table>
 						</form>
 					</div>
 				</div>
+				
+				<%-- 페이징 처리 --%>
+				<div id="pagination" style="width: 1200px;">
+					<!-- 검색 칸 공백 시 페이징 사라지지 않게 -->
+	               <c:if test="${find_name == ''}"> <%--검색필드와 검색어가 없는 경우 --%>
+	                 <c:if test="${page <= 1}">
+	                  PREV&nbsp;
+	                 </c:if>
+	                 <c:if test="${page>1}">
+	                  <a href="myPage_orderCancel?page=${page-1}">PREV</a>&nbsp;
+	                 </c:if>
+	                 
+	                 <%--현재 쪽번호 출력 --%>
+	                 <c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
+	                   <c:if test="${a == page}"> <%-- 현재 페이지가 선택된 경우 --%>
+	                      [&nbsp;${a}&nbsp;]
+	                   </c:if>
+	                   <c:if test="${a != page}"> <%--현재 쪽번호가 선택 안 된 경우--%>
+	                    <a href="myPage_orderCancel?page=${a}">[&nbsp;${a}&nbsp;]</a>&nbsp;
+	                   </c:if>
+	                 </c:forEach>
+	                   
+	                
+	                <c:if test="${page >= maxpage}">
+	                  &nbsp;NEXT
+	                </c:if>
+	                <c:if test="${page < maxpage}">
+	                 <a href="myPage_orderCancel?page=${page+1}">NEXT</a>
+	                </c:if>
+	               </c:if>
+	               <!-- 검색 칸 공백 시 페이징 사라지지 않게 -->
+				    <%--검색 전 페이징 --%>
+				    <c:if test="${(empty find_field) && (empty find_name)}"> <%--검색필드와 검색어가 없는 경우 --%>
+				     <c:if test="${page <= 1}">
+				      PREV&nbsp;
+				     </c:if>
+				     <c:if test="${page>1}">
+				      <a href="myPage_orderCancel?page=${page-1}">PREV</a>&nbsp;
+				     </c:if>
+				     
+				     <%--현재 쪽번호 출력 --%>
+				     <c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
+				       <c:if test="${a == page}"> <%-- 현재 페이지가 선택된 경우 --%>
+				       	[&nbsp;${a}&nbsp;]
+				       </c:if>
+				       <c:if test="${a != page}"> <%--현재 쪽번호가 선택 안 된 경우--%>
+				        <a href="myPage_orderCancel?page=${a}">[&nbsp;${a}&nbsp;]</a>&nbsp;
+				       </c:if>
+				     </c:forEach>
+				       
+				    <c:if test="${page >= maxpage}">
+				      &nbsp;NEXT
+				    </c:if>
+				    <c:if test="${page < maxpage}">
+				     <a href="myPage_orderCancel?page=${page+1}">NEXT</a>
+				    </c:if>
+				   </c:if>
+				    
+				    <%--검색이후 페이징(쪽나누기) --%>
+				    <c:if test="${(!empty find_field) && (!empty find_name)}"> <%--검색필드와 검색어가 있는 경우 --%>
+				     <c:if test="${page <= 1}">
+				      PREV&nbsp;
+				     </c:if>
+				     <c:if test="${page>1}">
+				      <a href="myPage_orderCancel?page=${page-1}&find_field=${find_field}&find_name=${find_name}">PREV</a>&nbsp;
+				      <%-- &(엠퍼센트) 구분기호로 구분하면서 find_field=검색필드&find_name= 검색어를 get방식으로 전달해야 검색 이후 페이징 목록을 유지한다.그렇지 않으면 검색전 전체 페이징 목록으로 이동해서 검색 효과가 사라진다. --%>
+				     </c:if>
+				     
+				     <%--현재 쪽번호 출력 --%>
+				     <c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
+				       <c:if test="${a == page}"> <%-- 현재 페이지가 선택된 경우 --%>
+				        [&nbsp;${a}&nbsp;]
+				       </c:if>
+				       <c:if test="${a != page}"> <%--현재 쪽번호가 선택 안 된 경우--%>
+				        <a href="myPage_orderCancel?page=${a}&find_field=${find_field}&find_name=${find_name}">[&nbsp;${a}&nbsp;]</a>&nbsp;
+				       </c:if>
+				     </c:forEach>      
+				    
+				    <c:if test="${page >= maxpage}">
+				      &nbsp;NEXT
+				    </c:if>
+				    <c:if test="${page < maxpage}">
+				     <a href="myPage_orderCancel?page=${page+1}&find_field=${find_field}&find_name=${find_name}">NEXT</a>
+				    </c:if>
+				   </c:if> 
+				   </div> <%-- end 페이징처리 --%>
+				 </section> 
+				</div>
+				
+				</div>
 				<%-- top버튼 삭제 X --%>
 				<div id="topBtn">
 					<span class="fonti um-arrow-circle-up um-3x icon"></span>TOP
-				</div>
-			</section>
-		</div>
+				</div>				
+			
+		</section>
+		
 		<div class="clear"></div>
+		
 		<%-- 푸터 영역 --%>
 		<footer>
 			<!-- footer -->

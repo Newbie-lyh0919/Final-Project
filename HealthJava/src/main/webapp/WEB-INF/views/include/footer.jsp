@@ -8,21 +8,83 @@
 <title>Footer</title>
 <link rel="stylesheet" type="text/css" href="./css/footer.css">
 <style type="text/css">
-/* 폰트 CSS */
-@font-face {
-   font-family: 'KIMM_Bold';
-   src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2') format('woff2');
-   font-weight: 700;
-   font-style: normal;
-}
-
-/* 메인 컨텐츠 부분 */
-#wrap {
-   width: 100%;
-   height: 100%;
-   text-align: center;
-}
-
+	/* 푸터 박스 부분 */
+	#footerbox {
+		width: 100%;
+		height: 200px;
+	    font-size: x-small;
+	    font-family: 'KIMM_Bold', sans-serif;
+	    background-color: rgb(241, 241, 241);
+	}
+	/* 푸터 박스 안의 틀 */
+	#innerbox {
+	    width: 1300px;
+	    height: 180px;
+	    margin: auto;
+	}
+	/* 푸터 카테고리 관련 */
+	#categorybox {
+	    height: 30px;
+	    float: left;
+	    margin: 40px 0px 15px 0px;
+	}
+	#categorybox ul {
+	    padding: 0;
+	}
+	#categorybox li {
+	    list-style: none;
+	    list-style-type: none;
+	    float: left;
+	    margin-right: 30px;
+	}
+	#categorybox a {
+	    font-size: 12.5px;
+	    text-decoration: none;
+	    color: black;
+	}
+	/* 푸터 안내글 부분 */
+	#infobox {
+	    width: 1100px;
+	    height: 65px;
+	    float: left;
+	    text-align: left;
+	}
+	/* 나이스페이 마크 관련 */
+	#checkbox {
+	    width: 65px;
+	    height: 65px;
+	    text-align: center;
+	    float: right;
+	    margin-right: 30px;
+	}
+	input#checkIcon {
+	    background-image: url(../images/nicepay.png);
+	    background-color: transparent;
+	    background-repeat: no-repeat;
+	    background-position: 0px 0px;
+	    border: none;
+	    cursor: pointer;
+	    width: 55px;
+	    height: 64px;
+	}
+	/* 클리어 */
+	.clear {
+		clear: both;
+	} 
+	/* 폰트 CSS */
+	@font-face {
+	   font-family: 'KIMM_Bold';
+	   src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2') format('woff2');
+	   font-weight: 700;
+	   font-style: normal;
+	}
+	
+	/* 메인 컨텐츠 부분 */
+	#wrap {
+	   width: 100%;
+	   height: 100%;
+	   text-align: center;
+	}
 </style>
 </head>
 <body>
