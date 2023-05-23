@@ -5,307 +5,323 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Product">
-	
-	<select id="product_list" resultType="shop.HealthJava.vo.ProductVO" parameterType="String" >
+
+	<select id="product_list"
+		resultType="shop.HealthJava.vo.ProductVO" parameterType="String">
 		<!-- parameterType속성은 전달인자 타입 -->
-		
+
 		<!-- parameterType속성은 전달인자 타입 -->
-select * from 
-(select rowNum rNum, product_cont1, product_title, product_price
-from (select * from tbl_product 
-<where>
-<if test="search_field == ''">
-<!-- 검색조건이 없어서 총레코드 개수 -->
-</if>
-<if test="search_field == 'product_title'">
-<!-- 검색 조건이 제목인 경우 -->
-and product_title like #{search_field} <!-- like는 오라클 검색
-연산자 -->
-</if>
-<if test="search_field == 'product_maker'">
-and product_maker like #{search_field}
-</if>
-</where> 
-)) 
-where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
-		
+		select * from
+		(select rowNum rNum, product_cont1, product_title, product_price
+		from (select * from tbl_product
+		<where>
+			<if test="search_field == ''">
+				<!-- 검색조건이 없어서 총레코드 개수 -->
+			</if>
+			<if test="search_field == 'product_title'">
+				<!-- 검색 조건이 제목인 경우 -->
+				and product_title like #{search_field} <!-- like는 오라클 검색 연산자 -->
+			</if>
+			<if test="search_field == 'product_maker'">
+				and product_maker like #{search_field}
+			</if>
+		</where>
+		))
+		where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
+
 	</select>
-	
-	
-	 <!-- 검색 전후 레코드 개수 -->
-    <select id="product_count_all" resultType="int">
-     select count(product_no) from tbl_product where product_type='짐볼'
-     <where>
-     <if test="search_field == ''">
-      <!-- 검색조건이 없어서 총레코드 개수 -->
-     </if>
-     <if test="search_field == 'product_title'">
-      <!-- 검색 조건이 제목인 경우 -->
-     and product_title like #{search_field} <!-- like는 오라클 검색
-      연산자 -->
-     </if>
-     <if test="search_field == 'product_maker'">
-     and product_maker like #{search_field}
-     </if>
-     </where>
-    </select>
-    
-     <!-- 검색 전후 레코드 개수 -->
-    <select id="product_count1" resultType="int">
-     select count(product_no) from tbl_product where product_type2=#{kind}
-     <where>
-     <if test="search_field == ''">
-      <!-- 검색조건이 없어서 총레코드 개수 -->
-     </if>
-     <if test="search_field == 'product_title'">
-      <!-- 검색 조건이 제목인 경우 -->
-     and product_title like #{search_field} <!-- like는 오라클 검색
-      연산자 -->
-     </if>
-     <if test="search_field == 'product_maker'">
-     and product_maker like #{search_field}
-     </if>
-     </where>
-    </select>
-	
-	
-	<select id="product_list_test" resultType="product" parameterType="product">
-<!-- parameterType속성은 전달인자 타입 -->
-select * from 
-(select rowNum rNum, product_no, product_cont1, product_title, product_price
-from (select * from tbl_product where product_type='짐볼' 
-<where>
-<if test="search_field == ''">
-<!-- 검색조건이 없어서 총레코드 개수 -->
-</if>
-<if test="search_field == 'product_title'">
-<!-- 검색 조건이 제목인 경우 -->
-and product_title like #{search_field} <!-- like는 오라클 검색
-연산자 -->
-</if>
-<if test="search_field == 'product_maker'">
-and product_maker like #{search_field}
-</if>
-</where> 
-)) 
-where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
-</select>
-	
-		<select id="product_list_test1" resultType="product" parameterType="product">
-<!-- parameterType속성은 전달인자 타입 -->
-select * from 
-(select rowNum rNum, product_no, product_cont1, product_title, product_price
-from (select * from tbl_product where product_type2=#{product_type2}
-<where>
-<if test="search_field == ''">
-<!-- 검색조건이 없어서 총레코드 개수 -->
-</if>
-<if test="search_field == 'product_title'">
-<!-- 검색 조건이 제목인 경우 -->
-and product_title like #{search_field} <!-- like는 오라클 검색
-연산자 -->
-</if>
-<if test="search_field == 'product_maker'">
-and product_maker like #{search_field}
-</if>
-</where> 
-)) 
-where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
-</select>
 
-		
-	<select id="product_list_test2" resultType="product" parameterType="product">
-<!-- parameterType속성은 전달인자 타입 -->
-select * from 
-(select rowNum rNum, product_no, product_cont1, product_title, product_price
-from (select * from tbl_product where product_type='짐볼' order by product_price asc
-<where>
-<if test="search_field == ''">
-<!-- 검색조건이 없어서 총레코드 개수 -->
-</if>
-<if test="search_field == 'product_title'">
-<!-- 검색 조건이 제목인 경우 -->
-and product_title like #{search_field} <!-- like는 오라클 검색
-연산자 -->
-</if>
-<if test="search_field == 'product_maker'">
-and product_maker like #{search_field}
-</if>
-</where> 
-)) 
-where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
-</select>
 
-<select id="product_list_test3" resultType="product" parameterType="product">
-<!-- parameterType속성은 전달인자 타입 -->
-select * from 
-(select rowNum rNum, product_no, product_cont1, product_title, product_price
-from (select * from tbl_product where product_type='짐볼' order by product_price desc
-<where>
-<if test="search_field == ''">
-<!-- 검색조건이 없어서 총레코드 개수 -->
-</if>
-<if test="search_field == 'product_title'">
-<!-- 검색 조건이 제목인 경우 -->
-and product_title like #{search_field} <!-- like는 오라클 검색
-연산자 -->
-</if>
-<if test="search_field == 'product_maker'">
-and product_maker like #{search_field}
-</if>
-</where> 
-)) 
-where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
-</select>
+	<!-- 검색 전후 레코드 개수 -->
+	<select id="product_count_all" resultType="int">
+		select count(product_no) from tbl_product where product_type='짐볼'
+		<where>
+			<if test="search_field == ''">
+				<!-- 검색조건이 없어서 총레코드 개수 -->
+			</if>
+			<if test="search_field == 'product_title'">
+				<!-- 검색 조건이 제목인 경우 -->
+				and product_title like #{search_field} <!-- like는 오라클 검색 연산자 -->
+			</if>
+			<if test="search_field == 'product_maker'">
+				and product_maker like #{search_field}
+			</if>
+		</where>
+	</select>
 
-	<select id="product_list_test4" resultType="product" parameterType="product">
-<!-- parameterType속성은 전달인자 타입 -->
-select * from 
-(select rowNum rNum, product_no, product_cont1, product_title, product_price
-from (select * from tbl_product where product_type2=#{product_type2} order by product_price asc
-<where>
-<if test="search_field == ''">
-<!-- 검색조건이 없어서 총레코드 개수 -->
-</if>
-<if test="search_field == 'product_title'">
-<!-- 검색 조건이 제목인 경우 -->
-and product_title like #{search_field} <!-- like는 오라클 검색
-연산자 -->
-</if>
-<if test="search_field == 'product_maker'">
-and product_maker like #{search_field}
-</if>
-</where> 
-)) 
-where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
-</select>
+	<!-- 검색 전후 레코드 개수 -->
+	<select id="product_count1" resultType="int">
+		select count(product_no) from tbl_product where product_type2=#{kind}
+		<where>
+			<if test="search_field == ''">
+				<!-- 검색조건이 없어서 총레코드 개수 -->
+			</if>
+			<if test="search_field == 'product_title'">
+				<!-- 검색 조건이 제목인 경우 -->
+				and product_title like #{search_field} <!-- like는 오라클 검색 연산자 -->
+			</if>
+			<if test="search_field == 'product_maker'">
+				and product_maker like #{search_field}
+			</if>
+		</where>
+	</select>
 
-	<select id="product_list_test5" resultType="product" parameterType="product">
-<!-- parameterType속성은 전달인자 타입 -->
-select * from 
-(select rowNum rNum, product_no, product_cont1, product_title, product_price
-from (select * from tbl_product where product_type2=#{product_type2} order by product_price desc
-<where>
-<if test="search_field == ''">
-<!-- 검색조건이 없어서 총레코드 개수 -->
-</if>
-<if test="search_field == 'product_title'">
-<!-- 검색 조건이 제목인 경우 -->
-and product_title like #{search_field} <!-- like는 오라클 검색
-연산자 -->
-</if>
-<if test="search_field == 'product_maker'">
-and product_maker like #{search_field}
-</if>
-</where> 
-)) 
-where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
-</select>
-	
-	
-	<select id="product_list1" resultType="shop.HealthJava.vo.ProductVO" parameterType="String" >
+
+	<select id="product_list_test" resultType="product"
+		parameterType="product">
 		<!-- parameterType속성은 전달인자 타입 -->
-		
+		select * from
+		(select rowNum rNum, product_no, product_cont1, product_title, product_price
+		from (select * from tbl_product where product_type='짐볼'
+		<where>
+			<if test="search_field == ''">
+				<!-- 검색조건이 없어서 총레코드 개수 -->
+			</if>
+			<if test="search_field == 'product_title'">
+				<!-- 검색 조건이 제목인 경우 -->
+				and product_title like #{search_field} <!-- like는 오라클 검색 연산자 -->
+			</if>
+			<if test="search_field == 'product_maker'">
+				and product_maker like #{search_field}
+			</if>
+		</where>
+		))
+		where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
+	</select>
+
+	<select id="product_list_test1" resultType="product"
+		parameterType="product">
+		<!-- parameterType속성은 전달인자 타입 -->
+		select * from
+		(select rowNum rNum, product_no, product_cont1, product_title, product_price
+		from (select * from tbl_product where product_type2=#{product_type2}
+		<where>
+			<if test="search_field == ''">
+				<!-- 검색조건이 없어서 총레코드 개수 -->
+			</if>
+			<if test="search_field == 'product_title'">
+				<!-- 검색 조건이 제목인 경우 -->
+				and product_title like #{search_field} <!-- like는 오라클 검색 연산자 -->
+			</if>
+			<if test="search_field == 'product_maker'">
+				and product_maker like #{search_field}
+			</if>
+		</where>
+		))
+		where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
+	</select>
+
+
+	<select id="product_list_test2" resultType="product"
+		parameterType="product">
+		<!-- parameterType속성은 전달인자 타입 -->
+		select * from
+		(select rowNum rNum, product_no, product_cont1, product_title, product_price
+		from (select * from tbl_product where product_type='짐볼' order by
+		product_price asc
+		<where>
+			<if test="search_field == ''">
+				<!-- 검색조건이 없어서 총레코드 개수 -->
+			</if>
+			<if test="search_field == 'product_title'">
+				<!-- 검색 조건이 제목인 경우 -->
+				and product_title like #{search_field} <!-- like는 오라클 검색 연산자 -->
+			</if>
+			<if test="search_field == 'product_maker'">
+				and product_maker like #{search_field}
+			</if>
+		</where>
+		))
+		where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
+	</select>
+
+	<select id="product_list_test3" resultType="product"
+		parameterType="product">
+		<!-- parameterType속성은 전달인자 타입 -->
+		select * from
+		(select rowNum rNum, product_no, product_cont1, product_title, product_price
+		from (select * from tbl_product where product_type='짐볼' order by
+		product_price desc
+		<where>
+			<if test="search_field == ''">
+				<!-- 검색조건이 없어서 총레코드 개수 -->
+			</if>
+			<if test="search_field == 'product_title'">
+				<!-- 검색 조건이 제목인 경우 -->
+				and product_title like #{search_field} <!-- like는 오라클 검색 연산자 -->
+			</if>
+			<if test="search_field == 'product_maker'">
+				and product_maker like #{search_field}
+			</if>
+		</where>
+		))
+		where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
+	</select>
+
+	<select id="product_list_test4" resultType="product"
+		parameterType="product">
+		<!-- parameterType속성은 전달인자 타입 -->
+		select * from
+		(select rowNum rNum, product_no, product_cont1, product_title, product_price
+		from (select * from tbl_product where product_type2=#{product_type2}
+		order by product_price asc
+		<where>
+			<if test="search_field == ''">
+				<!-- 검색조건이 없어서 총레코드 개수 -->
+			</if>
+			<if test="search_field == 'product_title'">
+				<!-- 검색 조건이 제목인 경우 -->
+				and product_title like #{search_field} <!-- like는 오라클 검색 연산자 -->
+			</if>
+			<if test="search_field == 'product_maker'">
+				and product_maker like #{search_field}
+			</if>
+		</where>
+		))
+		where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
+	</select>
+
+	<select id="product_list_test5" resultType="product"
+		parameterType="product">
+		<!-- parameterType속성은 전달인자 타입 -->
+		select * from
+		(select rowNum rNum, product_no, product_cont1, product_title, product_price
+		from (select * from tbl_product where product_type2=#{product_type2}
+		order by product_price desc
+		<where>
+			<if test="search_field == ''">
+				<!-- 검색조건이 없어서 총레코드 개수 -->
+			</if>
+			<if test="search_field == 'product_title'">
+				<!-- 검색 조건이 제목인 경우 -->
+				and product_title like #{search_field} <!-- like는 오라클 검색 연산자 -->
+			</if>
+			<if test="search_field == 'product_maker'">
+				and product_maker like #{search_field}
+			</if>
+		</where>
+		))
+		where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
+	</select>
+
+
+	<select id="product_list1"
+		resultType="shop.HealthJava.vo.ProductVO" parameterType="String">
+		<!-- parameterType속성은 전달인자 타입 -->
+
 		select * from tbl_product where product_type2=#{kind}
-		
+
 	</select>
-	
+
 
 	<select id="product_content" resultType="product">
-    	select * from tbl_product where product_no=#{product_no}
-    </select>
-    
-    
-    <insert id="product_insert" >
-     <!-- parameterType속성은 전달인자 타입.생략가능 -->
-     insert into tbl_product
-    
-    (product_no, product_title, product_price, product_maker, product_type, product_type2, 
-    product_cont1, product_cont2, product_cont3, product_cont4, 
-    product_cont5, product_cont6, product_cont7, product_cont8)
-    
-    values(product_no_seq.nextval,#{product_title}, #{product_price},#{product_maker} ,#{product_type},#{product_type2}, 
-    #{product_cont1}, #{product_cont2}, #{product_cont3}, #{product_cont4}, 
-    #{product_cont5}, #{product_cont6}, #{product_cont7}, #{product_cont8})
-    </insert>
-    
-    <delete id="product_delete">
-    	delete from tbl_product where product_no=#{product_no}
-    </delete>
-    
+		select * from tbl_product where product_no=#{product_no}
+	</select>
+
+
+	<insert id="product_insert">
+		<!-- parameterType속성은 전달인자 타입.생략가능 -->
+		insert into tbl_product
+
+		(product_no, product_title, product_price, product_maker, product_type,
+		product_type2,
+		product_cont1, product_cont2, product_cont3, product_cont4,
+		product_cont5, product_cont6, product_cont7, product_cont8)
+
+		values(product_no_seq.nextval,#{product_title},
+		#{product_price},#{product_maker} ,#{product_type},#{product_type2},
+		#{product_cont1}, #{product_cont2}, #{product_cont3},
+		#{product_cont4},
+		#{product_cont5}, #{product_cont6}, #{product_cont7}, #{product_cont8})
+	</insert>
+
+	<delete id="product_delete">
+		delete from tbl_product where product_no=#{product_no}
+	</delete>
 
 
 
-	<update id="product_update" >
-    	UPDATE tbl_product 
-SET product_title=#{product_title}, 
-    product_price=#{product_price}, 
-    product_maker=#{product_maker}, 
-    product_type=#{product_type}, 
-    product_type2=#{product_type2}, 
-    product_cont1=#{product_cont1}, 
-    product_cont2=#{product_cont2}, 
-    product_cont3=#{product_cont3}, 
-    product_cont4=#{product_cont4}, 
-    product_cont5=#{product_cont5}, 
-    product_cont6=#{product_cont6}, 
-    product_cont7=#{product_cont7}, 
-    product_cont8=#{product_cont8} 
-WHERE product_no=#{product_no}
-    </update>
-    
-    
-    
-    <select id="product_list2"  resultType="shop.HealthJava.vo.ProductVO" parameterType="String">
-		select * from tbl_product where product_type=#{kind} order by product_price asc
+
+	<update id="product_update">
+		UPDATE tbl_product
+		SET product_title=#{product_title},
+		product_price=#{product_price},
+		product_maker=#{product_maker},
+		product_type=#{product_type},
+		product_type2=#{product_type2},
+		product_cont1=#{product_cont1},
+		product_cont2=#{product_cont2},
+		product_cont3=#{product_cont3},
+		product_cont4=#{product_cont4},
+		product_cont5=#{product_cont5},
+		product_cont6=#{product_cont6},
+		product_cont7=#{product_cont7},
+		product_cont8=#{product_cont8}
+		WHERE product_no=#{product_no}
+	</update>
+
+
+
+	<select id="product_list2"
+		resultType="shop.HealthJava.vo.ProductVO" parameterType="String">
+		select * from
+		tbl_product where product_type=#{kind} order by product_price asc
 	</select>
-	
-	
-	<select id="product_list3"  resultType="shop.HealthJava.vo.ProductVO" parameterType="String">
-		select * from tbl_product where product_type2=#{kind} order by product_price asc
+
+
+	<select id="product_list3"
+		resultType="shop.HealthJava.vo.ProductVO" parameterType="String">
+		select * from
+		tbl_product where product_type2=#{kind} order by product_price asc
 	</select>
-	
-	<select id="product_list4"  resultType="shop.HealthJava.vo.ProductVO" parameterType="String">
-		select * from tbl_product where product_type=#{kind} order by product_price desc
+
+	<select id="product_list4"
+		resultType="shop.HealthJava.vo.ProductVO" parameterType="String">
+		select * from
+		tbl_product where product_type=#{kind} order by product_price desc
 	</select>
-	
-	
-	<select id="product_list5"  resultType="shop.HealthJava.vo.ProductVO" parameterType="String">
-		select * from tbl_product where product_type2=#{kind} order by product_price desc
+
+
+	<select id="product_list5"
+		resultType="shop.HealthJava.vo.ProductVO" parameterType="String">
+		select * from
+		tbl_product where product_type2=#{kind} order by product_price desc
 	</select>
-	
-	
+
+
 	<select id="searchProductList" resultType="product">
-     select * from tbl_product
-     <where>
-      <if test="search_type == 'All'">
-    	 (product_title like #{search_field} or product_maker like #{search_field}) order by product_no asc
-      </if>
-      
-      <if test="search_type == 'product_title'">
-       product_title like #{search_field} order by product_no asc
-      </if>
-      <if test="search_type == 'product_maker'">
-       product_maker like #{search_field} order by product_no asc
-      </if>
-      </where>
-    </select> 
-    
-    
-  <select id="count" resultType="java.lang.Integer">
-  SELECT COUNT(*)
-  FROM tbl_product
-  <where>
-    <if test="search_type == 'All'">
-      AND (product_title LIKE #{search_field} OR product_maker LIKE #{search_field})
-    </if>
-    <if test="search_type == 'product_title'">
-      AND product_title LIKE #{search_field}
-    </if>
-    <if test="search_type == 'product_maker'">
-      AND product_maker LIKE #{search_field}
-    </if>
-  </where>
-</select>
-    
+		select * from tbl_product
+		<where>
+			<if test="search_type == 'All'">
+				(product_title like #{search_field} or product_maker like #{search_field}) order
+				by product_no asc
+			</if>
+
+			<if test="search_type == 'product_title'">
+				product_title like #{search_field} order by product_no asc
+			</if>
+			<if test="search_type == 'product_maker'">
+				product_maker like #{search_field} order by product_no asc
+			</if>
+		</where>
+	</select>
+
+
+	<select id="count" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM tbl_product
+		<where>
+			<if test="search_type == 'All'">
+				AND (product_title LIKE #{search_field} OR product_maker LIKE
+				#{search_field})
+			</if>
+			<if test="search_type == 'product_title'">
+				AND product_title LIKE #{search_field}
+			</if>
+			<if test="search_type == 'product_maker'">
+				AND product_maker LIKE #{search_field}
+			</if>
+		</where>
+	</select>
+
 </mapper>

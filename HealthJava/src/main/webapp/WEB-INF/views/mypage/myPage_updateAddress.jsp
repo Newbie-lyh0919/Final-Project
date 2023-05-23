@@ -9,10 +9,12 @@
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script> <%-- CDN 절대링크 --%>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> <%-- CDN 절대링크 --%>
 <script type="text/javascript" src = "./js/jquery.js"></script>
-<script defer src="<%=request.getContextPath()%>/js/post.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="<%=request.getContextPath()%>/js/updateInfo.js"></script>
-<script src="<%=request.getContextPath()%>/js/post2.js"></script>
+<script src="./js/updateInfo.js"></script>
+<script src="./js/post2.js"></script>
+
+<script src="${pageContext.request.contextPath}/js/addr.js"></script>
+
 
 <title>HealthJava 마이페이지</title>
 
@@ -43,7 +45,7 @@
 	
 	body {
 		margin: 0px;
-		height: 100%;
+		min-height: 100%;
 		padding: 0px;
 	}
 	
@@ -89,11 +91,8 @@
 		border-spacing: 0;
 	}
 	section.notice {
-		padding: 20px 0;
-		/*추가*/
 		width: 1000px;
 		min-height: 200px;
-		margin: 2px;
 	}
 	
 	.aside_left {
@@ -189,12 +188,7 @@
 		font-size: 15px;
 		width: 150px;
 	}
-	
-	
-	.board-table .th-inputInfo {
-		
-	}
-	
+
 	.board-table th, .board-table td {
 		padding-top: 14px;
 		padding-bottom: 14px;
@@ -305,7 +299,7 @@
 		min-height: 700px;
 		padding: 20px;
 		float: left;
-		margin-top: 100px;
+		margin-top: 50px;
 		margin-left: 100px;
 	}
 	
@@ -377,7 +371,6 @@
       <%-- 메뉴바 --%>
 		<section>
 			<div class="main">
-				<%-- main 화면 상단 캐러셀 (캐러셀 필요 없는 페이지는 삭제 바람!)--%>
 				<aside class="aside_left">
 					<nav>
 						<ul>
@@ -399,35 +392,45 @@
 						</ul>
 					</nav>
 				</aside>
-				
+			
 		<%-- 본문 영역(ui깨질시 본인이 ui 수정바람..) --%>
 		<div class="innerWrap">
 		<section class="notice">
 			<!-- board list area -->
 			<div class="page-title">
-			<b style="text-align: left; font-size: 20px; margin-left:50px;">배송지 관리</b>
+			<b style="text-align: left; font-size: 20px; margin-left:100px;">배송지 관리</b><br>
 			</div>
 			<!-- 배송지 리스트 : 기본/추가 -->
-			<table border="1">
-			 <tr>
-				<th>배송지 이름</th> <th>우편번호</th> <th> 주소</th> <th>상세 주소</th> <th>비고</th>
+			<table class="mlist" style="margin-left: 50px; margin-top: 20px; width:1000px; padding: 0px 10px; text-align: left;">
+			 <tr  style="background-color: #B21948; color: white; border: 10px;">
+				<th>배송지 이름</th> 
+				<th>우편번호</th> 
+				<th>주소</th> 
+				<th>상세 주소</th> 
+				<th>비고</th>
 			</tr>
 			 <c:if test="${!empty mlist}">
 				<c:forEach var="m" items="${mlist }">
 				<tr>
-					<th> 기본주소 </th> <th> ${m.postCode }</th> <th>${m.roadAddr }</th> <th>${m.detailAddr }</th> 
+					<th>기본주소 </th> 
+					<th>${m.postCode }</th> 
+					<th>${m.roadAddr }</th> 
+					<th>${m.detailAddr }</th> 
 					<th>
-						<input type="button" value="수정">
-						<input type="button" value="삭제">
+						<input type="button" value="수정" id="btnUpdate" onclick="location='myPage_updateInfo'">
 					</th>
 				</tr>
 			</c:forEach >
 			<c:forEach var="a" items="${alist }">
 				<tr>
-					<th> ${a.addr_name } </th> <th> ${a.postCode }</th> <th>${a.roadAddr }</th> <th>${a.detailAddr }</th>
+					<th>${a.addr_name } </th> 
+					<th>${a.postCode }</th> 
+					<th>${a.roadAddr }</th> 
+					<th>${a.detailAddr }</th>
 					<th>
-						<input type="button" value="수정">
-						<input type="button" value="삭제">
+						<button onclick="window.open('addr_edit?addr_no=${a.addr_no }', '배송지 수정창', 'width=900, height=400');">수정</button>
+						<%-- <input type="button" value="수정" onclick="location='addr_edit?addr_no=${a.addr_no}'"> --%>
+						<input type="button" value="삭제" onclick="location='addr_del?addr_no=${a.addr_no}'">
 					</th>
 				</tr>
 			</c:forEach >
@@ -480,11 +483,8 @@
 				</form>
 			</div>
 			
-		
-		
 		</section>
 		</div>	
-		</div>
 		
         <%-- top버튼 삭제 X --%>
          <div id="topBtn">

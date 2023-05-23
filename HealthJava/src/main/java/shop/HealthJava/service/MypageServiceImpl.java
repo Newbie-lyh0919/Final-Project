@@ -67,4 +67,39 @@ public class MypageServiceImpl implements MypageService {
 		return this.mypageDao.getAddrList(avo);
 	}
 
+	//장바구니 삭제
+	@Override
+	public void delCartList(CartVO cvo) {
+		this.mypageDao.deleteCart(cvo);
+		
+	}
+
+	//장바구니 전체삭제
+	@Override
+	public void delallCartList(CartVO cvo) {
+		this.mypageDao.deleteAllCart(cvo);
+		
+	}
+
+	//배송지 수정조회
+	@Override
+	public AddrVO getOneAddr(int addr_no) {
+		return this.mypageDao.selectOneAddr(addr_no);
+		
+	}
+
+	//추가배송지 수정
+	@Override
+	public void updateAddr(AddrVO avo) {
+		this.mypageDao.updateAddr(avo);
+		
+	}
+
+	//추가 배송지 삭제
+	@Override
+	public void deleteAddr(int addr_no) {
+		this.mypageDao.deleteAddr(addr_no);
+		
+	}
+
 }

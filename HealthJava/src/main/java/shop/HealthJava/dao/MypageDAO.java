@@ -22,5 +22,10 @@ public interface MypageDAO {
 	List<MemberVO> getMemberAddrList(MemberVO mvo); // 배송지 리스트
 	void insertAddr(AddrVO av); //배송지 추가
 	List<AddrVO> getAddrList(AddrVO avo); // 배송지 추가 리스트 조회
+	void deleteCart(CartVO cvo); //장바구니 삭제
+	void deleteAllCart(CartVO cvo); //장바구니 전체삭제
+	AddrVO selectOneAddr(int addr_no); //추가배송지 수정조회
+	void updateAddr(AddrVO avo); //추가배송지 수정
+	void deleteAddr(int addr_no); //추가배송지 삭제
 	
 }

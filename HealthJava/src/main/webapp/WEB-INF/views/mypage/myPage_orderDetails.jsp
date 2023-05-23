@@ -483,8 +483,8 @@
 						</tr>
 					</thead>
 					<tbody>
-					<%-- <c:if test="${!empty orderDetailList }" >
-					<c:forEach var="od" items="${orderDetailList }">  --%>
+					<c:if test="${!empty orderDetailList }" >
+					<c:forEach var="od" items="${orderDetailList }">
 							<input type="hidden" name="order_no" id="order_no" value="${od.order_no}" />
 						<tr>
 							<th><a href="#" class="orderList">${od.order_detail_pname }</a></th>
@@ -533,13 +533,13 @@
 							};
 
 						</script>
-						<%-- </c:forEach>
+						 </c:forEach>
 					</c:if>					
 					<c:if test="${empty orderDetailList }">
 						<tr>
 							<th colspan="5" class="nonList">현재 주문한 제품이 없습니다.</th>
 						</tr>
-					</c:if>  --%>
+					</c:if> 
 
 					</tbody>
 				</table>	

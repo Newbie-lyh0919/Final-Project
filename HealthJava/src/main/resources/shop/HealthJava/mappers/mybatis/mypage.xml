@@ -52,5 +52,32 @@
 	<select id="addr_list" resultType="addr">
 		select * from tbl_addr where user_id = #{user_id}
 	</select>
+	
+	<!-- //장바구니 삭제 -->
+	<delete id="cart_del">
+		delete from tbl_cart where cart_no=#{cart_no}
+	</delete>
+	
+	<!-- //장바구니 전체삭제 -->
+	<delete id="cart_delall">
+		delete from tbl_cart where cart_mem_id=#{cart_mem_id}
+	</delete>	
+	
+	<!-- //추가배송지 수정조회 -->
+	<select id="selectOneAddr" resultType="addr">
+		select * from tbl_addr where addr_no=#{addr_no}
+	</select>	
+	
+	<!-- //추가배송지 수정 -->
+	<update id="updateAddr">
+		update tbl_addr set addr_name=#{addr_name}, postCode=#{postCode},
+		 roadAddr=#{roadAddr}, detailAddr=#{detailAddr} where addr_no=#{addr_no}
+	</update>	
+	
+	<!-- //추가 배송지 삭제 -->
+	<delete id="deleteAddr">
+		delete from tbl_addr where addr_no=#{addr_no}
+	</delete>
+	
 </mapper>
 

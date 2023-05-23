@@ -21,6 +21,11 @@ public interface MypageService {
 	List<MemberVO> getMemberAddrList(MemberVO mvo); // 배송지 리스트 조회
 	void insertAddr(AddrVO av); //배송지 추가
 	List<AddrVO> getAddrList(AddrVO avo); // 배송지 추가 리스트 조회
+	void delCartList(CartVO cvo);
+	void delallCartList(CartVO cvo);
+	AddrVO getOneAddr(int addr_no); //배송지 수정조회
+	void updateAddr(AddrVO avo);//추가배송지 수정
+	void deleteAddr(int addr_no);//추가배송지 삭제
 	 
 	
 }

@@ -47,6 +47,8 @@ create sequence addr_no_seq
     
 select * from tbl_addr;
 
+commit;
+
 
 -- 회원 table 시퀀스 생성 
 create sequence user_no_seq
@@ -315,8 +317,8 @@ create sequence cart_no_seq
 INSERT INTO tbl_cart VALUES (cart_no_seq.nextval, 'test01', 1, 2);
 INSERT INTO tbl_cart VALUES (cart_no_seq.nextval, SUBSTR(DBMS_RANDOM.STRING('U', 5), 1, 5), 2, 1);
 
-INSERT INTO tbl_cart VALUES (cart_no_seq.nextval, 'test02', 1, 2);
-INSERT INTO tbl_cart VALUES (cart_no_seq.nextval, 'test02', 2, 1);
+INSERT INTO tbl_cart VALUES (cart_no_seq.nextval, 'test02', 1, 2 , '상품이미지3', '상품명3', 2000);
+INSERT INTO tbl_cart VALUES (cart_no_seq.nextval, 'test02', 2, 1, '상품이미지6', '상품명6', 2000);
 
 -- 더미데이터
 update tbl_cart set product_cont1= '상품이미지2', product_title='상품명2', product_price=2000 where cart_no=4;
@@ -372,6 +374,8 @@ select * from tbl_reviews;
 
 --저장 
 commit;
+
+
 
 -- 쿠폰 시퀀스
 create sequence re_no_seq

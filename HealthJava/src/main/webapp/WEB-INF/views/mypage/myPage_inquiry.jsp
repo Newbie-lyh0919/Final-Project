@@ -459,6 +459,15 @@
 	select {
 		padding : 5px 5px;
 	}
+	/* 문의하기 버튼 */
+	#updateBtn{
+	    padding: 20px 80px;
+	    background-color: #B21948;
+	    border: 1px solid white;
+	    color: white;
+	    font-size: 20px;
+	    font-weight: bold;
+	}
 </style>
 
 <script type="text/javascript">
@@ -525,7 +534,7 @@ function cancel_btn() {
 				<!-- board list area -->
 				<div id="board-list">
 					<div class="container">
-					<form method="post" id="cancel_Form" action="order_cancel_ok.shop">
+					<form method="post" action="inquiry_write">
 						<table class="board-table">
 							<thead>
 								<tr>
@@ -545,6 +554,10 @@ function cancel_btn() {
 								
 							</tbody>
 						</table>
+						<br>
+						<div>
+							<input type="submit" id="updateBtn" value="문의하기" />
+						</div>
 						</form>
 					</div>
 				</div>
@@ -556,7 +569,7 @@ function cancel_btn() {
 	                  PREV&nbsp;
 	                 </c:if>
 	                 <c:if test="${page>1}">
-	                  <a href="like?page=${page-1}">PREV</a>&nbsp;
+	                  <a href="myPage_inquiry?page=${page-1}">PREV</a>&nbsp;
 	                 </c:if>
 	                 
 	                 <%--현재 쪽번호 출력 --%>
@@ -565,7 +578,7 @@ function cancel_btn() {
 	                      [&nbsp;${a}&nbsp;]
 	                   </c:if>
 	                   <c:if test="${a != page}"> <%--현재 쪽번호가 선택 안 된 경우--%>
-	                    <a href="like?page=${a}">[&nbsp;${a}&nbsp;]</a>&nbsp;
+	                    <a href="myPage_inquiry?page=${a}">[&nbsp;${a}&nbsp;]</a>&nbsp;
 	                   </c:if>
 	                 </c:forEach>
 	                   
@@ -574,7 +587,7 @@ function cancel_btn() {
 	                  &nbsp;NEXT
 	                </c:if>
 	                <c:if test="${page < maxpage}">
-	                 <a href="like?page=${page+1}">NEXT</a>
+	                 <a href="myPage_inquiry?page=${page+1}">NEXT</a>
 	                </c:if>
 	               </c:if>
 	               <!-- 검색 칸 공백 시 페이징 사라지지 않게 -->
@@ -584,7 +597,7 @@ function cancel_btn() {
 				      PREV&nbsp;
 				     </c:if>
 				     <c:if test="${page>1}">
-				      <a href="like?page=${page-1}">PREV</a>&nbsp;
+				      <a href="myPage_inquiry?page=${page-1}">PREV</a>&nbsp;
 				     </c:if>
 				     
 				     <%--현재 쪽번호 출력 --%>
@@ -593,7 +606,7 @@ function cancel_btn() {
 				       	[&nbsp;${a}&nbsp;]
 				       </c:if>
 				       <c:if test="${a != page}"> <%--현재 쪽번호가 선택 안 된 경우--%>
-				        <a href="like?page=${a}">[&nbsp;${a}&nbsp;]</a>&nbsp;
+				        <a href="myPage_inquiry?page=${a}">[&nbsp;${a}&nbsp;]</a>&nbsp;
 				       </c:if>
 				     </c:forEach>
 				       
@@ -602,7 +615,7 @@ function cancel_btn() {
 				      &nbsp;NEXT
 				    </c:if>
 				    <c:if test="${page < maxpage}">
-				     <a href="like?page=${page+1}">NEXT</a>
+				     <a href="myPage_inquiry?page=${page+1}">NEXT</a>
 				    </c:if>
 				   </c:if>
 				    
@@ -612,7 +625,7 @@ function cancel_btn() {
 				      PREV&nbsp;
 				     </c:if>
 				     <c:if test="${page>1}">
-				      <a href="like?page=${page-1}&find_field=${find_field}&find_name=${find_name}">PREV</a>&nbsp;
+				      <a href="myPage_inquiry?page=${page-1}&find_field=${find_field}&find_name=${find_name}">PREV</a>&nbsp;
 				      <%-- &(엠퍼센트) 구분기호로 구분하면서 find_field=검색필드&find_name= 검색어를 get방식으로 전달해야 검색 이후 페이징 목록을 유지한다.그렇지 않으면 검색전 전체 페이징 목록으로 이동해서 검색 효과가 사라진다. --%>
 				     </c:if>
 				     
@@ -622,7 +635,7 @@ function cancel_btn() {
 				        [&nbsp;${a}&nbsp;]
 				       </c:if>
 				       <c:if test="${a != page}"> <%--현재 쪽번호가 선택 안 된 경우--%>
-				        <a href="like?page=${a}&find_field=${find_field}&find_name=${find_name}">[&nbsp;${a}&nbsp;]</a>&nbsp;
+				        <a href="myPage_inquiry?page=${a}&find_field=${find_field}&find_name=${find_name}">[&nbsp;${a}&nbsp;]</a>&nbsp;
 				       </c:if>
 				     </c:forEach>      
 				    
@@ -630,10 +643,11 @@ function cancel_btn() {
 				      &nbsp;NEXT
 				    </c:if>
 				    <c:if test="${page < maxpage}">
-				     <a href="like?page=${page+1}&find_field=${find_field}&find_name=${find_name}">NEXT</a>
+				     <a href="myPage_inquiry?page=${page+1}&find_field=${find_field}&find_name=${find_name}">NEXT</a>
 				    </c:if>
 				   </c:if> 
 				   </div> <%-- end 페이징처리 --%>
+				   
 				</section>
 				</div></div>
 				<%-- top버튼 삭제 X --%>

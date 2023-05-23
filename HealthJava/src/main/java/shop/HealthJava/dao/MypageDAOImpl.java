@@ -67,5 +67,40 @@ public class MypageDAOImpl implements MypageDAO {
 		return this.sqlSession.selectList("addr_list", avo);
 	}
 
+	//장바구니 삭제
+	@Override
+	public void deleteCart(CartVO cvo) {
+		this.sqlSession.delete("cart_del",cvo);		
+	}
+
+	//장바구니 전체삭제
+	@Override
+	public void deleteAllCart(CartVO cvo) {
+		this.sqlSession.delete("cart_delall",cvo);	
+		
+	}
+
+	//추가배송지 수정 조회
+	@Override
+	public AddrVO selectOneAddr(int addr_no) {
+		return this.sqlSession.selectOne("selectOneAddr",addr_no);
+		
+		
+	}
+
+	//추가 배송지 수정
+	@Override
+	public void updateAddr(AddrVO avo) {
+		this.sqlSession.update("updateAddr", avo);
+		
+	}
+
+	//추가 배송지 삭제
+	@Override
+	public void deleteAddr(int addr_no) {
+		this.sqlSession.delete("deleteAddr", addr_no);
+		
+	}
+
 	
 }

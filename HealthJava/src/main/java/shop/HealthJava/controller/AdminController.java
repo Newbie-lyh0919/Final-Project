@@ -4,13 +4,11 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.HealthJava.service.AdminService;
 import shop.HealthJava.vo.CSClientVO;
@@ -71,9 +69,14 @@ public class Admincontroller {
 		
 		MemberVO mvo = new MemberVO();
 		mvo.setUser_no(user_no);
-		mvo.setUser_name(user_name); mvo.setUser_birth(user_birth); mvo.setUser_gender(user_gender);
-		mvo.setPostCode(postCode); mvo.setRoadAddr(roadAddr); mvo.setDetailAddr(detailAddr);
-		mvo.setUser_email(user_email); mvo.setUser_phone(user_phone);
+		mvo.setUser_name(user_name);
+		mvo.setUser_birth(user_birth);
+		mvo.setUser_gender(user_gender);
+		mvo.setPostCode(postCode);
+		mvo.setRoadAddr(roadAddr);
+		mvo.setDetailAddr(detailAddr);
+		mvo.setUser_email(user_email);
+		mvo.setUser_phone(user_phone);
 		
 		this.adminService.MemberEdit(mvo);
 		
