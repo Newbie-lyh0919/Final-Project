@@ -25,6 +25,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import shop.HealthJava.service.ProductService;
 import shop.HealthJava.vo.ProductVO;
+import shop.HealthJava.vo.ProductVO2;
 
 @Controller
 public class ProductController { // 상품 페이지 관련 컨트롤러
@@ -54,338 +55,10 @@ public class ProductController { // 상품 페이지 관련 컨트롤러
 	} 
 	
 	@RequestMapping(value="/product/main")
-	public ModelAndView main(@ModelAttribute ProductVO b,HttpSession session, Model model,HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public String main(@ModelAttribute ProductVO b,HttpSession session, Model model,HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
-		String kind = (String)session.getAttribute("kind");
-		String kind2 = (String)session.getAttribute("kind2");
 		
-if((kind == null || kind.equals("짐볼")) && kind2==null) {
-	
-		System.out.println("페이징kind:"+kind);
-		System.out.println("페이징kind2:"+kind2);
-			
-			
-		int listcount=this.productService.getListCount(b);
-		System.out.println(listcount+"------");
-		int page=1;//쪽번호
-		int limit=10;//한페이지에 보여지는 목록개수	
-		if(request.getParameter("page") != null) {
-			page=Integer.parseInt(request.getParameter("page"));			
-		}
-		String search_type=request.getParameter("search_type");//검색어
-		String search_field=request.getParameter("search_field");//검색
-		//필드
-		b.setSearch_field(search_field);
-		b.setSearch_type("%"+search_type+"%");
-		//%는 오라클 와일드 카드 문자로서 하나이상의 임의의 문자와
-		//매핑 대응
-
-		
-		//전체 레코드 개수 또는 검색전후 레코드 개수
-		//System.out.println("총 게시물수:"+listcount+"개");
-
-		b.setStartrow((page-1)*10+1);//시작행번호
-		b.setEndrow(b.getStartrow()+limit-1);//끝행번호
-
-		
-		//목록
-
-		//총페이지수
-		int maxpage=(int)((double)listcount/limit+0.95);
-		//현재 페이지에 보여질 시작페이지 수(1,11,21)
-		int startpage=(((int)((double)page/10+0.9))-1)*10+1;
-		//현재 페이지에 보여줄 마지막 페이지 수(10,20,30)
-		int endpage=maxpage;
-		if(endpage > startpage+10-1) endpage=startpage+10-1;
-
-		ModelAndView listM=new ModelAndView();
-		
-		//저장
-		listM.addObject("page",page);
-		listM.addObject("startpage",startpage);
-		listM.addObject("endpage",endpage);
-		listM.addObject("maxpage",maxpage);
-		listM.addObject("listcount",listcount);	
-		listM.addObject("search_field",search_field);
-		listM.addObject("search_type", search_type);
-
-		listM.setViewName("product/main");//뷰페이지 폴더
-		//경로와 파일명 지정
-		return listM;
-			
-		} 
-			if(!kind.equals("짐볼") && kind != null && kind2==null) {
-			int listcount=this.productService.getListCount1(kind);
-			System.out.println("listcount:"+listcount);
-			int page=1;//쪽번호
-			int limit=10;//한페이지에 보여지는 목록개수
-			if(request.getParameter("page") != null) {
-				page=Integer.parseInt(request.getParameter("page"));			
-			}
-			String search_type=request.getParameter("search_type");//검색어
-			String search_field=request.getParameter("search_field");//검색
-			//필드
-			b.setSearch_field(search_field);
-			b.setSearch_type("%"+search_type+"%");
-			//%는 오라클 와일드 카드 문자로서 하나이상의 임의의 문자와
-			//매핑 대응
-
-			
-			//전체 레코드 개수 또는 검색전후 레코드 개수
-			//System.out.println("총 게시물수:"+listcount+"개");
-
-			b.setStartrow((page-1)*10+1);//시작행번호
-			b.setEndrow(b.getStartrow()+limit-1);//끝행번호
-
-			
-			//목록
-
-			//총페이지수
-			int maxpage=(int)((double)listcount/limit+0.95);
-			//현재 페이지에 보여질 시작페이지 수(1,11,21)
-			int startpage=(((int)((double)page/10+0.9))-1)*10+1;
-			//현재 페이지에 보여줄 마지막 페이지 수(10,20,30)
-			int endpage=maxpage;
-			if(endpage > startpage+10-1) endpage=startpage+10-1;
-
-			ModelAndView listM=new ModelAndView();
-			
-			//저장
-			listM.addObject("page",page);
-			listM.addObject("startpage",startpage);
-			listM.addObject("endpage",endpage);
-			listM.addObject("maxpage",maxpage);
-			listM.addObject("listcount",listcount);	
-			listM.addObject("search_field",search_field);
-			listM.addObject("search_type", search_type);
-
-			listM.setViewName("product/main");//뷰페이지 폴더
-			//경로와 파일명 지정
-			return listM;
-		} 
-			if((kind==null || kind.equals("짐볼")) && kind2.equals("낮은가격순")) {
-			int listcount=this.productService.getListCount(b);
-			int page=1;//쪽번호
-			int limit=10;//한페이지에 보여지는 목록개수
-			if(request.getParameter("page") != null) {
-				page=Integer.parseInt(request.getParameter("page"));			
-			}
-			String search_type=request.getParameter("search_type");//검색어
-			String search_field=request.getParameter("search_field");//검색
-			//필드
-			b.setSearch_field(search_field);
-			b.setSearch_type("%"+search_type+"%");
-			//%는 오라클 와일드 카드 문자로서 하나이상의 임의의 문자와
-			//매핑 대응
-
-			
-			//전체 레코드 개수 또는 검색전후 레코드 개수
-			//System.out.println("총 게시물수:"+listcount+"개");
-
-			b.setStartrow((page-1)*10+1);//시작행번호
-			b.setEndrow(b.getStartrow()+limit-1);//끝행번호
-
-			
-			//목록
-
-			//총페이지수
-			int maxpage=(int)((double)listcount/limit+0.95);
-			//현재 페이지에 보여질 시작페이지 수(1,11,21)
-			int startpage=(((int)((double)page/10+0.9))-1)*10+1;
-			//현재 페이지에 보여줄 마지막 페이지 수(10,20,30)
-			int endpage=maxpage;
-			if(endpage > startpage+10-1) endpage=startpage+10-1;
-
-			ModelAndView listM=new ModelAndView();
-			
-			//저장
-			listM.addObject("page",page);
-			listM.addObject("startpage",startpage);
-			listM.addObject("endpage",endpage);
-			listM.addObject("maxpage",maxpage);
-			listM.addObject("listcount",listcount);	
-			listM.addObject("search_field",search_field);
-			listM.addObject("search_type", search_type);
-
-			listM.setViewName("product/main");//뷰페이지 폴더
-			//경로와 파일명 지정
-			return listM;
-		} 
-			if(kind !=null && !kind.equals("매트") && kind2.equals("낮은가격순")) {
-			int listcount=this.productService.getListCount1(kind);
-			System.out.println("listcount:"+listcount);
-			int page=1;//쪽번호
-			int limit=10;//한페이지에 보여지는 목록개수
-			if(request.getParameter("page") != null) {
-				page=Integer.parseInt(request.getParameter("page"));			
-			}
-			String search_type=request.getParameter("search_type");//검색어
-			String search_field=request.getParameter("search_field");//검색
-			//필드
-			b.setSearch_field(search_field);
-			b.setSearch_type("%"+search_type+"%");
-			//%는 오라클 와일드 카드 문자로서 하나이상의 임의의 문자와
-			//매핑 대응
-
-			
-			//전체 레코드 개수 또는 검색전후 레코드 개수
-			//System.out.println("총 게시물수:"+listcount+"개");
-
-			b.setStartrow((page-1)*10+1);//시작행번호
-			b.setEndrow(b.getStartrow()+limit-1);//끝행번호
-
-			
-			//목록
-
-			//총페이지수
-			int maxpage=(int)((double)listcount/limit+0.95);
-			//현재 페이지에 보여질 시작페이지 수(1,11,21)
-			int startpage=(((int)((double)page/10+0.9))-1)*10+1;
-			//현재 페이지에 보여줄 마지막 페이지 수(10,20,30)
-			int endpage=maxpage;
-			if(endpage > startpage+10-1) endpage=startpage+10-1;
-
-			ModelAndView listM=new ModelAndView();
-			
-			//저장
-			listM.addObject("page",page);
-			listM.addObject("startpage",startpage);
-			listM.addObject("endpage",endpage);
-			listM.addObject("maxpage",maxpage);
-			listM.addObject("listcount",listcount);	
-			listM.addObject("search_field",search_field);
-			listM.addObject("search_type", search_type);
-
-			listM.setViewName("product/main");//뷰페이지 폴더
-			//경로와 파일명 지정
-			return listM;
-		} 
-			if((kind==null || kind.equals("매트")) && kind2.equals("높은가격순")) {
-			int listcount=this.productService.getListCount(b);
-			int page=1;//쪽번호
-			int limit=10;//한페이지에 보여지는 목록개수
-			if(request.getParameter("page") != null) {
-				page=Integer.parseInt(request.getParameter("page"));			
-			}
-			String search_type=request.getParameter("search_type");//검색어
-			String search_field=request.getParameter("search_field");//검색
-			//필드
-			b.setSearch_field(search_field);
-			b.setSearch_type("%"+search_type+"%");
-			//%는 오라클 와일드 카드 문자로서 하나이상의 임의의 문자와
-			//매핑 대응
-
-			
-			//전체 레코드 개수 또는 검색전후 레코드 개수
-			//System.out.println("총 게시물수:"+listcount+"개");
-
-			b.setStartrow((page-1)*10+1);//시작행번호
-			b.setEndrow(b.getStartrow()+limit-1);//끝행번호
-
-			
-			//목록
-
-			//총페이지수
-			int maxpage=(int)((double)listcount/limit+0.95);
-			//현재 페이지에 보여질 시작페이지 수(1,11,21)
-			int startpage=(((int)((double)page/10+0.9))-1)*10+1;
-			//현재 페이지에 보여줄 마지막 페이지 수(10,20,30)
-			int endpage=maxpage;
-			if(endpage > startpage+10-1) endpage=startpage+10-1;
-
-			ModelAndView listM=new ModelAndView();
-			
-			//저장
-			listM.addObject("page",page);
-			listM.addObject("startpage",startpage);
-			listM.addObject("endpage",endpage);
-			listM.addObject("maxpage",maxpage);
-			listM.addObject("listcount",listcount);	
-			listM.addObject("search_field",search_field);
-			listM.addObject("search_type", search_type);
-
-			listM.setViewName("product/main");//뷰페이지 폴더
-			//경로와 파일명 지정
-			return listM;
-		} 
-			if(kind !=null && !kind.equals("매트") && kind2.equals("높은가격순")) {
-			int listcount=this.productService.getListCount1(kind);
-			System.out.println("listcount:"+listcount);
-			int page=1;//쪽번호
-			int limit=10;//한페이지에 보여지는 목록개수
-			if(request.getParameter("page") != null) {
-				page=Integer.parseInt(request.getParameter("page"));			
-			}
-			String search_type=request.getParameter("search_type");//검색어
-			String search_field=request.getParameter("search_field");//검색
-			//필드
-			b.setSearch_field(search_field);
-			b.setSearch_type("%"+search_type+"%");
-			//%는 오라클 와일드 카드 문자로서 하나이상의 임의의 문자와
-			//매핑 대응
-
-			
-			//전체 레코드 개수 또는 검색전후 레코드 개수
-			//System.out.println("총 게시물수:"+listcount+"개");
-
-			b.setStartrow((page-1)*10+1);//시작행번호
-			b.setEndrow(b.getStartrow()+limit-1);//끝행번호
-
-			
-			//목록
-
-			//총페이지수
-			int maxpage=(int)((double)listcount/limit+0.95);
-			//현재 페이지에 보여질 시작페이지 수(1,11,21)
-			int startpage=(((int)((double)page/10+0.9))-1)*10+1;
-			//현재 페이지에 보여줄 마지막 페이지 수(10,20,30)
-			int endpage=maxpage;
-			if(endpage > startpage+10-1) endpage=startpage+10-1;
-
-			ModelAndView listM=new ModelAndView();
-			
-			//저장
-			listM.addObject("page",page);
-			listM.addObject("startpage",startpage);
-			listM.addObject("endpage",endpage);
-			listM.addObject("maxpage",maxpage);
-			listM.addObject("listcount",listcount);	
-			listM.addObject("search_field",search_field);
-			listM.addObject("search_type", search_type);
-
-			listM.setViewName("product/main");//뷰페이지 폴더
-			//경로와 파일명 지정
-			return listM;
-		}
-		/*
-		 * 
-		 * 
-		  
-		} 
-		} else if((kind==null || kind.equals("매트")) && kind2.equals("높은가격순")) {
-			List<ProductVO> product=this.productService.getProductListByKind4(kind);
-			return product;
-		} else if(kind !=null && !kind.equals("매트") && kind2.equals("높은가격순")) {
-			List<ProductVO> product=this.productService.getProductListByKind5(kind);
-			return product;
-		}
-		if(session.getAttribute("id") == null) {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>");
-			out.println("alert('로그인을 해야합니다')");
-			out.println("location='/member/login';");
-			out.println("</script>");
-			out.flush();
-			return "/member/login_form";
-		}
-		
-		String id = (String)session.getAttribute("id");
-		String name = (String)session.getAttribute("name");
-		model.addAttribute("name",name);
-		model.addAttribute("id",id);
-		*/
-return null;
+		return "product/main";
 		
 	}
 	
@@ -682,7 +355,12 @@ String pageStr = request.getParameter("page");
 	    
 	    	
 	    
-	    
+	    // 컨트롤러 하나에서
+	    // 상품리스트 불러와서 상품리스트 넘기기
+	    // 상품리스트랑 n개씩 보기 해서 전체 페이지 갯수 넘기면 돼
+	    // return { "product_list" : product_list,
+	    //          "totalPage": totalPage} 
+	    // totalPage???
 
 	    if ((kind == null || kind.equals("짐볼")) && kind2 == null) {
 	        int limit = 10;
@@ -789,9 +467,14 @@ String pageStr = request.getParameter("page");
 		
 		ProductVO detail = productService.getProductContent(product_no);
 		
+		List<ProductVO2> detail2 = productService.getReviewList(product_no);
 		
+		model.addAttribute("detail2",detail2);
 		
 		model.addAttribute("detail",detail);
+		
+		System.out.println("확인"+detail2);
+	
 		
 		return "product/detail";
 	}
@@ -802,6 +485,14 @@ String pageStr = request.getParameter("page");
 		
 		
 		return "/product/add";
+	}
+	
+	@RequestMapping(value="/product/index", method=RequestMethod.GET)
+	public String product_index(HttpSession session, Model model,HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		
+		
+		return "/product/mainProduct";
 	}
 	
 	
@@ -822,8 +513,10 @@ String pageStr = request.getParameter("page");
 	public String product_edit(@PathVariable int product_no, HttpSession session, Model model,HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		ProductVO detail = productService.getProductContent(product_no);
+		
 	
 		model.addAttribute("detail",detail);
+		
 		
 		return "/product/edit";
 	}
@@ -884,6 +577,8 @@ String pageStr = request.getParameter("page");
 			String fileName06 = null;
 			String fileName07 = null;
 			String fileName08 = null;
+			
+			// List files 
 			
 			Calendar c=Calendar.getInstance();//칼렌더는 추상
 			//클래스로 new로 객체 생성을 못함. 년월일 시분초 값을 반환
