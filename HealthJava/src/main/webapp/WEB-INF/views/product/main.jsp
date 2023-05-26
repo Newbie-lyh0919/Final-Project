@@ -995,7 +995,7 @@ input#checkIcon {
 					<option value="product_title"<c:if test="${search_type=='product_title'}">${'selected'}</c:if>>제품이름</option>
 					<option value="product_maker"<c:if test="${search_type=='product_maker'}">${'selected'}</c:if>>제조사</option>
 				</select> 
-				<input id="search_field" onkeyup="search_FoodList()"  name="search_field" size="14"  onkeyup="search_FoodList()" /> 
+				<input id="search_field" onkeyup="search_ProductList()"  name="search_field" size="14"  onkeyup="search_FoodList()" /> 
 				
 				<input type="button" value="검색" onclick="search_FoodList()" />
 				
@@ -1061,5 +1061,7 @@ input#checkIcon {
 	<script src="../../js/page.js"></script>
 	<script src="../../js/page2.js"></script>
 	<script src="../../js/test6.js"></script>
+	<script src="../../js/search.js"></script>
+	
 </body>
 </html>
