@@ -2,9 +2,11 @@ package shop.HealthJava.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +26,9 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import shop.HealthJava.service.ProductService;
+import shop.HealthJava.vo.CartVO;
+import shop.HealthJava.vo.LikeVO;
+import shop.HealthJava.vo.OrderDetailVO;
 import shop.HealthJava.vo.ProductVO;
 import shop.HealthJava.vo.ProductVO2;
 
@@ -38,7 +43,7 @@ public class ProductController { // 상품 페이지 관련 컨트롤러
 	
 	
 	@ResponseBody
-	@RequestMapping("/search_FoodList")
+	@RequestMapping("/search_ProductList")
 	public List<ProductVO> search_FoodList (Model model, ProductVO f, String search_field, String search_type) throws Exception{
 
 		search_field = "%" + search_field + "%" ;
@@ -55,17 +60,526 @@ public class ProductController { // 상품 페이지 관련 컨트롤러
 	} 
 	
 	@RequestMapping(value="/product/main")
-	public String main(@ModelAttribute ProductVO b,HttpSession session, Model model,HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public ModelAndView main(@ModelAttribute ProductVO b,HttpSession session, Model model,HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
+		String kind = (String)session.getAttribute("kind");
+		String kind2 = (String)session.getAttribute("kind2");
 		
-		return "product/main";
+if((kind == null || kind.equals("짐볼")) && kind2==null) {
+	
+		System.out.println("페이징kind:"+kind);
+		System.out.println("페이징kind2:"+kind2);
+			
+			
+		int listcount=this.productService.getListCount(b);
+		System.out.println(listcount+"------");
+		int page=1;//쪽번호
+		int limit=10;//한페이지에 보여지는 목록개수	
+		if(request.getParameter("page") != null) {
+			page=Integer.parseInt(request.getParameter("page"));			
+		}
+		String search_type=request.getParameter("search_type");//검색어
+		String search_field=request.getParameter("search_field");//검색
+		//필드
+		b.setSearch_field(search_field);
+		b.setSearch_type("%"+search_type+"%");
+		//%는 오라클 와일드 카드 문자로서 하나이상의 임의의 문자와
+		//매핑 대응
+
+		
+		//전체 레코드 개수 또는 검색전후 레코드 개수
+		//System.out.println("총 게시물수:"+listcount+"개");
+
+		b.setStartrow((page-1)*10+1);//시작행번호
+		b.setEndrow(b.getStartrow()+limit-1);//끝행번호
+
+		
+		//목록
+
+		//총페이지수
+		int maxpage=(int)((double)listcount/limit+0.95);
+		//현재 페이지에 보여질 시작페이지 수(1,11,21)
+		int startpage=(((int)((double)page/10+0.9))-1)*10+1;
+		//현재 페이지에 보여줄 마지막 페이지 수(10,20,30)
+		int endpage=maxpage;
+		if(endpage > startpage+10-1) endpage=startpage+10-1;
+
+		ModelAndView listM=new ModelAndView();
+		
+		//저장
+		listM.addObject("page",page);
+		listM.addObject("startpage",startpage);
+		listM.addObject("endpage",endpage);
+		listM.addObject("maxpage",maxpage);
+		listM.addObject("listcount",listcount);	
+		listM.addObject("search_field",search_field);
+		listM.addObject("search_type", search_type);
+
+		listM.setViewName("product/main");//뷰페이지 폴더
+		//경로와 파일명 지정
+		return listM;
+			
+		} 
+			if(!kind.equals("짐볼") && kind != null && kind2==null) {
+			int listcount=this.productService.getListCount1(kind);
+			System.out.println("listcount:"+listcount);
+			int page=1;//쪽번호
+			int limit=10;//한페이지에 보여지는 목록개수
+			if(request.getParameter("page") != null) {
+				page=Integer.parseInt(request.getParameter("page"));			
+			}
+			String search_type=request.getParameter("search_type");//검색어
+			String search_field=request.getParameter("search_field");//검색
+			//필드
+			b.setSearch_field(search_field);
+			b.setSearch_type("%"+search_type+"%");
+			//%는 오라클 와일드 카드 문자로서 하나이상의 임의의 문자와
+			//매핑 대응
+
+			
+			//전체 레코드 개수 또는 검색전후 레코드 개수
+			//System.out.println("총 게시물수:"+listcount+"개");
+
+			b.setStartrow((page-1)*10+1);//시작행번호
+			b.setEndrow(b.getStartrow()+limit-1);//끝행번호
+
+			
+			//목록
+
+			//총페이지수
+			int maxpage=(int)((double)listcount/limit+0.95);
+			//현재 페이지에 보여질 시작페이지 수(1,11,21)
+			int startpage=(((int)((double)page/10+0.9))-1)*10+1;
+			//현재 페이지에 보여줄 마지막 페이지 수(10,20,30)
+			int endpage=maxpage;
+			if(endpage > startpage+10-1) endpage=startpage+10-1;
+
+			ModelAndView listM=new ModelAndView();
+			
+			//저장
+			listM.addObject("page",page);
+			listM.addObject("startpage",startpage);
+			listM.addObject("endpage",endpage);
+			listM.addObject("maxpage",maxpage);
+			listM.addObject("listcount",listcount);	
+			listM.addObject("search_field",search_field);
+			listM.addObject("search_type", search_type);
+
+			listM.setViewName("product/main");//뷰페이지 폴더
+			//경로와 파일명 지정
+			return listM;
+		} 
+			if((kind==null || kind.equals("짐볼")) && kind2.equals("낮은가격순")) {
+			int listcount=this.productService.getListCount(b);
+			int page=1;//쪽번호
+			int limit=10;//한페이지에 보여지는 목록개수
+			if(request.getParameter("page") != null) {
+				page=Integer.parseInt(request.getParameter("page"));			
+			}
+			String search_type=request.getParameter("search_type");//검색어
+			String search_field=request.getParameter("search_field");//검색
+			//필드
+			b.setSearch_field(search_field);
+			b.setSearch_type("%"+search_type+"%");
+			//%는 오라클 와일드 카드 문자로서 하나이상의 임의의 문자와
+			//매핑 대응
+
+			
+			//전체 레코드 개수 또는 검색전후 레코드 개수
+			//System.out.println("총 게시물수:"+listcount+"개");
+
+			b.setStartrow((page-1)*10+1);//시작행번호
+			b.setEndrow(b.getStartrow()+limit-1);//끝행번호
+
+			
+			//목록
+
+			//총페이지수
+			int maxpage=(int)((double)listcount/limit+0.95);
+			//현재 페이지에 보여질 시작페이지 수(1,11,21)
+			int startpage=(((int)((double)page/10+0.9))-1)*10+1;
+			//현재 페이지에 보여줄 마지막 페이지 수(10,20,30)
+			int endpage=maxpage;
+			if(endpage > startpage+10-1) endpage=startpage+10-1;
+
+			ModelAndView listM=new ModelAndView();
+			
+			//저장
+			listM.addObject("page",page);
+			listM.addObject("startpage",startpage);
+			listM.addObject("endpage",endpage);
+			listM.addObject("maxpage",maxpage);
+			listM.addObject("listcount",listcount);	
+			listM.addObject("search_field",search_field);
+			listM.addObject("search_type", search_type);
+
+			listM.setViewName("product/main");//뷰페이지 폴더
+			//경로와 파일명 지정
+			return listM;
+		} 
+			if(kind !=null && !kind.equals("매트") && kind2.equals("낮은가격순")) {
+			int listcount=this.productService.getListCount1(kind);
+			System.out.println("listcount:"+listcount);
+			int page=1;//쪽번호
+			int limit=10;//한페이지에 보여지는 목록개수
+			if(request.getParameter("page") != null) {
+				page=Integer.parseInt(request.getParameter("page"));			
+			}
+			String search_type=request.getParameter("search_type");//검색어
+			String search_field=request.getParameter("search_field");//검색
+			//필드
+			b.setSearch_field(search_field);
+			b.setSearch_type("%"+search_type+"%");
+			//%는 오라클 와일드 카드 문자로서 하나이상의 임의의 문자와
+			//매핑 대응
+
+			
+			//전체 레코드 개수 또는 검색전후 레코드 개수
+			//System.out.println("총 게시물수:"+listcount+"개");
+
+			b.setStartrow((page-1)*10+1);//시작행번호
+			b.setEndrow(b.getStartrow()+limit-1);//끝행번호
+
+			
+			//목록
+
+			//총페이지수
+			int maxpage=(int)((double)listcount/limit+0.95);
+			//현재 페이지에 보여질 시작페이지 수(1,11,21)
+			int startpage=(((int)((double)page/10+0.9))-1)*10+1;
+			//현재 페이지에 보여줄 마지막 페이지 수(10,20,30)
+			int endpage=maxpage;
+			if(endpage > startpage+10-1) endpage=startpage+10-1;
+
+			ModelAndView listM=new ModelAndView();
+			
+			//저장
+			listM.addObject("page",page);
+			listM.addObject("startpage",startpage);
+			listM.addObject("endpage",endpage);
+			listM.addObject("maxpage",maxpage);
+			listM.addObject("listcount",listcount);	
+			listM.addObject("search_field",search_field);
+			listM.addObject("search_type", search_type);
+
+			listM.setViewName("product/main");//뷰페이지 폴더
+			//경로와 파일명 지정
+			return listM;
+		} 
+			if((kind==null || kind.equals("매트")) && kind2.equals("높은가격순")) {
+			int listcount=this.productService.getListCount(b);
+			int page=1;//쪽번호
+			int limit=10;//한페이지에 보여지는 목록개수
+			if(request.getParameter("page") != null) {
+				page=Integer.parseInt(request.getParameter("page"));			
+			}
+			String search_type=request.getParameter("search_type");//검색어
+			String search_field=request.getParameter("search_field");//검색
+			//필드
+			b.setSearch_field(search_field);
+			b.setSearch_type("%"+search_type+"%");
+			//%는 오라클 와일드 카드 문자로서 하나이상의 임의의 문자와
+			//매핑 대응
+
+			
+			//전체 레코드 개수 또는 검색전후 레코드 개수
+			//System.out.println("총 게시물수:"+listcount+"개");
+
+			b.setStartrow((page-1)*10+1);//시작행번호
+			b.setEndrow(b.getStartrow()+limit-1);//끝행번호
+
+			
+			//목록
+
+			//총페이지수
+			int maxpage=(int)((double)listcount/limit+0.95);
+			//현재 페이지에 보여질 시작페이지 수(1,11,21)
+			int startpage=(((int)((double)page/10+0.9))-1)*10+1;
+			//현재 페이지에 보여줄 마지막 페이지 수(10,20,30)
+			int endpage=maxpage;
+			if(endpage > startpage+10-1) endpage=startpage+10-1;
+
+			ModelAndView listM=new ModelAndView();
+			
+			//저장
+			listM.addObject("page",page);
+			listM.addObject("startpage",startpage);
+			listM.addObject("endpage",endpage);
+			listM.addObject("maxpage",maxpage);
+			listM.addObject("listcount",listcount);	
+			listM.addObject("search_field",search_field);
+			listM.addObject("search_type", search_type);
+
+			listM.setViewName("product/main");//뷰페이지 폴더
+			//경로와 파일명 지정
+			return listM;
+		} 
+			if(kind !=null && !kind.equals("매트") && kind2.equals("높은가격순")) {
+			int listcount=this.productService.getListCount1(kind);
+			System.out.println("listcount:"+listcount);
+			int page=1;//쪽번호
+			int limit=10;//한페이지에 보여지는 목록개수
+			if(request.getParameter("page") != null) {
+				page=Integer.parseInt(request.getParameter("page"));			
+			}
+			String search_type=request.getParameter("search_type");//검색어
+			String search_field=request.getParameter("search_field");//검색
+			//필드
+			b.setSearch_field(search_field);
+			b.setSearch_type("%"+search_type+"%");
+			//%는 오라클 와일드 카드 문자로서 하나이상의 임의의 문자와
+			//매핑 대응
+
+			
+			//전체 레코드 개수 또는 검색전후 레코드 개수
+			//System.out.println("총 게시물수:"+listcount+"개");
+
+			b.setStartrow((page-1)*10+1);//시작행번호
+			b.setEndrow(b.getStartrow()+limit-1);//끝행번호
+
+			
+			//목록
+
+			//총페이지수
+			int maxpage=(int)((double)listcount/limit+0.95);
+			//현재 페이지에 보여질 시작페이지 수(1,11,21)
+			int startpage=(((int)((double)page/10+0.9))-1)*10+1;
+			//현재 페이지에 보여줄 마지막 페이지 수(10,20,30)
+			int endpage=maxpage;
+			if(endpage > startpage+10-1) endpage=startpage+10-1;
+
+			ModelAndView listM=new ModelAndView();
+			
+			//저장
+			listM.addObject("page",page);
+			listM.addObject("startpage",startpage);
+			listM.addObject("endpage",endpage);
+			listM.addObject("maxpage",maxpage);
+			listM.addObject("listcount",listcount);	
+			listM.addObject("search_field",search_field);
+			listM.addObject("search_type", search_type);
+
+			listM.setViewName("product/main");//뷰페이지 폴더
+			//경로와 파일명 지정
+			return listM;
+		}
+		/*
+		 * 
+		 * 
+		  
+		} 
+		} else if((kind==null || kind.equals("매트")) && kind2.equals("높은가격순")) {
+			List<ProductVO> product=this.productService.getProductListByKind4(kind);
+			return product;
+		} else if(kind !=null && !kind.equals("매트") && kind2.equals("높은가격순")) {
+			List<ProductVO> product=this.productService.getProductListByKind5(kind);
+			return product;
+		}
+		if(session.getAttribute("id") == null) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('로그인을 해야합니다')");
+			out.println("location='/member/login';");
+			out.println("</script>");
+			out.flush();
+			return "/member/login_form";
+		}
+		
+		String id = (String)session.getAttribute("id");
+		String name = (String)session.getAttribute("name");
+		model.addAttribute("name",name);
+		model.addAttribute("id",id);
+		*/
+return null;
 		
 	}
 	
 	
+	@ResponseBody
+	@RequestMapping(value="/product/qna")
+	public int showlist(HttpSession session,Model model,HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		
+		String id = (String)session.getAttribute("id");
+		
+		if(id == null) {
+			return 1;
+		}
+		
+		if(id != null) {
+			return 2;
+		}
+		return 3;
+	}
 	
-
+	@ResponseBody
+	@RequestMapping(value="/product/like")
+	public int show(LikeVO f,CartVO s,OrderDetailVO o,HttpSession session,Model model,HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		String cart_cnt = request.getParameter("cart_cnt");
+		String prodcut_no = request.getParameter("product_no");
+		String kind = request.getParameter("kind");
+		String id = (String)session.getAttribute("id");
+		
+		String order_detail_cnt = request.getParameter("order_detail_cnt");
+		String order_detail_price = request.getParameter("order_detail_price");
+		String order_detail_pname = request.getParameter("order_detail_pname");
+		
+		
+		int d = 4;
+		int c = 3;
+		int a = 2;
+		int b = 1;
+		
+		//List<ProductVO2> detail2 = productService.getReviewList(Integer.parseInt(prodcut_no));
+		if(kind.equals("1") ) {
+			
+			if(id ==null) {
+				
+				
+				return b;
+				
+			}
+			
+			if(id != null) {
+		
+			f.setLike_pro_no(Integer.parseInt(prodcut_no));
+			f.setLike_mem_id(id);
+			
+		this.productService.insertLike(f);
+		
+			return a;
+		
+			}
+		}
+		
+		if(kind.equals("2") ) {
+			
+			f.setLike_pro_no(Integer.parseInt(prodcut_no));
+			f.setLike_mem_id(id);
+			
+			this.productService.deleteLike(f);
+			
+			return a;
+			}
+			if(kind.equals("3") ) {
+				
+				
+				if(id != null) {
+			
+			s.setCart_pro_no(Integer.parseInt(prodcut_no));
+			s.setCart_mem_id(id);
+			s.setCart_cnt(Integer.parseInt(cart_cnt));
+			
+			this.productService.insertCart(s);
+			
+			return c;
+				}
+				
+				if(id == null) {
+					/*
+					String random_id = UUID.randomUUID().toString();
+					
+					
+					
+					
+					s.setCart_pro_no(Integer.parseInt(prodcut_no));
+					s.setCart_mem_id(random_id);
+					s.setCart_cnt(Integer.parseInt(cart_cnt));
+					
+					
+					this.productService.insertCart(s);
+					*/
+					return 5;
+				}
+				
+				
+			}
+			
+			if(kind.equals("4") ) {
+				
+				
+				if(id != null) {
+				
+					o.setOrder_detail_fno(Integer.parseInt(prodcut_no));
+					o.setOrder_detail_mid(id);
+					o.setOrder_detail_cnt(order_detail_cnt);
+					o.setOrder_detail_pname(order_detail_pname);
+					o.setOrder_detail_price(Integer.parseInt(order_detail_price));
+					
+					this.productService.insertOrderDetail(o);
+					
+					return d;
+				}
+				
+				if(id == null) {
+					/*
+					String random_id = UUID.randomUUID().toString();
+					
+					System.out.println("랜덤아이디:"+random_id);
+					
+					o.setOrder_detail_fno(Integer.parseInt(prodcut_no));
+					o.setOrder_detail_mid(random_id);
+					o.setOrder_detail_cnt(order_detail_cnt);
+					o.setOrder_detail_pname(order_detail_pname);
+					o.setOrder_detail_price(Integer.parseInt(order_detail_price));
+					
+					
+					this.productService.insertOrderDetail(o);
+					*/
+					return 5;
+				}
+				
+			}
+		
+		
+		return a;
+	}
 	
+	
+	
+	
+	@RequestMapping(value="/qna/add_ok")
+	public String qna_add( ProductVO2 f ,HttpSession session,Model model,HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		
+		String product_no = request.getParameter("product_no");
+		String id = (String)session.getAttribute("id");
+		String title = request.getParameter("qnaTitle");
+		String content = request.getParameter("qnaContent");
+		
+		
+		if (id != null) {
+		
+		
+		f.setQna_product_no(Integer.parseInt(product_no));
+		f.setQna_mem_id(id);
+		f.setQna_title(title);
+		f.setQna_content(content);
+		
+		System.out.println(f.getQna_product_no());
+		System.out.println(f.getQna_mem_id());
+		System.out.println(f.getQna_title());
+		System.out.println(f.getQna_content());
+		
+		
+		 this.productService.insertQna(f);
+		
+		return "redirect:../product/detail/"+product_no;
+		}
+		if (id == null) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('로그인을 해야합니다')");
+			out.println("</script>");
+			out.flush();
+			
+			return "member_login";
+		}
+		return null;
+	}
 	
 	@ResponseBody
 	@RequestMapping(value="/product/list")
@@ -463,19 +977,71 @@ String pageStr = request.getParameter("page");
 
 	
 	@RequestMapping(value="/product/detail/{product_no}")
-	public String showProductDetail(@PathVariable int product_no, HttpSession session, Model model,HttpServletRequest request, HttpServletResponse response)throws IOException {
+	public String showProductDetail(@PathVariable int product_no, LikeVO f, HttpSession session, Model model,HttpServletRequest request, HttpServletResponse response)throws IOException {
 		
-		ProductVO detail = productService.getProductContent(product_no);
+		String id = (String)session.getAttribute("id");
 		
-		List<ProductVO2> detail2 = productService.getReviewList(product_no);
 		
-		model.addAttribute("detail2",detail2);
 		
-		model.addAttribute("detail",detail);
 		
-		System.out.println("확인"+detail2);
+	
 	
 		
+	//LikeVO a = productService.getLikeList(f);
+	
+	System.out.println("세션아이디:"+id);
+		
+	
+	
+		if ( id == null) {
+			ProductVO detail = productService.getProductContent(product_no);
+			
+			List<ProductVO2> detail2 = productService.getReviewList(product_no);
+			
+			model.addAttribute("detail2",detail2);
+			
+			model.addAttribute("detail",detail);
+			
+			return "product/detail";
+		}
+		
+		if (id != null) {
+			
+			ProductVO detail = productService.getProductContent(product_no);
+			
+			List<ProductVO2> detail2 = productService.getReviewList(product_no);
+			
+			model.addAttribute("detail2",detail2);
+			
+			model.addAttribute("detail",detail);
+			
+			f.setLike_mem_id(id);
+			f.setLike_pro_no(product_no);
+	
+		if(productService.getLikeList(f) != null  ) {
+			
+		
+		
+		
+	
+		
+		return "product/detail2";
+		
+		} 
+		
+		if(productService.getLikeList(f) == null  ){
+		
+		
+		
+			
+			
+		
+			
+			return "product/detail";
+		
+		
+			}
+		}
 		return "product/detail";
 	}
 	

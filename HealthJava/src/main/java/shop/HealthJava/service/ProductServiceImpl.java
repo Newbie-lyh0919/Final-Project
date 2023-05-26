@@ -6,7 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import shop.HealthJava.dao.ProductDAO;
+import shop.HealthJava.vo.CartVO;
+import shop.HealthJava.vo.LikeVO;
+import shop.HealthJava.vo.OrderDetailVO;
 import shop.HealthJava.vo.ProductVO;
+import shop.HealthJava.vo.ProductVO2;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -129,9 +133,48 @@ public class ProductServiceImpl implements ProductService {
 		return this.productDao.searchProductList(f);
 	}
 	
+	
+
 	@Override
-	public int count(ProductVO f) {
-		return this.productDao.count(f);
+	public List<ProductVO2> getReviewList(int product_no) {
+		// TODO Auto-generated method stub
+		return this.productDao.getReviewList(product_no);
+	}
+
+	@Override
+	public void insertQna(ProductVO2 f) {
+		// TODO Auto-generated method stub
+		this.productDao.insertQna(f);
+	}
+
+	@Override
+	public void insertLike(LikeVO f) {
+		this.productDao.insertLike(f);
+		
+	}
+
+	@Override
+	public void deleteLike(LikeVO f) {
+		this.productDao.deldteLike(f);
+		
+	}
+
+	@Override
+	public LikeVO getLikeList(LikeVO f) {
+		// TODO Auto-generated method stub
+		return this.productDao.getLikeList(f);
+	}
+
+	@Override
+	public void insertCart(CartVO c ) {
+		this.productDao.insertCart(c);
+		
+	}
+
+	@Override
+	public void insertOrderDetail(OrderDetailVO o) {
+		this.productDao.insertOrderDetail(o);
+		
 	}
 	
 }
