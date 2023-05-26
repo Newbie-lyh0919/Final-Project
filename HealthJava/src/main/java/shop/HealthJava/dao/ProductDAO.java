@@ -2,7 +2,11 @@ package shop.HealthJava.dao;
 
 import java.util.List;
 
+import shop.HealthJava.vo.CartVO;
+import shop.HealthJava.vo.LikeVO;
+import shop.HealthJava.vo.OrderDetailVO;
 import shop.HealthJava.vo.ProductVO;
+import shop.HealthJava.vo.ProductVO2;
 
 public interface ProductDAO {
 	
@@ -44,5 +48,19 @@ public interface ProductDAO {
 	
 	List<ProductVO> searchProductList(ProductVO f);
 	
-	int count(ProductVO f);
+	
+	
+	public List<ProductVO2> getReviewList(int product_no);
+
+	void insertQna(ProductVO2 f);
+
+	void insertLike(LikeVO f);
+
+	void deldteLike(LikeVO f);
+
+	LikeVO getLikeList(LikeVO f);
+
+	void insertCart(CartVO c);
+
+	void insertOrderDetail(OrderDetailVO o);
 }

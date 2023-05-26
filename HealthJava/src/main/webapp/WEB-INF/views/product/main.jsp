@@ -1056,10 +1056,10 @@ input#checkIcon {
 			}
 		});
 	</script>
-	<script src="../../js/test.js"></script>
-	<script src="../../js/test3.js"></script>
-	<script src="../../js/test4.js"></script>
-	<script src="../../js/test5.js"></script>
+	<script src="../../js/menuCategory.js"></script>
+	<script src="../../js/orderby.js"></script>
+	<script src="../../js/page.js"></script>
+	<script src="../../js/page2.js"></script>
 	<script src="../../js/test6.js"></script>
 </body>
 </html>

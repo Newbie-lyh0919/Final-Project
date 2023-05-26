@@ -196,7 +196,7 @@
 <% if(id!=null){%> <%-- 회원일때 --%>
     <div class="headerbox">
         <div class="menubox">
-            <a href="main_product">
+            <a href="/product/index">
                 <img src="<%=request.getContextPath()%>/images/logo1.png" id="logoImage" width="200" height="90" alt="로고 사진">
             </a>
             
@@ -206,9 +206,9 @@
                     <button id="dropbtn" value="소도구" onclick="#">제품</button>
                     <div id="dropdown-content">
                        
-                        <a href="#">매트</a>
+                         <a href="/product/main">짐볼</a>
                         
-                        <a href="#">짐볼</a>
+                        <a href="/product/main">메트</a>
                         
                     </div>
                 </div>
@@ -217,14 +217,14 @@
                 <a id="a3" href="location">찾아오시는 길</a>
             </div>
             <div class="searchbox">
-	          <a href="myPage_Main"><%=id %> 님</a> | <a href="member_logout">로그아웃</a> | <a href="myPage_Main">찜목록</a> | <a href="member_logout">장바구니</a>
+	          <a href="myPage_Main"><%=id %> 님</a> | <a href="member_logout">로그아웃</a> | <a href="">찜목록</a> | <a href="">장바구니</a>
             </div>
         </div>
     </div>
     <% if(id.equals("admin")){%> <%-- 관리자 일때 --%>
     <div class="headerbox">
         <div class="menubox">
-            <a href="main_product">
+            <a href="/product/index">
                 <img src="<%=request.getContextPath()%>/images/logo1.png" id="logoImage" width="200" height="90" alt="로고 사진">
             </a>
            
@@ -233,9 +233,9 @@
                 <div id="dropdownbox">
                     <button id="dropbtn" value="소도구" onclick="#">제품</button>
                     <div id="dropdown-content">
-                        <a href="#">매트</a>
+                         <a href="/product/main">짐볼</a>
                         
-                        <a href="#">짐볼</a>
+                        <a href="/product/main">메트</a>
                     </div>
                 </div>
                 
@@ -243,7 +243,7 @@
                 <a id="a3" href="location">찾아오시는 길</a>
             </div>
            <div class="searchbox">
-	          <a href="myPage_Main"><%=id %> 님</a> | <a href="member_logout">로그아웃</a> | <a href="myPage_Main">찜목록</a> | <a href="member_logout">장바구니</a>
+	          <a href="myPage_Main"><%=id %> 님</a> | <a href="member_logout">로그아웃</a> | <a href="">찜목록</a> | <a href="">장바구니</a>
             </div>
         </div>
     </div>
@@ -251,7 +251,7 @@
     <%} else { %> <%-- 비회원일떄 --%>
     <div class="headerbox">
         <div class="menubox">
-            <a href="main_product">
+            <a href="/product/index">
                 <img src="<%=request.getContextPath()%>/images/logo1.png" id="logoImage" width="200" height="90" alt="로고 사진">
             </a>
             
@@ -260,9 +260,9 @@
                 <div id="dropdownbox">
                     <button id="dropbtn" value="소도구" onclick="#">제품</button>
                     <div id="dropdown-content">
-                      <a href="#">매트</a>
+                      <a href="/product/main">짐볼</a>
                         
-                        <a href="#">짐볼</a>
+                        <a href="/product/main">메트</a>
                     </div>
                 </div>
                 
@@ -270,7 +270,7 @@
                 <a id="a3" href="location">찾아오시는 길</a>
             </div>
             <div class="searchbox">
-	          <a href="myPage_Main"><%=id %> 님</a> | <a href="member_logout">로그아웃</a> | <a href="myPage_Main">찜목록</a> | <a href="member_logout">장바구니</a>
+	          <a href="/member_join">회원가입</a> | <a href="/member_login">로그인</a> | <a href="">찜목록</a> | <a href="">장바구니</a>
             </div>
         </div>
     </div>

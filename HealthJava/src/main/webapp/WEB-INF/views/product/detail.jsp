@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri= "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -273,7 +274,7 @@ ul,li,body,h1,h2,h3,h4,h5,h6{margin: 0; padding: 0;}
 	.shCMSshop .shopView .viewBody{margin-top: 100px;}
 	.shCMSshop .shopView .viewBody .contentNav:after{display: block;content:'';clear: both;}
 	.shCMSshop .shopView .viewBody .contentNav li{
-		width: 25%;
+		width: 31%;
 	    float: left;
 	    background: #F4A460;
 	    border: 1px solid white;
@@ -284,10 +285,11 @@ ul,li,body,h1,h2,h3,h4,h5,h6{margin: 0; padding: 0;}
 	}
 	.shCMSshop .shopView .viewBody .contentNav a{
 	    display: block;
-    	padding: 20px 0;
+    	padding: 20px 0px;
     	color: white;
     	background-color: #F4A460;
     	border: 2px solid white;
+    	
 	}
 	.shCMSshop .shopView .viewBody .contentNav a span{font-size: 15px;}
 	.shCMSshop .shopView .viewBody .contentNav a span .count{font-size: 15px;}
@@ -387,8 +389,22 @@ ul,li,body,h1,h2,h3,h4,h5,h6{margin: 0; padding: 0;}
     align-items: flex-start;
     margin-top: 10px;
 }
+.MemList {
+		border: none;
+		width: 1300px;
+		height: 250px;
+		border-top: 2px solid #b21949;
+		border-bottom: 2px solid #b21949;
+		font-family: 'KIMM_Bold';
+	}
+	
+	.MemList tr {
+		border-bottom: 1px solid #b21949;
 
-
+}
+.hidden {
+    display: none;
+  }
 </style>
 
 
@@ -604,7 +620,7 @@ function Click3() {
 				</div>
 				<!-- 상품 설명 -->
 				<div class="productInfo">
-					<h1>${detail.product_title}</h1>
+					<h1 id="name">${detail.product_title}</h1>
 					<div class="price">
 						<span class="sale-price" style="margin-left: 10px;" id="cost">${detail.product_price}원</span>
 					</div>
@@ -622,112 +638,102 @@ function Click3() {
 							<%-- <a href="" class="plus" style="border: none; background: white;" onclick="plus()">+</a>--%>
 						</span>
 					</div>
-					<div class="all-price">총 상품금액        <span class="totalcost">${detail.product_price}</span>원</div>
+					<div class="all-price">총 상품금액        <span id="price" class="totalcost">${detail.product_price}</span>원</div>
 
 					<div class="btn">
-						<div class="first">
+						<div class="first" id="buy">
 							<%--<a href="#" class="psbtn"  onclick="sendPost('payment.shop?product_title=${p.product_title}&product_price=${p.product_price}');">구매하기</a> --%>
-							<input type="button" id="gume" class="psbtn" value="구매하기"  onclick="sendPost('payment.shop?product_title=${p.product_title}&product_price=${p.product_price}');">
+							<input type="button"  data-tab="4" id="gume" class="psbtn" value="구매하기" >
 						</div>
 						
-						<div class="second">
-							<a href="#" role="button" class="fbbtn" onclick="Click2();">찜하기</a>
-							<a href="#" role="button" class="ctbtn" onclick="Click3();">장바구니</a>
+						<div class="second" id="like_cart">
+						
+							<a data-tab="1" class="like" >찜 하기</a>
+							
+							
+							
+							<a data-tab="3" class="cart">장바구니</a>
+							
 						</div>
 					</div>
 			
 			</div>
 			<%--</form> --%>
 			
-<!-- 하단의 탭부분 시작 --><div class="viewBody">
-			<div class="container">
-  <ul class="contentNav">
-    <li class="on"><a>상품정보</a></li>
-    <li><a>리뷰</a></li>
-    <li><a>Q&A</a></li>
-  </ul>
-  <div class="tab_cont">
-    <div class="on">
-      <div id="tab1Content" class="tab-content">
-  <!-- 상품 정보 내용 -->
-  <h2>상품 정보</h2>
-  
-    <ul>
-      <li><h2></h2></li>
-      
-      <c:if test="${!empty detail.product_cont5}">
-        <li><img src="/upload${detail.product_cont5}" style="height: 1000px; width: 800px;"></li>
-      </c:if>
-      
-      <c:if test="${!empty detail.product_cont6}">
-        <li><img src="/upload${detail.product_cont6}" style="height: 1000px; width: 800px;"></li>
-      </c:if>
-      
-      <c:if test="${!empty detail.product_cont7}">
-        <li><img src="/upload${detail.product_cont7}" style="height: 1000px; width: 800px;"></li>
-      </c:if>
-      
-      <c:if test="${!empty detail.product_cont8}">
-        <li><img src="/upload${detail.product_cont8}" style="height: 1000px; width: 800px;"></li>
-      </c:if>
+<div class="viewBody">
+  <div class="container">
+    <ul class="contentNav">
+      <li class="on"><a>상품정보</a></li>
+      <li><a>리뷰</a></li>
+      <li><a>Q&A</a></li>
     </ul>
- 
-</div>
-    </div>
-    <div>
-      tab2_content
-    </div>
-    <div>
-      tab3_content
+    <div class="tab_cont">
+      <div class="on">
+        <div id="tab1Content" class="tab-content">
+          <!-- 상품 정보 내용 -->
+          <h2>상품 정보</h2>
+          <ul>
+            <li><h2></h2></li>
+            <c:if test="${!empty detail.product_cont5}">
+              <li><img src="/upload${detail.product_cont5}" style="height: 1000px; width: 800px;"></li>
+            </c:if>
+            <c:if test="${!empty detail.product_cont6}">
+              <li><img src="/upload${detail.product_cont6}" style="height: 1000px; width: 800px;"></li>
+            </c:if>
+            <c:if test="${!empty detail.product_cont7}">
+              <li><img src="/upload${detail.product_cont7}" style="height: 1000px; width: 800px;"></li>
+            </c:if>
+            <c:if test="${!empty detail.product_cont8}">
+              <li><img src="/upload${detail.product_cont8}" style="height: 1000px; width: 800px;"></li>
+            </c:if>
+          </ul>
+        </div>
+      </div>
+      <div>
+        tab2_content
+      </div>
+      <div>
+      
+        <!-- 수정된 내용 시작 -->
+        <div id="tab3Content" class="tab-content">
+          <h2>Q&A</h2>
+          <input type ="button" value="상품문의하기" class="qna" data-tab="1">
+          <table>
+  <tr>
+    <th width="5%" height="26">아이디</th>
+    <th width="35%">질문제목</th>
+    <th width="45%">질문내용</th>
+    <th width="10%">답변상태</th>
+  </tr>
+  <c:forEach var="a" items="${detail2}">
+    <tr>
+      <td>${a.qna_mem_id}</td>
+      <td>${a.qna_title}</td>
+      <td>${a.qna_content}</td>
+      <c:if test="${not empty a.qna_reply}">
+        <th width="14%"><a href="javascript:void(0);" onclick="toggleReply(this);">답변완료</a></th>
+      </c:if>
+      <c:if test="${empty a.qna_reply}">
+        <th width="14%">답변대기</th>
+      </c:if>
+    </tr>
+    <tr class="hidden">
+     
+           <td>>>></td>
+            <td colspan="2">${a.qna_reply}</td>
+          
+        
+    </tr>
+  </c:forEach>
+</table>
+        </div>
+        <!-- 수정된 내용 끝 -->
+      </div>
     </div>
   </div>
 </div>
-</div>
 		</section>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+	
 	<%-- top버튼 삭제 X --%>
 	<div id="topBtn">
 		<span class="fonti um-arrow-circle-up um-3x icon"></span>TOP
@@ -737,6 +743,13 @@ function Click3() {
 		<jsp:include page="../include/footer.jsp"/>
 	</footer>
 	</div>
+	
+	<script>
+  function toggleReply(element) {
+    var replyRow = element.parentNode.parentNode.nextElementSibling;
+    replyRow.classList.toggle("hidden");
+  }
+</script>
 	<script type="text/javascript">
 	
 		<%-- top버튼 부분 --%>
@@ -758,19 +771,27 @@ function Click3() {
 		});
 	</script>
 	<script>
-	 $(document).ready(function() {
-		    $(".contentNav li").click(function() {
-		      var idx = $(this).index();
-		      $(".contentNav li").removeClass("on");
-		      $(".contentNav li").eq(idx).addClass("on");
-		      $(".tab_cont > div").hide();
-		      $(".tab_cont > div").eq(idx).show();
-		    });
+  $(document).ready(function() {
+    $(".contentNav li").click(function() {
+      var idx = $(this).index();
+      $(".contentNav li").removeClass("on");
+      $(".contentNav li").eq(idx).addClass("on");
+      $(".tab_cont > div").hide();
+      $(".tab_cont > div").eq(idx).show();
 
-		    // 초기에는 tab1_content만 보여줍니다.
-		    $(".tab_cont > div").hide();
-		    $(".tab_cont > div").eq(0).show();
-		  });
-    </script>
+      // 추가된 코드 시작
+      $(".tab_cont > div").eq(idx).find("table").show();
+      // 추가된 코드 끝
+    });
+
+    // 초기에는 tab1_content만 보여줍니다.
+    $(".tab_cont > div").hide();
+    $(".tab_cont > div").eq(0).show();
+    $(".tab_cont > div").eq(0).find("table").show(); // 초기에는 첫 번째 탭의 테이블 내용을 보여줍니다.
+  });
+</script>
+
+<script src="../../js/qna.js"></script>
+<script src="../../js/like_cart.js"></script>
 </body>
 </html>

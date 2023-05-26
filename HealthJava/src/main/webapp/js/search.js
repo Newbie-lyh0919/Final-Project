@@ -1,11 +1,11 @@
 /* 검색필드 검색목록 */    
-function search_FoodList(){
+function search_ProductList(){
 	//$('#searchBtn').click(function(e) {
 	   var searchField =  $('#search_field').val();
 	   var searchType =  $('#search_type').val();
 
   $.ajax({//$는 jQuery란 뜻. $.ajax 뜻은 jQuery 내의 아작스 실행
-      url:"/search_FoodList", //url 패턴 매핑주소 경로
+      url:"/search_ProductList", //url 패턴 매핑주소 경로
       type:"POST",//데이터를 서버로 보내는 방법
       data: {
       	"search_field" : searchField,
