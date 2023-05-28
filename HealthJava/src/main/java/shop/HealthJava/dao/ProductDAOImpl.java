@@ -106,5 +106,14 @@ public class ProductDAOImpl implements ProductDAO {
 
 	    return sqlSession.selectList("new", paramMap);
 	}
+
+	@Override
+	public int getTotalItems(ProductVO f, String kind, String kind2) {
+		Map<String, Object> paramMap = new HashMap<>();
+	    paramMap.put("f", f);
+	    paramMap.put("kind", kind);
+	    paramMap.put("kind2", kind2);
+		return sqlSession.selectOne("count", paramMap);
+	}
 	
 }

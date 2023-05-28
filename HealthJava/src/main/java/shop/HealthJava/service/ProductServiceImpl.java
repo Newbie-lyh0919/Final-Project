@@ -93,5 +93,11 @@ public class ProductServiceImpl implements ProductService {
 		return this.productDao.getListNew(f,kind,kind2);
 		
 	}
+
+	@Override
+	public int getTotalItems(ProductVO f, String kind, String kind2) {
+		// TODO Auto-generated method stub
+		return this.productDao.getTotalItems(f, kind, kind2);
+	}
 	
 }

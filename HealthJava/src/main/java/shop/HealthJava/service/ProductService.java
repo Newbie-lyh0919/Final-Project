@@ -35,4 +35,6 @@ public interface ProductService {
 	void insertOrderDetail(OrderDetailVO o);
 
 	List<ProductVO> getListNew(ProductVO f, String kind, String kind2);
+
+	int getTotalItems(ProductVO f, String kind, String kind2);
 }
