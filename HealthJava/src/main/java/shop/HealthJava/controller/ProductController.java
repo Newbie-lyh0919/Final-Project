@@ -42,7 +42,7 @@ public class ProductController { // 상품 페이지 관련 컨트롤러
 	
 	@ResponseBody
 	@RequestMapping("/new/list")
-	public List<ProductVO> newTest(Model model, ProductVO f, HttpSession session,
+	public Map<String, Object> newTest(Model model, ProductVO f, HttpSession session,
 	        HttpServletRequest request, HttpServletResponse response) throws Exception {
 	    
 	    String kind = request.getParameter("kind");
@@ -66,8 +66,6 @@ public class ProductController { // 상품 페이지 관련 컨트롤러
 	    }
 
 	    // 검색어 필드가 비어있지 않은 경우에만 검색 조건 추가
-	    
-	    
 	    if (search_field != null && !search_field.isEmpty()) {
 	        search_field = "%" + search_field + "%";
 	        // SQL 쿼리문에 검색어 조건 추가
@@ -75,18 +73,36 @@ public class ProductController { // 상품 페이지 관련 컨트롤러
 	        f.setSearch_type(search_type);
 	    }
 	    
-	    
-	    
 	    System.out.println("kind: " + kind);
 	    System.out.println("kind2: " + kind2);
 	    System.out.println("searchField: " + search_field);
 	    System.out.println("searchType: " + search_type);
 	    
+	    int page;
+	    String pageStr = request.getParameter("page");
+	    if (pageStr == null) {
+	        page = 1;
+	    } else {
+	        page = Integer.parseInt(pageStr);
+	        System.out.println("페이지:"+page);
+	    }
 	    
-
+	    int limit = 10; // 한 페이지에 보여지는 목록 개수
+	    f.setStartrow((page - 1) * limit + 1); // 시작 행 번호
+	    f.setEndrow(f.getStartrow() + limit - 1); // 끝 행 번호
+	    
+	    int totalItems = this.productService.getTotalItems(f, kind, kind2);
+	    int totalPages = (int) Math.ceil((double) totalItems / limit);
+	    f.setPage_count(totalPages);
+	    
 	    List<ProductVO> flist = this.productService.getListNew(f, kind, kind2);
-
-	    return flist;
+	    
+	    // Map에 flist와 totalPages를 담아서 반환
+	    Map<String, Object> resultMap = new HashMap<>();
+	    resultMap.put("flist", flist);
+	    resultMap.put("totalPages", totalPages);
+	    
+	    return resultMap;
 	}
 	
 	
