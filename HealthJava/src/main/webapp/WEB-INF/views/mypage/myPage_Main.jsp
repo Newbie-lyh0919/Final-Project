@@ -459,7 +459,7 @@
 											<td>${o.order_total }원</td>
 											<td>접수완료</td>
 											<td>
-											<input type="button" id="btn" onclick="window.open('https://www.hanjin.com/kor/CMS/DeliveryMgr/WaybillSch.do?mCode=MN038');" value="배송조회">&nbsp;&nbsp;&nbsp;
+											<input type="button" id="btn" onclick="#" value="배송조회">&nbsp;&nbsp;&nbsp;
 											<input type="button" id="btn" value="후기작성" onclick="openPopup_myPage_review_write()"></td>
 										</tr>
 										</c:forEach>
@@ -526,7 +526,7 @@
 			var page_left = Math.ceil((window.screen.width - page_width)/2);
 			var page_top = Math.ceil((window.screen.height - page_height)/2);
 			
-			  window.open("http://localhost:8282/myPage_review_write", "review_write",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
+			  window.open("mypage/myPage_review_write", "review_write",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
 		}
 	</script>
 </body>

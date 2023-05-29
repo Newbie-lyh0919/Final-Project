@@ -466,7 +466,6 @@
 		<section class="notice">
 			<div class="page-title">
 				<b style="text-align: left; font-size: 20px;">주문 상세내역</b>
-			<b class="indent" style="font-size: 15px;">주문일자 : ${order_date.substring(0,10) }</b><br>
 			</div>
 		<!-- board list area -->
 		<div id="board-list">
@@ -482,14 +481,14 @@
 						</tr>
 					</thead>
 					<tbody>
-					<c:if test="${!empty orderDetailList }" >
-					<c:forEach var="od" items="${orderDetailList }"> 
-							<input type="hidden" name="order_no" id="order_no" value="${od.order_detail_no}" />
+					<c:if test="${!empty orderDetailList }">
+					<c:forEach var="od" items="${orderDetailList }">
+						<input type="hidden" name="order_no" id="order_no" value="${od.order_detail_no}" />
 						<tr>
 							<th><a href="#" class="orderList">${od.order_detail_pname }</a></th>
 							<td><div class="price" name="order_total">${od.order_detail_price }</div></td>
 							<td><div class="quantity">
-								<input type="number" value="1" min="1" class="quantity-field">
+								${od.order_detail_cnt }
 								</div>
 							</td>
 							<td><div class="subtotal" id="sum">${od.order_detail_price }</div></td>
@@ -499,7 +498,9 @@
 								<input id="btn" type="button" onclick="" value="환불">
 							</td>
 						</tr>
-						<script>
+					</c:forEach>
+					</c:if>
+						<!-- <script>
 						window.onload = function() {
 							  // 주문 수량이 변경될 때마다 합계 금액을 업데이트.
 							  var quantityField = document.querySelector(".quantity-field");
@@ -531,26 +532,24 @@
 							  }
 							};
 
-						</script>
-				 </c:forEach>
-					</c:if>					
+						</script> -->
+							
 					<c:if test="${empty orderDetailList }">
 						<tr>
 							<th colspan="5" class="nonList">현재 주문한 제품이 없습니다.</th>
 						</tr>
 					</c:if> 
-
 					</tbody>
 				</table>	
 				<br>
 				
 				<div align="right" style="margin-right: 50px;">
 					<div class="totalPrice" style="font-size: 20px;">
-						<b>총액 : &nbsp;<span id="totalPrice">${totalPrice }0</span>원</b>
+						<b>총액 : &nbsp;<span id="totalPrice">${totalPrice }</span>원</b>
 					</div>
 				</div>
 				<br><br>
-				<input type="button" id="updateBtn" onclick="location.href='myPage_orderCancel'" value="주문내역 목록">
+				<input type="button" id="updateBtn" onclick="location.href='myPage_order'" value="주문내역 목록">
 			</div>
 		</div>
 		

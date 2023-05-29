@@ -219,7 +219,7 @@ public class ProductController { // 상품 페이지 관련 컨트롤러
 				o.setOrder_detail_mid(id);
 				o.setOrder_detail_cnt(order_detail_cnt);
 				o.setOrder_detail_pname(order_detail_pname);
-				o.setOrder_detail_price(Integer.parseInt(order_detail_price));
+				o.setOrder_detail_price(order_detail_price);
 
 				this.productService.insertOrderDetail(o); //결제 버튼
 

@@ -13,7 +13,7 @@ import shop.HealthJava.vo.ReviewsVO;
 
 public interface MypageDAO {
 
-	List<OrderVO> getOrderList(OrderVO ovo); // 주문 내역 list
+	List<OrderVO> getOrderList(String user_id); // 주문 내역 list
 	int getOrderCount(OrderVO ovo); // 총 주문 건수
 	List<OrderDetailVO> getOrderDetailList(OrderDetailVO odv); // 주문상세 내역 list order_no 기준
 	

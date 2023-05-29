@@ -8,7 +8,11 @@
 
 	<!-- // 주문 내역 list -->
 	<select id="order_list" resultType="order">
-		select * from tbl_order where user_id=#{user_id}
+<!-- 	SELECT DATE_FORMAT(order_date, '%Y-%m-%d') AS order_date, GROUP_CONCAT(order_product_title SEPARATOR ', ') AS product_titles, COUNT(*) AS total_count
+	FROM tbl_order
+	GROUP BY DATE_FORMAT(order_date, '%Y-%m-%d'), order_no
+	ORDER BY order_no DESC -->
+	select * from tbl_order where user_id = #{user_id} order by order_date
 	</select>
 
 	<!-- // 총 주문 건수 -->
@@ -28,11 +32,10 @@
 		values (order_detail_no_seq.nextval, #{order_no}, #{product_no},sysdate, #{order_detail_pname}, #{order_detail_cnt}, #{order_detail_price},#{user_id},#{order_detail_pcont})
 	</insert>
 	
-	<!-- // 주문내역 list -->
+	<!-- // 주문상세내역 list -->
 	<select id="orderDetail_list" resultType="orderdetail">
-		SELECT * FROM tbl_order_detail od 
-		INNER JOIN tbl_order o ON od.order_no = o.order_no 
-		WHERE o.order_no= #{order_no}
+		SELECT * FROM tbl_order_detail
+		WHERE order_no= #{order_no}
 	</select>
 	
 	<!-- // 찜목록 -->

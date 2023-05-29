@@ -25,8 +25,8 @@ public class MypageDAOImpl implements MypageDAO {
 
 	// 주문 내역 list
 	@Override
-	public List<OrderVO> getOrderList(OrderVO ovo) {
-		return this.sqlSession.selectList("order_list", ovo);
+	public List<OrderVO> getOrderList(String user_id) {
+		return this.sqlSession.selectList("order_list", user_id);
 	}
 
 	// 총 주문 건수

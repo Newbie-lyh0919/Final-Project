@@ -23,8 +23,8 @@ public class MypageServiceImpl implements MypageService {
 	
 	// 주문 내역 list
 	@Override
-	public List<OrderVO> getOrderList(OrderVO ovo) {
-		return this.mypageDao.getOrderList(ovo);
+	public List<OrderVO> getOrderList(String user_id) {
+		return this.mypageDao.getOrderList(user_id);
 	}
 
 	// 총 주문 건수

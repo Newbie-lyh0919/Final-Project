@@ -534,7 +534,7 @@ function cancel_btn() {
 				<!-- board list area -->
 				<div id="board-list">
 					<div class="container">
-					<form method="post" id="cancel_Form" action="order_cancel_ok.shop">
+					<form method="post" id="cancel_Form" action="order_cancel_ok">
 						<table class="board-table">
 							<thead>
 								<tr>
@@ -552,7 +552,8 @@ function cancel_btn() {
 									<c:forEach var="o" items="${olist}"> 
 										<tr>
 											<td> ${o.order_no} </td>
-											<th>${o.order_product_title }</th>
+											<th>
+											<a href="myPage_orderDetails?order_no=${o.order_no }">${o.order_product_title }</a></th>
 											<td>${o.order_date.substring(0,10) }</td>
 											<td>${o.order_cnt }개</td>
 											<td>
@@ -586,7 +587,7 @@ function cancel_btn() {
 				      PREV&nbsp;
 				    </c:if>
 				    <c:if test="${page > 1}">
-				      <a href="myPage_orderCancel?page=${page-1}">PREV</a>&nbsp;
+				      <a href="myPage_order?page=${page-1}">PREV</a>&nbsp;
 				    </c:if>
 				
 				    <%-- 현재 쪽번호 출력 --%>
@@ -595,7 +596,7 @@ function cancel_btn() {
 				        [&nbsp;${a}&nbsp;]
 				      </c:if>
 				      <c:if test="${a != page}"> <%-- 현재 쪽번호가 선택 안 된 경우 --%>
-				        <a href="myPage_orderCancel?page=${a}">[&nbsp;${a}&nbsp;]</a>&nbsp;
+				        <a href="myPage_order?page=${a}">[&nbsp;${a}&nbsp;]</a>&nbsp;
 				      </c:if>
 				    </c:forEach>
 				
@@ -603,7 +604,7 @@ function cancel_btn() {
 				      &nbsp;NEXT
 				    </c:if>
 				    <c:if test="${page < maxpage}">
-				      <a href="myPage_orderCancel?page=${page+1}">NEXT</a>
+				      <a href="myPage_order?page=${page+1}">NEXT</a>
 				    </c:if>
 				  </c:if>
 				</div>

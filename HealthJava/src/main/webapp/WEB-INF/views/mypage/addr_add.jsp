@@ -401,7 +401,7 @@
 		<div class="popup-content">
 			<h2 align="center" style="font-family: 'KIMM_Bold';">배송지 수정</h2>
 			<form method="post" action="addr_ok">
-			<input type="hidden" name="user_id" value="${id }" />
+			<input type="hidden" name="session_id" value="${session_id }" />
 			<br>
 			<div class="page-title" style="margin-left: 50px;">
 				<table>
