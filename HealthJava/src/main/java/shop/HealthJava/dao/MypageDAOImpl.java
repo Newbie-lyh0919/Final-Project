@@ -1,17 +1,21 @@
 package shop.HealthJava.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import shop.HealthJava.vo.AddrVO;
+import shop.HealthJava.vo.CSClientVO;
 import shop.HealthJava.vo.CartVO;
 import shop.HealthJava.vo.LikeVO;
 import shop.HealthJava.vo.MemberVO;
 import shop.HealthJava.vo.OrderDetailVO;
 import shop.HealthJava.vo.OrderVO;
+import shop.HealthJava.vo.ReviewsVO;
 
 @Repository
 public class MypageDAOImpl implements MypageDAO {
@@ -77,30 +81,54 @@ public class MypageDAOImpl implements MypageDAO {
 	@Override
 	public void deleteAllCart(CartVO cvo) {
 		this.sqlSession.delete("cart_delall",cvo);	
-		
 	}
 
 	//추가배송지 수정 조회
 	@Override
 	public AddrVO selectOneAddr(int addr_no) {
 		return this.sqlSession.selectOne("selectOneAddr",addr_no);
-		
-		
 	}
 
 	//추가 배송지 수정
 	@Override
 	public void updateAddr(AddrVO avo) {
 		this.sqlSession.update("updateAddr", avo);
-		
 	}
 
 	//추가 배송지 삭제
 	@Override
 	public void deleteAddr(int addr_no) {
 		this.sqlSession.delete("deleteAddr", addr_no);
-		
 	}
 
-	
+	// 후기 작성
+	@Override
+	public void addReview(ReviewsVO rv) {
+		this.sqlSession.insert("insertReview", rv);
+	}
+
+	// 리뷰 조회
+	@Override
+	public List<ReviewsVO> getReviewList(ReviewsVO rv) {
+		return this.sqlSession.selectList("reviewList",rv);
+	}
+
+	//장바구니 체크박스 선택된 정보 조회
+	@Override
+	public CartVO getCartItem(int cart_no) {
+		return this.sqlSession.selectOne("selectCartItem",cart_no);
+	}
+
+	// 주문확정
+	@Override
+	public void insertOrder(OrderVO ovo) {
+		this.sqlSession.insert("insertOrder", ovo);		
+	}
+
+	//주문 상세 추가
+	@Override
+	public void insertOrderDetail(OrderDetailVO odvo) {
+		this.sqlSession.insert("insertOrderDetail",odvo);
+		
+	}
 }

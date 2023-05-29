@@ -508,7 +508,7 @@ function cancel_btn() {
 							<li><a href="myPage_orderDetails" class="liList">교환/반품/환불</a></li>
 							<li><a href="myPage_like" class="liList">찜 목록</a></li>
 							<li><a href="myPage_cart" class="liList">장바구니</a></li>
-							<li style="margin-bottom: 30px;"><a href="myPage_inquiry" class="liList">문의 내역</a></li>
+							<li><a href="myPage_review" class="liList">나의 상품후기</a></li>
 	
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
 							<li><a href="myPage_updateInfo" class="liList">회원정보 변경</a></li>
@@ -516,8 +516,7 @@ function cancel_btn() {
 							<li><a href="myPage_user_Withdrawal" class="liList">회원탈퇴</a></li>
 							<li style="margin-bottom: 30px;"><a href="myPage_updateAddress" class="liList">배송지 관리</a></li>
 							
-							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 상품후기</li>
-							<li><a href="myPage_review" class="liList">나의 상품후기</a></li>
+							<!-- <li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 상품후기</li> -->
 						</ul>
 					</nav>
 				</aside>
@@ -544,7 +543,7 @@ function cancel_btn() {
 									<th scope="col" class="th-date">주문일자</th>
 									<th scope="col" class="th-date">주문수량</th>
 									<th scope="col" class="th-date">송장번호</th>
-									<th scope="col" class="th-date">합계</th>
+									<th scope="col" class="th-date">합계 </th>
 									<th scope="col" class="th-date2">주문상태</th>
 								</tr>
 							</thead>
@@ -631,7 +630,7 @@ function cancel_btn() {
 		</footer>
 	</div>
 	<script type="text/javascript">
-	<td><input type="button" value="주문취소"></td>
+
 		<%-- top버튼 부분 --%>
 		// 클릭 이벤트 핸들러
 		$("#topBtn").click(function(e) {

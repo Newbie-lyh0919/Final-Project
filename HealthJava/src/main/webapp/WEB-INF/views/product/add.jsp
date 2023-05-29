@@ -3,19 +3,40 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> <%-- CDN 절대링크 --%>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script> <%-- CDN 절대링크 --%>
-<script src="https://code.jquery.com/jquery-3.6.3.js"></script> <%-- CDN 절대링크 --%>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> <%-- CDN 절대링크 --%>
-
-<title>HealthJava 상품등록</title>
-
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/header.css"><%-- header.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/footer.css"><%-- footer.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/fontium/css/fontium.css" />
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/product/css/productRegister.css" />
-
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+	crossorigin="anonymous">
+<%-- CDN 절대링크 --%>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+	crossorigin="anonymous"></script>
+<%-- CDN 절대링크 --%>
+<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+<%-- CDN 절대링크 --%>
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<%-- CDN 절대링크 --%>
+<title>PuppyHome 상품등록</title>
+<link rel="shortcut icon"
+	href="<%=request.getContextPath()%>/images/favicon.ico"
+	type="image/x-icon">
+<%-- 파비콘 --%>
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/page/include/css/header.css">
+<%-- header.css --%>
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/page/include/css/footer.css">
+<%-- footer.css --%>
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/fontium/css/fontium.css" />
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/page/product/css/productRegister.css" />
 <style type="text/css">
+@charset "UTF-8";
+/* admin계정 UI */
 
 /* 관리자 메인이미지  */
 .adminMainpage {
@@ -427,21 +448,33 @@
 										<div class="select_img03" style="margin: 10px;">
 											<img src="" style="height: 100px; width: auto;">
 										</div> <script type="text/javascript">
-											$("#image03").change(function() { 
-												if (this.files && this.files[0]) { 
-													var reader = new FileReader;
-													reader.onload = function(data) {
-														$(".select_img03 img").attr("src",data.target.result);
-														}
-													reader.readAsDataURL(this.files[0]);
-												}
-												});
+											$("#image03")
+													.change(
+															function() {
+																if (this.files
+																		&& this.files[0]) {
+																	var reader = new FileReader;
+																	reader.onload = function(
+																			data) {
+																		$(
+																				".select_img03 img")
+																				.attr(
+																						"src",
+																						data.target.result)
+																				;
+																	}
+																	reader
+																			.readAsDataURL(this.files[0]);
+																}
+															});
 											function fileCheck03() {
-												var file = document.getElementById("image03");
+												var file = document
+														.getElementById("image03");
 												//파일 경로.
 												var filePath = file.files[0].name;
 												//전체경로를 \ 나눔.
-												var filePathSplit = filePath.split('\\');
+												var filePathSplit = filePath
+														.split('\\');
 												console.log(filePath);
 												$('#imagesrc03').val(filePath);
 											}

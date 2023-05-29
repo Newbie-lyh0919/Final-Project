@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +8,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-<title>PuppyShop</title>
+<title>HealthJava</title>
 <link rel="stylesheet" type="text/css" href="">
 <link rel="stylesheet" type="text/css" href="../fontium/css/fontium.css"/>
 <style type="text/css">
@@ -137,7 +138,7 @@
         color: black;
         text-decoration: none;
         font-family: 'KIMM_Bold', sans-serif;
-        font-size :100;
+        font-size : 15px;
     }
     #search{
         width: 330px;
@@ -190,10 +191,6 @@
 </style>
 </head>
 <body>
-<%
-   String id = (String)session.getAttribute("id");
-%>
-<% if(id!=null){%> <%-- 회원일때 --%>
     <div class="headerbox">
         <div class="menubox">
             <a href="main_product">
@@ -206,9 +203,9 @@
                     <button id="dropbtn" value="소도구" onclick="#">제품</button>
                     <div id="dropdown-content">
                        
-                        <a href="#">매트</a>
+                        <a href="/product/main">매트</a>
                         
-                        <a href="#">짐볼</a>
+                        <a href="/product/main">짐볼</a>
                         
                     </div>
                 </div>
@@ -217,64 +214,23 @@
                 <a id="a3" href="location">찾아오시는 길</a>
             </div>
             <div class="searchbox">
-	          <a href="myPage_Main"><%=id %> 님</a> | <a href="member_logout">로그아웃</a> | <a href="myPage_Main">찜목록</a> | <a href="member_logout">장바구니</a>
+          <c:set var="session_id" value="${session_id}" />
+              <c:if test="${session_id eq 'admin'}">
+             <a href="admin_main">${session_id} 님</a> | <a href="member_logout">로그아웃</a> | <a href="myPage_Main">찜목록</a> | <a href="member_logout">장바구니</a>
+             </c:if>
+             
+              <c:if test="${session_id ne 'admin' && not empty session_id}">
+             <a href="myPage_Main">${session_id} 님</a> | <a href="member_logout">로그아웃</a> | <a href="myPage_Main">찜목록</a> | <a href="member_logout">장바구니</a>
+             </c:if>
+ 
+              <c:if test="${empty session_id}">
+             <a href="member_login">로그인</a> | <a href="member_join">회원가입</a>
+             </c:if>
+
             </div>
         </div>
     </div>
-    <% if(id.equals("admin")){%> <%-- 관리자 일때 --%>
-    <div class="headerbox">
-        <div class="menubox">
-            <a href="main_product">
-                <img src="<%=request.getContextPath()%>/images/logo1.png" id="logoImage" width="200" height="90" alt="로고 사진">
-            </a>
-           
-            <div class="navbarbox">
-               
-                <div id="dropdownbox">
-                    <button id="dropbtn" value="소도구" onclick="#">제품</button>
-                    <div id="dropdown-content">
-                        <a href="#">매트</a>
-                        
-                        <a href="#">짐볼</a>
-                    </div>
-                </div>
-                
-                <a id="a2" href="cs_notice">고객 센터</a>
-                <a id="a3" href="location">찾아오시는 길</a>
-            </div>
-           <div class="searchbox">
-	          <a href="myPage_Main"><%=id %> 님</a> | <a href="member_logout">로그아웃</a> | <a href="myPage_Main">찜목록</a> | <a href="member_logout">장바구니</a>
-            </div>
-        </div>
-    </div>
-    <%}%>
-    <%} else { %> <%-- 비회원일떄 --%>
-    <div class="headerbox">
-        <div class="menubox">
-            <a href="main_product">
-                <img src="<%=request.getContextPath()%>/images/logo1.png" id="logoImage" width="200" height="90" alt="로고 사진">
-            </a>
-            
-            <div class="navbarbox">
-               
-                <div id="dropdownbox">
-                    <button id="dropbtn" value="소도구" onclick="#">제품</button>
-                    <div id="dropdown-content">
-                      <a href="#">매트</a>
-                        
-                        <a href="#">짐볼</a>
-                    </div>
-                </div>
-                
-                <a id="a2" href="cs_notice">고객 센터</a>
-                <a id="a3" href="location">찾아오시는 길</a>
-            </div>
-            <div class="searchbox">
-	          <a href="myPage_Main"><%=id %> 님</a> | <a href="member_logout">로그아웃</a> | <a href="myPage_Main">찜목록</a> | <a href="member_logout">장바구니</a>
-            </div>
-        </div>
-    </div>
-    <%} %>
+
     <script type="text/javascript">
         // 클릭 이벤트 핸들러
         $("#topBtn").click(function(e){

@@ -384,8 +384,7 @@ public class MemberController { // 사용자 관련 컨트롤러
 				out.println("location='member_login'");
 				out.println("</script>");
 			}
-		}
-		
+		}		
 		return null;
 	}//member_del_ok()
 

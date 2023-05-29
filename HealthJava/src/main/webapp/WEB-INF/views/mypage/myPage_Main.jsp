@@ -201,12 +201,12 @@
 	
 	table th.th-date {
 		font-size: 15px;
-		width: 80px;
+		width: 100px;
 	}
 	
 	table th.th-date1 {
 		font-size: 15px;
-		width: 50px;
+		width: 65px;
 	}
 	
 	table th.th-date2 {
@@ -214,8 +214,9 @@
 		width: 150px;
 	}
 	
-	.board-table .th-inputInfo {
-		
+	table th.th-date3{
+		font-size: 15px;
+		width: 60px;
 	}
 	
 	.board-table th, .board-table td {
@@ -233,8 +234,6 @@
 		font-size: 15px;
 		border-top: 1px solid #e7e7e7;
 		text-align: center;
-		padding: 140px 0 36px;
-		background: url(../images/bg_no_list.png) no-repeat 50% 40px;
 	}
 	
 	.board-table tbody th p {
@@ -366,6 +365,12 @@
 		text-decoration: none;
 		color: #FC5400;
 	}
+	#btn{
+		background-color: #B21948; 
+		color: white;
+		border: 1px solid white; 
+		padding: 3px;
+	}	
 </style>
 </head>
 <body>
@@ -387,7 +392,7 @@
 						<li><a href="myPage_orderDetails" class="liList">교환/반품/환불</a></li>
 						<li><a href="myPage_like" class="liList">찜 목록</a></li>
 						<li><a href="myPage_cart" class="liList">장바구니</a></li>
-						<li style="margin-bottom: 30px;"><a href="myPage_inquiry" class="liList">문의 내역</a></li>
+						<li><a href="myPage_review" class="liList">나의 상품후기</a></li>
 
 						<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
 						<li><a href="myPage_updateInfo" class="liList">회원정보 변경</a></li>
@@ -395,8 +400,7 @@
 						<li><a href="myPage_user_Withdrawal" class="liList">회원탈퇴</a></li>
 						<li style="margin-bottom: 30px;"><a href="myPage_updateAddress" class="liList">배송지 관리</a></li>
 						
-						<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 상품후기</li>
-						<li><a href="myPage_review" class="liList">나의 상품후기</a></li>
+						<!-- <li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 상품후기</li> -->
 					</ul>
 				</nav>
 			</aside>
@@ -435,10 +439,11 @@
 									<th scope="col" class="th-date1">주문번호</th>
 									<th scope="col" class="th-title">제품명</th>
 									<th scope="col" class="th-date">주문일자</th>
-									<th scope="col" class="th-date">주문수량</th>
-									<th scope="col" class="th-date">제품당 가격</th>
+									<th scope="col" class="th-date3">주문수량</th>
+									<th scope="col" class="th-date">송장번호</th>
 									<th scope="col" class="th-date">총 주문금액</th>
 									<th scope="col" class="th-date2">주문상태</th>
+									<th scope="col" class="th-date3">비고</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -447,17 +452,15 @@
 									<c:forEach var="o" items="${olist}">
 										<tr>
 											<td>${o.order_no }</td>
-											<th><a class="orderList" onclick="location='myPage_orderCancle?product_title=${o.order_product_title}'">${o.order_product_title }</a></th>
-											<td>${o.order_date }</td>
+											<th><a class="orderList" onclick="location='myPage_order?product_title=${o.order_product_title}'">${o.order_product_title }</a></th>
+											<td>${o.order_date.substring(0,10) }</td>
 											<td>${o.order_cnt }</td>
 											<td>${o.order_invoice }</td>
-											<td>${o.order_total }</td>
+											<td>${o.order_total }원</td>
 											<td>접수완료</td>
 											<td>
-											<input type="button"
-												onclick="window.open('https://www.hanjin.com/kor/CMS/DeliveryMgr/WaybillSch.do?mCode=MN038');"
-												value="배송조회">&nbsp;&nbsp;&nbsp;<input type="button"
-												value="후기작성" onclick="openPopup_review_write()"></td>
+											<input type="button" id="btn" onclick="window.open('https://www.hanjin.com/kor/CMS/DeliveryMgr/WaybillSch.do?mCode=MN038');" value="배송조회">&nbsp;&nbsp;&nbsp;
+											<input type="button" id="btn" value="후기작성" onclick="openPopup_myPage_review_write()"></td>
 										</tr>
 										</c:forEach>
 									</c:if>
@@ -472,33 +475,10 @@
 					</div> <!-- end container -->
 				</div>
 				<br><br>
-				<div class="page-title">
-					<b style="text-align: left; font-size: 20px;">&nbsp;&nbsp;문의내역</b>
-					<a href="myPage_inquiry" class="liList" style="margin-left: 780px; text-decoration-line: none;">[더보기]</a><br><br>
-				</div>
+				
 				<!-- board list area -->
 				<div id="board-list">
-					<div class="container">
-						<table class="board-table">
-							<thead>
-								<tr>
-									<th scope="col" class="th-date1">No</th>
-									<th scope="col" class="th-title">문의 유형</th>
-									<th scope="col" class="th-date">제목</th>
-									<th scope="col" class="th-date">작성일</th>
-									<th scope="col" class="th-date">처리 현황</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:if test="${empty olist }">
-									<tr>
-										<th colspan="5" class="nonList">현재 문의한 내역이 없습니다.</th>
-									</tr>
-								</c:if>
-								
-							</tbody>
-						</table>
-					</div>
+
 				</div>
 				</section>
 				</div>
@@ -537,149 +517,17 @@
 				$("#topBtn").css("opacity", 1); // TOP 버튼 나타내기
 			}
 		});
-		
-		<%-- 장바구니 부분 --%>
-		/* Set values + misc */
-		var promoCode;
-		var promoPrice;
-		var fadeTime = 300;
-
-		/* Assign actions */
-		$('.quantity input').change(function() {
-			updateQuantity(this);
-		});
-
-		$('.remove button').click(function() {
-			removeItem(this);
-		});
-
-		$(document).ready(function() {
-			updateSumItems();
-		});
-
-		$('.promo-code-cta').click(function() {
-
-			promoCode = $('#promo-code').val();
-
-			if (promoCode == '10off' || promoCode == '10OFF') {
-				//If promoPrice has no value, set it as 10 for the 10OFF promocode
-				if (!promoPrice) {
-					promoPrice = 10;
-				} else if (promoCode) {
-					promoPrice = promoPrice * 1;
-				}
-			} else if (promoCode != '') {
-				alert("Invalid Promo Code");
-				promoPrice = 0;
-			}
-			//If there is a promoPrice that has been set (it means there is a valid promoCode input) show promo
-			if (promoPrice) {
-				$('.summary-promo').removeClass('hide');
-				$('.promo-value').text(promoPrice.toFixed(0) + "원");
-				recalculateCart(true);
-			}
-		});
-		
-		
-		/* Recalculate cart */
-		function recalculateCart(onlyTotal) {
-			var subtotal = 0;
-
-			/* Sum up row totals */
-			$('.basket-product').each(function() {
-				subtotal += parseFloat($(this).children('.subtotal').text());
-			});
-
-			/* Calculate totals */
-			var total = subtotal;
-
-			//If there is a valid promoCode, and subtotal < 10 subtract from total
-			var promoPrice = parseFloat($('.promo-value').text());
-			if (promoPrice) {
-				if (subtotal >= 10) {
-					total -= promoPrice;
-				} else {
-					alert('Order must be more than £10 for Promo code to apply.');
-					$('.summary-promo').addClass('hide');
-				}
-			}
-
-			/*If switch for update only total, update only total display*/
-			if (onlyTotal) {
-				/* Update total display */
-				$('.total-value').fadeOut(fadeTime, function() {
-					$('#basket-total').html(total.toFixed(0) + "원");
-					$('.total-value').fadeIn(fadeTime);
-				});
-			} else {
-				/* Update summary display. */
-				$('.final-value').fadeOut(fadeTime, function() {
-					$('#basket-subtotal').html(subtotal.toFixed(0) + "원");
-					$('#basket-total').html(total.toFixed(0) + "원");
-					if (total == 0) {
-						$('.checkout-cta').fadeOut(fadeTime);
-					} else {
-						$('.checkout-cta').fadeIn(fadeTime);
-					}
-					$('.final-value').fadeIn(fadeTime);
-				});
-			}
+		<%-- 리뷰 작성 페이지 --%>
+		function openPopup_myPage_review_write() {
+			var page_width = '490';
+			var page_height= '900';
+			
+			//팝업창 가운데 띄우기
+			var page_left = Math.ceil((window.screen.width - page_width)/2);
+			var page_top = Math.ceil((window.screen.height - page_height)/2);
+			
+			  window.open("http://localhost:8282/myPage_review_write", "review_write",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
 		}
-
-		/* Update quantity */
-		function updateQuantity(quantityInput) {
-			/* Calculate line price */
-			var productRow = $(quantityInput).parent().parent();
-			var price = parseFloat(productRow.children('.price').text());
-			var quantity = $(quantityInput).val();
-			var linePrice = price * quantity;
-
-			/* Update line price display and recalc cart totals */
-			productRow.children('.subtotal').each(function() {
-				$(this).fadeOut(fadeTime, function() {
-					$(this).text(linePrice.toFixed(0) + "원");
-					recalculateCart();
-					$(this).fadeIn(fadeTime);
-				});
-			});
-
-			productRow.find('.item-quantity').text(quantity);
-			updateSumItems();
-		}
-
-		function updateSumItems() {
-			var sumItems = 0;
-			$('.quantity input').each(function() {
-				sumItems += parseInt($(this).val());
-			});
-			$('.total-items').text(sumItems);
-		}
-
-		/* Remove item from cart */
-		function removeItem(removeButton) {
-			/* Remove row from DOM and recalc cart total */
-			var productRow = $(removeButton).parent().parent();
-			productRow.slideUp(fadeTime, function() {
-				productRow.remove();
-				recalculateCart();
-				updateSumItems();
-			});
-		}
-		
-		<%-- 리뷰 작성 페이지 부분 --%>
-		// 왼쪽 사이드바의 '나의 후기' 텍스트 클릭시 새창 열기
-		function openPopup_review_write() {
-	        var page_width = '490';
-	        var page_height = '900';
-	    
-	        // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
-	        var page_left = Math.ceil((window.screen.width - page_width)/2);
-	        var page_top = Math.ceil((window.screen.height - page_height)/2);
-	
-	    window.open("http://localhost:8046/MVC/page/mypage2/review_write.jsp", "review_write",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
-	    
-	    }
-		
 	</script>
 </body>
 </html>

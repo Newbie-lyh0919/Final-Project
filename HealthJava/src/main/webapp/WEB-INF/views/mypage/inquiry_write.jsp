@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -8,12 +8,15 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script> <%-- CDN 절대링크 --%>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script> <%-- CDN 절대링크 --%>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> <%-- CDN 절대링크 --%>
-<script type="text/javascript" src="./js/jquery.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="./js/updateInfo.js"></script>
+<script src="./js/addr_edit.js"></script>
+<script src="./js/post2.js"></script>
 
-<title>HealthJava 문의글</title>
+<title>HealthJava 문의글작성</title>
+
 <style type="text/css">
-	
-	/* 폰트 CSS */
+		/* 폰트 CSS */
 	@font-face {
 		font-family: 'KIMM_Bold';
 		src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2') format('woff2'); /* CDN 절대링크  */
@@ -34,7 +37,7 @@
 	
 	body {
 		margin: 0px;
-		height: 100%;
+		min-height: 100%;
 		padding: 0px;
 	}
 	
@@ -73,16 +76,15 @@
 	.container {
 		width: 100%;
 	}
+
 	/*MyPage CSS*/
 	table {
 		border-collapse: collapse;
 		border-spacing: 0;
 	}
 	section.notice {
-		padding: 20px 0;
-		/*추가*/
-		width: 1200px;
-		min-height: 200px;
+		width: 1000px;
+		min-height: 900px;
 	}
 	
 	.aside_left {
@@ -108,11 +110,209 @@
 	li{
 		padding-top: 10px;
 	}
-	
 	nav {
 		min-height: 600px;
 		margin-bottom: 50px;
 	}
+	
+	#subspan {
+		color: #808080;
+	}
+	
+	div.page-title {
+		width: 1000px;
+		min-height: 10px;
+		padding: 0px 10px;
+		text-align: left;
+	}
+	
+	.memBasicInfo {
+		height: 120px;
+		padding: 20px;
+		float: left;
+	}
+	
+	#board-search .search-window {
+		width: 1000px;
+		min-height: 80px;
+		padding: 15px 0;
+		text-align: left;
+	}
+	.board-table {
+		font-size: 13px;
+		width: 100%;
+		border-top: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+	}
+	
+	.board-table th {
+		text-align: center;
+		border-top-style: solid;
+		border-top-color: black;
+		border-top-width: 2px;
+	}
+	
+	.board-table .th-num {
+		width: 100px;
+		text-align: center;
+	}
+	
+	table th.th-title {
+		font-size: 15px;
+		width: 200px;
+	}
+	
+	table td.td-title {
+		font-size: 13px;
+	}
+	
+	table th.th-date {
+		font-size: 15px;
+		width: 80px;
+	}
+	
+	table th.th-date1 {
+		font-size: 15px;
+		width: 50px;
+	}
+	
+	table th.th-date2 {
+		font-size: 15px;
+		width: 150px;
+	}
+
+	.board-table th, .board-table td {
+		padding-top: 14px;
+		padding-bottom: 14px;
+	}
+	
+	.board-table tbody td {
+		border-top: 1px solid #e7e7e7;
+		text-align: center;
+		font-size: 15px;
+	}
+	
+	.board-table tbody th {
+		font-size: 15px;
+		border-top: 1px solid #e7e7e7;
+		text-align: center;
+	}
+	
+	.board-table thead th {
+		text-align: center;
+	}
+	
+	.board-table tbody th p {
+		display: none;
+	}
+	
+	.th-list{
+		text-align: center;
+	    margin-top: 20px;
+	    margin-bottom: 20px;
+	    padding: 10px;
+	    background-color: #B21948;
+	    border-bottom-color: white;
+	    border-bottom-width: 0.2px;
+	    border-bottom-style: solid;
+	    color: white;
+		border-top-color: black; 
+		border-top-style: solid; 
+		border-top-width: 3px; 
+		border-bottom-color: black; 
+		border-bottom-width: 3px;
+	}
+	
+	.td-inputInfo{
+		text-align:left;
+		padding-left: 20px;
+		padding-top: 20px;
+	}
+	
+	.td-infoPs{
+		text-align : left;
+		padding-left: 20px;
+		padding-top: 5px;
+		padding-bottom: 15px;
+		border-bottom-color: gray;
+		border-bottom-width: 0.2px;
+		border-bottom-style: solid;
+		font-size: 12px; 
+		font-weight: bold;
+		color: red;
+	}
+	div.submitBtn{
+		float: left;
+		margin-left: 100px;
+	}
+	
+	/* 확인 버튼 */
+	#updateBtn{
+	    padding: 20px 120px;
+	    background-color: #B21948;
+	    border: 1px solid white;
+	    color: white;
+	    font-size: 20px;
+	    font-weight: bold;
+	}	
+	/* 취소 버튼 */
+	#resetBtn{
+	    padding: 20px 120px;
+	    background-color: white;
+	    border: 2px solid #B21948;
+	    font-size: 20px;
+	    font-weight: bold;
+	    color: #B21948;
+	}
+	
+	/* reset */
+	* {
+		list-style: none;
+		text-decoration: none;
+		padding: 0;
+		margin: 0;
+		box-sizing: border-box;
+	} 
+	
+	.clearfix:after {
+		content: '';
+		display: block;
+		clear: both;
+	}
+	
+	div.myPageTitle {
+		width: 1100px;
+		margin: 0 auto;
+		border: 1px solid red;
+	}
+	
+	div.container {
+		width: 1000px;
+		margin: 20px 0px;
+	}
+	
+	.innerWrap {
+		width: 1000px;
+		min-height: 700px;
+		padding: 20px;
+		float: left;
+		margin-top: 50px;
+		margin-left: 100px;
+	}
+	
+	.blind {
+		position: absolute;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		margin: -1px;
+		width: 1px;
+		height: 1px;
+	}
+	
+	.clear {
+		clear: both; /*float 속성을 제거함으로써 잘못 된 ui 적용을 막아줌 */
+	}
+	
 	/* a 링크 : 메뉴바 */	
 	a:link.liList {
 		text-decoration: none;
@@ -132,128 +332,165 @@
 	a:active.liList {
 		text-decoration: none;
 		color: #B21948;
-	}	
-	.page-title {
-		width: 1000px;
-		min-height: 10px;
-		padding: 0px 10px;
-		text-align: left;
 	}
 	
-	.innerWrap {
-		width: 1000px;
-		min-height: 700px;
-		padding: 20px;
-		float: left;
-		margin-top: 100px;
-		margin-left: 100px;
+	table a:link.orderList {
+		text-decoration: none; 
+		color: black;
 	}
 	
-	section.notice {
-		padding: 20px 0;
-		/*추가*/
-		width: 1200px;
-		min-height: 200px;
+	table a:visited.orderList {
+		text-decoration: none;
+		color: black;
+	}
+	
+	table a:hover.orderList{
+		text-decoration: underline;
+		color: #FC5400;
+		cursor: pointer;
+	}
+	
+	table a:active.orderList {
+		text-decoration: none;
+		color: #FC5400;
+	}
+	input.btn{
+	    padding: 20px 80px;
+	    background-color: #B21948;
+	    border: 1px solid white;
+	    color: white;
+	    font-size: 20px;
+	    font-weight: bold;
 	}
 </style>
 </head>
 <body>
-<%-- 전체 영역 --%>
-	<div class="wrap">
-		<%-- 헤더 영역 --%>
-		<header>
-			<%-- header include --%>
-			<jsp:include page="../include/header.jsp" />
-		</header>
-		
-		<%-- 메뉴바 --%>
+<div class="wrap">
+      <%-- 헤더 영역 --%>
+      <header>
+         <%-- header include --%>
+         <jsp:include page="../include/header.jsp"/>
+      </header>
+      <%-- 메뉴바 --%>
 		<section>
 			<div class="main">
-			<%-- main 화면 상단 캐러셀 (캐러셀 필요 없는 페이지는 삭제 바람!)--%>
-			<aside class="aside_left">
-				<nav>
-					<ul>
-						<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"><a href="myPage_Main" style="text-decoration: none; color: black;">나의 쇼핑</a></li>
-						<li><a href="myPage_order" class="liList">주문ㆍ배송</a></li>
-						<li><a href="myPage_orderDetails" class="liList">교환/반품/환불</a></li>
-						<li><a href="myPage_like" class="liList">찜 목록</a></li>
-						<li><a href="myPage_cart" class="liList">장바구니</a></li>
-						<li style="margin-bottom: 30px;"><a href="myPage_inquiry" class="liList" style="color: #B21948;">문의 내역</a></li>
+				<aside class="aside_left">
+					<nav>
+						<ul>
+							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"><a href="myPage_Main" style="text-decoration: none; color: black;">나의 쇼핑</a></li>
+							<li><a href="myPage_order" class="liList">주문ㆍ배송</a></li>
+							<li><a href="myPage_orderDetails" class="liList">교환/반품/환불</a></li>
+							<li><a href="myPage_like" class="liList">찜 목록</a></li>
+							<li><a href="myPage_cart" class="liList">장바구니</a></li>
+	
+							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
+							<li><a href="myPage_updateInfo" class="liList">회원정보 변경</a></li>
+							<li><a href="myPage_changePwd" class="liList">비밀번호 변경</a></li>
+							<li><a href="myPage_user_Withdrawal" class="liList">회원탈퇴</a></li>
+							<li style="margin-bottom: 30px;"><a href="myPage_updateAddress" class="liList">배송지 관리</a></li>
+							
+							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 상품후기</li>
+							<li><a href="myPage_review" class="liList">나의 상품후기</a></li>
+						</ul>
+					</nav>
+				</aside>
+	<div class="innerWrap">
+		<section class="notice">
+	<!-- 문의글 작성  --> 
+	<div id="addAddressPopup" class="popup">
+		<div class="popup-content">
+			<h2 align="center" style="font-family: 'KIMM_Bold';">문의글 </h2>
+			<form action="inquiry_write_ok" method="post">
+			<input type="hidden" name="user_id" value="${id }" />
+			<br>
+			<div class="page-title" style="margin-left: 50px;">
+				<table>
+					<!-- 이름 : user_id-->
+					<tr>
+						<th rowspan="2" class="th-list" width="170px">이름</th>
+						<td class="td-inputInfo" style="border-top-color: black; border-top-style: solid; border-top-width: 3px;">
+							<input type="text" name="user_id" id="user_id" value="${id }" size="70" style="background-color: #ECECEC;" readonly>
+						</td>
+					</tr>
 
-						<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
-						<li><a href="myPage_updateInfo" class="liList">회원정보 변경</a></li>
-						<li><a href="myPage_changePwd" class="liList">비밀번호 변경</a></li>
-						<li><a href="myPage_user_Withdrawal" class="liList">회원탈퇴</a></li>
-						<li style="margin-bottom: 30px;"><a href="myPage_updateAddress" class="liList">배송지 관리</a></li>
-						
-						<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 상품후기</li>
-						<li><a href="myPage_review" class="liList">나의 상품후기</a></li>
-					</ul>
-				</nav>
-			</aside>
+					<tr>
+						<td class="td-infoPs"></td>
+					</tr>
 
-
-		<%-- 본문 영역 --%>
-		<div class="innerWrap">
-			<%-- board seach area --%>
-			<section class="notice">
-				<div class="page-title">
-					<b style="text-align: left; font-size: 20px;">문의글</b><br>
+					<!-- 문의 유형  client_category : 회원정보, 상품확인, 주문/결제, 배송, 교환/취소/반품, 서비스 -->
+					<tr>
+						<th rowspan="2" class="th-list" >*문의유형</th>
+						<td class="td-inputInfo">
+								<label name="inquiry">카테고리 선택:</label>
+									<input type="radio" name="client_category" value="회원정보">회원정보
+									<input type="radio" name="client_category" value="상품확인">상품확인
+									<input type="radio" name="client_category" value="주문/결제">주문/결제
+									<input type="radio" name="client_category" value="배송">배송
+									<input type="radio" name="client_category" value="교환/취소/반품">교환/취소/반품
+									<input type="radio" name="client_category" value="서비스">서비스
+									<input type="radio" name="client_category" value="기타">기타
+							</td>
+					
+					<tr>
+						<td class="td-infoPs"></td>
+					</tr>
+					
+					<!--제목 : client_title-->
+					<tr>
+						<th rowspan="2" class="th-list">제목</th>
+						<td class="td-inputInfo">
+								<input type="text" name="client_title" id="client_title" size="70" placeholder="최대 20자 이내">
+						</td>
+					</tr>
+					
+					<tr>
+						<td class="td-infoPs"></td>
+					</tr>
+					
+					<!-- 내용 : client_cont -->
+					<tr>
+						<th rowspan="2" class="th-list">제목</th>
+						<td class="td-inputInfo">
+								<textarea name="client_cont" id="client_cont" style="width:100%; height: 200px;" placeholder="상담내용 본문에는 개인정보를 입력하지 말아주세요. 
+고객정보보호를 위해 마스킹 처리될 수 있습니다.
+(예 : 성명, 연락처, 이메일주소, 계좌번호 등)"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td class="td-infoPs"></td>
+					</tr>
+					
+				</table>
+				<div style="padding: 10px 0px 0px 10px;">
+					<span style="color: red;">*이메일, 휴대전화번호 정보 수정을 원하시는 경우 회원정보 수정을 통해 변경해주시기 바랍니다.</span>
 				</div>
-				<!-- 작성 테이블 -->
-				<form action="inquiry_write_ok" method="post">
-				<div class="c_title">
-					<div class="c_typeA"><!-- 카테고리 선택 -->
-						<div class="client_type">유형을 선택해 주세요.</div>
-						<div class="client_chocie">주문내역을 선택하세요.</div>
-						<div class="client_btn"><input type="button" value="주문 상품 선택" onclick="" /></div>
-					</div>
-					<div class="client_cont">
-					<textarea rows="12px" cols="100px" class="clicent_text"
-						placeholder="의견을 남겨주세요
-		
-		※ 추가적인 문의 내용 확인이 필용한 경우 전화로 연락 드릴 수 있습니다. 
-		
-		※ Customer service is available in Korean and English. For support in other languages, machine translation is used. Machine-translated answers may not necessarily be accurate. In this case, please make inquiries again and we will try to provide more accurate answers."></textarea>
-					<div class="client_photo">
-						<span>이미지첨부</span>
-						<span>20MB 이내 / jpg, png, gif 만 가능</span>
-						<span>0개 / 최대 3개</span>
-						<div>
-						"※ "
-						"내용 본문과 첨부된 파일, 이미지에 고객님의 개인 정보(계좌, 카드, 주민번호 등)가  포함되지 않도록 주의해주세요."
-						</div>
-					</div>
-					<div class="c_photo">"이미지를 여기로 끌어다 놓거나, 여기를 눌러 파일을 선택하세요."</div>
-					<input type="file" accept="image/*" multiple class="multiple" />
-				</div>
-				<div class="client_btn_send">
-					<button width="180px" class="c_btn_send">보내기</button>
-				</div>
+			<br><br>
+			
+				<div class="submitBtn" style="margin-left: 200px;">
+					<input type="submit" id="updateBtn" value="작성완료">
+					<input type="reset" id="resetBtn" value="취소" onclick="location='myPage_inquiry'">
 				</div>
 				</form>
-								
+			</div>
+			</div>
 			</section>
-		</div>
-		</div>
-				<%-- top버튼 삭제 X --%>
-				<div id="topBtn">
-					<span class="fonti um-arrow-circle-up um-3x icon"></span>TOP
-				</div>				
-							
+			</div>
+					
+        <%-- top버튼 삭제 X --%>
+         <div id="topBtn">
+            <span class="fonti um-arrow-circle-up um-3x icon"></span>TOP
+         </div>
 		</section>
-		
 		<div class="clear"></div>
-		
 		<%-- 푸터 영역 --%>
 		<footer>
 			<!-- footer -->
-			<jsp:include page="../include/footer.jsp" />
+			<jsp:include page="../include/footer.jsp"/>
 			<!-- footer 끝 -->
 		</footer>
 	</div>
 	<script type="text/javascript">
-	<td><input type="button" value="주문취소"></td>
+	
 		<%-- top버튼 부분 --%>
 		// 클릭 이벤트 핸들러
 		$("#topBtn").click(function(e) {
@@ -271,148 +508,28 @@
 				$("#topBtn").css("opacity", 1); // TOP 버튼 나타내기
 			}
 		});
-		
-		<%-- 장바구니 부분 --%>
-		/* Set values + misc */
-		var promoCode;
-		var promoPrice;
-		var fadeTime = 300;
 
-		/* Assign actions */
-		$('.quantity input').change(function() {
-			updateQuantity(this);
-		});
-
-		$('.remove button').click(function() {
-			removeItem(this);
-		});
-
-		$(document).ready(function() {
-			updateSumItems();
-		});
-
-		$('.promo-code-cta').click(function() {
-
-			promoCode = $('#promo-code').val();
-
-			if (promoCode == '10off' || promoCode == '10OFF') {
-				//If promoPrice has no value, set it as 10 for the 10OFF promocode
-				if (!promoPrice) {
-					promoPrice = 10;
-				} else if (promoCode) {
-					promoPrice = promoPrice * 1;
-				}
-			} else if (promoCode != '') {
-				alert("Invalid Promo Code");
-				promoPrice = 0;
-			}
-			//If there is a promoPrice that has been set (it means there is a valid promoCode input) show promo
-			if (promoPrice) {
-				$('.summary-promo').removeClass('hide');
-				$('.promo-value').text(promoPrice.toFixed(0) + "원");
-				recalculateCart(true);
-			}
-		});
-
-		/* Recalculate cart */
-		function recalculateCart(onlyTotal) {
-			var subtotal = 0;
-
-			/* Sum up row totals */
-			$('.basket-product').each(function() {
-				subtotal += parseFloat($(this).children('.subtotal').text());
-			});
-
-			/* Calculate totals */
-			var total = subtotal;
-
-			//If there is a valid promoCode, and subtotal < 10 subtract from total
-			var promoPrice = parseFloat($('.promo-value').text());
-			if (promoPrice) {
-				if (subtotal >= 10) {
-					total -= promoPrice;
-				} else {
-					alert('Order must be more than £10 for Promo code to apply.');
-					$('.summary-promo').addClass('hide');
-				}
-			}
-
-			/*If switch for update only total, update only total display*/
-			if (onlyTotal) {
-				/* Update total display */
-				$('.total-value').fadeOut(fadeTime, function() {
-					$('#basket-total').html(total.toFixed(0) + "원");
-					$('.total-value').fadeIn(fadeTime);
-				});
+		/*수정 버튼 클릭*/
+		function edit_check() {
+			var answer = confirm("수정하시겠습니까?");
+			if (answer == true) {
+				alert("수정 완료되었습니다.");
+				document.getElementById("editForm").submit();
+				console.log()
+				window.close();
+				return true;
 			} else {
-				/* Update summary display. */
-				$('.final-value').fadeOut(fadeTime, function() {
-					$('#basket-subtotal').html(subtotal.toFixed(0) + "원");
-					$('#basket-total').html(total.toFixed(0) + "원");
-					if (total == 0) {
-						$('.checkout-cta').fadeOut(fadeTime);
-					} else {
-						$('.checkout-cta').fadeIn(fadeTime);
-					}
-					$('.final-value').fadeIn(fadeTime);
-				});
+				return false;
 			}
 		}
-
-		/* Update quantity */
-		function updateQuantity(quantityInput) {
-			/* Calculate line price */
-			var productRow = $(quantityInput).parent().parent();
-			var price = parseFloat(productRow.children('.price').text());
-			var quantity = $(quantityInput).val();
-			var linePrice = price * quantity;
-
-			/* Update line price display and recalc cart totals */
-			productRow.children('.subtotal').each(function() {
-				$(this).fadeOut(fadeTime, function() {
-					$(this).text(linePrice.toFixed(0) + "원");
-					recalculateCart();
-					$(this).fadeIn(fadeTime);
-				});
-			});
-
-			productRow.find('.item-quantity').text(quantity);
-			updateSumItems();
+		function closePopup() {
+			reloadFlag = true; // 새로고침 플래그를 true로 설정하여 팝업 창이 닫힐 때 새로고침되지 않도록 함
+			window.opener.location.reload(); // 팝업 창이 닫힌 후에 myPage_updateAddreess.jsp를 새로고침
+			window.close();
+			return true;
 		}
-
-		function updateSumItems() {
-			var sumItems = 0;
-			$('.quantity input').each(function() {
-				sumItems += parseInt($(this).val());
-			});
-			$('.total-items').text(sumItems);
-		}
-
-		/* Remove item from cart */
-		function removeItem(removeButton) {
-			/* Remove row from DOM and recalc cart total */
-			var productRow = $(removeButton).parent().parent();
-			productRow.slideUp(fadeTime, function() {
-				productRow.remove();
-				recalculateCart();
-				updateSumItems();
-			});
-		}
-		
-		<%-- 리뷰 작성 페이지 부분 --%>
-		// 왼쪽 사이드바의 '나의 후기' 텍스트 클릭시 새창 열기
-		function openPopup_review_write() {
-	        var page_width = '490';
-	        var page_height = '900';
-	    
-	        // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
-	        var page_left = Math.ceil((window.screen.width - page_width)/2);
-	        var page_top = Math.ceil((window.screen.height - page_height)/2);
-	
-	    window.open("http://localhost:8046/MVC/page/mypage2/review_write.jsp", "review_write",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
-	    
-	    }
-		
 	</script>
+		</div>
+	</div>
 </body>
 </html>

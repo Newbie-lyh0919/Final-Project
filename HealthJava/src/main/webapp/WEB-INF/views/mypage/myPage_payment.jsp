@@ -24,46 +24,10 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/page/mypage/css/mypage.css">
 <%-- <link rel="stylesheet" href="./shop/puppyhome/controller_mypage/css/mypage.css">--%>
 
+<%--결제api <!-- jQuery --> --%> 
+<script type="text/javascript"src="https://code.jquery.com/jquery-1.12.4.min.js"></script> <!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 
-<%--결제api --%>
-<!-- jQuery -->
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<!-- iamport.payment.js -->
-<script type="text/javascript"
-	src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-<script>
-	var IMP = window.IMP;
-	IMP.init("imp86713585");
-
-	var today = new Date();
-	var hours = today.getHours(); // 시
-	var minutes = today.getMinutes(); // 분
-	var seconds = today.getSeconds(); // 초
-	var milliseconds = today.getMilliseconds();
-	var makeMerchantUid = hours + minutes + seconds + milliseconds;
-
-	function requestPay() {
-		IMP.request_pay({
-			pg : 'html5_inicis',
-			pay_method : 'card',
-			merchant_uid : "IMP" + makeMerchantUid,
-			name : '상품명',
-			amount : 1,
-			buyer_email : 'jiyekim315@gmail.com',
-			buyer_name : '김지예',
-			buyer_tel : '010-4731-2333',
-			buyer_addr : '서울특별시 강남구 삼성동',
-			buyer_postcode : '123-456'
-		}, function(rsp) { // callback
-			if (rsp.success) {
-				console.log(rsp);
-			} else {
-				console.log(rsp);
-			}
-		});
-	}
-</script>
 <style type="text/css">
    /* 폰트 CSS */ 
    @font-face {
@@ -149,12 +113,12 @@
 			<!-- board list area -->
 			<div class="page-title">
 			<b style="text-align: left; font-size: 20px; margin-left:50px;">주문/결제</b>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<b style="font-size: 13px;">* 필수 입력사항</b>
+			<b style="font-size: 13px; ">* 필수 입력사항</b>
 			</div>
 			<br>
 			<div class="page-title" style="margin-left: 50px;">

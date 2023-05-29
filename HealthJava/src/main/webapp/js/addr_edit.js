@@ -1,7 +1,7 @@
 /**
  * 배송지 수정 유효성 검사
  * addr_edit.js
- */
+ 
 function addr_edit() {
     if($.trim($('#addr_name').val())==""){
         alert("배송지 이름을 입력해 주세요.");
@@ -19,3 +19,4 @@ function addr_edit() {
         return false;
     }
 }
+*/

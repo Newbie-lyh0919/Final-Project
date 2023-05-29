@@ -7,11 +7,13 @@ import org.springframework.stereotype.Service;
 
 import shop.HealthJava.dao.MypageDAO;
 import shop.HealthJava.vo.AddrVO;
+import shop.HealthJava.vo.CSClientVO;
 import shop.HealthJava.vo.CartVO;
 import shop.HealthJava.vo.LikeVO;
 import shop.HealthJava.vo.MemberVO;
 import shop.HealthJava.vo.OrderDetailVO;
 import shop.HealthJava.vo.OrderVO;
+import shop.HealthJava.vo.ReviewsVO;
 
 @Service
 public class MypageServiceImpl implements MypageService {
@@ -78,7 +80,6 @@ public class MypageServiceImpl implements MypageService {
 	@Override
 	public void delallCartList(CartVO cvo) {
 		this.mypageDao.deleteAllCart(cvo);
-		
 	}
 
 	//배송지 수정조회
@@ -99,7 +100,25 @@ public class MypageServiceImpl implements MypageService {
 	@Override
 	public void deleteAddr(int addr_no) {
 		this.mypageDao.deleteAddr(addr_no);
-		
 	}
 
+	// 후기 작성
+	@Override
+	public void addReview(ReviewsVO rv) {
+		this.mypageDao.addReview(rv);
+	}
+
+	// 리뷰 조회
+	@Override
+	public List<ReviewsVO> getReviewList(ReviewsVO rv) {
+		return this.mypageDao.getReviewList(rv);
+	}
+
+	//장바구니 체크박스 선택된 정보 조회
+	@Override
+	public CartVO getCartItem(int cart_no) {
+		return this.mypageDao.getCartItem(cart_no);
+	}
+
+	
 }
