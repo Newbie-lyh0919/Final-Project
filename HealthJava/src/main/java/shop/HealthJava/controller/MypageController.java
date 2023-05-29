@@ -1,8 +1,12 @@
 package shop.HealthJava.controller;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import shop.HealthJava.service.MemberService;
 import shop.HealthJava.service.MypageService;
 import shop.HealthJava.vo.AddrVO;
 import shop.HealthJava.vo.CartVO;
@@ -31,17 +36,34 @@ public class MypageController {
 	@Autowired
 	private MypageService myPageService;
 	
+	@Autowired
+	private MemberService memberService;
+	
 	
 	//마이페이지 메인화면
 	@RequestMapping("/myPage_Main")
-	public String myPage_Main(Model model, HttpServletRequest request, HttpServletResponse response ) {
+	public String myPage_Main(OrderVO ovo,Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session ) {
+		String user_id = (String)session.getAttribute("id");
+		ovo.setUser_id(user_id);
+		System.out.println(user_id);
+		int order_count = this.myPageService.getOrderCount(ovo); // 총 주문 건수
+		List<OrderVO> olist = this.myPageService.getOrderList(ovo); // 주문 내역 list
+		
+		System.out.println("주문내역 리스트 : "+olist);
+		System.out.println("총 주문건수 : "+order_count);
+		System.out.println("총합 : "+ovo.getOrder_total());
+		request.setAttribute("order_total", ovo.getOrder_total());//test
+		model.addAttribute("order_count", order_count);
+		model.addAttribute("olist", olist);
+		
 		return "/mypage/myPage_Main";
 	}
 		
 	// 마이페이지 주문ㆍ배송 : tbl_order (주문내역 table)
 	@RequestMapping("/myPage_order")
-	public String myPage_orderCancel(OrderVO ovo, Model model, HttpServletRequest request, HttpServletResponse response ) {
-		
+	public String myPage_orderCancel(OrderVO ovo, Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session ) {
+		String user_id = (String)session.getAttribute("id");
+		ovo.setUser_id(user_id);
 		System.out.println("주문ㆍ배송 접속 중");
 		
 		int order_count = this.myPageService.getOrderCount(ovo); // 총 주문 건수
@@ -149,32 +171,122 @@ public class MypageController {
 	}	
 	
 	
-	  //장바구니 합계금액 넘기기
-	  @RequestMapping("/myPage_totalprice")
-	  public ModelAndView myPage_totalprice(String totalprice, OrderVO ovo) throws Exception {
+	/*
+	 * //장바구니 주문/결제 정보처리
+	 * 
+	 * @RequestMapping("/myPage_totalprice") public ModelAndView
+	 * myPage_totalprice(String totalprice, OrderVO ovo) throws Exception { //String
+	 * str = request.getParameter("totalprice").toString();
+	 * 
+	 * //System.out.println(str); System.out.println("이건가1?1"+totalprice);
+	 * 
+	 * 
+	 * 
+	 * String price[] = totalprice.split(",");
+	 * 
+	 * System.out.println(price[0].substring(6));
+	 * System.out.println(price[1].substring(0, 3));
+	 * 
+	 * String a = price[0].substring(6)+price[1].substring(0, 3); int
+	 * order_total=Integer.parseInt(a); System.out.println(order_total);
+	 * ovo.setOrder_total(order_total);
+	 * 
+	 * ModelAndView wm=new ModelAndView();
+	 * 
+	 * wm.addObject("order_total", order_total);
+	 * wm.setViewName("redirect:/myPagePayment"); return wm;
+	 * 
+	 * }
+	 */
+	  
+	  //장바구니 주문/결제
+	  @RequestMapping("/myPagePayment")
+	  public ModelAndView myPagePayment(MemberVO em, OrderVO ovo, HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) throws Exception {
 		  //String str = request.getParameter("totalprice").toString();
+		  response.setContentType("text/html;charset=UTF-8");
 		  
-		  //System.out.println(str);
-		  System.out.println("이건가?"+totalprice);
-		  
-		  	
-		  String price[] = totalprice.split(",");
-		  System.out.println(price[0].substring(6));
-		  System.out.println(price[1].substring(0, 3));
-		  
-		  String a = price[0].substring(6)+price[1].substring(0, 3);
-		  int order_total=Integer.parseInt(a);
-		  System.out.println(order_total);
-		  ovo.setOrder_total(order_total);
-		  
-		  ModelAndView wm=new ModelAndView();
+		  String[] check=request.getParameterValues("buy");
 
-		  wm.addObject("order_total", order_total);
-		  wm.setViewName("redirect:/myPage_order"); 
+			String id = (String)session.getAttribute("id"); // 세션아이디를 구함
+			em = memberService.getMember(id);
+			
+			//List<Integer> cart_no = new ArrayList<>();
+			CartVO list = new CartVO();
+			List<CartVO> list2 = new ArrayList<>();
+			
+		  ModelAndView wm=new ModelAndView();
+		  
+			
+			  for(String chk : check) {
+			  list = this.myPageService.getCartItem(Integer.parseInt(chk));
+			  list2.add(list);
+			  System.out.println(chk);
+			  
+			  
+			  }
+			 
+		  
+		  model.addAttribute("list", list2);
+		
+		  wm.setViewName("mypage/myPagePayment"); 
+		  wm.addObject("em", em);
 		  return wm;
 	  
 	  }
-	 
+	  
+	  
+	  //주문 확정 : tbl_order, tbl_order_detail
+	  @RequestMapping("/order_insert_ok")
+		public ModelAndView order_insert_ok(OrderVO ovo, HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) {
+		  response.setContentType("text/html;charset=UTF-8");
+		  String user_id = (String)session.getAttribute("id");
+			ovo.setUser_id(user_id);
+			System.out.println(user_id);
+			int order_no;
+			Calendar cal=Calendar.getInstance();//칼렌더는 추상클래스로 new로 객체 생성을 못함. 년월일 시분초 값을 반환
+			int year=cal.get(Calendar.YEAR);//년도값
+			int month=cal.get(Calendar.MONTH)+1;//월값, +1을 한 이유는 1월이 0으로 반환 되기 때문에
+			int date=cal.get(Calendar.DATE);//일값
+			
+			Random r=new Random();//난수를 발생시키는 클래스
+			int random=r.nextInt(100000000);//0이상 1억 미만의 정수 숫자 난수 발생
+			order_no=year+month+date+random;//오늘 날짜 +난수
+			
+			ovo.setOrder_no(order_no);
+			System.out.println(order_no);
+			//this.myPageService.insertOrder(ovo); //배송지 추가
+			
+			
+			for(int i=1;i<10;i++) {
+				String pid= request.getParameter("order_detail_pname"+i);
+				String pprice= request.getParameter("order_detail_price"+i);
+				String pname= request.getParameter("order_detail_pname"+i);
+				String pcont= request.getParameter("order_detail_pcont"+i);
+				String pcnt= request.getParameter("order_detail_cnt"+i);
+				if(pid==null){
+					break;
+				}
+				
+				System.out.println(pid);
+				 OrderDetailVO odvo = new OrderDetailVO();
+				 odvo.setOrder_no(order_no);
+				 odvo.setUser_id(user_id);
+				  odvo.setProduct_no(Integer.parseInt(pid));
+				  odvo.setOrder_detail_price(pprice);
+				  odvo.setOrder_detail_pname(pname);
+				  odvo.setOrder_detail_pcont(pcont);
+				  odvo.setOrder_detail_cnt(pcnt);
+				 // this.myPageService.insertOrderDetail(odvo);
+				}
+			
+			 
+			 
+		  
+		  
+			ModelAndView wm=new ModelAndView("redirect:/myPage_order");//생성자 인자값으로 뷰페이지 경로 설정=>/WEB-INF/
+			
+			return wm;
+		}
 	
 	//문의 내역 확인
 	@RequestMapping("/myPage_inquiry")
@@ -300,12 +412,24 @@ public class MypageController {
 	}
 	
 	//마이페이지 리뷰 작성
-	@RequestMapping("/myPage_review_write")
+	@RequestMapping("/review_write")
 	public ModelAndView review_write(HttpServletRequest request, HttpServletResponse response ) {
 		
-		ModelAndView wm=new ModelAndView("mypage/myPage_review_write");//생성자 인자값으로 뷰페이지 경로 설정=>/WEB-INF/
+		ModelAndView wm=new ModelAndView("mypage/review_write");//생성자 인자값으로 뷰페이지 경로 설정=>/WEB-INF/
 		
 		return wm;
 	}
+	
+	
+	//주문상세
+	@RequestMapping("/myPage_orderCancel")
+	public ModelAndView myPage_orderCancel(HttpServletRequest request, HttpServletResponse response ) {
+		
+		ModelAndView wm=new ModelAndView("mypage/myPage_orderCancel");//생성자 인자값으로 뷰페이지 경로 설정=>/WEB-INF/
+		
+		return wm;
+	}
+	
+
 
 }

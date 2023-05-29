@@ -152,12 +152,15 @@ CREATE TABLE tbl_order (
     order_cnt NUMBER, -- 수량
     order_invoice VARCHAR2(100), -- 배송준비 완료시 : 송장번호 10자리 
     order_total NUMBER(38) -- 총 금액
+    , user_id varchar2(100)  -- 회원 아이디
 );
-
+alter table tbl_order add user_id varchar2(100);  -- 회원 아이디
 --주문내역(주문 목록) table 생성 확인 
 select * from tbl_order;
+update tbl_order set user_id='test02';
+commit;
 
--- 삭제 DROP table tbl_orde;
+-- 삭제 DROP table tbl_order;
 -- 시퀀스 삭제 DROP SEQUENCE order_no_seq;
 
 -- 주문내역(주문 목록) 시퀀스 
@@ -190,14 +193,15 @@ CREATE TABLE tbl_order_detail (
     order_detail_pname VARCHAR2(100) , -- 제품명 = 상품명 
     order_detail_cnt VARCHAR2(100) , -- 수량
     order_detail_price VARCHAR2(100) , -- 가격
+    user_id varchar2(100),  -- 회원 아이디
+    order_detail_pcont varchar2(4000), --제품이미지
     CONSTRAINT pk_order_detail PRIMARY KEY (order_detail_no),
     CONSTRAINT fk_order_detail_order_no FOREIGN KEY (order_no) REFERENCES tbl_order(order_no),
     CONSTRAINT fk_order_detail_product_no FOREIGN KEY (product_no) REFERENCES tbl_product(product_no)
 );
-
+select * from tbl_cart;
 -- 조회 
 select * from tbl_order_detail;
-
 SELECT * FROM tbl_order o INNER JOIN tbl_order_detail od ON od.order_no = o.order_no;
 
 SELECT *
@@ -295,6 +299,8 @@ CREATE TABLE tbl_cart (
 
 -- 조회 
 select * from tbl_cart;
+
+select * from tbl_cart where cart_no in (11,10,10);
 
 -- 삭제 drop table tbl_cart;
 -- 회원일 때 조회 SELECT * FROM tbl_cart WHERE cart_mem_id = '회원 아이디';

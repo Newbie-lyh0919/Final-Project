@@ -447,10 +447,10 @@
 									<c:forEach var="o" items="${olist}">
 										<tr>
 											<td>${o.order_no }</td>
-											<th><a class="orderList" onclick="location='myPage_orderCancle?product_title=${o.order_product_title}'">${o.order_product_title }</a></th>
+											<td onclick="alert(${o.order_no});">${o.order_product_title }</td>
 											<td>${o.order_date }</td>
 											<td>${o.order_cnt }</td>
-											<td>${o.order_invoice }</td>
+											<%-- <td>${o.order_invoice }</td> --%>
 											<td>${o.order_total }</td>
 											<td>접수완료</td>
 											<td>
@@ -676,7 +676,7 @@
 	        var page_left = Math.ceil((window.screen.width - page_width)/2);
 	        var page_top = Math.ceil((window.screen.height - page_height)/2);
 	
-	    window.open("http://localhost:8046/MVC/page/mypage2/review_write.jsp", "review_write",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
+	    window.open("http://localhost:8282/review_write", "review_write",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
 	    
 	    }
 		

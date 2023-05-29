@@ -23,4 +23,5 @@ public class OrderVO {
 	private String order_cnt; // 수량
 	private String order_invoice; // 송장번호 
 	private int order_total; // 총 금액
+	private String user_id;
 }

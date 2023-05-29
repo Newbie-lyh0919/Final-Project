@@ -1,5 +1,7 @@
 package shop.HealthJava.vo;
 
+
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,4 +24,5 @@ public class CartVO {
 	private String product_cont1; // 상품이미지1
 	private String product_title; // 상품명
 	private String product_price; //가격
+	
 }

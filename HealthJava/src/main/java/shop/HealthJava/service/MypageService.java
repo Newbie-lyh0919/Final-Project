@@ -26,6 +26,9 @@ public interface MypageService {
 	AddrVO getOneAddr(int addr_no); //배송지 수정조회
 	void updateAddr(AddrVO avo);//추가배송지 수정
 	void deleteAddr(int addr_no);//추가배송지 삭제
+	CartVO getCartItem(int cart_no);//장바구니 체크박스 선택된 정보 조회 
+	void insertOrder(OrderVO ovo);
+	void insertOrderDetail(OrderDetailVO odvo);
 	 
 	
 }

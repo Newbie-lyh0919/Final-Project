@@ -8,13 +8,25 @@
 
 	<!-- // 주문 내역 list -->
 	<select id="order_list" resultType="order">
-		select * from tbl_order
+		select * from tbl_order where user_id=#{user_id}
 	</select>
 
 	<!-- // 총 주문 건수 -->
 	<select id="order_count" resultType="int">
-		select count(order_no) from tbl_order
+		select count(order_no) from tbl_order where user_id=#{user_id}
 	</select>
+	
+	<!-- // 주문 확정 -->
+	<insert id="insertOrder">
+		insert into tbl_order (order_no, order_product_title, order_date, order_cnt, order_total, user_id)
+		values (#{order_no}, #{order_product_title}, sysdate, #{order_cnt}, #{order_total}, #{user_id})
+	</insert>
+	
+	<!-- // 주문 상세 추가 -->
+	<insert id="insertOrderDetail">
+		insert into tbl_order_detail ( order_detail_no, order_no, product_no, order_date, order_detail_pname,order_detail_cnt,order_detail_price,user_id,order_detail_pcont)
+		values (order_detail_no_seq.nextval, #{order_no}, #{product_no},sysdate, #{order_detail_pname}, #{order_detail_cnt}, #{order_detail_price},#{user_id},#{order_detail_pcont})
+	</insert>
 	
 	<!-- // 주문내역 list -->
 	<select id="orderDetail_list" resultType="orderdetail">
@@ -81,6 +93,11 @@
 	<delete id="deleteAddr">
 		delete from tbl_addr where addr_no=#{addr_no}
 	</delete>
+	
+	<!-- //장바구니 체크박스 선택된 정보 조회 -->
+	<select id="selectCartItem" resultType="cart">
+		select * from tbl_cart where cart_no = #{cart_no}
+	</select>
 	
 </mapper>
 

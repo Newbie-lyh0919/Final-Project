@@ -24,9 +24,11 @@ public class OrderDetailVO {
 	private int order_detail_no; // 주문no
 	private int order_no; // 주문 내역 no
 	private int product_no; // 상품 no
-	private int order_detail_pname; // 제품명
+	private String order_detail_pname; // 제품명
 	private String order_detail_cnt; // 수량
 	private String order_detail_price; // 금액 
 	private String order_date; // 주문 일자 
+	private String user_id;
+	private String order_detail_pcont;// 상품이미지
 
 }

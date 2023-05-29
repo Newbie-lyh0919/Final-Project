@@ -885,13 +885,18 @@ Number.prototype.formatNumber = function(){
 				</aside>
 				
 			<%-- 장바구니 --%>
+			
 			<div class="wishBox">
 				<div class="listTitleBox">
 					<span id="listTitle">장바구니</span>
 				</div>
 				<div class="basketcontentBox">
+				
+				<form action="myPagePayment" method="post">
+				
 					<div class="basketdiv" id="basket">
                 <div class="row head">
+                
                     <div class="subdiv">
                         <div class="check">선택</div>
                         <div class="img">이미지</div>
@@ -908,22 +913,24 @@ Number.prototype.formatNumber = function(){
                     </div>
                     <div class="split"></div>
                 </div>
-        
+        		
        			<c:if test="${!empty clist }">
 			    <c:forEach var="c" items="${clist }" varStatus="status">
                 <div class="row data">
                     <div class="subdiv">
-                        <div class="check"><input type="checkbox" name="buy${status.step}" value="${c.cart_no}" checked="" onclick="javascript:basket.checkItem();">&nbsp;</div>
+                        <div class="check"><input type="checkbox" name="buy" value="${c.cart_no}" checked="" onclick="javascript:basket.checkItem();">&nbsp;</div>
                         <div class="img"><img src="${c.product_cont1}" alt="${c.product_cont1}" width="60"></div>
                         <div class="pname">
-                            <span>${c.product_title}</span>
+                            <span><input type="text" name="product_title${c.cart_no}" value="${c.product_title}"></span>
                         </div>
                     </div>
                     <div class="subdiv">
-                        <div class="basketprice"><input type="hidden" name="p_price" id="p_price${status.count}" class="p_price" value="${c.product_price}">${c.product_price}원</div>
+                        <div class="basketprice">
+                        <input type="hidden" name="product_price${c.cart_no}" id="p_price${status.count}" class="p_price" value="${c.product_price}">${c.product_price}원</div>
                         <div class="num">
                             <div class="updown">
                                 <input type="text" name="p_num${status.count}" id="p_num${status.count}" size="2" maxlength="4" class="p_num" value="${c.cart_cnt}" onkeyup="javascript:basket.changePNum(${status.count});">
+                           
                                 <span onclick="javascript:basket.changePNum(${status.count});"><i class="fas fa-arrow-alt-circle-up up"></i></span>
                                 <span onclick="javascript:basket.changePNum(${status.count});"><i class="fas fa-arrow-alt-circle-down down"></i></span>
                             </div>
@@ -938,6 +945,7 @@ Number.prototype.formatNumber = function(){
                 <c:set var="totalprice" value="${totalprice+c.product_price*c.cart_cnt }" />
                 </c:forEach>
                 </c:if>
+                <input type="hidden" name="totalprice" value="${totalprice}">
                 
         
             </div>		   
@@ -948,18 +956,21 @@ Number.prototype.formatNumber = function(){
             </div>
     
             <div class="bigtext right-align sumcount" id="sum_p_num">상품갯수: ${totalcount}개</div>
-            <div class="bigtext right-align box blue summoney" id="sum_p_price">합계금액: ${totalprice}원</div>
-    
+            <div class="bigtext right-align box blue summoney" id="sum_p_price">합계금액:${totalprice}원</div>
+   			
             <div id="goorder" class="">
                 <div class="clear"></div>
                 <div class="buttongroup center-align cmd">
-                    <a href="myPage_order" onclick="price();">선택한 상품 주문</a>
+                   <button type="submit"> <a>선택한 상품 주문</a></button>
                 </div>
+                
             </div>
+            </form>
 						</div>
 						</div>
 						</div>
-				<script type="text/javascript">
+						
+	<!-- 			<script type="text/javascript">
 				
 				function price(){
 					const element = document.getElementById('sum_p_price').textContent;
@@ -975,9 +986,8 @@ Number.prototype.formatNumber = function(){
 						alert("success"+element);
 					    }
 					});
-					return false;
 				}
-				</script>
+				</script> -->
 				
 				
 				

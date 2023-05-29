@@ -102,5 +102,27 @@ public class MypageDAOImpl implements MypageDAO {
 		
 	}
 
+	//장바구니 체크박스 선택된 정보 조회
+	@Override
+	public CartVO getCartItem(int cart_no) {
+		// TODO Auto-generated method stub
+		return this.sqlSession.selectOne("selectCartItem",cart_no);
+	}
+
+	// 주문확정
+	@Override
+	public void insertOrder(OrderVO ovo) {
+		this.sqlSession.insert("insertOrder", ovo);
+		
+	}
+
+	//주문 상세 추가
+	@Override
+	public void insertOrderDetail(OrderDetailVO odvo) {
+		// TODO Auto-generated method stub
+		this.sqlSession.insert("insertOrderDetail",odvo);
+		
+	}
+
 	
 }

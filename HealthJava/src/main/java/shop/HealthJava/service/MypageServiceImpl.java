@@ -102,4 +102,25 @@ public class MypageServiceImpl implements MypageService {
 		
 	}
 
+	//장바구니 체크박스 선택된 정보 조회
+	@Override
+	public CartVO getCartItem(int cart_no) {
+		// TODO Auto-generated method stub
+		return this.mypageDao.getCartItem(cart_no);
+	}
+
+	//주문 확정 
+	@Override
+	public void insertOrder(OrderVO ovo) {
+		this.mypageDao.insertOrder(ovo);
+		
+	}
+
+	//주문 상세 추가
+	@Override
+	public void insertOrderDetail(OrderDetailVO odvo) {
+		this.mypageDao.insertOrderDetail(odvo);
+		
+	}
+
 }
