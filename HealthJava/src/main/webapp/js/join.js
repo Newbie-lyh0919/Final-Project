@@ -4,8 +4,7 @@
 /**
  * member.js
  */
-function join_check(){
-   
+function join_check(){ 
 
    if($.trim($("#user_id").val())==""){
       alert("회원아이디를 입력하세요!");

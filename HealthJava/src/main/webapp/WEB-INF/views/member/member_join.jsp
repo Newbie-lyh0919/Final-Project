@@ -273,8 +273,7 @@ color:#fff
 			<jsp:include page="../include/header.jsp"/>
 		</header>
 <div class="member" >
-<form name="m" method="post" action="member_join_ok" 
-    onsubmit="return join_check();">
+<form name="m" method="post" action="member_join_ok"  onsubmit="return join_check();">
         <!-- 1. 로고 -->
         <div class="signup-form">
         <h1>회원가입</h1>

@@ -4,13 +4,11 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.HealthJava.service.AdminService;
 import shop.HealthJava.vo.CSClientVO;
@@ -18,17 +16,11 @@ import shop.HealthJava.vo.MemberVO;
 import shop.HealthJava.vo.ProductVO;
 
 @Controller
-public class AdminController {
+public class Admincontroller {
 
 	@Autowired
 	private AdminService adminService;
-	
-/*	//관리자-메인
-	@RequestMapping("/admin_main")
-	public String Admin_Main(Model model, HttpServletRequest request, HttpServletResponse response) {
-		return "/admin/admin_main";
-	}*/
-	
+		
 	//관리자- 메인/회원관리
 	@RequestMapping("/admin_main")
 	public String Admin_Member(MemberVO mvo, Model model, HttpServletRequest request, HttpServletResponse response) {
@@ -71,9 +63,14 @@ public class AdminController {
 		
 		MemberVO mvo = new MemberVO();
 		mvo.setUser_no(user_no);
-		mvo.setUser_name(user_name); mvo.setUser_birth(user_birth); mvo.setUser_gender(user_gender);
-		mvo.setPostCode(postCode); mvo.setRoadAddr(roadAddr); mvo.setDetailAddr(detailAddr);
-		mvo.setUser_email(user_email); mvo.setUser_phone(user_phone);
+		mvo.setUser_name(user_name);
+		mvo.setUser_birth(user_birth);
+		mvo.setUser_gender(user_gender);
+		mvo.setPostCode(postCode);
+		mvo.setRoadAddr(roadAddr);
+		mvo.setDetailAddr(detailAddr);
+		mvo.setUser_email(user_email);
+		mvo.setUser_phone(user_phone);
 		
 		this.adminService.MemberEdit(mvo);
 		
@@ -204,53 +201,5 @@ public class AdminController {
 	model.addAttribute("plist", plist);
 		return "/admin/aGslist";
 	}
-/*	
-	//관리자-상품정보 관리
-	@RequestMapping("/admin_product_edit")
-	public String admin_product_edit(ProductVO pvo, Model model, HttpServletRequest request, HttpServletResponse response) {
 
-		int product_no = Integer.parseInt(request.getParameter("product_no"));
-		
-		pvo = this.adminService.getProductrInfo(product_no);
-		
-		model.addAttribute("pvo", pvo);
-		
-		return "/admin/aGs_edit";
-	}
-	
-	//관리자-상품정보 수정
-	@RequestMapping("/member_edit_ok")
-	public String member_edit_ok(Model model, HttpServletRequest request, HttpServletResponse response) {
-		
-		int user_no = Integer.parseInt(request.getParameter("user_no"));
-		String user_name = request.getParameter("user_name");
-		String user_birth = request.getParameter("user_birth");
-		String user_gender = request.getParameter("user_gender");
-		String postCode = request.getParameter("postCode");
-		String roadAddr = request.getParameter("roadAddr");
-		String detailAddr = request.getParameter("detailAddr");
-		String user_email = request.getParameter("user_email");
-		String user_phone = request.getParameter("user_phone");
-		
-		MemberVO mvo = new MemberVO();
-		mvo.setUser_no(user_no);
-		mvo.setUser_name(user_name); mvo.setUser_birth(user_birth); mvo.setUser_gender(user_gender);
-		mvo.setPostCode(postCode); mvo.setRoadAddr(roadAddr); mvo.setDetailAddr(detailAddr);
-		mvo.setUser_email(user_email); mvo.setUser_phone(user_phone);
-		
-		int member_count = this.adminService.getMemberCount(mvo);			
-		List<MemberVO> mlist = this.adminService.getMemberListBySearch(mvo);			
-		
-		model.addAttribute("member_count", member_count);
-		model.addAttribute("mlist", mlist);	
-		
-		return "/admin/aMlist";
-	}
-	
-*/	
-	//관리자 매출 관리
-	@RequestMapping("/admin_sales")
-	public String Admin_Sales(Model model, HttpServletRequest request, HttpServletResponse response) {
-		return "/admin/aSales";
-	}
 }

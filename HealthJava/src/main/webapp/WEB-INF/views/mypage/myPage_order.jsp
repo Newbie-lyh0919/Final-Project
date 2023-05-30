@@ -508,7 +508,7 @@ function cancel_btn() {
 							<li><a href="myPage_orderDetails" class="liList">교환/반품/환불</a></li>
 							<li><a href="myPage_like" class="liList">찜 목록</a></li>
 							<li><a href="myPage_cart" class="liList">장바구니</a></li>
-							<li style="margin-bottom: 30px;"><a href="myPage_inquiry" class="liList">문의 내역</a></li>
+							<li><a href="myPage_review" class="liList">나의 상품후기</a></li>
 	
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
 							<li><a href="myPage_updateInfo" class="liList">회원정보 변경</a></li>
@@ -516,8 +516,7 @@ function cancel_btn() {
 							<li><a href="myPage_user_Withdrawal" class="liList">회원탈퇴</a></li>
 							<li style="margin-bottom: 30px;"><a href="myPage_updateAddress" class="liList">배송지 관리</a></li>
 							
-							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 상품후기</li>
-							<li><a href="myPage_review" class="liList">나의 상품후기</a></li>
+							<!-- <li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 상품후기</li> -->
 						</ul>
 					</nav>
 				</aside>
@@ -535,7 +534,7 @@ function cancel_btn() {
 				<!-- board list area -->
 				<div id="board-list">
 					<div class="container">
-					<form method="post" id="cancel_Form" action="order_cancel_ok.shop">
+					<form method="post" id="cancel_Form" action="order_cancel_ok">
 						<table class="board-table">
 							<thead>
 								<tr>
@@ -544,7 +543,7 @@ function cancel_btn() {
 									<th scope="col" class="th-date">주문일자</th>
 									<th scope="col" class="th-date">주문수량</th>
 									<th scope="col" class="th-date">송장번호</th>
-									<th scope="col" class="th-date">합계 ${order_total}</th>
+									<th scope="col" class="th-date">합계 </th>
 									<th scope="col" class="th-date2">주문상태</th>
 								</tr>
 							</thead>
@@ -553,7 +552,8 @@ function cancel_btn() {
 									<c:forEach var="o" items="${olist}"> 
 										<tr>
 											<td> ${o.order_no} </td>
-											<th>${o.order_product_title }</th>
+											<th>
+											<a href="myPage_orderDetails?order_no=${o.order_no }">${o.order_product_title }</a></th>
 											<td>${o.order_date.substring(0,10) }</td>
 											<td>${o.order_cnt }개</td>
 											<td>
@@ -580,89 +580,36 @@ function cancel_btn() {
 				
 				<%-- 페이징 처리 --%>
 				<div id="pagination" style="width: 1000px;">
-					<!-- 검색 칸 공백 시 페이징 사라지지 않게 -->
-	               <c:if test="${find_name == ''}"> <%--검색필드와 검색어가 없는 경우 --%>
-	                 <c:if test="${page <= 1}">
-	                  PREV&nbsp;
-	                 </c:if>
-	                 <c:if test="${page>1}">
-	                  <a href="myPage_orderCancel?page=${page-1}">PREV</a>&nbsp;
-	                 </c:if>
-	                 
-	                 <%--현재 쪽번호 출력 --%>
-	                 <c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
-	                   <c:if test="${a == page}"> <%-- 현재 페이지가 선택된 경우 --%>
-	                      [&nbsp;${a}&nbsp;]
-	                   </c:if>
-	                   <c:if test="${a != page}"> <%--현재 쪽번호가 선택 안 된 경우--%>
-	                    <a href="myPage_orderCancel?page=${a}">[&nbsp;${a}&nbsp;]</a>&nbsp;
-	                   </c:if>
-	                 </c:forEach>
-	                   
-	                
-	                <c:if test="${page >= maxpage}">
-	                  &nbsp;NEXT
-	                </c:if>
-	                <c:if test="${page < maxpage}">
-	                 <a href="myPage_orderCancel?page=${page+1}">NEXT</a>
-	                </c:if>
-	               </c:if>
-	               <!-- 검색 칸 공백 시 페이징 사라지지 않게 -->
-				    <%--검색 전 페이징 --%>
-				    <c:if test="${(empty find_field) && (empty find_name)}"> <%--검색필드와 검색어가 없는 경우 --%>
-				     <c:if test="${page <= 1}">
+				  <%-- 검색 칸 공백 시 페이징 사라지지 않게 --%>
+				  <c:if test="${find_name == ''}">
+				    <%-- 검색 필드와 검색어가 없는 경우에만 페이징을 표시 --%>
+				    <c:if test="${page <= 1}">
 				      PREV&nbsp;
-				     </c:if>
-				     <c:if test="${page>1}">
-				      <a href="myPage_orderCancel?page=${page-1}">PREV</a>&nbsp;
-				     </c:if>
-				     
-				     <%--현재 쪽번호 출력 --%>
-				     <c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
-				       <c:if test="${a == page}"> <%-- 현재 페이지가 선택된 경우 --%>
-				       	[&nbsp;${a}&nbsp;]
-				       </c:if>
-				       <c:if test="${a != page}"> <%--현재 쪽번호가 선택 안 된 경우--%>
-				        <a href="myPage_orderCancel?page=${a}">[&nbsp;${a}&nbsp;]</a>&nbsp;
-				       </c:if>
-				     </c:forEach>
-				       
-				    <c:if test="${page >= maxpage}">
-				      &nbsp;NEXT
 				    </c:if>
-				    <c:if test="${page < maxpage}">
-				     <a href="myPage_orderCancel?page=${page+1}">NEXT</a>
+				    <c:if test="${page > 1}">
+				      <a href="myPage_order?page=${page-1}">PREV</a>&nbsp;
 				    </c:if>
-				   </c:if>
-				    
-				    <%--검색이후 페이징(쪽나누기) --%>
-				    <c:if test="${(!empty find_field) && (!empty find_name)}"> <%--검색필드와 검색어가 있는 경우 --%>
-				     <c:if test="${page <= 1}">
-				      PREV&nbsp;
-				     </c:if>
-				     <c:if test="${page>1}">
-				      <a href="myPage_orderCancel?page=${page-1}&find_field=${find_field}&find_name=${find_name}">PREV</a>&nbsp;
-				      <%-- &(엠퍼센트) 구분기호로 구분하면서 find_field=검색필드&find_name= 검색어를 get방식으로 전달해야 검색 이후 페이징 목록을 유지한다.그렇지 않으면 검색전 전체 페이징 목록으로 이동해서 검색 효과가 사라진다. --%>
-				     </c:if>
-				     
-				     <%--현재 쪽번호 출력 --%>
-				     <c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
-				       <c:if test="${a == page}"> <%-- 현재 페이지가 선택된 경우 --%>
+				
+				    <%-- 현재 쪽번호 출력 --%>
+				    <c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
+				      <c:if test="${a == page}"> <%-- 현재 페이지가 선택된 경우 --%>
 				        [&nbsp;${a}&nbsp;]
-				       </c:if>
-				       <c:if test="${a != page}"> <%--현재 쪽번호가 선택 안 된 경우--%>
-				        <a href="myPage_orderCancel?page=${a}&find_field=${find_field}&find_name=${find_name}">[&nbsp;${a}&nbsp;]</a>&nbsp;
-				       </c:if>
-				     </c:forEach>      
-				    
+				      </c:if>
+				      <c:if test="${a != page}"> <%-- 현재 쪽번호가 선택 안 된 경우 --%>
+				        <a href="myPage_order?page=${a}">[&nbsp;${a}&nbsp;]</a>&nbsp;
+				      </c:if>
+				    </c:forEach>
+				
 				    <c:if test="${page >= maxpage}">
 				      &nbsp;NEXT
 				    </c:if>
 				    <c:if test="${page < maxpage}">
-				     <a href="myPage_orderCancel?page=${page+1}&find_field=${find_field}&find_name=${find_name}">NEXT</a>
+				      <a href="myPage_order?page=${page+1}">NEXT</a>
 				    </c:if>
-				   </c:if> 
-				   </div> <%-- end 페이징처리 --%>
+				  </c:if>
+				</div>
+ 				<%-- end 페이징처리 --%>
+				   
 				 </section> 
 				</div>
 				
@@ -684,7 +631,7 @@ function cancel_btn() {
 		</footer>
 	</div>
 	<script type="text/javascript">
-	<td><input type="button" value="주문취소"></td>
+
 		<%-- top버튼 부분 --%>
 		// 클릭 이벤트 핸들러
 		$("#topBtn").click(function(e) {
@@ -702,148 +649,7 @@ function cancel_btn() {
 				$("#topBtn").css("opacity", 1); // TOP 버튼 나타내기
 			}
 		});
-		
-		<%-- 장바구니 부분 --%>
-		/* Set values + misc */
-		var promoCode;
-		var promoPrice;
-		var fadeTime = 300;
-
-		/* Assign actions */
-		$('.quantity input').change(function() {
-			updateQuantity(this);
-		});
-
-		$('.remove button').click(function() {
-			removeItem(this);
-		});
-
-		$(document).ready(function() {
-			updateSumItems();
-		});
-
-		$('.promo-code-cta').click(function() {
-
-			promoCode = $('#promo-code').val();
-
-			if (promoCode == '10off' || promoCode == '10OFF') {
-				//If promoPrice has no value, set it as 10 for the 10OFF promocode
-				if (!promoPrice) {
-					promoPrice = 10;
-				} else if (promoCode) {
-					promoPrice = promoPrice * 1;
-				}
-			} else if (promoCode != '') {
-				alert("Invalid Promo Code");
-				promoPrice = 0;
-			}
-			//If there is a promoPrice that has been set (it means there is a valid promoCode input) show promo
-			if (promoPrice) {
-				$('.summary-promo').removeClass('hide');
-				$('.promo-value').text(promoPrice.toFixed(0) + "원");
-				recalculateCart(true);
-			}
-		});
-
-		/* Recalculate cart */
-		function recalculateCart(onlyTotal) {
-			var subtotal = 0;
-
-			/* Sum up row totals */
-			$('.basket-product').each(function() {
-				subtotal += parseFloat($(this).children('.subtotal').text());
-			});
-
-			/* Calculate totals */
-			var total = subtotal;
-
-			//If there is a valid promoCode, and subtotal < 10 subtract from total
-			var promoPrice = parseFloat($('.promo-value').text());
-			if (promoPrice) {
-				if (subtotal >= 10) {
-					total -= promoPrice;
-				} else {
-					alert('Order must be more than £10 for Promo code to apply.');
-					$('.summary-promo').addClass('hide');
-				}
-			}
-
-			/*If switch for update only total, update only total display*/
-			if (onlyTotal) {
-				/* Update total display */
-				$('.total-value').fadeOut(fadeTime, function() {
-					$('#basket-total').html(total.toFixed(0) + "원");
-					$('.total-value').fadeIn(fadeTime);
-				});
-			} else {
-				/* Update summary display. */
-				$('.final-value').fadeOut(fadeTime, function() {
-					$('#basket-subtotal').html(subtotal.toFixed(0) + "원");
-					$('#basket-total').html(total.toFixed(0) + "원");
-					if (total == 0) {
-						$('.checkout-cta').fadeOut(fadeTime);
-					} else {
-						$('.checkout-cta').fadeIn(fadeTime);
-					}
-					$('.final-value').fadeIn(fadeTime);
-				});
-			}
-		}
-
-		/* Update quantity */
-		function updateQuantity(quantityInput) {
-			/* Calculate line price */
-			var productRow = $(quantityInput).parent().parent();
-			var price = parseFloat(productRow.children('.price').text());
-			var quantity = $(quantityInput).val();
-			var linePrice = price * quantity;
-
-			/* Update line price display and recalc cart totals */
-			productRow.children('.subtotal').each(function() {
-				$(this).fadeOut(fadeTime, function() {
-					$(this).text(linePrice.toFixed(0) + "원");
-					recalculateCart();
-					$(this).fadeIn(fadeTime);
-				});
-			});
-
-			productRow.find('.item-quantity').text(quantity);
-			updateSumItems();
-		}
-
-		function updateSumItems() {
-			var sumItems = 0;
-			$('.quantity input').each(function() {
-				sumItems += parseInt($(this).val());
-			});
-			$('.total-items').text(sumItems);
-		}
-
-		/* Remove item from cart */
-		function removeItem(removeButton) {
-			/* Remove row from DOM and recalc cart total */
-			var productRow = $(removeButton).parent().parent();
-			productRow.slideUp(fadeTime, function() {
-				productRow.remove();
-				recalculateCart();
-				updateSumItems();
-			});
-		}
-		
-		<%-- 리뷰 작성 페이지 부분 --%>
-		// 왼쪽 사이드바의 '나의 후기' 텍스트 클릭시 새창 열기
-		function openPopup_review_write() {
-	        var page_width = '490';
-	        var page_height = '900';
-	    
-	        // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
-	        var page_left = Math.ceil((window.screen.width - page_width)/2);
-	        var page_top = Math.ceil((window.screen.height - page_height)/2);
 	
-	    window.open("http://localhost:8046/MVC/page/mypage2/review_write.jsp", "review_write",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
-	    
-	    }
-		
 	</script>
 </body>
 </html>

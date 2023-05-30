@@ -9,10 +9,11 @@
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script> <%-- CDN 절대링크 --%>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> <%-- CDN 절대링크 --%>
 <script type="text/javascript" src = "./js/jquery.js"></script>
-<script defer src="<%=request.getContextPath()%>/js/post.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="<%=request.getContextPath()%>/js/updateInfo.js"></script>
-<script src="<%=request.getContextPath()%>/js/post2.js"></script>
+<script src="./js/updateInfo.js"></script>
+<script src="./js/post2.js"></script>
+
+<script src="${pageContext.request.contextPath}/js/addr.js"></script>
 
 <title>HealthJava 마이페이지</title>
 
@@ -43,7 +44,7 @@
 	
 	body {
 		margin: 0px;
-		height: 100%;
+		min-height: 100%;
 		padding: 0px;
 	}
 	
@@ -89,11 +90,8 @@
 		border-spacing: 0;
 	}
 	section.notice {
-		padding: 20px 0;
-		/*추가*/
 		width: 1000px;
 		min-height: 200px;
-		margin: 2px;
 	}
 	
 	.aside_left {
@@ -166,90 +164,6 @@
 		text-align: center;
 	}
 	
-	table th.th-title {
-		font-size: 15px;
-		width: 200px;
-	}
-	
-	table td.td-title {
-		font-size: 13px;
-	}
-	
-	table th.th-date {
-		font-size: 15px;
-		width: 80px;
-	}
-	
-	table th.th-date1 {
-		font-size: 15px;
-		width: 50px;
-	}
-	
-	table th.th-date2 {
-		font-size: 15px;
-		width: 150px;
-	}
-	
-	
-	.board-table .th-inputInfo {
-		
-	}
-	
-	.board-table th, .board-table td {
-		padding-top: 14px;
-		padding-bottom: 14px;
-	}
-	
-	.board-table tbody td {
-		border-top: 1px solid #e7e7e7;
-		text-align: center;
-		font-size: 15px;
-	}
-	
-	.board-table tbody th {
-		font-size: 15px;
-		border-top: 1px solid #e7e7e7;
-		text-align: center;
-	}
-	
-	.board-table thead th {
-		text-align: center;
-	}
-	
-	.board-table tbody th p {
-		display: none;
-	}
-	
-	.th-list{
-	    text-align: center;
-	    margin-top: 20px;
-	    margin-bottom: 20px;
-	    padding: 10px;
-	    background-color: #B21948;;
-	    border-bottom-color: white;
-	    border-bottom-width: 0.2px;
-	    border-bottom-style: solid;
-	    color: white;
-	}
-	
-	.td-inputInfo{
-		text-align:left;
-		padding-left: 20px;
-		padding-top: 20px;
-	}
-	
-	.td-infoPs{
-		text-align : left;
-		padding-left: 20px;
-		padding-top: 5px;
-		padding-bottom: 15px;
-		border-bottom-color: gray;
-		border-bottom-width: 0.2px;
-		border-bottom-style: solid;
-		font-size: 12px; 
-		font-weight: bold;
-		color: red;
-	}
 	div.submitBtn{
 		float: left;
 		margin-left: 100px;
@@ -305,8 +219,8 @@
 		min-height: 700px;
 		padding: 20px;
 		float: left;
-		margin-top: 100px;
-		margin-left: 100px;
+		margin-top: 25px;
+		margin-left: 50px;
 	}
 	
 	.blind {
@@ -363,6 +277,22 @@
 		text-decoration: none;
 		color: #FC5400;
 	}
+	.tr{
+		background-color: #B21948; 
+		color: white; 
+	}
+	.th-mlist {
+		padding: 10px;
+		border-color: inherit;
+    	border-style: solid;
+    	border-width: 0;
+	}
+	#btn{
+		background-color: #B21948; 
+		color: white;
+		border: 1px solid white; 
+		padding: 3px;
+	}
 </style>
 
 </head>
@@ -377,7 +307,6 @@
       <%-- 메뉴바 --%>
 		<section>
 			<div class="main">
-				<%-- main 화면 상단 캐러셀 (캐러셀 필요 없는 페이지는 삭제 바람!)--%>
 				<aside class="aside_left">
 					<nav>
 						<ul>
@@ -386,7 +315,7 @@
 							<li><a href="myPage_orderDetails" class="liList">교환/반품/환불</a></li>
 							<li><a href="myPage_like" class="liList">찜 목록</a></li>
 							<li><a href="myPage_cart" class="liList">장바구니</a></li>
-							<li style="margin-bottom: 30px;"><a href="myPage_inquiry" class="liList">문의 내역</a></li>
+							<li><a href="myPage_review" class="liList">나의 상품후기</a></li>
 	
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
 							<li><a href="myPage_updateInfo" class="liList">회원정보 변경</a></li>
@@ -394,105 +323,67 @@
 							<li><a href="myPage_user_Withdrawal" class="liList">회원탈퇴</a></li>
 							<li style="margin-bottom: 30px;"><a href="myPage_updateAddress" class="liList" style="color: #B21948;">배송지 관리</a></li>
 							
-							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 상품후기</li>
-							<li><a href="myPage_review" class="liList">나의 상품후기</a></li>
+							<!-- <li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 상품후기</li> -->
 						</ul>
 					</nav>
 				</aside>
-				
+			
 		<%-- 본문 영역(ui깨질시 본인이 ui 수정바람..) --%>
 		<div class="innerWrap">
 		<section class="notice">
 			<!-- board list area -->
 			<div class="page-title">
-			<b style="text-align: left; font-size: 20px; margin-left:50px;">배송지 관리</b>
+			<b style="text-align: left; font-size: 20px; margin-left:50px;">배송지 관리</b><br>
 			</div>
 			<!-- 배송지 리스트 : 기본/추가 -->
-			<table border="1">
-			 <tr>
-				<th>배송지 이름</th> <th>우편번호</th> <th> 주소</th> <th>상세 주소</th> <th>비고</th>
+			<table class="mlist" style="margin-left: 50px; margin-top: 20px; width:1000px; padding: 0px 10px; text-align: left;">
+			 <tr class="tr">
+				<th class="th-mlist">배송지 이름</th> 
+				<th>우편번호</th> 
+				<th>주소</th> 
+				<th>상세 주소</th> 
+				<th>비고</th>
 			</tr>
 			 <c:if test="${!empty mlist}">
 				<c:forEach var="m" items="${mlist }">
 				<tr>
-					<th> 기본주소 </th> <th> ${m.postCode }</th> <th>${m.roadAddr }</th> <th>${m.detailAddr }</th> 
+					<th class="th-mlist">기본주소 </th> 
+					<th>${m.postCode }</th> 
+					<th>${m.roadAddr }</th> 
+					<th>${m.detailAddr }</th> 
 					<th>
-						<input type="button" value="수정">
-						<input type="button" value="삭제">
+						<input type="button" value="수정" id="btn" onclick="location='myPage_updateInfo'">
 					</th>
 				</tr>
 			</c:forEach >
 			<c:forEach var="a" items="${alist }">
 				<tr>
-					<th> ${a.addr_name } </th> <th> ${a.postCode }</th> <th>${a.roadAddr }</th> <th>${a.detailAddr }</th>
+					<th class="th-mlist">${a.addr_name } </th> 
+					<th>${a.postCode }</th> 
+					<th>${a.roadAddr }</th> 
+					<th>${a.detailAddr }</th>
 					<th>
-						<input type="button" value="수정" onclick="location='addr_edit?addr_no=${a.addr_no}';">
-						<input type="button" value="삭제" onclick="location='addr_del?addr_no=${a.addr_no}';">
+						<input type="button" id="btn" value="수정" onclick="location='addr_edit?addr_no=${a.addr_no}'">
+						<input type="button" id="btn" value="삭제" onclick="location='addr_del?addr_no=${a.addr_no}'">
 					</th>
 				</tr>
 			</c:forEach >
 			</c:if>
-			</table>
-			<form method="post" action="addr_ok">
-			<input type="hidden" name="user_id" value="${id }" />
-			<br>
-			<div class="page-title" style="margin-left: 50px;">
-				<table>
-					<!--주소-->
-					<tr>
-						<th rowspan="5" class="th-list" width="170px" style="border-top-color: black; border-top-style: solid; border-top-width: 3px; border-bottom-color: black; border-bottom-width: 3px;">배송지 주소</th>
-						<th width="170px" style="border-top-color: black; border-top-style: solid; border-top-width: 3px;"></th>
-					</tr>
-					<tr>
-						<td class="td-inputInfo">
-						<input type="text" name="addr_name" id="addr_name" size="20" placeholder="배송지 닉네임"/>&nbsp;&nbsp;
-						</td>
-					</tr>
-					<tr>
-						<td class="td-inputInfo">
-						<input type="text" name="postCode" id="postCode" size="20" placeholder="우편번호"/>&nbsp;&nbsp;
-						<input type="button" value="주소검색" onclick="post()" style="font-weight: bold; padding: 2px;"/>
-						</td>
-					</tr>
-					<tr>
-						<td class="td-inputInfo">
-							<input type="text" name="roadAddr" id="roadAddr" size="70" placeholder="주소">
-						</td>
-					</tr>
-
-					<tr>
-						<td class="td-inputInfo" style="border-bottom-color: black; border-bottom-width: 3px; padding: 20px;">
-							<input type="text" name="detailAddr" id="detailAddr" size="70" placeholder="상세주소">
-						</td>
-					</tr>
-					
-					<tr>
-						<td></td>
-					</tr>
-				</table>
-			<br><br>
-			
-				<div class="submitBtn" style="margin-left: 200px;">
-					<!-- 배송지 추가 버튼 -->
-					<input type="submit" id="updateBtn" value="배송지 추가" >
-					<input id="resetBtn" type="reset" value="취소">
+			</table>			
+				<div class="submitBtn" style="margin-left: 450px; margin-top: 50px;">
+					<input type="submit" id="updateBtn" value="배송지 추가" onclick="location='addr_add'">
 				</div>
-				</form>
+			</section>
 			</div>
-			
-		
-		
-		</section>
 		</div>	
-		</div>
 		
         <%-- top버튼 삭제 X --%>
          <div id="topBtn">
             <span class="fonti um-arrow-circle-up um-3x icon"></span>TOP
          </div>
-		</section>
 		<div class="clear"></div>
 		<%-- 푸터 영역 --%>
+		</section>
 		<footer>
 			<!-- footer -->
 			<jsp:include page="../include/footer.jsp"/>

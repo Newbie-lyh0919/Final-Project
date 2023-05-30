@@ -2,14 +2,15 @@ package shop.HealthJava.service;
 
 import java.util.List;
 
+import shop.HealthJava.vo.CartVO;
+import shop.HealthJava.vo.LikeVO;
+import shop.HealthJava.vo.OrderDetailVO;
 import shop.HealthJava.vo.ProductVO;
+import shop.HealthJava.vo.ProductVO2;
 
 public interface ProductService {
 	
-	List<ProductVO> getProductListByKind(String type);
 	
-	List<ProductVO> getProductListByKind1(String type);
-
 	ProductVO getProductContent(int product_no);
 
 	void insertProduct(ProductVO f);
@@ -18,34 +19,22 @@ public interface ProductService {
 
 	void updateProduct(ProductVO f);
 
-	List<ProductVO> getProductListByKind2(String kind);
 
-	List<ProductVO> getProductListByKind3(String kind);
-	
-	List<ProductVO> getProductListByKind4(String kind);
+	public List<ProductVO2> getReviewList(int product_no);
 
-	List<ProductVO> getProductListByKind5(String kind);
+	void insertQna(ProductVO2 f);
 
-	int getListCount(ProductVO b);
-	
-	List<ProductVO> getProductList(ProductVO b);
+	void insertLike(LikeVO f);
 
-	int getListCount1(String kind);
+	void deleteLike(LikeVO f);
 
-	List<ProductVO> getProductList1(ProductVO b);
-	
-	List<ProductVO> getProductList2(ProductVO b);
-	
-	List<ProductVO> getProductList3(ProductVO b);
-	
-	List<ProductVO> getProductList4(ProductVO b);
-	
-	List<ProductVO> getProductList5(ProductVO b);
+	LikeVO getLikeList(LikeVO f);
 
-	
-	List<ProductVO> searchProductList(ProductVO f);
-	
-	int count(ProductVO f);
-	
-	
+	void insertCart(CartVO c);
+
+	void insertOrderDetail(OrderDetailVO o);
+
+	List<ProductVO> getListNew(ProductVO f, String kind, String kind2);
+
+	int getTotalItems(ProductVO f, String kind, String kind2);
 }

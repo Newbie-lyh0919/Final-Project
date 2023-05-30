@@ -10,6 +10,7 @@
 		 		
 		<typeAlias type="shop.HealthJava.vo.MemberVO" alias="member" /> <!-- MemberVO빈클래스 객체 별칭이름 member로 지정 -->
 		<typeAlias type="shop.HealthJava.vo.ProductVO" alias="product" /> <!-- ProductVO빈클래스 객체 별칭이름 product로 지정 -->
+		<typeAlias type="shop.HealthJava.vo.ProductVO2" alias="product2" />
 		
 		<!-- Mypage : 목차별 순서 --> 
 		<!-- <typeAlias type="shop.HealthJava.vo.MypageVO" alias="mypage" />-->

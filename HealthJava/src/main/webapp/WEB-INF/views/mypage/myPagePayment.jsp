@@ -6,36 +6,22 @@
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> <%-- CDN 절대링크 --%>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script> <%-- CDN 절대링크 --%>
-<script src="https://code.jquery.com/jquery-3.6.3.js"></script> <%-- CDN 절대링크 --%>
+<!-- <script src="https://code.jquery.com/jquery-3.6.3.js"></script> --> <%-- CDN 절대링크 --%>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> <%-- CDN 절대링크 --%>
-<script type="text/javascript" src = "./js/jquery.js"></script>
+<!-- <script type="text/javascript" src = "./js/jquery.js"></script> -->
 <script defer src="<%=request.getContextPath()%>/js/post.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="<%=request.getContextPath()%>/js/updateInfo.js"></script>
 <script src="<%=request.getContextPath()%>/js/post2.js"></script>
+<script	src="../js/mypage.js"></script>
 <!--<script>Kakao.init('31d2f9dc79f327146c781ff55e8f8b76');</script> -->
-<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
-<script type="text/javascript">
-var IMP = window.IMP; // 생략 가능
-IMP.init("imp12337201"); // 예: imp00000000a
-
-function requestPay() {
-    IMP.request_pay({
-      pg: "kcp.{KAKAOTEST}",
-      pay_method: "card",
-      merchant_uid: "ORD20180131-0000011",   // 주문번호
-      name: "노르웨이 회전 의자",
-      amount: 64900,                         // 숫자 타입
-      buyer_email: "gildong@gmail.com",
-      buyer_name: "홍길동",
-      buyer_tel: "010-4242-4242",
-      buyer_addr: "서울특별시 강남구 신사동",
-      buyer_postcode: "01181"
-    }, function (rsp) { // callback
-      //rsp.imp_uid 값으로 결제 단건조회 API를 호출하여 결제결과를 판단합니다.
-    });
-  }
-
+ <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+    
+<script>
+$(document).ready(function(){
+	myPagePayment_addr();
+});
 </script>
 
 <title>HealthJava 마이페이지</title>
@@ -428,6 +414,7 @@ function requestPay() {
 	}
 </style>
 
+
 </head>
 <body>
    <%-- 전체 영역 --%>
@@ -476,14 +463,11 @@ function requestPay() {
 			<c:set var="itemcount" value="${itemcount+1 }"></c:set>
 			</c:forEach>
 			<div class="page-title" style="margin-left: 50px;">
-			<form method="post" action="order_insert_ok" onsubmit="">
+			<form method="post" action="order_insert_ok" id="frm">
 			<input type="hidden" name="order_cnt" value="${totalcount }">
 			<c:forEach var='i' items='${list}' varStatus="status">
-			<input type="hidden" name="order_detail_pname${status.count }" value="${i.cart_pro_id }">
+			<input type="hidden" name="order_detail_pno${status.count }" value="${i.cart_pro_no }">
 			<input type="hidden" name="order_detail_cnt${status.count }" value="${i.cart_cnt }">
-			<input type="hidden" name="order_detail_price${status.count }" value="${i.product_price }">
-			<input type="hidden" name="order_detail_pname${status.count }" value="${i.product_title }">
-			<input type="hidden" name="order_detail_pcont${status.count }" value="${i.product_cont1 }">
 			</c:forEach>
 				<table>
 					<!--아이디 -->
@@ -511,34 +495,48 @@ function requestPay() {
 					<tr>
 						<td class="td-infoPs">* 한글로 2~4자내로 입력</td>
 					</tr>
-
-					
+			
 					
 					<!--주소-->
 					<tr>
-						<th rowspan="5" class="th-list">주소 *</th>
-						<td class="td-inputInfo"><input type="radio" name="addr_name" id="addr_name" value="기본"	size="70" placeholder="주소"></td>
-						
-					</tr>
-
-					<tr>
-						
-						<td class="td-inputInfo"><input type="text" name="postCode" id="postCode" value="${em.postCode}" size="20" placeholder="우편번호"/>&nbsp;&nbsp;
-						<input type="button" value="주소검색" onclick="post()" style="font-weight: bold; padding: 2px;"/>
+						<th rowspan="5" class="th-list">배송지 *</th>
+						<td class="td-inputInfo">
+							
+							<input type="radio" id="addr_no" name="addr_no" value="addr_name" checked="checked">기본 주소지
+							<c:if test="${!empty alist }">
+							<c:forEach var="a" items="${alist}">
+							&nbsp;&nbsp;
+							<input type='radio' id="addr_no" name='addr_no' value='${a.addr_no}' onclick="myPagePayment_addr();">${a.addr_name}
+							</c:forEach>
+							</c:if>
 						</td>
-					</tr>
-
-					<tr>
-						<td class="td-inputInfo"><input type="text" name="roadAddr" id="roadAddr" value="${em.roadAddr}"	size="70" placeholder="주소"></td>
-					</tr>
-
-					<tr>
-						<td class="td-inputInfo"><input type="text" name="detailAddr" id="detailAddr" value="${em.detailAddr}" size="70" placeholder="상세주소"></td>
+						
 					</tr>
 					
+				
 					<tr>
-						<td class="td-infoPs"></td>
-					</tr>
+					
+					<td class="td-inputInfo"><input type="text" name="postCode" id="postCode" value="${em.postCode}" size="20" placeholder="우편번호"/>&nbsp;&nbsp;
+					<input type="button" value="주소검색" onclick="post()" style="font-weight: bold; padding: 2px;"/>
+					</td>
+				</tr>
+
+				<tr>
+					<td class="td-inputInfo"><input type="text" name="roadAddr" id="roadAddr" value="${em.roadAddr}"	size="70" placeholder="주소"></td>
+				</tr>
+
+				<tr>
+					<td class="td-inputInfo"><input type="text" name="detailAddr" id="detailAddr" value="${em.detailAddr}" size="70" placeholder="상세주소"></td>
+				</tr>
+				
+				<tr>
+					<td class="td-infoPs"></td>
+				</tr>
+				
+				
+
+
+					
 										
 					<!--이메일-->
 					<tr>
@@ -568,7 +566,7 @@ function requestPay() {
 						결제 금액</th>
 						<td class="td-inputInfo">
 								<input type="text" name="order_total" id="user_birth" 
-								value="${totalprice }" size="70" readonly>
+								value="${totalprice }" size="70" readonly />
 						</td>
 					
 					<tr>
@@ -596,7 +594,8 @@ function requestPay() {
 			<br><br>
 				
 				<div class="submitBtn" style="margin-left: 200px;">
-				<input id="updateBtn" type="submit" value="결제하기" onclick="requestPay()">
+				<input id="updateBtn" type="button" value="결제하기" onclick="requestPay()">
+				
 				<input id="resetBtn" type="reset" value="취소">
 				</div>
 				</form>
@@ -621,167 +620,51 @@ function requestPay() {
 			<!-- footer 끝 -->
 		</footer>
 	</div>
-	<script type="text/javascript">
-	
-		<%-- top버튼 부분 --%>
-		// 클릭 이벤트 핸들러
-		$("#topBtn").click(function(e) {
-			e.stopPropagation();
-			$("html, body").animate({
-				scrollTop : 0
-			}, 'fast', 'easeOutCubic');
-		});
+	<script>
+        var IMP = window.IMP; 
+        IMP.init("imp12337201"); 
+      
+        var today = new Date();   
+        var hours = today.getHours(); // 시
+        var minutes = today.getMinutes();  // 분
+        var seconds = today.getSeconds();  // 초
+        var milliseconds = today.getMilliseconds();
+        var makeMerchantUid = hours +  minutes + seconds + milliseconds;
+        
+        var title = document.getElementById('order_product_title').value;
+        
 
-		// 스크롤 이벤트 핸들러
-		$(window).scroll(function() {
-			if ($(window).scrollTop() == 0) {
-				$("#topBtn").css("opacity", 0); // TOP 버튼 숨기기
-			} else {
-				$("#topBtn").css("opacity", 1); // TOP 버튼 나타내기
-			}
-		});
-		
-		<%-- <%-- 장바구니 부분 --%>
-		/* Set values + misc */
-		var promoCode;
-		var promoPrice;
-		var fadeTime = 300;
-
-		/* Assign actions */
-		$('.quantity input').change(function() {
-			updateQuantity(this);
-		});
-
-		$('.remove button').click(function() {
-			removeItem(this);
-		});
-
-		$(document).ready(function() {
-			updateSumItems();
-		});
-
-		$('.promo-code-cta').click(function() {
-
-			promoCode = $('#promo-code').val();
-
-			if (promoCode == '10off' || promoCode == '10OFF') {
-				//If promoPrice has no value, set it as 10 for the 10OFF promocode
-				if (!promoPrice) {
-					promoPrice = 10;
-				} else if (promoCode) {
-					promoPrice = promoPrice * 1;
-				}
-			} else if (promoCode != '') {
-				alert("Invalid Promo Code");
-				promoPrice = 0;
-			}
-			//If there is a promoPrice that has been set (it means there is a valid promoCode input) show promo
-			if (promoPrice) {
-				$('.summary-promo').removeClass('hide');
-				$('.promo-value').text(promoPrice.toFixed(0) + "원");
-				recalculateCart(true);
-			}
-		});
-
-		/* Recalculate cart */
-		function recalculateCart(onlyTotal) {
-			var subtotal = 0;
-
-			/* Sum up row totals */
-			$('.basket-product').each(function() {
-				subtotal += parseFloat($(this).children('.subtotal').text());
-			});
-
-			/* Calculate totals */
-			var total = subtotal;
-
-			//If there is a valid promoCode, and subtotal < 10 subtract from total
-			var promoPrice = parseFloat($('.promo-value').text());
-			if (promoPrice) {
-				if (subtotal >= 10) {
-					total -= promoPrice;
-				} else {
-					alert('Order must be more than £10 for Promo code to apply.');
-					$('.summary-promo').addClass('hide');
-				}
-			}
-
-			/*If switch for update only total, update only total display*/
-			if (onlyTotal) {
-				/* Update total display */
-				$('.total-value').fadeOut(fadeTime, function() {
-					$('#basket-total').html(total.toFixed(0) + "원");
-					$('.total-value').fadeIn(fadeTime);
-				});
-			} else {
-				/* Update summary display. */
-				$('.final-value').fadeOut(fadeTime, function() {
-					$('#basket-subtotal').html(subtotal.toFixed(0) + "원");
-					$('#basket-total').html(total.toFixed(0) + "원");
-					if (total == 0) {
-						$('.checkout-cta').fadeOut(fadeTime);
-					} else {
-						$('.checkout-cta').fadeIn(fadeTime);
-					}
-					$('.final-value').fadeIn(fadeTime);
-				});
-			}
-		}
-
-		/* Update quantity */
-		function updateQuantity(quantityInput) {
-			/* Calculate line price */
-			var productRow = $(quantityInput).parent().parent();
-			var price = parseFloat(productRow.children('.price').text());
-			var quantity = $(quantityInput).val();
-			var linePrice = price * quantity;
-
-			/* Update line price display and recalc cart totals */
-			productRow.children('.subtotal').each(function() {
-				$(this).fadeOut(fadeTime, function() {
-					$(this).text(linePrice.toFixed(0) + "원");
-					recalculateCart();
-					$(this).fadeIn(fadeTime);
-				});
-			});
-
-			productRow.find('.item-quantity').text(quantity);
-			updateSumItems();
-		}
-
-		function updateSumItems() {
-			var sumItems = 0;
-			$('.quantity input').each(function() {
-				sumItems += parseInt($(this).val());
-			});
-			$('.total-items').text(sumItems);
-		}
-
-		/* Remove item from cart */
-		function removeItem(removeButton) {
-			/* Remove row from DOM and recalc cart total */
-			var productRow = $(removeButton).parent().parent();
-			productRow.slideUp(fadeTime, function() {
-				productRow.remove();
-				recalculateCart();
-				updateSumItems();
-			});
-		} --%>
-		
-		<%-- 리뷰 작성 페이지 부분 --%>
-		// 왼쪽 사이드바의 '나의 후기' 텍스트 클릭시 새창 열기
-		function openPopup_review_write() {
-	        var page_width = '490';
-	        var page_height = '900';
-	    
-	        // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
-	        var page_left = Math.ceil((window.screen.width - page_width)/2);
-	        var page_top = Math.ceil((window.screen.height - page_height)/2);
-	
-	    window.open("http://localhost:8046/MVC/page/mypage2/review_write.jsp", "review_write",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
-	    
-	    }
-		
-	</script>
+        function requestPay() {
+        	
+        	alert("${id}");
+            alert(document.getElementById('order_product_title').value);
+            
+            IMP.request_pay({
+                pg : 'kcp',
+                pay_method : 'card',
+                merchant_uid: "IMP"+makeMerchantUid, 
+                name : title,
+                //amount : parseInt(${totalprice}),
+                amount : 100,
+                buyer_email : '${em.user_email}',
+                buyer_name : '${em.user_name}',
+                buyer_tel : '${em.user_phone}',
+                buyer_addr : '서울특별시 강남구 삼성동',
+                buyer_postcode : '123-456',
+                m_redirect_url: ""
+            }, function (rsp) { // callback
+                if (rsp.success) {
+                    console.log(rsp);
+                    console.log("결제 성공");
+                    document.getElementById('frm').submit();
+                    /* location.href='http://localhost:8282/order_insert_ok'; */
+                } else {
+                    console.log(rsp);
+                    console.log("결제 실패");
+                    alert("실패");
+                }
+            });
+        }
+    </script>
 </body>
 </html>

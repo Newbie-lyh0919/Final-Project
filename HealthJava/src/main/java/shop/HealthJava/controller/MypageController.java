@@ -2,11 +2,11 @@ package shop.HealthJava.controller;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -17,7 +17,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,6 +28,8 @@ import shop.HealthJava.vo.LikeVO;
 import shop.HealthJava.vo.MemberVO;
 import shop.HealthJava.vo.OrderDetailVO;
 import shop.HealthJava.vo.OrderVO;
+//import shop.HealthJava.vo.ProductVO;
+import shop.HealthJava.vo.ReviewsVO;
 
 @Controller
 public class MypageController {
@@ -43,11 +44,15 @@ public class MypageController {
 	//마이페이지 메인화면
 	@RequestMapping("/myPage_Main")
 	public String myPage_Main(OrderVO ovo,Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session ) {
-		String user_id = (String)session.getAttribute("id");
+		String user_id = (String)session.getAttribute("session_id");
+		if(user_id==null) {
+			
+			return "/member/member_login";
+		}
 		ovo.setUser_id(user_id);
 		System.out.println(user_id);
 		int order_count = this.myPageService.getOrderCount(ovo); // 총 주문 건수
-		List<OrderVO> olist = this.myPageService.getOrderList(ovo); // 주문 내역 list
+		List<OrderVO> olist = this.myPageService.getOrderList(user_id); // 주문 내역 list
 		
 		System.out.println("주문내역 리스트 : "+olist);
 		System.out.println("총 주문건수 : "+order_count);
@@ -62,12 +67,12 @@ public class MypageController {
 	// 마이페이지 주문ㆍ배송 : tbl_order (주문내역 table)
 	@RequestMapping("/myPage_order")
 	public String myPage_orderCancel(OrderVO ovo, Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session ) {
-		String user_id = (String)session.getAttribute("id");
+		String user_id = (String)session.getAttribute("session_id");
 		ovo.setUser_id(user_id);
 		System.out.println("주문ㆍ배송 접속 중");
 		
 		int order_count = this.myPageService.getOrderCount(ovo); // 총 주문 건수
-		List<OrderVO> olist = this.myPageService.getOrderList(ovo); // 주문 내역 list
+		List<OrderVO> olist = this.myPageService.getOrderList(user_id); // 주문 내역 list
 		
 		System.out.println("주문내역 리스트 : "+olist);
 		System.out.println("총 주문건수 : "+order_count);
@@ -77,8 +82,7 @@ public class MypageController {
 		model.addAttribute("olist", olist);
 		//ModelAndView wm=new ModelAndView("mypage/myPage_orderCancel");//생성자 인자값으로 뷰페이지 경로 설정=>/WEB-INF/
 		System.out.println("주문ㆍ배송 접속 완료닷!");
-		return "/mypage/myPage_order";
-		
+		return "/mypage/myPage_order";		
 	}
 	
 	// 마이페이지 교환/반품/환불 : tbl_order_detail , tbl_refund (교환,환불,반품 신청용 table)
@@ -116,14 +120,23 @@ public class MypageController {
 		return "mypage/myPage_like";
 	}
 	
-	//마이페이지 장바구니 : tbl_cart
+	//마이페이지 장바구니 : tbl_cart'
+	/*
+	 * public List<Map<String, Object>> ProductCart(ProductVO pvo, CartVO cvo) {
+	 * List<Map<String, Object>> resultList = new ArrayList<>(); Map<String, Object>
+	 * paramMap = new HashMap<>(); paramMap = this.myPageService.getCartList(cvo);
+	 * paramMap.put("pvo", pvo); paramMap.put("cvo", cvo); resultList.add(paramMap);
+	 * return resultList; }
+	 */
+	
 	@RequestMapping("/myPage_cart")
 	public String myPage_basket(@ModelAttribute CartVO cvo, Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session ) {
 		System.out.println("장바구니 접속중");
 		// 로그인 된 사용자의 정보 가져오기
-		String user_id = (String)session.getAttribute("id");
+		String user_id = (String)session.getAttribute("session_id");
 		cvo.setCart_mem_id(user_id);
 		System.out.println(user_id);
+		
 		
 		List<CartVO> clist = this.myPageService.getCartList(cvo); // 장바구니 리스트 조회
 		System.out.println("장바구니 목록 : "+clist);
@@ -133,12 +146,30 @@ public class MypageController {
 		return "mypage/myPage_cart";
 	}	
 	
+	//마이페이지 장바구니 상품갯수 증가
+	@RequestMapping(value = "/cart_cntUp", method = { RequestMethod.POST })
+	@ResponseBody
+	public ModelAndView cart_cntUp(@ModelAttribute CartVO cvo, Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session ) {
+		System.out.println("장바구니 삭제중");
+		// 로그인 된 사용자의 정보 가져오기
+		String user_id = (String)session.getAttribute("session_id");
+		int cart_no = Integer.parseInt(request.getParameter("cart_no"));
+		cvo.setCart_mem_id(user_id);
+		cvo.setCart_no(cart_no);
+		System.out.println(cart_no);
+		
+		//this.myPageService.upCartCnt(cvo); // 장바구니 리스트 조회
+		
+		
+		return null;
+	}	
+	
 	//마이페이지 장바구니 개별 삭제 : tbl_cart
 	@RequestMapping("/cart_del")
 	public ModelAndView cart_del(@ModelAttribute CartVO cvo, Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session ) {
 		System.out.println("장바구니 삭제중");
 		// 로그인 된 사용자의 정보 가져오기
-		String user_id = (String)session.getAttribute("id");
+		String user_id = (String)session.getAttribute("session_id");
 		int cart_no = Integer.parseInt(request.getParameter("cart_no"));
 		cvo.setCart_mem_id(user_id);
 		cvo.setCart_no(cart_no);
@@ -157,7 +188,7 @@ public class MypageController {
 	public ModelAndView cart_delall(@ModelAttribute CartVO cvo, Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session ) {
 		System.out.println("장바구니 전체삭제중");
 		// 로그인 된 사용자의 정보 가져오기
-		String user_id = (String)session.getAttribute("id");
+		String user_id = (String)session.getAttribute("session_id");
 		
 		cvo.setCart_mem_id(user_id);
 		
@@ -207,7 +238,7 @@ public class MypageController {
 		  
 		  String[] check=request.getParameterValues("buy");
 
-			String id = (String)session.getAttribute("id"); // 세션아이디를 구함
+			String id = (String)session.getAttribute("session_id"); // 세션아이디를 구함
 			em = memberService.getMember(id);
 			
 			//List<Integer> cart_no = new ArrayList<>();
@@ -235,67 +266,56 @@ public class MypageController {
 	  }
 	  
 	  
-	  //주문 확정 : tbl_order, tbl_order_detail
-	  @RequestMapping("/order_insert_ok")
+		// 주문 확정 : tbl_order, tbl_order_detail
+		@RequestMapping("/order_insert_ok")
 		public ModelAndView order_insert_ok(OrderVO ovo, HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) {
-		  response.setContentType("text/html;charset=UTF-8");
-		  String user_id = (String)session.getAttribute("id");
+			response.setContentType("text/html;charset=UTF-8");
+			String user_id = (String) session.getAttribute("session_id");
 			ovo.setUser_id(user_id);
 			System.out.println(user_id);
 			int order_no;
-			Calendar cal=Calendar.getInstance();//칼렌더는 추상클래스로 new로 객체 생성을 못함. 년월일 시분초 값을 반환
-			int year=cal.get(Calendar.YEAR);//년도값
-			int month=cal.get(Calendar.MONTH)+1;//월값, +1을 한 이유는 1월이 0으로 반환 되기 때문에
-			int date=cal.get(Calendar.DATE);//일값
-			
-			Random r=new Random();//난수를 발생시키는 클래스
-			int random=r.nextInt(100000000);//0이상 1억 미만의 정수 숫자 난수 발생
-			order_no=year+month+date+random;//오늘 날짜 +난수
-			
+			Calendar cal = Calendar.getInstance();// 칼렌더는 추상클래스로 new로 객체 생성을 못함. 년월일 시분초 값을 반환
+			int year = cal.get(Calendar.YEAR);// 년도값
+			int month = cal.get(Calendar.MONTH) + 1;// 월값, +1을 한 이유는 1월이 0으로 반환 되기 때문에
+			int date = cal.get(Calendar.DATE);// 일값
+
+			Random r = new Random();// 난수를 발생시키는 클래스
+			int random = r.nextInt(100000000);// 0이상 1억 미만의 정수 숫자 난수 발생
+			order_no = year + month + date + random;// 오늘 날짜 +난수
+
 			ovo.setOrder_no(order_no);
 			System.out.println(order_no);
-			//this.myPageService.insertOrder(ovo); //배송지 추가
-			
-			
-			for(int i=1;i<10;i++) {
-				String pid= request.getParameter("order_detail_pname"+i);
-				String pprice= request.getParameter("order_detail_price"+i);
-				String pname= request.getParameter("order_detail_pname"+i);
-				String pcont= request.getParameter("order_detail_pcont"+i);
-				String pcnt= request.getParameter("order_detail_cnt"+i);
-				if(pid==null){
+			this.myPageService.insertOrder(ovo); //배송지 추가
+
+			for (int i = 1; i < 10; i++) {
+				String pid = request.getParameter("order_detail_pno" + i);
+				String pcnt = request.getParameter("order_detail_cnt" + i);
+				if (pid == null) {
 					break;
 				}
-				
+
 				System.out.println(pid);
-				 OrderDetailVO odvo = new OrderDetailVO();
-				 odvo.setOrder_no(order_no);
-				 odvo.setUser_id(user_id);
-				  odvo.setProduct_no(Integer.parseInt(pid));
-				  odvo.setOrder_detail_price(pprice);
-				  odvo.setOrder_detail_pname(pname);
-				  odvo.setOrder_detail_pcont(pcont);
-				  odvo.setOrder_detail_cnt(pcnt);
-				 // this.myPageService.insertOrderDetail(odvo);
-				}
-			
-			 
-			 
-		  
-		  
-			ModelAndView wm=new ModelAndView("redirect:/myPage_order");//생성자 인자값으로 뷰페이지 경로 설정=>/WEB-INF/
-			
+				OrderDetailVO odvo = new OrderDetailVO();
+				odvo.setOrder_no(order_no);
+				odvo.setOrder_detail_mid(user_id);
+				odvo.setOrder_detail_fno(Integer.parseInt(pid));
+				odvo.setOrder_detail_cnt(pcnt);
+				this.myPageService.insertOrderDetail(odvo);
+			}
+
+			ModelAndView wm = new ModelAndView("redirect:/myPage_order");// 생성자 인자값으로 뷰페이지 경로 설정=>/WEB-INF/
+
 			return wm;
 		}
 	
 	//문의 내역 확인
-	@RequestMapping("/myPage_inquiry")
+	/*@RequestMapping("/myPage_inquiry")
 	public ModelAndView myPage_inquiry(HttpServletRequest request, HttpServletResponse response ) {
 		
 		ModelAndView wm=new ModelAndView("mypage/myPage_inquiry");//생성자 인자값으로 뷰페이지 경로 설정=>/WEB-INF/
 		
 		return wm;
-	}
+	}*/
 	
 	
 	//마이페이지 배송지 리스트 : tbl_member, tbl_addr
@@ -304,7 +324,7 @@ public class MypageController {
 		System.out.println("배송지 리스트 접속중~");
 		
 		// tbl_member table : 회원 가입시 기본 주소 _user_id
-		String user_id = (String) session.getAttribute("id"); 
+		String user_id = (String) session.getAttribute("session_id"); 
 		mvo.setUser_id(user_id);
 		System.out.println(user_id);
 		
@@ -324,6 +344,15 @@ public class MypageController {
 		System.out.println("배송지 리스트 접속완료했슴돠!");
 		return "mypage/myPage_updateAddress";
 	}
+
+		// 마이페이지 배송지 추가 페이지 : tbl_addr
+		@RequestMapping("/addr_add")
+		public ModelAndView addr_add(AddrVO avo, HttpSession session, HttpServletRequest request,HttpServletResponse response) {
+			response.setContentType("text/html;charset=UTF-8");
+			
+			ModelAndView wm = new ModelAndView("mypage/addr_add");// 생성자 인자값으로 뷰페이지 경로 설정=>/WEB-INF/
+			return wm;
+		}
 	
 	//마이페이지 배송지 추가 : tbl_addr
 	@RequestMapping("/addr_ok")
@@ -344,8 +373,6 @@ public class MypageController {
 		avo.setAddr_no(addr_no);
 		avo = this.myPageService.getOneAddr(addr_no); //배송지 내용 불러오기
 		
-		
-		
 		//ModelAndView wm = new ModelAndView("mypage/addAddressPopup"); //생성자 인자값으로 뷰페이지 경로 설정=>/WEB-INF/
 		ModelAndView wm = new ModelAndView();
 		wm.setViewName("/mypage/addr_edit");
@@ -354,8 +381,6 @@ public class MypageController {
 		return wm;
 				
 	}
-	
-	
 	
 	//마이페이지 추가배송지 수정 버튼 : tbl_addr
 	@RequestMapping("/addr_edit_ok")
@@ -400,26 +425,7 @@ public class MypageController {
 			return wm;
 					
 		}
-	
-	
-	//마이페이지 리뷰
-	@RequestMapping("/myPage_review")
-	public ModelAndView myPage_review(HttpServletRequest request, HttpServletResponse response ) {
 		
-		ModelAndView wm=new ModelAndView("mypage/myPage_review");//생성자 인자값으로 뷰페이지 경로 설정=>/WEB-INF/
-		
-		return wm;
-	}
-	
-	//마이페이지 리뷰 작성
-	@RequestMapping("/review_write")
-	public ModelAndView review_write(HttpServletRequest request, HttpServletResponse response ) {
-		
-		ModelAndView wm=new ModelAndView("mypage/review_write");//생성자 인자값으로 뷰페이지 경로 설정=>/WEB-INF/
-		
-		return wm;
-	}
-	
 	
 	//주문상세
 	@RequestMapping("/myPage_orderCancel")
@@ -430,6 +436,57 @@ public class MypageController {
 		return wm;
 	}
 	
+	// 마이페이지 리뷰 조회 : tbl_review
+	@RequestMapping("/myPage_review")
+	public ModelAndView myPage_review(ReviewsVO rv, Model model, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+		
+		String user_id = (String)session.getAttribute("session_id");
+		System.out.println(user_id);
+		rv.setRe_mem_id("re_mem_id");
+		
+		ModelAndView wm = new ModelAndView("mypage/myPage_review");// 생성자 인자값으로 뷰페이지 경로 설정=>/WEB-INF/
+		List<ReviewsVO> rlist = this.myPageService.getReviewList(rv); // 리뷰 조회
+		model.addAttribute("rlist", rlist);
+		return wm;
+	}
+	
+	// 마이페이지 리뷰 작성 : tbl_review
+	@RequestMapping("/myPage_review_write")
+	public String review_write(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("리뷰써야겠어!");
+		int re_no = Integer.parseInt(request.getParameter("re_no"));
+		int re_pro_no = Integer.parseInt("re_pro_no");
+		String re_mem_id = request.getParameter("re_mem_id");
+		String re_title = request.getParameter("re_title");
+		String re_content = request.getParameter("re_content");
+		String re_image1 = request.getParameter("re_image1");
+		String re_image2 = request.getParameter("re_image2");
+		String re_image3 = request.getParameter("re_image3");
+		int re_score = Integer.parseInt(request.getParameter("re_score"));
+		
+		// 후기  작성
+		ReviewsVO rv = new ReviewsVO();
+		rv.setRe_no(re_no); // 후기no
+		rv.setRe_pro_no(re_pro_no); // 제품 번호 
+		rv.setRe_mem_id(re_mem_id); //회원 아이디
+		rv.setRe_title(re_title); //후기 제목
+		rv.setRe_content(re_content); //내용
+		rv.setRe_image1(re_image1); rv.setRe_image2(re_image2); rv.setRe_image3(re_image3);
+		rv.setRe_score(re_score); //별점
+		
+		this.myPageService.addReview(rv); // 후기 작성
+				
+		//ModelAndView wm = new ModelAndView("mypage/myPage_review_write");// 생성자 인자값으로 뷰페이지 경로 설정=>/WEB-INF/
+		System.out.println("리뷰 등록할거야?");
+		return "mypage/myPage_review_write";
+	}
+	
+	// 마이페이지 리뷰 작성 : tbl_review
+	@RequestMapping("/myPage_review_write_ok")
+	public ModelAndView myPage_review_write_ok(HttpServletRequest request, HttpServletResponse response) {
 
+		ModelAndView wm = new ModelAndView("mypage/myPage_review");// 생성자 인자값으로 뷰페이지 경로 설정=>/WEB-INF/
 
+		return wm;
+	}
 }

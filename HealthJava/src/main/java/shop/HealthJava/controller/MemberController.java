@@ -1,14 +1,13 @@
 package shop.HealthJava.controller;
 
 import java.io.PrintWriter;
-import java.util.Random;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -118,35 +117,35 @@ public class MemberController { // 사용자 관련 컨트롤러
 	 */
 	
 	// 로그인 인증 처리
-	@RequestMapping("/member_login_ok")
-	public ModelAndView member_login_ok(String login_id, String login_pwd, HttpServletResponse response, HttpSession session) throws Exception {
-		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();
+	   @RequestMapping("/member_login_ok")
+	   public String member_login_ok(Model model, String login_id, String login_pwd, HttpServletResponse response, HttpSession session) throws Exception {
+	      response.setContentType("text/html;charset=UTF-8");
+	      PrintWriter out = response.getWriter();
 
-		MemberVO m = this.memberService.loginCheck(login_id); // 아이디와  상태값이 2가 아닌 경우만 로그인 인증 처리
+	      MemberVO m = this.memberService.loginCheck(login_id); // 아이디와  상태값이 2가 아닌 경우만 로그인 인증 처리
 
-		if(m == null) { // 비회원일 경우
-			out.println("<script>");
-			out.println("alert('가입이 안된 회원입니다.');"); 
-			out.println("history.back();");
-			out.println("</script>");
-		} else { // 회원인 경우
+	      if(m == null) { // 비회원일 경우
+	         out.println("<script>");
+	         out.println("alert('가입이 안된 회원입니다.');"); 
+	         out.println("history.back();");
+	         out.println("</script>");
+	      } else { // 회원인 경우
 
-			// 비밀번호가 다른 경우
-			if(!m.getUser_pwd().equals(PwdChange.getPassWordToXEMD5String(login_pwd))) {
-				out.println("<script>");
-				out.println("alert('비밀번호가 일치하지 않습니다.');"); 
-				out.println("history.go(-1);");
-				out.println("</script>");
-			}else { // 비밀번호가 같은 경우
-				session.setAttribute("id", login_id); //세션 id 키 이름에 아이디 저장
+	         // 비밀번호가 다른 경우
+	         if(!m.getUser_pwd().equals(PwdChange.getPassWordToXEMD5String(login_pwd))) {
+	            out.println("<script>");
+	            out.println("alert('비밀번호가 일치하지 않습니다.');"); 
+	            out.println("history.go(-1);");
+	            out.println("</script>");
+	         }else { // 비밀번호가 같은 경우
+	            session.setAttribute("session_id", login_id); //세션 id 키 이름에 아이디 저장
+	            model.addAttribute("session_id", session.getAttribute("session_id"));
+	            return "redirect:/myPage_Main";
+	         }
 
-				return new ModelAndView("redirect:/myPage_Main");
-			}
-
-		}
-		return null;
-	} // end member_login_ok
+	      }
+	      return null;
+	   } // end member_login_ok
 
 	//로그 아웃 
 	@RequestMapping("/member_logout")
@@ -345,7 +344,6 @@ public class MemberController { // 사용자 관련 컨트롤러
 			m.addObject("dm", dm);
 			return m;
 		}
-
 		return null;
 	}//member_del()
 	
@@ -386,8 +384,7 @@ public class MemberController { // 사용자 관련 컨트롤러
 				out.println("location='member_login'");
 				out.println("</script>");
 			}
-		}
-		
+		}		
 		return null;
 	}//member_del_ok()
 
@@ -395,7 +392,7 @@ public class MemberController { // 사용자 관련 컨트롤러
 	// 로그인을 하지 않은 상황에서 주소창을 쳐서 들어가는것을 막고 로그인페이지로 넘기기
 	public static boolean isLogin(HttpSession session, HttpServletResponse response) throws Exception {
 		PrintWriter out = response.getWriter();
-		String id = (String)session.getAttribute("id"); // 세션아이디를 구함
+		String id = (String)session.getAttribute("session_id"); // 세션아이디를 구함
 
 		if(id == null) {
 			out.println("<script>");

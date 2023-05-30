@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script> <%-- CDN 절대링크 --%>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> <%-- CDN 절대링크 --%>
-
+<script	src="../js/mypage.js"></script>
 <title>HealthJava 장바구니</title>
 
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico" type="image/x-icon"> <%-- 파비콘 --%>
@@ -918,7 +918,7 @@ Number.prototype.formatNumber = function(){
 			    <c:forEach var="c" items="${clist }" varStatus="status">
                 <div class="row data">
                     <div class="subdiv">
-                        <div class="check"><input type="checkbox" name="buy" value="${c.cart_no}" checked="" onclick="javascript:basket.checkItem();">&nbsp;</div>
+                        <div class="check"><input type="checkbox"  name="buy" value="${c.cart_no}" checked="" onclick="javascript:basket.checkItem();">&nbsp;</div>
                         <div class="img"><img src="${c.product_cont1}" alt="${c.product_cont1}" width="60"></div>
                         <div class="pname">
                             <span><input type="text" name="product_title${c.cart_no}" value="${c.product_title}"></span>
@@ -931,8 +931,8 @@ Number.prototype.formatNumber = function(){
                             <div class="updown">
                                 <input type="text" name="p_num${status.count}" id="p_num${status.count}" size="2" maxlength="4" class="p_num" value="${c.cart_cnt}" onkeyup="javascript:basket.changePNum(${status.count});">
                            
-                                <span onclick="javascript:basket.changePNum(${status.count});"><i class="fas fa-arrow-alt-circle-up up"></i></span>
-                                <span onclick="javascript:basket.changePNum(${status.count});"><i class="fas fa-arrow-alt-circle-down down"></i></span>
+                                <span onclick="javascript:basket.changePNum(${status.count});<%-- location='cart_cntUp?cart_no=${c.cart_no }' --%>"><i class="fas fa-arrow-alt-circle-up up"></i></span>
+                                <span onclick="javascript:basket.changePNum(${status.count});<!-- test(); -->"><i class="fas fa-arrow-alt-circle-down down"></i></span>
                             </div>
                         </div>
                         <div class="sum">${c.product_price * c.cart_cnt }원</div>

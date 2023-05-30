@@ -10,7 +10,7 @@
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script> <%-- CDN 절대링크 --%>
 <script src="<%=request.getContextPath()%>/js/orderInfo.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> <%-- CDN 절대링크 --%>
-<title>PuppyHome 사료</title>
+<title>HealthJava Main</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico" type="image/x-icon"> <%-- 파비콘 --%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/include/css/header.css"> <%-- header.css --%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/include/css/footer.css"> <%-- footer.css --%>
@@ -892,6 +892,8 @@ input#checkIcon {
   text-align: center;
 }
 
+
+
 </style>
 </head>
 
@@ -990,17 +992,14 @@ input#checkIcon {
 
 			<%--검색 폼추가 --%>
 			<div id="bFind_wrap" style="text-align: center;">
-				<select name="search_type" id="search_type">
-					<option value="All"<c:if test="${search_type == 'All'}"> ${'selected'}</c:if>>전체</option>
-					<option value="product_title"<c:if test="${search_type=='product_title'}">${'selected'}</c:if>>제품이름</option>
-					<option value="product_maker"<c:if test="${search_type=='product_maker'}">${'selected'}</c:if>>제조사</option>
-				</select> 
-				<input id="search_field" onkeyup="search_FoodList()"  name="search_field" size="14"  onkeyup="search_FoodList()" /> 
-				
-				<input type="button" value="검색" onclick="search_FoodList()" />
-				
-				
-			</div>
+    <select name="search_type" id="search_type">
+        <option value="All" <c:if test="${search_type == 'All'}">selected</c:if>>전체</option>
+        <option value="product_title" <c:if test="${search_type == 'product_title'}">selected</c:if>>제품이름</option>
+        <option value="product_maker" <c:if test="${search_type == 'product_maker'}">selected</c:if>>제조사</option>
+    </select>
+    <input id="search_field" onkeyup="search_ProductList()" name="search_field" size="14" />
+    <input type="button" value="검색" onclick="search_ProductList()" />
+</div>
 			
 			<br><br>
 
@@ -1056,10 +1055,10 @@ input#checkIcon {
 			}
 		});
 	</script>
-	<script src="../../js/test.js"></script>
-	<script src="../../js/test3.js"></script>
-	<script src="../../js/test4.js"></script>
-	<script src="../../js/test5.js"></script>
-	<script src="../../js/test6.js"></script>
+	
+	<script src="../../js/main.js"></script>
+	<script src="../../js/like_cart.js"></script>
+	<script src="../../js/qna.js"></script>
+	
 </body>
 </html>

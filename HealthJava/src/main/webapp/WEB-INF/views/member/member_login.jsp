@@ -56,7 +56,7 @@
 		margin: 0px;
 	}
 	section {
-		height: 100%;
+		height: auto;
 		background-color: rgb(236, 226, 202); /* 영역 보기 편하라고 배경색 지정함 : 연주황 */
 	}
 	/* 클리어 */
