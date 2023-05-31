@@ -8,16 +8,10 @@
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script> <%-- CDN 절대링크 --%>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> <%-- CDN 절대링크 --%>
 <script type="text/javascript" src = "./js/jquery.js"></script>
-<script src="<%=request.getContextPath()%>/js/updateInfo.js"></script>
+<script src="../js/updateInfo.js"></script>
 
 <title>HealthJava 마이페이지</title>
 
-<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico" type="image/x-icon"> <%-- 파비콘 --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/header.css"> <%-- header.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/footer.css"> <%-- footer.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/fontium/css/fontium.css"/>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/page/mypage/css/mypage.css">
-<%-- <link rel="stylesheet" href="./shop/puppyhome/controller_mypage/css/mypage.css">--%>
 
 <style type="text/css">
 	/*MyPage CSS*/
@@ -212,21 +206,25 @@
 	}
 
 	#withdrawalBtn{
-		padding: 20px 100px; 
+		padding: 20px; 
 		background-color: #B21948;; 
 		border: 1px solid white; 
 		color: white; 
 		font-size: 20px; 
 		font-weight: bold;
+		width: 200px;
+		text-align: center;
 	}
 	
 	#resetBtn{
-		padding: 20px 120px;
+		padding: 20px;
 		background-color: white;
 		border: 2px solid #B21948;
 		font-size: 20px; 
 		font-weight: bold;
 		color: #B21948;
+		width: 200px;
+		text-align: center;
 	}
 	
 	
@@ -446,12 +444,10 @@
 						<th rowspan="2" class="th-list" width="170px"
 							style="border-top-color: black; border-top-style: solid; border-top-width: 3px;">
 							아이디</th>
-						<td class="td-inputInfo"
-							style="border-top-color: black; border-top-style: solid; border-top-width: 3px;">
-							<input type="text" name="user_id" id="user_id" value="${dm.user_id}"  size="70" readonly>
+						<td class="td-inputInfo" style="border-top-color: black; border-top-style: solid; border-top-width: 3px;">
+							<input type="text" name="user_id" id="user_id" value="${dm.user_id}"  size="70" style="background-color: #ECECEC;" readonly>
 						</td>
 					</tr>
-
 					<tr>
 						<td class="td-infoPs"></td>
 					</tr>
@@ -459,10 +455,8 @@
 					<!--비밀번호 -->					
 					<tr>
 						<th rowspan="2" class="th-list">비밀번호</th>
-						<td class="td-inputInfo"><input type="password" name="user_pwd" id="user_pwd"
-							size="70"></td>
+						<td class="td-inputInfo"><input type="password" name="user_pwd" id="user_pwd" size="70"></td>
 					</tr>
-
 					<tr>
 						<td class="td-infoPs"></td>
 					</tr>
@@ -475,13 +469,12 @@
 							<input type="text" name="del_cont" id="del_cont" size="70">
 						</td>
 					</tr>
-
 					<tr>
 						<td class="td-infoPs"></td>
 					</tr>
 				</table>
 				
-				<br>
+			<br>
 				<div class="submitBtn" style="margin-left: 200px;">
 				<input id="withdrawalBtn" type="submit" value="회원탈퇴">
 				<input id="resetBtn" type="reset" value="취소">
