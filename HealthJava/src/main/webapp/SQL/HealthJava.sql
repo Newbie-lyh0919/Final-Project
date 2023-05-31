@@ -122,6 +122,16 @@ create table tbl_order_detail (
     order_detail_price VARCHAR2(100) -- 가격
 );
 
+INSERT INTO tbl_order_detail VALUES (order_no_seq.nextval, 7 ,'test01',1,'상품명01' ,'10',321654);
+INSERT INTO tbl_order_detail VALUES (order_no_seq.nextval, 6 ,'test01',2,'상품명02' ,'3',6234634);
+INSERT INTO tbl_order_detail VALUES (order_no_seq.nextval, 9 ,'test02',2,'상품명02' ,'8', 324634654);
+INSERT INTO tbl_order_detail VALUES (order_no_seq.nextval, '상품명01', SYSDATE, 2, '3216549875', 32241254, 'test01');
+INSERT INTO tbl_order_detail VALUES (order_no_seq.nextval, '상품명02', SYSDATE, 8, '3216549871', 324634654, 'test02');
+INSERT INTO tbl_order_detail VALUES (order_no_seq.nextval, '상품명03', SYSDATE, 5, '3216549872', 6685685, 'test10');
+INSERT INTO tbl_order_detail VALUES (order_no_seq.nextval, '상품명04', SYSDATE, 6, '3216549873', 321654, 'test11');
+INSERT INTO tbl_order_detail VALUES (order_no_seq.nextval, '상품명04', SYSDATE, 6, ' ', 321654, 'test11');
+INSERT INTO tbl_order_detail VALUES (order_no_seq.nextval, '상품명07', SYSDATE, 6, ' ', 321654, 'test11');
+
 -- 조회 
 select * from tbl_order_detail;
 drop table tbl_order_detail;
@@ -195,27 +205,27 @@ commit;
 -- 회원 table 
 CREATE TABLE tbl_member(
     user_no number(38)  PRIMARY KEY -- 회원 수(unique)
-    , user_id varchar2(100) -- 회원 아이디
+    , user_id varchar2(100) unique -- 회원 아이디
     , user_pwd varchar2(100) -- 회원 비밀번호
-    , user_token varchar2(100) -- null: 일반회원 not null: 카카오회원
     , user_name varchar2(100) -- 회원 이름
     , user_birth varchar2(100) -- 회원 생년월일
     , user_gender varchar2(50) -- 회원 성별
     , postcode varchar2(100) -- 회원 우편번호
     , roadAddr varchar2(100) -- 회원 도로명 주소
     , detailAddr varchar2(100) -- 회원 상세 주소
-    , user_email varchar2(100) -- 회원 이메일
+    , user_email varchar2(100) unique -- 회원 이메일
     , user_phone varchar2(100) -- 회원 휴대폰번호
-    , user_state number(38) default 0 -- 회원 0, 블랙리스트 1, 탈퇴회원 2
-    , user_grade number(38) default 0 -- 사용자 등급(일반 사용자 0, 관리자 1)
+    , user_state number(38) default 0 -- 회원 0, 블랙리스트 1, 탈퇴회원 2, 카카오 회원 3, 비회원 4
     , join_date date -- 가입 날짜(sysdate)
     , del_date date -- 탈퇴 날짜(sysdate)
     , del_cont varchar2(2000) -- 탈퇴사유
+    , mail_key varchar2(100) --메일 인증키
+    , mail_auth number(38) --1 이면 메일인증 0 이면 인증 X
 );
 
-ALTER TABLE tbl_member
-ADD CONSTRAINT unique_user_id UNIQUE (user_id);
+select * from tbl_member;
 
+commit;
 
 -- 멤버 시퀀스
 create sequence user_no_seq
@@ -224,21 +234,11 @@ create sequence user_no_seq
     nocache;
 
 --더미데이터 관리자계정
-insert into tbl_member values(0, 'admin', '1234','1111', '관리자', '930309', '남자', '12345', '서울시 강남구', '1101호', 'admin@test.com', '010-0000-0000', 0, 1, sysdate, '', '');
---더미데이터 : 페이징을 위한 데이터
-insert into tbl_member values(1, 'test01',  '1234', '1112', '김민정', '900506', '여자', '161651', '서울시 마포구', '1201호', 'winter@naber.com', '010-1234-5678', 0, 0, sysdate, '', '');
-insert into tbl_member values(2, 'test02',  '1234', '1113', '유지민', '000411', '여자', '171552', '서울시 서대문구', '1302호', 'karina@daum.com', '010-4857-4885', 0, 0, sysdate, '', '');
-insert into tbl_member values(3, 'test03',  '1234', '1114', '지젤', '001030', '여자', '143653', '인천시 동래구', '1421호', 'Giselle@naver.com', '010-9754-1842', 0, 0, sysdate, '', '');
-insert into tbl_member values(4, 'test04',  '1234', '1115', '닝닝', '021023', '여자', '133831', '서울시 강남구', '1531호', 'ningning@gmail.com', '010-4872-1514', 0, 0, sysdate, '', '');
-insert into tbl_member values(5, 'test05',  '1234', '1116', '에스쿱스', '950808', '남자', '348721', '대구시 탄현구', '2231호', 'scoups@gmail.com', '010-9872-8181', 0, 0, sysdate, '', '');
-insert into tbl_member values(6, 'test06',  '1234', '1117', '윤정한', '951004', '남자', '872426', '강원시 춘천', '5342호', 'Jeonghan@daum.com', '010-7851-4981', 0, 0, sysdate, '', '');
-insert into tbl_member values(7, 'test07',  '1234', '1118', '조슈아', '951230', '남자', '817615', '제주시 서귀포구', '6701호', 'Joshua@yahoo.com', '010-7814-7482', 0, 0, sysdate, '', '');
-insert into tbl_member values(8, 'test08',  '1234', '1119', '문준휘', '960610', '남자', '987181', '평양시 김정은구', '4231호', 'jun@naver.com', '010-9142-8744', 0, 0, sysdate, '', '');
-insert into tbl_member values(9, 'test09',  '1234', '1120', '길호시', '960615', '남자', '198756', '베이징 마오쩌둥', '8154호', 'hoshi@yahoo.com', '010-7185-6484', 0, 0, sysdate, '', '');
-insert into tbl_member values(10, 'test10',  '1234', '1121', '감원우', '960717', '남자', '651985', '블라디보스톡 푸틴구', '6814호', 'Wonwoo@hanmail.com', '010-9142-8744', 0, 0, sysdate, '', '');
-insert into tbl_member values(11, 'test11',  '1234', '1122', '진우지', '961122', '남자', '378182', '뉴욕시 맨하탄', '3131호', 'woozi@jjbar.com', '010-8451-1314', 0, 0, sysdate, '', '');
+insert into tbl_member values(0, 'admin', '1234', '관리자', '111111', '남자', '11111', '하늘', '천국', 'admin@test.com', '010-0000-0000', 0, sysdate, '', '', '', 1);
 
-delete from tbl_member where user_no =  7;
+delete from tbl_member where user_no =  6;
+
+update tbl_member set mail_key='1hiogf'  where user_no = 0 ;
     
 -- 멤버 테이블 조회
 select * from tbl_member;
@@ -251,7 +251,7 @@ commit;
 -- 상품 table
 CREATE TABLE tbl_product(
     product_no   number(38) primary key , -- 상품 글 번호
-    product_title varchar2(100) NOT NULL ,-- 상품 명
+    product_title varchar2(100) unique NOT NULL ,-- 상품 명
     product_price varchar2(4000) NOT NULL , -- 상품 가격
     product_maker varchar2(100) NOT NULL , -- 제조사
     product_type varchar2(100) NOT NULL ,-- 분류1
@@ -268,6 +268,7 @@ CREATE TABLE tbl_product(
     product_count varchar2(1000) , -- 상품 재고
     product_date date -- 상품 등록 날짜(sysdate)
 );
+
 ALTER TABLE tbl_product ADD CONSTRAINT uq_product_title UNIQUE (product_title);
 
 insert into tbl_product values(product_no_seq.nextval, '상품명01','1000', '제조사01', '분류a','분류aa', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  '5', '1', sysdate);
@@ -313,8 +314,6 @@ CREATE TABLE tbl_client (
     ,CONSTRAINT tbl_client_user_id_fk foreign key(user_id) REFERENCES tbl_member(user_id)
 );
 
-ALTER TABLE tbl_client
-ADD contact_password varchar2(100);
 
 insert into tbl_client values(1122, '비번좀', '뭐죠대체?', ' ', '로그인/정보', sysdate, 'test01');
 insert into tbl_client values(3123, '상품이말이죠', '왜이래요?', ' ', '상품', sysdate, 'test02');
@@ -323,21 +322,11 @@ insert into tbl_client values(3232, '야미야미', '잘오네', ' ', '배송문
 insert into tbl_client values(4232, '호롤롤로', '그대여', ' ', '교환/취소(반품)', sysdate, 'test05');
 insert into tbl_client values(42332, '호롤롤로', '그대여', '답변이다', '교환/취소(반품)', sysdate, 'test05');
 
-
-CREATE TABLE tbl_client_test  (
-   ,client_no number(38) primary key -- 고객 문의 글 번호
-    , client_title varchar2(100) NOT NULL -- 고객 문의 글 제목
-    , contact_password varchar2(100) not null
-    , client_cont varchar2(4000) NOT NULL -- 고객 문의 글 내용
-    , client_cont_reply varchar2(4000) default ' ' -- 고객 문의 글 답변 내용
-    , client_category varchar2(50) NOT NULL -- 회원정보, 상품확인, 주문/결제, 배송, 교환/취소/반품, 서비스
-    , client_date date -- 고객 문의 글 작성 날짜(sysdate)
-    , user_id varchar2(100) not null -- 회원아이디(fk)
-);
+delete from tbl_client where user_id='test01';
 
 commit;
 
-select * from tbl_client_test;
+select * from tbl_client;
 
 -- 고객 게시판 시퀀스
 create sequence client_no_seq
