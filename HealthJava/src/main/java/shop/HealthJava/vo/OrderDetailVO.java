@@ -29,5 +29,9 @@ public class OrderDetailVO {
 	private String user_id;
 	private int product_no;
 	private String order_detail_pcont;
+	
+	private String product_title;
+	private String product_price;
+
 
 }

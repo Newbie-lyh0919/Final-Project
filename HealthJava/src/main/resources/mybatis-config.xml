@@ -31,5 +31,6 @@
 		<typeAlias alias="csNotice" type="shop.HealthJava.vo.CSNoticeVO"/>
 		<typeAlias alias="csFAQ" type="shop.HealthJava.vo.CSFAQVO"/>
 		<typeAlias alias="csClient" type="shop.HealthJava.vo.CSClientVO"/>
+		
 	</typeAliases>
 </configuration>

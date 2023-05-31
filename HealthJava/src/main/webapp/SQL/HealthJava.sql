@@ -149,11 +149,11 @@ commit;
 -- 주문내역(주문 목록) table 생성 
 CREATE TABLE tbl_order (
     order_no NUMBER(38) PRIMARY KEY, -- 주문번호
-    order_product_title VARCHAR2(100) , --REFERENCES tbl_product(product_title), -- 상품명
+    order_product_title VARCHAR2(100) REFERENCES tbl_product(product_title), -- 상품명
     order_date DATE, -- 주문 일자
     order_cnt NUMBER, -- 수량
     order_invoice VARCHAR2(100), -- 배송준비 완료시 : 송장번호 10자리 
-    order_total NUMBER(38) -- 총 금액
+    order_total NUMBER(38)  -- 총 금액
 );
 
 alter table tbl_order add user_id varchar2(100);  -- 회원 아이디 추가
@@ -173,41 +173,18 @@ create sequence order_no_seq
 -- 송장번호 랜덤값 10자리 (앞의 6자리 sysdate + 뒤의 4자리 랜덤값)
 -- INSERT INTO tbl_order (order_no, order_invoice) VALUES (1, TO_CHAR(SYSDATE, 'YYYYMMDD') || LPAD(TRUNC(DBMS_RANDOM.VALUE(1000, 9999)), 4, '0'));
 
---더미데이터 삭제 DELETE from tbl_order;
-
--- 더미데이터
-INSERT INTO tbl_order VALUES (order_no_seq.nextval, '상품명', SYSDATE, 10, TO_CHAR(SYSDATE, 'YYYYMMDD') || LPAD(TRUNC(DBMS_RANDOM.VALUE(1000, 9999)), 4, '0'), 1000, 'test02');
-INSERT INTO tbl_order VALUES (order_no_seq.nextval, '상품명02', SYSDATE, 10, TO_CHAR(SYSDATE, 'YYYYMMDD') || LPAD(TRUNC(DBMS_RANDOM.VALUE(1000, 9999)), 4, '0'), 1000, 'test02');
-INSERT INTO tbl_order VALUES (order_no_seq.nextval, '상품명03', SYSDATE, 10, TO_CHAR(SYSDATE, 'YYYYMMDD') || LPAD(TRUNC(DBMS_RANDOM.VALUE(1000, 9999)), 4, '0'), 1000, 'test02');
-INSERT INTO tbl_order VALUES (order_no_seq.nextval, '상품명04', SYSDATE, 10, TO_CHAR(SYSDATE, 'YYYYMMDD') || LPAD(TRUNC(DBMS_RANDOM.VALUE(1000, 9999)), 4, '0'), 1000, 'test02');
-
-
 --주문내역(주문 목록) 조회 
 select * from tbl_order;
 
-INSERT INTO tbl_order VALUES (order_no_seq.nextval, '상품 C', SYSDATE, 3, '3456789012', 150, 'test02');
+-- 더미데이터
 INSERT INTO tbl_order VALUES (order_no_seq.nextval, '상품 B', SYSDATE, 1, '2345678901', 50, 'test02');
 INSERT INTO tbl_order VALUES (order_no_seq.nextval, '상품 A', SYSDATE, 2, '1234567890', 100, 'test02');
+--더미데이터 삭제 DELETE from tbl_order;
 
 -- 저장 
 commit;
 
--- 주문상세내역 table 
---CREATE TABLE tbl_order_detail (
---    order_detail_no NUMBER(38) , -- 주문no
---    order_no NUMBER(38) , -- 주문내역 no
---    product_no NUMBER(38) , -- 상품 no
---    order_date DATE , -- 주문일자
---    order_detail_pname VARCHAR2(100) , -- 제품명 = 상품명 
---    order_detail_cnt VARCHAR2(100) , -- 수량
---    order_detail_price VARCHAR2(100) , -- 가격
---    CONSTRAINT pk_order_detail PRIMARY KEY (order_detail_no),
---    CONSTRAINT fk_order_detail_order_no FOREIGN KEY (order_no) REFERENCES tbl_order(order_no),
---    CONSTRAINT fk_order_detail_product_no FOREIGN KEY (product_no) REFERENCES tbl_product(product_no)
---);
-
-
--- 주문상세내역 재 table 
+-- 주문상세내역 수정 table 
 create table tbl_order_detail (
     order_detail_no NUMBER PRIMARY KEY , -- 주문 no
     order_no NUMBER(38) REFERENCES tbl_order(order_no)  , -- 주문내역 no
@@ -226,14 +203,17 @@ select * from tbl_order_detail;
 select * from tbl_order_detail where user_id='test02';
 
 -- 더미데이터 
-insert into tbl
+insert INTO tbl_order_detail values(order_detail_no_seq.nextval, 9, 'test02', 1, '매트01', 1, 1000);
+insert INTO tbl_order_detail values(order_detail_no_seq.nextval, 9, 'test02', 2, '매트02', 2, 2000);
+insert INTO tbl_order_detail values(order_detail_no_seq.nextval, 9, 'test02', 3, '매트03', 2, 3000);
+insert INTO tbl_order_detail values(order_detail_no_seq.nextval, 9, 'test02', 3, '매트03', 2, 3000);
 
-SELECT * FROM tbl_order o INNER JOIN tbl_order_detail od ON od.order_no = o.order_no;
+-- 저장
+commit;
 
-SELECT *
-FROM tbl_order_detail od
-JOIN tbl_order o ON order_detail_no = order_no;
+-- SELECT * FROM tbl_order o INNER JOIN tbl_order_detail od ON od.order_no = o.order_no;
 
+-- SELECT * FROM tbl_order_detail od JOIN tbl_order o ON order_detail_no = order_no;
 
 -- 주문상세내역 시퀀스 생성 
 create sequence order_detail_no_seq
@@ -282,7 +262,22 @@ create table tbl_like (
     like_pro_no  NUMBER(38) REFERENCES tbl_product(product_no)  -- 제품 고유번호 : F = 상품no
 );
 
+SELECT l.like_no, p.product_title, p.product_date, p.product_price
+        FROM tbl_like l
+        JOIN tbl_product p ON l.like_pro_no = p.product_no
+        where like_mem_id = 'test02';
+        
+SELECT l.like_no, p.product_title, p.product_date, p.product_price, p.product_cont1
+        FROM tbl_like l
+        JOIN tbl_product p ON l.like_pro_no = p.product_no
+        where like_mem_id = 'test02';
 
+
+insert into tbl_like values (1, 'test02', 1);
+
+commit;
+        
+select * from tbl_product;
 -- 회원아이디 갖고 오는 방법 :  SELECT l.like_no, m.user_id, l.product_no FROM tbl_like l JOIN tbl_member m ON l.user_no = m.user_no;
 -- 삭제 DROP TABLE tbl_like; 
 
@@ -315,6 +310,10 @@ CREATE TABLE tbl_cart (
 select * from tbl_cart;
 -- 삭제 drop table tbl_cart;
 
+select * from tbl_product;
+SELECT d.order_detail_cnt, p.product_title, p.product_price FROM tbl_order_detail d
+		JOIN tbl_product p ON d.order_detail_fno = p.product_no
+		WHERE order_no= 12368304;
 -- join 
 SELECT c.cart_no, c.cart_mem_id, c.cart_pro_no, c.cart_cnt, p.product_cont1, p.product_title, p.product_price
 FROM tbl_cart c
@@ -396,7 +395,7 @@ commit;
 create table tbl_reviews (
     re_no NUMBER PRIMARY KEY , -- 후기 no
     re_pro_no NUMBER(38) REFERENCES tbl_product(product_no) , --제품no : F
-    re_mem_id VARCHAR2(100) , -- 회원 아이디 
+    re_mem_id VARCHAR2(100) REFERENCES tbl_member(user_id) , -- 회원 아이디 
     re_title VARCHAR2(100) , -- 리뷰 제목
     re_content VARCHAR2(4000) ,  --리뷰 내용
     re_image1 VARCHAR2(4000)  , --사진 등록1
@@ -406,12 +405,39 @@ create table tbl_reviews (
     re_date DATE --등록일
 );
 
+-- 삭제 drop table tbl_reviews;
+
 -- 조회 
 select * from tbl_reviews;
 -- 상품 조회 
 select * from tbl_product;
 -- 더미데이터 
-insert into tbl_reviews values (re_no_seq.nextval, 1, 'test02', '
+insert into tbl_reviews values (re_no_seq.nextval, 3, 'test02', '리뷰제목01', '리뷰내용01', '이미지1', '이미지2', '이미지3', 3, sysdate); 
+
+-- 상세내역 기준 리뷰: 구매한 상품,상품이미지(p), 결제날짜(o), 
+SELECT
+    p.product_title,
+    p.product_cont1,
+    o.order_date,
+    r.re_mem_id,
+    r.re_title,
+    r.re_content,
+    r.re_image1,
+    r.re_image2,
+    r.re_image3,
+    r.re_score,
+    r.re_date
+FROM
+    tbl_product p
+    LEFT JOIN tbl_order o ON o.order_product_title = p.product_title
+    LEFT JOIN tbl_reviews r ON r.re_pro_no = p.product_no
+    where r.re_mem_id='test02';
+
+SELECT c.cart_no, c.cart_mem_id, c.cart_pro_no, c.cart_cnt,
+       p.product_cont1, p.product_title, p.product_price
+FROM tbl_cart c
+JOIN tbl_product p ON c.cart_pro_no = p.product_no 
+where c.cart_mem_id='test01';
 
 --저장 
 commit;

@@ -1,13 +1,13 @@
 package shop.HealthJava.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import shop.HealthJava.dao.MypageDAO;
 import shop.HealthJava.vo.AddrVO;
-import shop.HealthJava.vo.CSClientVO;
 import shop.HealthJava.vo.CartVO;
 import shop.HealthJava.vo.LikeVO;
 import shop.HealthJava.vo.MemberVO;
@@ -102,22 +102,53 @@ public class MypageServiceImpl implements MypageService {
 		this.mypageDao.deleteAddr(addr_no);
 	}
 
-	// 후기 작성
+	//장바구니 체크박스 선택된 정보 조회
+	@Override
+	public CartVO getCartItem(int cart_no) {
+		return this.mypageDao.getCartItem(cart_no);
+	}
+
+	// 리뷰 등록됟 조회
+	@Override
+	public ReviewsVO getOneReview(int re_no) {
+		return this.mypageDao.getOneReview(re_no);
+	}
+
+	// 리뷰 내용 저장
+	@Override
+	public void updateReview(ReviewsVO rv) {
+		this.mypageDao.updateReview(rv);
+	}
+
+	// 리뷰 삭제
+	@Override
+	public void delReview(int re_no) {
+		this.mypageDao.delReview(re_no);
+	}
+
+	@Override
+	public void insertOrder(OrderVO ovo) {
+		this.mypageDao.insertOrder(ovo);
+	}
+
+	@Override
+	public void insertOrderDetail(OrderDetailVO odvo) {
+		this.mypageDao.insertOrderDetail(odvo);
+	}
+
+	@Override
+	public List<Map<String, Object>> getReviewList(String re_mem_id) {
+		return this.mypageDao.getReviewList(re_mem_id);
+	}
+
 	@Override
 	public void addReview(ReviewsVO rv) {
 		this.mypageDao.addReview(rv);
 	}
 
-	// 리뷰 조회
 	@Override
-	public List<ReviewsVO> getReviewList(ReviewsVO rv) {
-		return this.mypageDao.getReviewList(rv);
-	}
-
-	//장바구니 체크박스 선택된 정보 조회
-	@Override
-	public CartVO getCartItem(int cart_no) {
-		return this.mypageDao.getCartItem(cart_no);
+	public List<CartVO> getBuyOne(String id) {
+		return this.mypageDao.getBuyOne(id);
 	}
 
 	

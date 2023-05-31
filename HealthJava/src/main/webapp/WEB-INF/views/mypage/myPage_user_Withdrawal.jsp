@@ -28,7 +28,6 @@
 
 	section.notice {
 		padding: 20px 0;
-		/*추가*/
 		width: 1000px;
 		min-height: 200px;
 		margin: 2px;
@@ -372,17 +371,13 @@
 	
 	.main {
 		width: 1600px;
-		height: 1200px;
-		/* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / section이랑 px 맞춰야함 */
+		height: auto;
 		position: relative;
 		top: 105px;
 		left: 50%;
 		transform: translateX(-50%);
 	}
-	
-	section {
-		height: 1200px;
-	}
+
 	/* 클리어 */
 	.clear {
 		clear: both;
@@ -412,7 +407,6 @@
 						<ul>
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"><a href="myPage_Main" style="text-decoration: none; color: black;">나의 쇼핑</a></li>
 							<li><a href="myPage_oreder" class="liList">주문ㆍ배송</a></li>
-							<li><a href="myPage_orderCancel" class="liList">교환/반품/환불</a></li>
 							<li><a href="myPage_like" class="liList">찜 목록</a></li>
 							<li><a href="myPage_cart" class="liList">장바구니</a></li>
 							<li><a href="myPage_review" class="liList">나의 상품후기</a></li>

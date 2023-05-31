@@ -6,7 +6,7 @@ import shop.HealthJava.vo.CartVO;
 import shop.HealthJava.vo.LikeVO;
 import shop.HealthJava.vo.OrderDetailVO;
 import shop.HealthJava.vo.ProductVO;
-import shop.HealthJava.vo.ProductVO2;
+import shop.HealthJava.vo.ProductQnAVO;
 
 public interface ProductDAO {
 	
@@ -19,9 +19,9 @@ public interface ProductDAO {
 
 	void updateProduct(ProductVO f);
 	
-	public List<ProductVO2> getReviewList(int product_no);
+	public List<ProductQnAVO> getReviewList(int product_no);
 
-	void insertQna(ProductVO2 f);
+	void insertQna(ProductQnAVO f);
 
 	void insertLike(LikeVO f);
 

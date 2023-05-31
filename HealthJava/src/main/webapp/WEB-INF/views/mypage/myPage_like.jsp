@@ -727,7 +727,6 @@
 						<ul>
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"><a href="myPage_Main" style="text-decoration: none; color: black;">나의 쇼핑</a></li>
 							<li><a href="myPage_order" class="liList">주문ㆍ배송</a></li>
-							<li><a href="myPage_orderDetails" class="liList">교환/반품/환불</a></li>
 							<li><a href="myPage_like" class="liList" style="color: #B21948;">찜 목록</a></li>
 							<li><a href="myPage_cart" class="liList" >장바구니</a></li>
 							<li><a href="myPage_review" class="liList">나의 상품후기</a></li>
@@ -801,34 +800,36 @@
 										<tr height="40px;" style="border-bottom: 2px solid #e7e7e7;">
 											<th width="85px;">No</th>
 											<th width="500px;">제품명</th>
-											<th width="200px;">날짜</th>
-											<th width="200px;">판매가</th>
+											<th width="200px;">금액</th>
 											<th width="300px;">비고</th>
 										</tr>
-									<%-- <c:if test="${!empty requestScope.Llist}">
-									<c:forEach var="l" items="${requestScope.Llist}">
+									<c:if test="${!empty Llist}">
+									<c:forEach var="l" items="${Llist}">
 										<tr height="40px;" >
 											<td>${l.like_no}</td>
-											<td class="product-image">제목과 이미지 같이 출력 
-												<img src="" alt="상품 이미지" class="product_frame"> <a href="#">${l.product_title}</a>
+											<td class="product-image">
+												<img src="/upload${l.product_cont1 }" alt="상품 이미지" class="product_frame"> 
+												<a href="product/detail?product_title=${l.product_title }">${l.product_title}</a>
 											</td>
-											<td class="product-details"><span id="productTitle">${product_date.substring(0, 10)}</span></td>
-											<td class="product_details"><span id="productTitle"><strong style="font-size: 20px;">${l.product_price}</strong></span></td>
+											<td class="product_details"><span id="productTitle"><strong style="font-size: 20px;">${l.product_price} 원</strong></span></td>
 
 											<td>
 												<button class="addCart" onclick="addOk()">
-													<img id="shopping_cartImg" srcsrc="<%=request.getContextPath()%>/images/shopping_cart.png" alt="쇼핑 카트"> <span class="addText">담기</span>
+													<img id="shopping_cartImg" src="<%=request.getContextPath()%>/images/shopping_cart.png" alt="쇼핑 카트"> 
+													<span class="addText">담기</span>
 												</button>
 											</td>
 											<td>
 												<button>
-													<img id="shopping_deleteImg" src="<%=request.getContextPath()%>/images/recycle_bin.png" alt="휴지통"> <span class="removeText">삭제</span>
+													<img id="shopping_deleteImg" src="<%=request.getContextPath()%>/images/recycle_bin.png" alt="휴지통"> 
+													<span class="removeText">삭제</span>
 												</button>
 											</td>
 										</tr>
 									</c:forEach>
-									</c:if> --%>
-									<c:if test="${empty requestScope.Llist}">
+									</c:if>
+									
+									<c:if test="${empty Llist}">
 									<tr height="40px;" >
 										<th colspan="5" class="nonList">현재 주문한 제품이 없습니다.</th>
 									</tr>
@@ -899,138 +900,7 @@
 				$("#topBtn").css("opacity", 1); // TOP 버튼 나타내기
 			}
 		});
-		
-		<%-- 장바구니 부분 --%>
-		/* Set values + misc */
-		var promoCode;
-		var promoPrice;
-		var fadeTime = 300;
-
-		/* Assign actions */
-		$('.quantity input').change(function() {
-			updateQuantity(this);
-		});
-
-		$('.remove button').click(function() {
-			removeItem(this);
-		});
-		
-		<%-- $('#allDelete').click(function() {
-			removeItem(this);
-		}); --%>
-
-		$(document).ready(function() {
-			updateSumItems();
-		});
-
-		$('.promo-code-cta').click(function() {
-
-			promoCode = $('#promo-code').val();
-
-			if (promoCode == '10off' || promoCode == '10OFF') {
-				//If promoPrice has no value, set it as 10 for the 10OFF promocode
-				if (!promoPrice) {
-					promoPrice = 10;
-				} else if (promoCode) {
-					promoPrice = promoPrice * 1;
-				}
-			} else if (promoCode != '') {
-				alert("Invalid Promo Code");
-				promoPrice = 0;
-			}
-			//If there is a promoPrice that has been set (it means there is a valid promoCode input) show promo
-			if (promoPrice) {
-				$('.summary-promo').removeClass('hide');
-				$('.promo-value').text(promoPrice.toFixed(0) + "원");
-				recalculateCart(true);
-			}
-		});
-
-		/* Recalculate cart */
-		function recalculateCart(onlyTotal) {
-			var subtotal = 0;
-
-			/* Sum up row totals */
-			$('.basket-product').each(function() {
-				subtotal += parseFloat($(this).children('.subtotal').text());
-			});
-
-			/* Calculate totals */
-			var total = subtotal;
-
-			//If there is a valid promoCode, and subtotal < 10 subtract from total
-			var promoPrice = parseFloat($('.promo-value').text());
-			if (promoPrice) {
-				if (subtotal >= 10) {
-					total -= promoPrice;
-				} else {
-					alert('Order must be more than £10 for Promo code to apply.');
-					$('.summary-promo').addClass('hide');
-				}
-			}
-
-			/*If switch for update only total, update only total display*/
-			if (onlyTotal) {
-				/* Update total display */
-				$('.total-value').fadeOut(fadeTime, function() {
-					$('#basket-total').html(total.toFixed(0) + "원");
-					$('.total-value').fadeIn(fadeTime);
-				});
-			} else {
-				/* Update summary display. */
-				$('.final-value').fadeOut(fadeTime, function() {
-					$('#basket-subtotal').html(subtotal.toFixed(0) + "원");
-					$('#basket-total').html(total.toFixed(0) + "원");
-					if (total == 0) {
-						$('.checkout-cta').fadeOut(fadeTime);
-					} else {
-						$('.checkout-cta').fadeIn(fadeTime);
-					}
-					$('.final-value').fadeIn(fadeTime);
-				});
-			}
-		}
-
-		/* Update quantity */
-		function updateQuantity(quantityInput) {
-			/* Calculate line price */
-			var productRow = $(quantityInput).parent().parent();
-			var price = parseFloat(productRow.children('.price').text());
-			var quantity = $(quantityInput).val();
-			var linePrice = price * quantity;
-
-			/* Update line price display and recalc cart totals */
-			productRow.children('.subtotal').each(function() {
-				$(this).fadeOut(fadeTime, function() {
-					$(this).text(linePrice.toFixed(0) + "원");
-					recalculateCart();
-					$(this).fadeIn(fadeTime);
-				});
-			});
-
-			productRow.find('.item-quantity').text(quantity);
-			updateSumItems();
-		}
-
-		function updateSumItems() {
-			var sumItems = 0;
-			$('.quantity input').each(function() {
-				sumItems += parseInt($(this).val());
-			});
-			$('.total-items').text(sumItems);
-		}
-
-		/* Remove item from cart */
-		function removeItem(removeButton) {
-			/* Remove row from DOM and recalc cart total */
-			var productRow = $(removeButton).parent().parent();
-			productRow.slideUp(fadeTime, function() {
-				productRow.remove();
-				recalculateCart();
-				updateSumItems();
-			});
-		}
-		
+			
 		<%-- 삭제 버튼 클릭 시 confirm창 띄우기 --%>
 		function deleteOk() {
 			var result = confirm('찜 목록에서 삭제하시겠습니까?');
@@ -1047,25 +917,11 @@
 			var result = confirm('장바구니에 추가하시겠습니까?');
 			
 			if(result == true) {
-				alert("장바구니에 추가되었습니다.");
+				alert("추가가 되었습니다.");
 			} else {
 				alert("추가가 취소되었습니다.");
 			}
 		}
-		
-		<%-- 리뷰 작성 페이지 부분 --%>
-		// 왼쪽 사이드바의 '나의 후기' 텍스트 클릭시 새창 열기
-		function openPopup_review_write() {
-	        var page_width = '490';
-	        var page_height = '900';
-	    
-	        // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
-	        var page_left = Math.ceil((window.screen.width - page_width)/2);
-	        var page_top = Math.ceil((window.screen.height - page_height)/2);
-	
-	    window.open("review_write", "review_write",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
-	    
-	    }
 		
 	</script>
 </body>

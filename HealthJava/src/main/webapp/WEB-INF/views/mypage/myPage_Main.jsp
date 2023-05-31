@@ -389,7 +389,6 @@
 					<ul>
 						<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"><a href="myPage_Main" style="text-decoration: none; color: #B21948;">나의 쇼핑</a></li>
 						<li><a href="myPage_order" class="liList">주문ㆍ배송</a></li>
-						<li><a href="myPage_orderDetails" class="liList">교환/반품/환불</a></li>
 						<li><a href="myPage_like" class="liList">찜 목록</a></li>
 						<li><a href="myPage_cart" class="liList">장바구니</a></li>
 						<li><a href="myPage_review" class="liList">나의 상품후기</a></li>
@@ -460,8 +459,7 @@
 											<td>접수완료</td>
 											<td>
 											<input type="button" id="btn" onclick="#" value="배송조회">&nbsp;&nbsp;&nbsp;
-											<input type="button" id="btn" value="후기작성" onclick="openPopup_myPage_review_write()"></td>
-										</tr>
+											</tr>
 										</c:forEach>
 									</c:if>
 									

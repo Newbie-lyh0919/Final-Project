@@ -223,7 +223,7 @@
              </c:if>
  
               <c:if test="${empty session_id}">
-             <a href="member_login">로그인</a> | <a href="member_join">회원가입</a>
+             <a href="/member_login">로그인</a> | <a href="member_join">회원가입</a>
              </c:if>
 
             </div>
