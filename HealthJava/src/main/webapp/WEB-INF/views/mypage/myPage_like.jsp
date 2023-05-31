@@ -809,21 +809,23 @@
 											<td>${l.like_no}</td>
 											<td class="product-image">
 												<img src="/upload${l.product_cont1 }" alt="상품 이미지" class="product_frame"> 
-												<a href="product/detail?product_title=${l.product_title }">${l.product_title}</a>
+												<a href="product/detail/${l.product_no }">${l.product_title}</a>
 											</td>
 											<td class="product_details"><span id="productTitle"><strong style="font-size: 20px;">${l.product_price} 원</strong></span></td>
 
 											<td>
-												<button class="addCart" onclick="addOk()">
+												<%-- <button class="addCart" onclick="addOk()">
 													<img id="shopping_cartImg" src="<%=request.getContextPath()%>/images/shopping_cart.png" alt="쇼핑 카트"> 
 													<span class="addText">담기</span>
+												</button> --%>
+												
+												<button onclick="location='likeDel?like_no=${l.like_no}';">
+													<img id="shopping_deleteImg" src="<%=request.getContextPath()%>/images/recycle_bin.png" alt="휴지통"> 
+													<span class="removeText" >삭제</span>
 												</button>
 											</td>
 											<td>
-												<button>
-													<img id="shopping_deleteImg" src="<%=request.getContextPath()%>/images/recycle_bin.png" alt="휴지통"> 
-													<span class="removeText">삭제</span>
-												</button>
+												
 											</td>
 										</tr>
 									</c:forEach>

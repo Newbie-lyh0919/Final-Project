@@ -38,7 +38,7 @@
 	<!-- // 찜목록 -->
 	<select id="likeP_list" resultType="like">
         <!-- select * from tbl_like -->
-        SELECT l.like_no, p.product_title, p.product_date, p.product_price, p.product_cont1
+        SELECT l.like_no, p.product_no, p.product_title, p.product_date, p.product_price, p.product_cont1
         FROM tbl_like l
         JOIN tbl_product p ON l.like_pro_no = p.product_no
         where like_mem_id = #{like_mem_id}
@@ -120,6 +120,7 @@
 		SELECT
 		    p.product_title,
 		    p.product_cont1,
+		    p.product_no,
 		    o.order_date,
 		    o.order_product_title,
 		    r.re_mem_id,
@@ -143,6 +144,11 @@
 		(re_no, re_pro_no, re_mem_id, re_title, re_content, re_image1, re_image2, re_image3, re_score, re_date)
 		values (re_no_seq.nextval, #{re_pro_no}, #{re_mem_id}, #{re_title}, #{re_content}, #{re_image1}, #{re_image2}, #{re_image3}, #{re_score}, sysdate)
 	</insert>
+	
+	<!-- //찜목록 삭제 -->
+	<delete id="likeDel">
+		delete from tbl_like where like_no=#{like_no}
+	</delete>
 	
 	
 </mapper>

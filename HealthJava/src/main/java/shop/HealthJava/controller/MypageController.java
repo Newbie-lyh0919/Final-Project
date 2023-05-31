@@ -529,7 +529,7 @@ public class MypageController {
 		this.myPageService.updateReview(rv); // 리뷰 내용 저장
 		
 		ModelAndView wm = new ModelAndView();
-		wm.setViewName("redirect/myPage_review");
+		wm.setViewName("redirect:/myPage_review");
 		return wm;
 	}
 	
@@ -541,7 +541,20 @@ public class MypageController {
 		this.myPageService.delReview(re_no); // 리뷰 삭제
 		
 		ModelAndView wm = new ModelAndView();
-		wm.setViewName("redirect/myPage_review");
+		wm.setViewName("redirect:/myPage_review");
 		return wm;
 	}
+	
+	//찜목록 삭제
+	@RequestMapping("likeDel")
+	public ModelAndView likeDel(HttpServletRequest request) {
+		int like_no = Integer.parseInt(request.getParameter("like_no"));
+		
+		this.myPageService.likeDel(like_no); // 리뷰 삭제
+		
+		ModelAndView wm = new ModelAndView();
+		wm.setViewName("mypage/myPage_like");
+		return wm;
+	}
+	
 }

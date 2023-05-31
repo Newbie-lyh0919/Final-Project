@@ -32,4 +32,11 @@ public class ReviewsVO {
 	private String re_image3; // 사진등록 3
 	private int re_score; // 리뷰 별점 
 	private String re_date; // 등록일
+	
+	//join 컬럼명
+		private String product_no;
+		private String product_title;
+		private String Product_price;
+		private String product_cont1;
+		private String product_date;
 }

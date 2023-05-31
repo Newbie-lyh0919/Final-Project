@@ -20,6 +20,7 @@ public class LikeVO {
 	private int like_pro_no; // 제품 no
 	
 	//join 컬럼명
+	private String product_no;
 	private String product_title;
 	private String Product_price;
 	private String product_cont1;

@@ -154,4 +154,11 @@ public class MypageDAOImpl implements MypageDAO {
 	public List<CartVO> getBuyOne(String id) {
 		return this.sqlSession.selectOne("getBuyone", id);
 	}
+
+	//찜목록 삭제
+	@Override
+	public void likeDel(int like_no) {
+		this.sqlSession.delete("likeDel", like_no);
+		
+	}
 }

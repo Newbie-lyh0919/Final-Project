@@ -422,7 +422,7 @@
 						<th rowspan="2" class="th-list" >*문의유형</th>
 						<td class="td-inputInfo">
 								<label name="inquiry">카테고리 선택:</label>
-									<input type="radio" name="client_category" value="${ }">회원정보
+									<input type="radio" name="client_category" value="">회원정보
 									<input type="radio" name="client_category" value="상품확인">상품확인
 									<input type="radio" name="client_category" value="주문/결제">주문/결제
 									<input type="radio" name="client_category" value="배송">배송

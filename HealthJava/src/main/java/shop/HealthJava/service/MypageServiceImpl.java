@@ -151,5 +151,12 @@ public class MypageServiceImpl implements MypageService {
 		return this.mypageDao.getBuyOne(id);
 	}
 
+	//찜목록 삭제
+	@Override
+	public void likeDel(int like_no) {
+		this.mypageDao.likeDel(like_no);
+		
+	}
+
 	
 }

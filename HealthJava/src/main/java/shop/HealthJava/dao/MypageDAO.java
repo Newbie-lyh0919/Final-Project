@@ -43,4 +43,5 @@ public interface MypageDAO {
 	void delReview(int re_no); // 리뷰 삭제
 	
 	List<CartVO> getBuyOne(String id);
+	void likeDel(int like_no); //찜목록 삭제
 }

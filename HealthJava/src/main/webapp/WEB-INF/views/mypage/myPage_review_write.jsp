@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -238,7 +239,7 @@
 		</div>
 		<form action="myPage_review_write_ok" method="post">
 		<c:if test="${!empty rlist }" >
-		<c:forEach var="rlist" items="${rlist }" 
+		<c:forEach var="rlist" items="${rlist }" >
 		<div class="productBox">
 			<div class="basket-product">
 				<div class="item">

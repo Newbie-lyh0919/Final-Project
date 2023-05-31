@@ -40,6 +40,7 @@ public interface MypageService {
 	void updateReview(ReviewsVO rv); // 리뷰 내용 저장
 	void delReview(int re_no); // 리뷰 삭제
 
-	List<CartVO> getBuyOne(String id);	 
+	List<CartVO> getBuyOne(String id);
+	void likeDel(int like_no);	 //찜목록 삭제
 	
 }
