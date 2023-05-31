@@ -1,31 +1,36 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> <%-- CDN 절대링크 --%>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script> <%-- CDN 절대링크 --%>
-<script src="https://code.jquery.com/jquery-3.6.3.js"></script> <%-- CDN 절대링크 --%>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> <%-- CDN 절대링크 --%>
+<link	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"	rel="stylesheet"	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"	crossorigin="anonymous"><%-- CDN 절대링크 --%>
+<script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"	integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"	crossorigin="anonymous"></script><%-- CDN 절대링크 --%>
+<script src="https://code.jquery.com/jquery-3.6.3.js"	integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="	crossorigin="anonymous"></script><%-- CDN 절대링크 --%>
+<script	src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script><%-- CDN 절대링크 --%>
+<script	src="../js/admin_Member.js"></script>
+<script	src="../js/admin_CSBoard.js"></script>
+<script	src="../js/admin_Product.js"></script>
+<script	src="../js/admin_PQNA.js"></script>
+<script	src="../js/admin_Order.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <%-- 차트 : 매출 Chart --%>
+<title>HealthJava 관리자 회원관리 Page</title>
 
-<title>HealthJava 관리자 Main</title>
-
-<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico" type="image/x-icon"> <%-- 파비콘 --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/include/css/header.css"> <%-- header.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/include/css/footer.css"> <%-- footer.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/admin/css/admin.css"> <%-- admin 계정.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/admin/css/adminMain.css"> <%-- adminMain.css --%>
-
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/fontium/css/fontium.css"/>
+<link rel="shortcut icon"	href="<%=request.getContextPath()%>/images/favicon.ico"	type="image/x-icon"><%-- 파비콘 --%>
+<link rel="stylesheet" type="text/css"	href="<%=request.getContextPath()%>/page/include/css/header.css"><%-- header.css --%>
+<link rel="stylesheet" type="text/css"	href="<%=request.getContextPath()%>/page/include/css/footer.css"><%-- footer.css --%>
+<link rel="stylesheet" type="text/css"	href="<%=request.getContextPath()%>/page/admin/css/admin.css"><%-- admin 계정.css --%>
+<link rel="stylesheet" type="text/css"	href="<%=request.getContextPath()%>/page/admin/css/aMlist.css"><%-- adminMemList.css --%>
+<link rel="stylesheet" type="text/css"	href="<%=request.getContextPath()%>/fontium/css/fontium.css" />
 
 <style type="text/css">
 	/* 폰트 CSS */
 	@font-face {
 		font-family: 'KIMM_Bold';
-		src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2') format('woff2'); /* CDN 절대링크  */
+		src:
+			url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2')
+			format('woff2'); /* CDN 절대링크  */
 		font-weight: 700;
 		font-style: normal;
 	}
@@ -35,42 +40,49 @@
 		-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;
 	}
+	
 	html {
 		height: 100%;
 	}
+	
 	body {
 		margin: 0px;
 		height: 100%;
 		padding: 0px;
 	}
+	
 	header {
 		width: 100%;
-	    position: fixed;
+		position: fixed;
 		z-index: 2;
 	}
+	
 	footer {
-		width: 100%;
 		bottom: 0;
 		z-index: 5;
-		position: relative;		
+		position: relative;
 	}
+	
 	.wrap {
 		margin-top: -110px;
 		min-height: 100%;
-	    position: relative;
+		position: relative;
 	}
-	.main { 
+	
+	.main {
 		width: 1400px;
-		height: 2000px; /* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 */
-		position : relative;
+		height: 100%; /* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 */
+		position: relative;
 		top: 105px;
 		left: 50%;
-        transform: translateX( -50% );
-		background-color: white;  /* 영역 보기 편하라고 배경색 지정함 : 하얀색 */
+		transform: translateX(-50%);
+		background-color: white; /* 영역 보기 편하라고 배경색 지정함 : 하얀색 */
+		margin-bottom: auto;
 	}
+	
 	section {
-		height: 2000px; /* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 */
-		/* background-color: rgb(236, 226, 202);  영역 보기 편하라고 배경색 지정함 : 연주황 */
+		height: 1500px; /* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 */
+		/* background-color: rgb(236, 226, 202); 영역 보기 편하라고 배경색 지정함 : 연주황 */
 	}
 	/* 클리어 */
 	.clear {
@@ -78,115 +90,200 @@
 	}
 	/* 밑의 영역부터 css시작 */
 	.container {
-		width: 100%; 
-	}
-	.meau {
-	padding-top: 30px;
-	padding-left: 800px;
-	font-family: 'KIMM_Bold';
+		width: 100%;
 	}
 	
+	#btn {
+		border-color: #b21949;
+		background-color: #b21949;
+		color: #fff;
+	}
+	/* 페이징 처리 */
+	/* 페이징 전체 틀 */
+	.pagination-container {
+		margin: 10px auto;
+		display: flex;
+		justify-content: center;
+	}
+	
+	.pagination {
+		position: relative;
+	}
+	/* 'PREV' 전체 틀 */
+	#pagination a {
+		position: relative;
+		display: inline-block;
+		color: #b21949; /* 글자색상 */
+		text-decoration: none;
+		font-size: 1.2rem;
+		padding: 8px 16px 10px;
+	}
+	/* 'PREV' 부분 */
+	#pagination a:before {
+		z-index: -1;
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		content: "";
+		top: 0;
+		left: 0;
+		background-color: #FC5400;
+		border-radius: 24px;
+		-webkit-transform: scale(0);
+		transform: scale(0);
+		transition: all 0.2s;
+	}
+	
+	#pagination a:hover, #pagination a #pagination-active {
+		color: #fff;
+	}
+	
+	#pagination a:hover:before, #pagination a #pagination-active:before {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+		background-color: #FC5400;
+	}
+	
+	#pagination #pagination-active {
+		color: #fff;
+		background-color: #FC5400;
+	}
+	
+	#pagination #pagination-active:before {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
+	/*'NEXT' 전체 틀 */
+	#pagination-newer {
+		margin-right: 50px;
+		width: 200px;
+	}
+	
+	#pagination-older {
+		margin-left: 50px;
+	}
+	
+	.boardList tr {
+		border-bottom: 1px solid #b21949;
+	}
+	
+	tbody, td, tfoot, th, thead, tr {
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+    padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+
+}
+/* 회원관리 게시판 전체 틀 */ 
+	.list {
+		width: 1400px;
+		height: 80px;
+		padding-top: 50px;
+		padding-left: 50px;
+		padding-right: 100px;
+		font-family: 'KIMM_Bold';
+		}
+		
+			#btn2{
+		border-color: #b21949; 
+		background-color: #b21949; 
+		color: #fff;
+	}
+		.memList{
+		width: 1250px;	
+	    border-top: 3px solid #b21949;
+	    border-bottom: 3px solid #b21949;
+	    font-family: 'KIMM_Bold';	
+	}
+	.memList th {
+		width: 250px;
+	}
+	.memList td {
+		font-family: 'KIMM_Bold';
+		line-height: 3;
+		padding-top: 20px;
+		padding-bottom: 0px;
+	}
+	
+	th.th-list {
+	    /*border-bottom: 2px solid #f5ad56;*/
+	    font-family: 'KIMM_Bold';
+	    padding-top: 20px;
+		padding-bottom: 20px;
+	}
+	
+	td.td-inputInfo {
+    text-align: left;
+}
+	td.td-infoPs {
+    text-align: left;
+}
 	.meau a {
 		color: white;
 		text-decoration: none;
-	} 
+	}
 	
-	@charset "UTF-8";
-/* adminMain.jsp UI : 관리자 메인화면 */
-/* 메인 틀*/
-.totalMain {
+	.boardList a {
+		text-decoration: none;
+	}
+	select {
+		padding : 5px 5px;
+	}
+	
+/* adminMemList.jsp UI : 회원 관리 */
+/* 회원관리 게시판 전체 틀 */
+.list {
 	width: 1400px;
-	height: 420px;
-	padding-top: 50px;
-	padding-left: 100px;
+	height: 80px;
+	padding-top: 30px;
+	padding-left: 50px;
 	padding-right: 100px;
-	position: relative;
+	font-family: 'KIMM_Bold';
 }
-/* 주문 및 건수 등의 테이블 */
-.kong table {
-	width: 190px;
-	height: 180px;
-	margin: 15px;
-	border-collapse: collapse;
+/* 게시판 테두리 */
+.boardList {
+	border: none;
 	border-top: 3px solid #b21949;
+	border-bottom: 3px solid #b21949;
 	font-family: 'KIMM_Bold';
 }
-
-div.kong {
-	margin: 50px;
-	font-family: 'KIMM_Bold';
-	float: left;
-	width: 1200px;
-	height: 200px;
+.boardList th {
+	border-bottom: 3px solid #b21949;
+ 	padding-top: 20px;
+	padding-bottom: 20px;
 }
 
-div.kong2 {
-	float: left;
-	min-width: 50px;
-	min-height: 100px;
+.boardList td {
+ 	padding-top: 20px;
+	padding-bottom: 20px;
 }
 
-.kong table th {
-	background: white;
-	text-align: center;
-	color: black;
-}
 
-.kong table th, .kong table td {
-	padding: 10px;
-	border: 1px solid #b21949;
-}
-
-.kong table th:first-child, .kong table td:first-child {
-	border-left: 0;
-}
-
-.kong table th:last-child {
-	border-right: 0;
-}
-
-.kong table tr td:first-child {
-	text-align: center;
-}
-
-.kong table caption {
-	caption-side: bottom;
-	display: none;
-}
-/* 매출 그래프 */
-.chart {
-	width: 1300px;
-	height: 700px;
-	margin: 50px 50px;
-	font-family: 'KIMM_Bold';
-	position: relative;
-}
-
-.totalchart {
-	font-family: 'KIMM_Bold';
-}
-
-#container {
-	width: 1300px;
-	height: 600px;
-	font-family: 'KIMM_Bold';
-}
-
-@charset "UTF-8";
 /* admin계정 UI */
 
 /* 관리자 메인이미지  */
 .adminMainpage {
+
 	width: 1400px;
 	height: 300px;
 	position: relative;
 	left: 50%;
 	transform: translateX(-50%);
+	
+}
+
+img, svg {
+    margin-left: 50px;
+    margin-top: 10px;
+    vertical-align: middle;
 }
 
 .profile_img {
 	width: 1400px;
 	height: 200px;
+	margin-top:20px;
 	padding-left: 50px;
 	padding-right: 100px;
 	background-color: #b21949;
@@ -216,8 +313,11 @@ div.kong2 {
 
 .meau {
 	padding-top: 30px;
-	padding-left: 800px;
+	margin-left: 800px;
 	font-family: 'KIMM_Bold';
+	width:3000px;
+	height:300px;
+	}
 }
 
 .meau a {
@@ -225,241 +325,113 @@ div.kong2 {
 	text-decoration: none;
 }
 
+ul {
+	list-style: none;
+}
+
+li {
+	float: left;
+}
+
+.inquire-table-div{
+	width: 90%;
+  	max-width: 700px;
+  	padding: 40px 20px;
+  	border: 2px solid #b21949;
+  	border-radius: 16px;
+  	margin: 20px auto;
+  	font-family: 'KIMM_Bold';
+}
+
 </style>
+<script>
+$(document).ready(function(){
+	Member_List();
+});
+</script>
+
 </head>
 <body>
 	<%-- 전체 영역 --%>
 	<div class="wrap">
-		<%-- 헤더 영역 --%>
-		<header>
-			<%-- header include --%>
-			<jsp:include page="../include/header.jsp"/>
-		</header>
-		<%-- 본문 영역(ui깨질시 본인이 ui 수정바람..) --%>
-		<section>
-			<div class="main">
-				<div class="adminMainpage"> <%-- adminMainpage --%>		
-						<%-- admin 계정 --%>
-						<h1 class="name" style="color: #b21949;">Admin Page</h1>
-						 
-						 <div class="profile_img" align="center">
-						 <a href="admin_main"><img width="150px" height="190px" align="left" alt="adminImage" src="<%=request.getContextPath() %>/images/admin.png">
-						 </a>
-						 
-						 <div class="meau" align="right" style="color: white;">
-							 <a href="admin_member">회원 관리</a> | 
-							 <a href="admin_CSBoard">문의 게시판</a> | 
-							 <a href="admin_GsList">상품 목록</a> | 
-						 </div>
-						 
-						  <h3 class="myinfo" align="left"><b>관리자 계정</b> <br></h3>
-						  </div><%-- end profile_img --%>
-				</div> <%-- end adminMainpage --%>
-				
-				<%-- 건수들 확인 테이블 --%>
-				<div class="totalMain">	<%-- Main --%>		
-					<div class="kong">
-						<div class="kong2" >
-								<h3>주문/배송</h3>
-								<table>
-									<tr><th>결제대기</th> <th>&nbsp;</th> <th>2 건</th> </tr>
-									<tr><th>신규주문</th><th>&nbsp;</th><th>5 건</th></tr>
-									<tr><th>오늘출발</th><th>&nbsp;</th><th>6 건</th></tr>
-									<tr><th>예약구매</th><th>&nbsp;</th><th>4 건</th></tr>		
-								</table>
-						</div>
-						<div class="kong2"> 
-								<h3>배송</h3>
-								<table>
-									<tr><th>배송준비</th> <th>&nbsp;</th> <th>5 건</th> </tr>
-									<tr><th>배송중</th><th>&nbsp;</th><th>5 건</th></tr>
-									<tr><th>배송완료</th><th>&nbsp;</th><th>6 건</th></tr>
-									<tr><th>미수령 신고</th><th>&nbsp;</th><th>1 건</th></tr>		
-								</table>
-							</div>
-							<div class="kong2"> 	
-								<h3>정산</h3>
-								<table>
-									<tr><th>구매확정</th> <th>&nbsp;</th> <th>5 건</th> </tr>
-									<tr><th>오늘정산</th><th>&nbsp;</th><th>2 건</th></tr>
-									<tr><th>정산예정</th><th>&nbsp;</th><th>5 건</th></tr>
-									<tr><th>충전금</th><th>&nbsp;</th><th>1 건</th></tr>		
-								</table>
-							</div>
-							<div class="kong2"> 
-								<h3>취소신청</h3>
-								<table>
-									<tr><th>취소신청</th> <th>&nbsp;</th> <th>2 건</th> </tr>
-									<tr><th>반품</th><th>&nbsp;</th><th>2 건</th></tr>
-									<tr><th>교환신청</th><th>&nbsp;</th><th>7 건</th></tr>		
-								</table>
-							</div>
-							<div class="kong2"> 	
-								<h3>미답변문의</h3>
-								<table>
-									<tr><th>상품문의</th> <th>&nbsp;</th> <th>5 건</th> </tr>
-									<tr><th>반품/교환</th><th>&nbsp;</th><th>5 건</th></tr>
-									<tr><th>기타</th><th>&nbsp;</th><th>2 건</th></tr>		
-								</table>
-							</div>
-						</div><%-- end kong --%>
-			</div><%-- end totalMain --%>
+	<%-- 헤더 영역 --%>
+	<header><%-- header include --%>
+		<jsp:include page="../include/header.jsp" />
+	</header>
+	<%-- 본문 영역(ui깨질시 본인이 ui 수정바람..) --%>
+	<section>
+		<div class="main">
 		
-			
-			<div class="chart"> <%-- chart --%>
-				<div class="totalchart">
-				<h2>Puppy Home 매출 전체 현황</h2>
-				<p></p>
-				<%-- 매출 차트 --%>
-				<div id="container">
-					<canvas id="canvas" style="margin-left: 5px;"></canvas>
+		<div class="adminMainpage">	<%-- adminMainpage --%>
+			<%-- admin 계정 --%>
+			<h1 class="name" style="color: #b21949">Admin Page</h1>
+			<div class="profile_img" align="center">
+			<%-- 이미지 클릭시 관리자 메인화면으로 이동 --%>
+			<a href="admin_main"><img width="150px" height="190px" align="left" alt="adminImage" src="<%=request.getContextPath()%>/images/admin.png"> </a>
+
+				<div class="meau" style="color: white;">
+				<ul>
+					<li id="adminTab1" style="cursor:pointer;" value="회원관리" onclick="Member_List();">회원 관리  |&nbsp;</li>
+					<li id="adminTab2" style="cursor:pointer;" value="문의게시판" onclick="CSBoard_search();">문의 게시판 |&nbsp;</li> 
+					<li id="adminTab3" style="cursor:pointer;" value="상품목록" onclick="product_search();">상품 목록 |&nbsp;</li> 
+					<li id="adminTab4" style="cursor:pointer;" value="상품QNA" onclick="GsQNA_search();">상품 QNA |&nbsp;</li>
+					<li id="adminTab5" style="cursor:pointer;" value="주문내역" onclick="Order_search();">주문내역 |&nbsp;</li> 
+					</ul>  
+				 </div>
+
+<script type="text/javascript">
+
+</script>
+			</div> <%-- end profile_img : 이미지 div --%>
+			</div> <%-- end adminMainpage : 관리자 계정 고정 --%>
+
+			<%-- 전체 틀 회원관리 테이블 --%>
+			<div class="list">
+				<div id="ajaxHead">
+				
 				</div>
+				<div id="ajaxhome">
 				
-				<script type="text/javascript">
-					
-					var ChartHelper = {
-						chartColors : {
-							red : 'rgb(255, 99, 132)',
-							orange : 'rgb(255, 159, 64)',
-							yellow : 'rgb(255, 205, 86)',
-							green : 'rgb(75, 192, 192)',
-							blue : 'rgb(54, 162, 235)',
-							purple : 'rgb(153, 102, 255)',
-							grey : 'rgb(201, 203, 207)'
-						}
-					};
-			
-					var color = Chart.helpers.color;
-			
-					var data1 = null;
-					var data2 = null;
-					var data3 = null;
-					var barChartData = null;
-			
-					// 그래프 데이터 : 메뉴별
-					data1 = [ 
-						Math.random()*90000, 
-						Math.random()*90000, 
-						Math.random()*90000, 
-						Math.random()*90000, 
-						Math.random()*90000, 
-						Math.random()*90000, 
-						Math.random()*90000, 
-						Math.random()*90000, 
-						Math.random()*90000, 
-						Math.random()*90000,
-						Math.random()*90000, 
-						Math.random()*90000 
-						]; //사료			
-					data2 = [ 
-						Math.random()*90000, 
-						Math.random()*90000, 
-						Math.random()*90000, 
-						Math.random()*90000, 
-						Math.random()*90000, 
-						Math.random()*90000, 
-						Math.random()*90000, 
-						Math.random()*90000, 
-						Math.random()*90000, 
-						Math.random()*90000,
-						Math.random()*90000, 
-						Math.random()*90000  
-						]; //간식
-					data3 = [ 
-						Math.random()*90000, 
-						Math.random()*90000, 
-						Math.random()*90000, 
-						Math.random()*90000, 
-						Math.random()*90000, 
-						Math.random()*90000, 
-						Math.random()*90000, 
-						Math.random()*90000, 
-						Math.random()*90000, 
-						Math.random()*90000,
-						Math.random()*90000, 
-						Math.random()*90000 
-						]; //영양제
-			
-					barChartData = {
-						labels : [ '1월', '2월','3월', '4월','5월','6월','7월', '8월', '9월', '10월', '11월', '12월' ], //x축
-						datasets : [ 
-								{
-									label : '사료',
-									backgroundColor : 'rgba(255, 99, 132)',
-									borderColor : 'rgb(255, 99, 132,1.5)',
-									borderWidth : 1,
-									data : data2
-								},
-								{
-									label : '간식',
-									backgroundColor : 'rgba(54, 162, 235)',
-									borderColor : 'rgba(54, 162, 235, 1.5)',
-									borderWidth : 1,
-									data : data1
-								}, 
-								{
-									label : '영양제',
-									backgroundColor : 'rgba(255, 159, 64)',
-									borderColor : 'rgba(255, 159, 64, 1.5)',
-									borderWidth : 1,
-									data : data2
-								}
-								]
-					};
-			
-					var ctx = document.getElementById('canvas').getContext('2d');
-			
-					window.BarChart = new Chart(ctx, {
-						type : 'bar', // 막대그래프
-						data : barChartData ,
-						options : { // 설정 영역
-							 
-							maintainAspectRatio : false ,
-							legend : {
-								position : 'top',
-								labels: {
-									display : true,
-									fontSize: 20
-								}
-							},							
-							scales : {
-								yAxes : [ {
-									ticks : { // Y 축 0부터 시작
-										beginAtZero : true,
-										// Y 축 정수로 보여주기 
-										// 숫자가 작거나 또는 0인 경우 등 자동으로 보여주므로 소숫점으로 나타난다
-										callback : function(value) {
-											if (0 === value % 1) {
-												return value;
-											}
-										}
-									}
-								} ]
-							}
-						}
-					});
-			
-					var colorNames = Object.keys(ChartHelper.chartColors);
-				</script> 
+				</div>
+				<table class="boardList" width="1300px;">
+				<thead id="ajaxTh">
 				
-				</div><%-- end totalchart --%>
-			</div> <%-- end chart --%>
-			
-			</div> <%-- end main --%>
-			<%-- top버튼 삭제 X --%>
-			<div id="topBtn">
-				<span class="fonti um-arrow-circle-up um-3x icon"></span>TOP
-			</div>
-		</section>
+				</thead>
+				
+
+
+				<tbody id="ajaxTable">
+				
+				</tbody>
+				</table>				
+
+		
+				
+				<%--회원 관리 게시판 끝 --%>
+				<%-- 회원 체크(블랙리스트) 버튼 --%>
+				<p><p>
+				
+				<p>
+
+
+			</div> <%-- 회원 테이블 끝 --%>
+
+		</div>
+		<%-- top버튼 삭제 X --%>
+		<div id="topBtn">
+			<span class="fonti um-arrow-circle-up um-3x icon"></span>TOP
+		</div>
+	</section>
+	
 	<%-- 푸터 영역 --%>
 	<footer>
-	<!-- footer -->
-	<jsp:include page="../include/footer.jsp" />
-	<!-- footer 끝 -->
+		<!-- footer -->
+		<jsp:include page="../include/footer.jsp" />
+		<!-- footer 끝 -->
 	</footer>
 	<script type="text/javascript">
-	
-		<%-- top버튼 부분 --%>
+		
+	<%-- top버튼 부분 --%>
 		// 클릭 이벤트 핸들러
 		$("#topBtn").click(function(e) {
 			e.stopPropagation();
@@ -477,6 +449,7 @@ div.kong2 {
 			}
 		});
 	</script>
-	</div>
+	</div> <%-- end wrap --%>
+
 </body>
 </html>

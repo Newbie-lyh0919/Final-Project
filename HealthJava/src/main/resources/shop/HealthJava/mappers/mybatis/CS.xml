@@ -21,7 +21,8 @@
       from (
         select * from tbl_notice
         <where>
-          <if test="search_type == null"></if>
+          <if test="search_type == null">
+          </if>
           <if test="search_type == 'notice_title'">
             and notice_title like '%' || #{search_field} || '%'
           </if>
@@ -89,11 +90,18 @@
      select * from tbl_client order by client_no asc
     </select>  
     
-     <!-- FAQ 글 작성 -->
+    <!-- 1대1 문의글 내용보기 -->
+  	<select id="contact_cont" resultType="csClient">
+  	select * from tbl_client where client_no = #{client_no}
+  	</select>
+    
+     <!-- 1대1 문의글 작성 -->
   	<insert id="contact_write">
   	insert into tbl_client 
-  	(client_no, client_title, client_cont, client_category, client_date ,user_id) 
-  	values(client_no_seq.nextval, #{client_title}, #{client_cont}, #{client_category}, sysdate, #{user_id})
+  	(client_no, client_title, client_cont, client_category, client_date ,user_id, contact_password) 
+  	values(client_no_seq.nextval, #{client_title}, #{client_cont}, #{client_category}, sysdate, #{user_id}, #{contact_password})
   	</insert>
+  	
+
   	
   </mapper>

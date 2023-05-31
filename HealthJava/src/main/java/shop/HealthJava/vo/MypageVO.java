@@ -1,4 +1,4 @@
- package shop.HealthJava.vo;
+package shop.HealthJava.vo;
 
 import lombok.Data;
 import lombok.Getter;

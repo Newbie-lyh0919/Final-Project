@@ -12,7 +12,7 @@ import shop.HealthJava.vo.CartVO;
 import shop.HealthJava.vo.LikeVO;
 import shop.HealthJava.vo.OrderDetailVO;
 import shop.HealthJava.vo.ProductVO;
-import shop.HealthJava.vo.ProductVO2;
+import shop.HealthJava.vo.ProductQnAVO;
 
 @Repository
 public class ProductDAOImpl implements ProductDAO {
@@ -48,14 +48,14 @@ public class ProductDAOImpl implements ProductDAO {
 
 	
 	@Override
-	public List<ProductVO2> getReviewList(int product_no) {
+	public List<ProductQnAVO> getReviewList(int product_no) {
 		return this.sqlSession.selectList("review_list",product_no);
 		//selectList()메서드는 복수개의 레코드를 검색해서 컬렉션 List로
 		//반환한다. select 아이디명 board_li		
 	}//게시판 목록
 
 	@Override
-	public void insertQna(ProductVO2 f) {
+	public void insertQna(ProductQnAVO f) {
 		
 		this.sqlSession.insert("qna_insert",f);
 	}

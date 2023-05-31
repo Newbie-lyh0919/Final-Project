@@ -257,7 +257,9 @@ input[type="text"] {
 				<div class="meau" align="right" style="color: white;">
 					<a href="admin_main">회원 관리</a> | 
 					<a href="admin_CSBoard">문의 게시판</a> | 
-					<a href="admin_GsList">상품 목록</a> 
+					<a href="admin_GsList">상품 목록</a> | 
+					<a href="admin_GsQNAList">상품 QNA</a> | 
+					<a href="admin_OrderList">주문내역</a>  
 				 </div>
 				 
 				 <h3 class="myinfo" align="left"><b>관리자 계정</b> <br></h3>
@@ -305,7 +307,7 @@ input[type="text"] {
 				    </tr>
      				</table>
      				<input id="btn" type="submit" value="등록" > &nbsp;
-     				<input id="btn" type="button" value="취소" onclick="location ='csboard.shop';" >
+     				<input id="btn" type="button" value="취소" onclick="location ='admin_main'; " >
      			</form>
      			</div>
 				

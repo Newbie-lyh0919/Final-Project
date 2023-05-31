@@ -106,7 +106,7 @@
 	section.notice {
 		padding: 20px 0;
 		/*추가*/
-		/*width: 1200px;*/
+		width: 1200px;
 		height: 200px;
 		margin: 2px;
 	}
@@ -424,7 +424,7 @@
 			<section class="notice">
 				<div class="page-title">
 					<b style="text-align: left; font-size: 20px;">&nbsp;&nbsp;주문내역</b>
-					<a href="myPage_orderCancel" class="liList" style="margin-left: 780px; text-decoration-line: none;">[더보기]</a><br>
+					<a href="myPage_orderCancel" class="liList" style="margin-left: 820px;  text-decoration-line: none;">[더보기]</a><br>
 				</div>
 				<!-- board list area -->
 				<div id="board-list">
@@ -472,7 +472,7 @@
 				<br><br>
 				<div class="page-title">
 					<b style="text-align: left; font-size: 20px;">&nbsp;&nbsp;문의내역</b>
-					<a href="myPage_inquiry" class="liList" style="margin-left: 780px; text-decoration-line: none;">[더보기]</a><br><br>
+					<a href="myPage_inquiry" class="liList" style="margin-left: 820px; text-decoration-line: none;">[더보기]</a><br><br>
 				</div>
 				<!-- board list area -->
 				<div id="board-list">

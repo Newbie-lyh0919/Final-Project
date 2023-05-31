@@ -4,6 +4,9 @@ import java.util.List;
 
 import shop.HealthJava.vo.CSClientVO;
 import shop.HealthJava.vo.MemberVO;
+import shop.HealthJava.vo.OrderDetailVO;
+import shop.HealthJava.vo.OrderVO;
+import shop.HealthJava.vo.ProductQnAVO;
 import shop.HealthJava.vo.ProductVO;
 
 public interface AdminService{
@@ -18,7 +21,7 @@ public interface AdminService{
 	MemberVO getMemberInfo(int user_no);
 	
 	//관리자 - 회원정보 수정
-	void MemberEdit(MemberVO mvo);
+	int MemberEdit(MemberVO mvo);
 
 	//관리자 - 검색에 따른 상품수
 	int getProductCount(ProductVO pvo);
@@ -36,9 +39,40 @@ public interface AdminService{
 	CSClientVO getClientCont(int client_no);
 
 	//관리자 - 문의게시판 댓글ok
-	void replyBoard(CSClientVO cvo);
+	int replyBoard(CSClientVO cvo);
 	
 	//관리자 - 회원유형 수정(블랙리스트)
-	void MemberBlack(MemberVO mvo);
+	int MemberBlack(MemberVO mvo);
+	
+	//관리자 - 상품 리스트 개수
+	int getListCount(ProductVO pvo);
+	
+	//관리자 - 상품 QNA 리스트 개수
+	int getGsQNACount(ProductQnAVO qvo);
+
+	//관리자 - 상품 QNA 목록 조회
+	List<ProductQnAVO> getGsQNAListBySearch(ProductQnAVO qvo);
+
+	//관리자 - 상품 QNA 게시판 내용보기
+	ProductQnAVO getGsQNACont(int qna_no);
+
+	//관리자 - 상품 QNA 게시판 댓글ok
+	void replyGsQNA(ProductQnAVO qvo);
+
+	//관리자 - 총 주문 건수
+	int getAllOrderCount();
+	
+	//관리자 - 총 주문 목록
+	List<OrderVO> getAllOrderList();
+
+	//관리자 - 번호기준 주문내역 보기
+	OrderVO getOrderByNo(int order_no);
+	
+	//관리자 - 주문 상세내역 보기
+	List<OrderDetailVO> getOrderDetailByNo(int order_no);
+
+	//관리자 - 송장번호 입력
+	int updateInvoice(OrderVO ovo);
+	
 
 }

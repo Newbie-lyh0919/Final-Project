@@ -31,7 +31,7 @@ import shop.HealthJava.vo.CartVO;
 import shop.HealthJava.vo.LikeVO;
 import shop.HealthJava.vo.OrderDetailVO;
 import shop.HealthJava.vo.ProductVO;
-import shop.HealthJava.vo.ProductVO2;
+import shop.HealthJava.vo.ProductQnAVO;
 
 @Controller
 public class ProductController { // 상품 페이지 관련 컨트롤러
@@ -229,7 +229,7 @@ public class ProductController { // 상품 페이지 관련 컨트롤러
 					o.setOrder_detail_mid(id);
 					o.setOrder_detail_cnt(order_detail_cnt);
 					o.setOrder_detail_pname(order_detail_pname);
-					o.setOrder_detail_price(Integer.parseInt(order_detail_price));
+					o.setOrder_detail_price(order_detail_price);
 					
 					this.productService.insertOrderDetail(o);
 					
@@ -264,7 +264,7 @@ public class ProductController { // 상품 페이지 관련 컨트롤러
 	
 	
 	@RequestMapping(value="/qna/add_ok")
-	public String qna_add( ProductVO2 f ,HttpSession session,Model model,HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public String qna_add( ProductQnAVO f ,HttpSession session,Model model,HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		
 		String product_no = request.getParameter("product_no");
@@ -317,12 +317,7 @@ public class ProductController { // 상품 페이지 관련 컨트롤러
 		
 		String id = (String)session.getAttribute("id");
 		
-		
-		
-		
-	
-	
-		
+
 	//LikeVO a = productService.getLikeList(f);
 	
 	System.out.println("세션아이디:"+id);
@@ -332,7 +327,7 @@ public class ProductController { // 상품 페이지 관련 컨트롤러
 		if ( id == null) {
 			ProductVO detail = productService.getProductContent(product_no);
 			
-			List<ProductVO2> detail2 = productService.getReviewList(product_no);
+			List<ProductQnAVO> detail2 = productService.getReviewList(product_no);
 			
 			model.addAttribute("detail2",detail2);
 			
@@ -345,7 +340,7 @@ public class ProductController { // 상품 페이지 관련 컨트롤러
 			
 			ProductVO detail = productService.getProductContent(product_no);
 			
-			List<ProductVO2> detail2 = productService.getReviewList(product_no);
+			List<ProductQnAVO> detail2 = productService.getReviewList(product_no);
 			
 			model.addAttribute("detail2",detail2);
 			
@@ -400,11 +395,7 @@ public class ProductController { // 상품 페이지 관련 컨트롤러
 	
 	@RequestMapping(value="/product/delete/{product_no}")
 	public String boardDelete(@PathVariable int product_no, HttpSession session, Model model,HttpServletRequest request, HttpServletResponse response)throws IOException  {
-		
-		
-		
-		
-		
+
 			productService.deleteProduct(product_no);
 			
 		
