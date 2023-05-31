@@ -8,15 +8,10 @@
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script> <%-- CDN 절대링크 --%>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> <%-- CDN 절대링크 --%>
 <script type="text/javascript" src = "./js/jquery.js"></script>
-<script src="<%=request.getContextPath()%>/js/updateInfo.js"></script>
+<script src="../js/updateInfo.js"></script>
 
 <title>HealthJava 마이페이지</title>
 
-<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico" type="image/x-icon"> <%-- 파비콘 --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/header.css"> <%-- header.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/footer.css"> <%-- footer.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/fontium/css/fontium.css"/>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/page/mypage/css/mypage.css">
 <%-- <link rel="stylesheet" href="./shop/puppyhome/controller_mypage/css/mypage.css">--%>
 
 <style type="text/css">
@@ -230,31 +225,37 @@
 	}
 	
 	#resetBtn{
-		padding: 20px 100px;
+		padding: 20px;
 		background-color: white;
 		border: 2px solid #B21948;
 		font-size: 20px; 
 		font-weight: bold;
 		color: #B21948;
+		width: 200px;
+		text-align: center;
 	}
 	
 	#withdrawalBtn{
-		padding: 20px 100px; 
+		padding: 20px; 
 		background-color: #FC5400; 
 		border: 1px solid white; 
 		color: white; 
 		font-size: 20px; 
 		font-weight: bold;
+		width: 200px;
+		text-align: center;
 	}
 	
 	/* 확인 버튼*/
 	#changePwdBtn{
-		padding: 20px 100px; 
+		padding: 20px; 
 		background-color: #B21948;; 
 		border: 1px solid white; 
 		color: white; 
 		font-size: 20px; 
-		font-weight: bold
+		font-weight: bold;
+		width: 200px;
+		text-align: center;
 	}
 
 	/* reset */

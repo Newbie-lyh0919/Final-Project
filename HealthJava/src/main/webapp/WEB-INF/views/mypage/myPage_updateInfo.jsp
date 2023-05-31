@@ -23,7 +23,9 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/page/mypage/css/mypage.css">
 <%-- <link rel="stylesheet" href="./shop/puppyhome/controller_mypage/css/mypage.css">--%>
 
+
 <style type="text/css">
+
 
 	/* 폰트 CSS */
 	@font-face {
@@ -272,21 +274,25 @@
 	
 	/* 수정 버튼 */
 	#updateBtn{
-	    padding: 20px 120px;
+	    padding: 20px;
 	    background-color: #b21949;
 	    border: 2px solid #b21949;
 	    font-size: 20px;
 	    font-weight: bold;
 	    color: white;
+	    width: 200px;
+	    text-align: center;
 	}	
 	
 	#resetBtn{
-	    padding: 20px 120px;
+	    padding: 20px;
 	    background-color: white;
 	    border: 2px solid #b21949;
 	    font-size: 20px;
 	    font-weight: bold;
 	    color: #b21949;
+	    width: 200px;
+	    text-align: center;
 	}
 	
 	#withdrawalBtn{
@@ -305,6 +311,11 @@
 		color: white; 
 		font-size: 20px; 
 		font-weight: bold
+	}
+	
+	/*ajax*/
+	#emailCheck {
+	padding-left: 25px;
 	}
 	
 	/* reset */
@@ -501,7 +512,7 @@
 					<tr>
 						<th rowspan="4" class="th-list">주소 *</th>
 						<td class="td-inputInfo"><input type="text" name="postCode" id="postCode" value="${em.postCode}" size="20" placeholder="우편번호"/>&nbsp;&nbsp;
-						<input type="button" value="주소검색" onclick="post()" style="font-weight: bold; padding: 2px;"/>
+						<input type="button" value="주소검색" onclick="post()" style="font-weight: bold; padding: 2px; background: #b21949; border: 2px solid #b21949; color: white;"/>
 						</td>
 					</tr>
 
@@ -520,11 +531,14 @@
 					<!--이메일-->
 					<tr>
 						<th class="th-list" rowspan="2" >이메일 *</th>
-						<td class="td-inputInfo"><input type="email" name="user_email" id="user_email" value="${em.user_email}"size="70" placeholder="예) abcdefg11@naver.com"></td>
+						<td class="td-inputInfo"><input type="email" name="user_email" id="user_email" value="${em.user_email}"size="70" placeholder="예) abcdefg11@naver.com" readonly/>&nbsp;&nbsp;
+						<%-- <input type="button" value="이메일 중복 검색" onclick="findEmail()" style="font-weight: bold; padding: 2px; background: #b21949; border: 2px solid #b21949; color: white;"/>
+						</td>
+						--%>
 					</tr>
 					
 					<tr>
-						<td class="td-infoPs"></td>
+						<td id="emailCheck"></td>
 					</tr>
 					
 					<!--휴대전화-->
