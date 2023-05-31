@@ -208,7 +208,7 @@ input[type="text"] {
     <td>
     <div class="flex-box">
         <button id="button1" class="btn-rank2">등록하기</button>
-        <button type="reset" id="button1" class="btn-default" onclick="location='cs_notice.shop';">취소</button> 
+        <button type="reset" id="button1" class="btn-default" onclick="location='/notice';">취소</button> 
       </div>
     </td>
     </tr>

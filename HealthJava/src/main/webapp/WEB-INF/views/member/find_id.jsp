@@ -10,12 +10,8 @@
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script defer src="<%=request.getContextPath()%>/js/kakao.js"></script>
 <script>Kakao.init('31d2f9dc79f327146c781ff55e8f8b76');</script>
-<title>PuppyHome 메인</title>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/header.css"> <%-- header.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/footer.css"> <%-- footer.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/fontium/css/fontium.css"/>
-<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico" type="image/x-icon"> <%-- 파비콘 --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/member/css/login.css"> <%-- login.css --%>
+<title></title>
+
 <script>
 	function id_check() {
 		if ($.trim($("#username").val()) == "") {

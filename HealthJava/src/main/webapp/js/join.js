@@ -4,7 +4,8 @@
 /**
  * member.js
  */
-function join_check(){ 
+function join_check(){
+   
 
    if($.trim($("#user_id").val())==""){
       alert("회원아이디를 입력하세요!");
@@ -52,10 +53,14 @@ function join_check(){
       alert("생년월일 입력하세요!");      
       return false;
    }
-    let regexBirth = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
+    let regexBirth = /^([0-9][0-9]|\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
     if(!regexBirth.test($("#user_birth").val())){
-      alert("생년월일은 예)1999년 1월 1일 -> 19990101로 입력해주세요");      
+      alert("생년월일은 예)1999년 1월 1일 -> 990101로 입력해주세요");      
       $("#user_birth").val("").focus();
+      return false;
+   }
+   if($.trim($("#user_gender").val())==""){
+      alert("성별을 입력하세요!");      
       return false;
    }
    if($.trim($("#postCode").val())==""){

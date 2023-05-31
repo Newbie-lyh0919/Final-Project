@@ -469,8 +469,9 @@
 		<!-- board list area -->
 		<div id="board-list">
 			<div class="container">
+			<input type="hidden" name="order_no" id="order_no" value="${od.order_detail_no}" />
 				<table class="board-table">
-				<input type="hidden" name="order_no" id="order_no" value="${od.order_detail_no}" />
+				
 					<thead>
 						<tr>
 							<th scope="col" class="th-title">제품명</th>

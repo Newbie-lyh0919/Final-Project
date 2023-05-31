@@ -11,13 +11,13 @@ public class ReviewsVO {
 	create table tbl_reviews (
 	    re_no NUMBER PRIMARY KEY , -- 후기 no
 	    re_pro_no NUMBER(38) REFERENCES tbl_product(product_no) , --제품no : F
-	    re_mem_id VARCHAR2(100) REFERENCES tbl_member(user_id) , -- 회원 아이디 
+	    re_mem_id VARCHAR2(100) , -- 회원 아이디 
 	    re_title VARCHAR2(100) , -- 리뷰 제목
 	    re_content VARCHAR2(4000) ,  --리뷰 내용
 	    re_image1 VARCHAR2(4000)  , --사진 등록1
 	    re_image2 VARCHAR2(4000)  , -- 사진등록2
 	    re_image3 VARCHAR2(4000)  , -- 사진등록3
-	    re_score NUMBER(1, 0) , -- 별점 (1~5점까지)
+	    re_score NUMBER(38) , --별점 score
 	    re_date DATE --등록일
 	);
 	*/
@@ -32,11 +32,4 @@ public class ReviewsVO {
 	private String re_image3; // 사진등록 3
 	private int re_score; // 리뷰 별점 
 	private String re_date; // 등록일
-	
-	//join 컬럼명
-		private String product_no;
-		private String product_title;
-		private String Product_price;
-		private String product_cont1;
-		private String product_date;
 }

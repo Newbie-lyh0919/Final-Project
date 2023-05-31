@@ -7,16 +7,68 @@
 <link rel="stylesheet" href="style.css">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> <%-- CDN 절대링크 --%>
-<script src="<%=request.getContextPath()%>/js/join.js"></script>
-<!-- <script type="text/javascript" src="./js/jquery.js"></script> -->
+<script src="../js/join.js"></script>
 
 <title>HealthJava회원가입</title>
 
-<%--<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico?ver1" type="image/x-icon">  파비콘 --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/views/include/css/header.css"> <%-- header.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/views/include/css/footer.css"> <%-- footer.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/fontium/css/fontium.css" /> 
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/views/member/css/join.css" /> 
+<%-- 우편관련 --%>
+<input type="text" id="sample6_postcode" placeholder="우편번호">
+<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+<input type="text" id="sample6_address" placeholder="주소"><br>
+<input type="text" id="sample6_detailAddress" placeholder="상세주소">
+<input type="text" id="sample6_extraAddress" placeholder="참고항목">
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                if(data.userSelectedType === 'R'){
+                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있고, 공동주택일 경우 추가한다.
+                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                    if(extraAddr !== ''){
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                    // 조합된 참고항목을 해당 필드에 넣는다.
+                    document.getElementById("sample6_extraAddress").value = extraAddr;
+                
+                } else {
+                    document.getElementById("sample6_extraAddress").value = '';
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('postCode').value = data.zonecode;
+                document.getElementById("roadAddr").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("detailAddr").focus();
+            }
+        }).open();
+    }
+</script>
+<%-- 우편 끝--%>
+
 <style type="text/css">
 	/* 폰트 CSS */
 	@font-face {
@@ -201,7 +253,7 @@ a{
 
 .member input[type=button],
 .member input[type=submit]{
-background-color: #FC5400;
+background-color: #b21949;
 color:#fff
 }
 
@@ -273,7 +325,11 @@ color:#fff
 			<jsp:include page="../include/header.jsp"/>
 		</header>
 <div class="member" >
-<form name="m" method="post" action="member_join_ok"  onsubmit="return join_check();">
+<form name="m" method="post" action="member_join_ok" 
+    onsubmit="return join_check();" >
+	<input type="hidden"  name="access_token"  id="access_token" value="${access_token}">
+	<input type="hidden"  name="user_state"  id="user_state" value="${user_state}">
+ 	
         <!-- 1. 로고 -->
         <div class="signup-form">
         <h1>회원가입</h1>
@@ -282,7 +338,7 @@ color:#fff
         <div class="field_id">
             <b>아이디</b>
             <div>
-            	<input type="text" placeholder="" name="user_id" id="user_id">
+            	<input type="text" placeholder="" name="user_id" id="user_id" value="${user_id}">
             	
                 <input type="button" value="아이디 중복검사" onclick="id_check();" >
                 
@@ -301,31 +357,31 @@ color:#fff
         </div>
         <div class="field">
             <b>이름</b>
-            <input type="text" name="user_name" id="user_name">
+            <input type="text" name="user_name" id="user_name" value="${user_name}" >
         </div>
 
         <!-- 3. 필드(생년월일) -->
         <div class="field birth" >
             <b>생년월일</b>
     
-                <input type="text" placeholder="ex) 990101" name="user_birth" id="user_birth">                
+                <input type="text" placeholder="ex) 990101" name="user_birth" id="user_birth"  >                
               
         </div>
         <!-- 3. 필드(성별) -->
         <div class="field gender" >
             <b>성별</b>
     
-                <input type="text" placeholder="ex) 990101" name="user_gender" id="user_gender">                
+                <input type="text" placeholder="ex) male/female" name="user_gender" id="user_gender" value="${user_gender}">                
               
         </div>
 
-        <!-- 4. 필드(성별) -->
+        <!-- 4. 필드(주소) -->
         <div class="field address">
             <b>주소</b>
             
             <div>
                 <input type="text" placeholder="우편번호" name="postCode" id="postCode">
-                <input type="button" onclick="post()" value="우편번호 찾기">
+                <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
             </div>
             <input type="text" placeholder="주소" name="roadAddr" id="roadAddr">
             <input type="text" placeholder="상세주소" name="detailAddr" id="detailAddr">
@@ -334,7 +390,7 @@ color:#fff
         <!-- 5. 이메일_전화번호 -->
         <div class="field">
             <b>이메일</b>
-            <input type="email" placeholder="ex) abc123@naver.com" name="user_email" id="user_email">
+            <input type="email" placeholder="ex) abc123@naver.com" name="user_email" id="user_email" value="${user_email}">
             
         </div>
         
@@ -371,7 +427,8 @@ color:#fff
 	</div>
 	<script type="text/javascript">
 	
-		<%-- top버튼 부분 --%>
+		<%-- top버튼 부
+		분 --%>
 		// 클릭 이벤트 핸들러
 		$("#topBtn").click(function(e) {
 			e.stopPropagation();

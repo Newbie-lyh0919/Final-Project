@@ -3,16 +3,17 @@
 <!DOCTYPE configuration
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+  <configuration>
+  	<typeAliases>
+  	<!-- 이 파일의 역할은 데이터 저장빈 클래스 객체 별칭을 관리함으로써 mybatis 매퍼태그 속성에 들어가는 코드를 줄일 수 있다. -->
+  	
+  	<!-- admin --><!-- admin --><!-- admin --><!-- admin --><!-- admin --><!-- admin --><!-- admin --><!-- admin -->
+  	<typeAlias alias="member" type="shop.HealthJava.vo.MemberVO" />
 
-<configuration>
-	<typeAliases>
-		<!-- 이 파일의 역할은 데이터 저장빈 클래스 객체 별칭을 관리함으로써 mybatis 매퍼태그 속성에 들어가는 코드를 줄일 수 있다. -->
-		 		
-		<typeAlias type="shop.HealthJava.vo.MemberVO" alias="member" /> <!-- MemberVO빈클래스 객체 별칭이름 member로 지정 -->
-		<typeAlias type="shop.HealthJava.vo.ProductVO" alias="product" /> <!-- ProductVO빈클래스 객체 별칭이름 product로 지정 -->
-		<typeAlias type="shop.HealthJava.vo.ProductVO2" alias="product2" />
-		
-		<!-- Mypage : 목차별 순서 --> 
+  	<typeAlias alias="product" type="shop.HealthJava.vo.ProductVO" />
+  	
+  		<!-- Mypage : 목차별 순서 --> 
 		<!-- <typeAlias type="shop.HealthJava.vo.MypageVO" alias="mypage" />-->
 		<typeAlias type="shop.HealthJava.vo.PaymentVO" alias="payment" /> <!-- 결제 -->
 		<typeAlias type="shop.HealthJava.vo.OrderVO" alias="order" /> <!-- 주문 -->
@@ -23,14 +24,14 @@
 		<typeAlias type="shop.HealthJava.vo.CouponVO" alias="coupon" /> <!-- 쿠폰 -->
 		<typeAlias type="shop.HealthJava.vo.ReviewsVO" alias="reviews" /> <!-- 후기 -->
 		<typeAlias type="shop.HealthJava.vo.AddrVO" alias="addr" /> <!-- 배송지 -->
-		
-		<!-- Admin 
-		<typeAlias type="shop.HealthJava.vo.AdminVO" alias="admin" />--> <!-- AdminVO빈클래스 객체 별칭이름 admin로 지정 -->
-		
-		<!--  CS  -->
-		<typeAlias alias="csNotice" type="shop.HealthJava.vo.CSNoticeVO"/>
-		<typeAlias alias="csFAQ" type="shop.HealthJava.vo.CSFAQVO"/>
-		<typeAlias alias="csClient" type="shop.HealthJava.vo.CSClientVO"/>
-		
-	</typeAliases>
-</configuration>
+ 
+ 	<!-- CS --><!-- CS --><!-- CS --><!-- CS --><!-- CS --><!-- CS --><!-- CS --><!-- CS --><!-- CS --><!-- CS --><!-- CS -->
+  	<typeAlias alias="csNotice" type="shop.HealthJava.vo.CSNoticeVO" />
+  	
+  	<typeAlias alias="csFAQ" type="shop.HealthJava.vo.CSFAQVO" />
+  	
+  	<typeAlias alias="csClient" type="shop.HealthJava.vo.CSClientVO" />
+  	
+  	
+  	</typeAliases>
+  </configuration>

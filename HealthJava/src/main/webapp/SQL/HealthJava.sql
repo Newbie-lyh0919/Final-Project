@@ -1,168 +1,92 @@
--- 회원 table 생성 
-CREATE TABLE tbl_member(
-    user_no number(38) PRIMARY KEY -- 회원no(unique)
-    , user_id varchar2(100) unique -- 회원 아이디
-    , user_pwd varchar2(100) -- 회원 비밀번호
-    , user_token varchar2(100) -- null: 일반회원 not null: 카카오회원
-    , user_name varchar2(100) -- 회원 이름
-    , user_birth varchar2(100) -- 회원 생년월일
-    , user_gender varchar2(50) -- 회원 성별
-    , postcode varchar2(100) -- 회원 우편번호
-    , roadAddr varchar2(100) -- 회원 도로명 주소
-    , detailAddr varchar2(100) -- 회원 상세 주소
-    , user_email varchar2(100) -- 회원 이메일
-    , user_phone varchar2(100) -- 회원 휴대폰번호
-    , user_state number(38) default 0 -- 회원 0, 블랙리스트 1, 탈퇴회원 2, 비회원 3
-    , user_grade number(38) default 0 -- 사용자 등급(일반 사용자 0, 관리자 1)
-    , join_date date -- 가입 날짜(sysdate)
-    , del_date date -- 탈퇴 날짜(sysdate)
-    , del_cont varchar2(2000) -- 탈퇴사유
-);
-drop table tbl_member;
-select * from tbl_member;
-
--- 추가 컬럼 : 기본 배송지, 추가 배송지 
-ALTER TABLE tbl_member
-ADD primary_Addr varchar2(100); -- 기본 배송 주소
-ALTER TABLE tbl_member
-ADD additional_Addr varchar2(100); -- 추가 배송 주소
-
--- 배송지 table 
-create table tbl_addr (
-    addr_no NUMBER primary key, -- 주소 no 
-    user_id VARCHAR2(100) , --회원 id
-    postCode varchar2(100) , -- 회원 우편번호
-    roadAddr varchar2(100) ,-- 회원 도로명 주소
-    detailAddr varchar2(100) , -- 회원 상세 주소
-    addr_name varchar2(100) -- 배송지 별명
+-- 상품 후기 table 
+create table reviews (
+    re_no NUMBER PRIMARY KEY , -- 후기 no
+    re_pro_no VARCHAR2(10) , --제품no : F
+    re_mem_id VARCHAR2(100) , -- 회원 아이디 
+    re_title VARCHAR2(100) , -- 리뷰 제목
+    re_content VARCHAR2(4000) ,  --리뷰 내용
+    re_image1 VARCHAR2(4000)  , --사진 등록1
+    re_image2 VARCHAR2(4000)  , -- 사진등록2
+    re_image3 VARCHAR2(4000)  , -- 사진등록3
+    re_star NUMBER(38) , --별점score
+    re_date DATE --등록일
 );
 
--- 삭제 drop table tbl_addr;
-select * from tbl_addr;
-
-create sequence addr_no_seq
+-- 상품 후기 시퀀스
+create sequence re_no_seq
     start with 1
     increment by 1
     nocache;
-    
-select * from tbl_addr;
 
-commit;
-
-
--- 회원 table 시퀀스 생성 
-create sequence user_no_seq
-    start with 1
-    increment by 1
-    nocache;
-    
--- 회원 table 삭제 drop table tbl_member; 
-
--- 시퀀스 삭제 DROP SEQUENCE user_no_seq;   
-
--- 중간 저장 
-commit;
-
--- 더미데이터
-insert into tbl_member values (user_no_seq.nextval, 'test01', '12345678', null, '이소희', '19930309', '여자', '우편01', '경기도 군포시 고산로643번길 9', '1242동 701호', 'lsohee0309@gmail.com', '01098088154', 0, 0, sysdate, null, null); 
-insert into tbl_member values (user_no_seq.nextval, 'test01', '1234', null, '이소희', '19930309', '여자', '우편01', '경기도 군포시 고산로643번길 9', '1242동 701호', 'lsohee0309@gmail.com', '01098088154', 0, 0, sysdate, null, null); 
-
--- 행삭제 DELETE FROM tbl_member;
--- 회원 table 조회 
-select * from tbl_member;
-
--- 상품 table 생성 
-CREATE TABLE tbl_product(
-    product_no   number(38) primary key , -- 상품 글 번호
-    product_title varchar2(100) NOT NULL ,-- 상품 명
-    product_price number(38) NOT NULL , -- 상품 가격
-    product_maker varchar2(100) NOT NULL , -- 제조사
-    product_type varchar2(100) NOT NULL ,-- 분류1
-    product_type2 varchar2(100) NOT NULL ,-- 분류2
-    product_cont1 varchar2(4000) NOT NULL , -- 상품사진
-    product_cont2 varchar2(4000) , -- 상품사진
-    product_cont3 varchar2(4000) , -- 상품사진
-    product_cont4 varchar2(4000) , -- 상품사진
-    product_cont5 varchar2(4000) NOT NULL , -- 상품내용사진
-    product_cont6 varchar2(4000) , -- 상품내용사진
-    product_cont7 varchar2(4000) ,-- 상품내용사진
-    product_cont8 varchar2(4000) ,  -- 상품내용사진
-    product_score number(38) default 0 , -- 상품 평점 ( 리뷰 평균값 가져옴 )
-    product_count number(38) , -- 상품 재고
-    product_date date -- 상품 등록 날짜(sysdate)
-);
-
---상품 table 생성 확인 
-select * from tbl_product;
-
--- 삭제 DROP table tbl_product;
--- 시퀀스 삭제 DROP SEQUENCE product_no_seq;
-
--- 상품 시퀀스 
-create sequence product_no_seq
-    start with 1 --1부터 시작
-    increment by 1 --1씩 증가옵션
-    nocache;
-
---더미데이터
-insert into tbl_product values(product_no_seq.nextval, '상품명01','1000', '제조사01', '분류a','분류aa', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  5, 1, sysdate);
-insert into tbl_product values(product_no_seq.nextval, '상품명02','2000', '제조사02', '분류b','분류b', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  2, 3, sysdate);
-
---상품 조회 
-select * from tbl_product;
+-- 조회 
+select * from reviews;
 
 -- 저장 
 commit;
 
--- 결제 table 생성
-create table tbl_pay (
-    pay_no NUMBER PRIMARY KEY , -- 주문번호 no
-    pay_id VARCHAR2(100) , -- 회원 1, 비회원 2
-    pay_date DATE , -- 주문일자 
-    pay_name VARCHAR2(100) , -- 수령자 
-    pay_phone VARCHAR2(100) ,-- 수령자 연락처 
-    pay_post VARCHAR2(100) , -- 수령자 우편번호 
-    pay_road VARCHAR2(100) , -- 수령자 주소 
-    pay_detail VARCHAR2(100) , -- 수령자 상세주소
-    pay_total NUMBER(38) , -- 총 금액
-    pay_type NUMBER(38) -- 결제 수단 : 1 무통장금액_메일발송안내, 2 카드결제 3. 카카오페이/네이버페이 
+-- 장바구니 table
+create table tbl_cart (
+   cart_no NUMBER PRIMARY KEY , -- 장바구니 no
+   cart_mem_id VARCHAR(100) , -- 회원 아이디 , 비회원 아이디 :랜덤값 
+   cart_pro_id VARCHAR(100) , -- 제품 고유번호 : F상품no
+   cart_cnt  NUMBER(38)  -- 구매 수량
 );
 
---결제 table 생성 확인 
-select * from tbl_pay;
-
--- 삭제 DROP table tbl_pay;
--- 시퀀스 삭제 DROP SEQUENCE pay_no_seq;
-
--- 상품 시퀀스 
-create sequence pay_no_seq
-    start with 1 --1부터 시작
-    increment by 1 --1씩 증가옵션
+-- 장바구니 시퀀스
+create sequence cart_no_seq
+    start with 1
+    increment by 1
     nocache;
 
---상품 조회 
-select * from tbl_pay;
+-- 조회 
+select * from tbl_cart where cart_mem_id = 'solelove';
+
+insert into tbl_cart values(3,'solelove',7,2);
+select * from tbl_member;
+-- 저장 
+commit;
+alter table tbl_cart rename column cart_pro_id to cart_pro_no;
+SELECT c.cart_no, c.cart_mem_id, c.cart_pro_no, c.cart_cnt, p.product_cont1, p.product_title, p.product_price
+FROM tbl_cart c
+JOIN tbl_product p ON c.cart_pro_no = p.product_no 
+where c.cart_mem_id= 'solelove';
+select * from tbl_product;
+
+--  찜 목록 table 
+create table tbl_like (
+    like_no NUMBER PRIMARY KEY , -- 찜 no
+    like_mem_id VARCHAR(100) , -- 회원ID : F
+    like_pro_id VARCHAR(100)  -- 제품 고유번호 : F상풍no
+);
+
+-- 찜목록 시퀀스
+create sequence like_no_seq
+    start with 1
+    increment by 1
+    nocache;
+    
+-- 조회 
+select * from tbl_like;
 
 -- 저장 
 commit;
-
--- 주문내역(주문 목록) table 생성 
+select * from tbl_order;
+drop table tbl_order;
+drop table tbl_order_detail;
 CREATE TABLE tbl_order (
     order_no NUMBER(38) PRIMARY KEY, -- 주문번호
-    order_product_title VARCHAR2(100) REFERENCES tbl_product(product_title), -- 상품명
+    order_product_title VARCHAR2(100), -- 상품명
     order_date DATE, -- 주문 일자
     order_cnt NUMBER, -- 수량
     order_invoice VARCHAR2(100), -- 배송준비 완료시 : 송장번호 10자리 
-    order_total NUMBER(38)  -- 총 금액
+    order_total NUMBER(38),  -- 총 금액
+    user_id VARCHAR2(100) REFERENCES tbl_member(user_id) --회원 아이디
 );
+select *
+from user_constraints
+where table_name = 'tbl_order';
 
 alter table tbl_order add user_id varchar2(100);  -- 회원 아이디 추가
-
---주문내역(주문 목록) table 생성 확인 
-select * from tbl_order;
-
--- 삭제 DROP table tbl_orde;
--- 시퀀스 삭제 DROP SEQUENCE order_no_seq;
 
 -- 주문내역(주문 목록) 시퀀스 
 create sequence order_no_seq
@@ -170,21 +94,36 @@ create sequence order_no_seq
     increment by 1 --1씩 증가옵션
     nocache;
 
--- 송장번호 랜덤값 10자리 (앞의 6자리 sysdate + 뒤의 4자리 랜덤값)
--- INSERT INTO tbl_order (order_no, order_invoice) VALUES (1, TO_CHAR(SYSDATE, 'YYYYMMDD') || LPAD(TRUNC(DBMS_RANDOM.VALUE(1000, 9999)), 4, '0'));
-
---주문내역(주문 목록) 조회 
+--주문내역(주문 목록) table 생성 확인 
 select * from tbl_order;
-
--- 더미데이터
-INSERT INTO tbl_order VALUES (order_no_seq.nextval, '상품 B', SYSDATE, 1, '2345678901', 50, 'test02');
-INSERT INTO tbl_order VALUES (order_no_seq.nextval, '상품 A', SYSDATE, 2, '1234567890', 100, 'test02');
---더미데이터 삭제 DELETE from tbl_order;
 
 -- 저장 
 commit;
 
--- 주문상세내역 수정 table 
+-- 송장번호 랜덤값 10자리 (앞의 6자리 sysdate + 뒤의 4자리 랜덤값)
+-- INSERT INTO tbl_order (order_no, order_invoice) VALUES (1, TO_CHAR(SYSDATE, 'YYYYMMDD') || LPAD(TRUNC(DBMS_RANDOM.VALUE(1000, 9999)), 4, '0'));
+
+-- 더미데이터
+INSERT INTO tbl_order VALUES (order_no_seq.nextval, '상품명01', SYSDATE, 10, '3216549874', 321654, 'test01');
+INSERT INTO tbl_order VALUES (order_no_seq.nextval, '상품명01', SYSDATE, 2, '3216549875', 32241254, 'test01');
+INSERT INTO tbl_order VALUES (order_no_seq.nextval, '상품명02', SYSDATE, 8, '3216549871', 324634654, 'test02');
+INSERT INTO tbl_order VALUES (order_no_seq.nextval, '상품명03', SYSDATE, 5, '3216549872', 6685685, 'test10');
+INSERT INTO tbl_order VALUES (order_no_seq.nextval, '상품명04', SYSDATE, 6, '3216549873', 321654, 'test11');
+INSERT INTO tbl_order VALUES (order_no_seq.nextval, '상품명04', SYSDATE, 6, ' ', 321654, 'test11');
+INSERT INTO tbl_order VALUES (order_no_seq.nextval, '상품명07', SYSDATE, 6, ' ', 321654, 'test11');
+
+
+--주문내역(주문 목록) 조회 
+select * from tbl_order;
+
+-- 저장 
+commit;
+
+-- 저장 
+commit;
+
+-- 주문상세내역 table 
+-- 주문상세내역 재 table 
 create table tbl_order_detail (
     order_detail_no NUMBER PRIMARY KEY , -- 주문 no
     order_no NUMBER(38) REFERENCES tbl_order(order_no)  , -- 주문내역 no
@@ -195,25 +134,18 @@ create table tbl_order_detail (
     order_detail_price VARCHAR2(100) -- 가격
 );
 
---삭제 drop table tbl_order_detail;
-
 -- 조회 
 select * from tbl_order_detail;
+drop table tbl_order_detail;
 
-select * from tbl_order_detail where user_id='test02';
 
--- 더미데이터 
-insert INTO tbl_order_detail values(order_detail_no_seq.nextval, 9, 'test02', 1, '매트01', 1, 1000);
-insert INTO tbl_order_detail values(order_detail_no_seq.nextval, 9, 'test02', 2, '매트02', 2, 2000);
-insert INTO tbl_order_detail values(order_detail_no_seq.nextval, 9, 'test02', 3, '매트03', 2, 3000);
-insert INTO tbl_order_detail values(order_detail_no_seq.nextval, 9, 'test02', 3, '매트03', 2, 3000);
 
--- 저장
-commit;
+SELECT * FROM tbl_order o INNER JOIN tbl_order_detail od ON od.order_no = o.order_no;
 
--- SELECT * FROM tbl_order o INNER JOIN tbl_order_detail od ON od.order_no = o.order_no;
+SELECT *
+FROM tbl_order_detail od
+JOIN tbl_order o ON order_detail_no = order_no;
 
--- SELECT * FROM tbl_order_detail od JOIN tbl_order o ON order_detail_no = order_no;
 
 -- 주문상세내역 시퀀스 생성 
 create sequence order_detail_no_seq
@@ -227,140 +159,27 @@ create sequence order_detail_no_seq
 --중간 저장
 commit;
 
--- 교환, 환불, 반품 table : 신청용
+
+
+-- 교환, 환불 table : 신청용
 create table tbl_refund (
-    refund_no NUMBER PRIMARY KEY, -- 교환, 환불 no
-    order_no NUMBER(38) , -- 주문번호 no : F = 상품no
+    refund_no NUMBER PRIMARY KEY , -- 교환, 환불 no
+    refund_order_no NUMBER PRIMARY KEY , -- 주문번호 no : F상품no
     refund_category VARCHAR2(100) , -- 카테고리 : 1.교환, 2. 환불, 3.기타
     refund_cont VARCHAR2(4000) , -- 사유(내용) 
     refund_image varchar2(1000) , --사진
     refund_state varchar2(100) , -- 상태 : 1대기, 2접수중, 3접수완료 
-    refund_date DATE , -- 등록일자
-    CONSTRAINT fk_refund_order_no FOREIGN KEY (order_no) REFERENCES tbl_order(order_no)
+    refund_date DATE -- 등록일자
 );
 
-
--- 조회 
-select * from tbl_refund;
-
--- 교환, 환불, 반품 시퀀스 생성 
-create sequence orefund_no_seq
-    start with 1
-    increment by 1
-    nocache;
-    
--- table 삭제 drop table tbl_refund;
--- 시퀀스 삭제 DROP SEQUENCE orefund_no_seq;
-
---중간 저장
-commit;
-
---  찜 목록 table 
-create table tbl_like (
-    like_no NUMBER PRIMARY KEY , -- 찜 no
-    like_mem_id VARCHAR2(100) ,  --REFERENCES tbl_member(user_id)  , -- 회원ID : F
-    like_pro_no  NUMBER(38) REFERENCES tbl_product(product_no)  -- 제품 고유번호 : F = 상품no
-);
-
-SELECT l.like_no, p.product_title, p.product_date, p.product_price
-        FROM tbl_like l
-        JOIN tbl_product p ON l.like_pro_no = p.product_no
-        where like_mem_id = 'test02';
-        
-SELECT l.like_no, p.product_title, p.product_date, p.product_price, p.product_cont1
-        FROM tbl_like l
-        JOIN tbl_product p ON l.like_pro_no = p.product_no
-        where like_mem_id = 'test02';
-
-
-insert into tbl_like values (1, 'test02', 1);
-
-commit;
-        
-select * from tbl_product;
--- 회원아이디 갖고 오는 방법 :  SELECT l.like_no, m.user_id, l.product_no FROM tbl_like l JOIN tbl_member m ON l.user_no = m.user_no;
--- 삭제 DROP TABLE tbl_like; 
-
--- 찜목록 시퀀스
-create sequence like_no_seq
-    start with 1
-    increment by 1
-    nocache;
-    
--- 시퀀스 삭제 DROP SEQUENCE like_no_seq;
-
--- 더미데이터 
-INSERT INTO tbl_like VALUES (like_no_seq.nextval, 2, 2);
-select * from tbl_product;
-
--- 조회 
-select * from tbl_like;
-
--- 중간 저장 
-commit;
-
--- 장바구니 table 생성
-CREATE TABLE tbl_cart (
-   cart_no NUMBER PRIMARY KEY , -- 장바구니 no
-   cart_mem_id VARCHAR2(255) REFERENCES tbl_member(user_id) , -- 회원 아이디 , 비회원 아이디
-   cart_pro_no NUMBER(38) REFERENCES tbl_product(product_no)  , -- 제품 고유번호 : F 상품no
-   cart_cnt  NUMBER(38)  -- 구매 수량
-);
--- 조회
-select * from tbl_cart;
--- 삭제 drop table tbl_cart;
-
-select * from tbl_product;
-SELECT d.order_detail_cnt, p.product_title, p.product_price FROM tbl_order_detail d
-		JOIN tbl_product p ON d.order_detail_fno = p.product_no
-		WHERE order_no= 12368304;
--- join 
-SELECT c.cart_no, c.cart_mem_id, c.cart_pro_no, c.cart_cnt, p.product_cont1, p.product_title, p.product_price
-FROM tbl_cart c
-JOIN tbl_product p ON c.cart_pro_no = p.product_no;
-
-SELECT c.cart_no, c.cart_mem_id, c.cart_pro_no, c.cart_cnt, p.product_cont1, p.product_title, p.product_price
-FROM tbl_cart c
-JOIN tbl_product p ON c.cart_pro_no = p.product_no 
-where c.cart_mem_id='test02';
-
--- 조회 
-select * from tbl_cart;
-select * from tbl_member;
-commit;
-
-update tbl_member set user_pwd='12345678' where user_id='admin';
-
--- 삭제 drop table tbl_cart;
--- 회원일 때 조회 SELECT * FROM tbl_cart WHERE cart_mem_id = '회원 아이디';
--- 비회원일 때 조회 SELECT * FROM tbl_cart WHERE cart_mem_id IS NULL;
-
--- 비회원 id (랜덤값) 
--- SELECT DBMS_RANDOM.STRING('A', 5) || DBMS_RANDOM.STRING('N', 5) AS 비회원_ID FROM DUAL;
--- '5' : 생성하고자 하는 랜덤 문자열의 길이, 'A'는 알파벳 대문자, 'N'은 숫자
-
--- 장바구니 시퀀스
-create sequence cart_no_seq
+-- 교환,환불 시퀀스
+create sequence refund_no_seq
     start with 1
     increment by 1
     nocache;
 
--- 시퀀스 삭제 DROP SEQUENCE cart_no_seq;
-
--- 행 전체 삭제 DELETE FROM tbl_cart;
-
---더미데이터 : 회원/비회원
-INSERT INTO tbl_cart VALUES (cart_no_seq.nextval, 'test01', 1, 2);
-INSERT INTO tbl_cart VALUES (cart_no_seq.nextval, SUBSTR(DBMS_RANDOM.STRING('U', 5), 1, 5), 2, 1);
-
-INSERT INTO tbl_cart VALUES (cart_no_seq.nextval, 'test02', 1, 2 , '상품이미지3', '상품명3', 2000);
-INSERT INTO tbl_cart VALUES (cart_no_seq.nextval, 'test02', 2, 1, '상품이미지6', '상품명6', 2000);
-
--- 더미데이터
-update tbl_cart set product_cont1= '상품이미지2', product_title='상품명2', product_price=2000 where cart_no=4;
-
 -- 조회 
-select * from tbl_cart;
+select * from refund;
 
 -- 저장 
 commit;
@@ -370,12 +189,8 @@ create table tbl_coupon (
     coupon_no NUMBER PRIMARY KEY , -- 쿠폰 no
     coupon_name VARCHAR2(100) , --쿠폰명
     coupon_dc NUMBER(38) ,-- 쿠폰
-    coupon_mem_id VARCHAR(100) REFERENCES tbl_member(user_id)  -- 회원 아이디 , 비회원 아이디 :랜덤값  : F
+    coupon_mem_id VARCHAR(100)  -- 회원 아이디 , 비회원 아이디 :랜덤값  : F
 );
-
--- 삭제 DROP table tbl_coupon;
---저장 
-commit;
 
 -- 쿠폰 시퀀스
 create sequence coupon_no_seq
@@ -383,75 +198,149 @@ create sequence coupon_no_seq
     increment by 1
     nocache;
     
--- 시퀀스 삭제 DROP SEQUENCE coupon_no_seq;
-
---조회 
-select * from tbl_coupon;
+-- 조회 
+select * from tbl_member;
 
 -- 저장 
 commit;
-
--- 상품 후기 table 생성
-create table tbl_reviews (
-    re_no NUMBER PRIMARY KEY , -- 후기 no
-    re_pro_no NUMBER(38) REFERENCES tbl_product(product_no) , --제품no : F
-    re_mem_id VARCHAR2(100) REFERENCES tbl_member(user_id) , -- 회원 아이디 
-    re_title VARCHAR2(100) , -- 리뷰 제목
-    re_content VARCHAR2(4000) ,  --리뷰 내용
-    re_image1 VARCHAR2(4000)  , --사진 등록1
-    re_image2 VARCHAR2(4000)  , -- 사진등록2
-    re_image3 VARCHAR2(4000)  , -- 사진등록3
-    re_score NUMBER(1, 0) , -- 별점 (1~5점까지)
-    re_date DATE --등록일
+--drop table tbl_member;
+-- 회원 table 
+CREATE TABLE tbl_member(
+    user_no number(38)  PRIMARY KEY -- 회원 수(unique)
+    , user_id varchar2(100) unique -- 회원 아이디
+    , user_pwd varchar2(100) -- 회원 비밀번호
+    , user_name varchar2(100) -- 회원 이름
+    , user_birth varchar2(100) -- 회원 생년월일
+    , user_gender varchar2(50) -- 회원 성별
+    , postcode varchar2(100) -- 회원 우편번호
+    , roadAddr varchar2(100) -- 회원 도로명 주소
+    , detailAddr varchar2(100) -- 회원 상세 주소
+    , user_email varchar2(100) unique -- 회원 이메일
+    , user_phone varchar2(100) -- 회원 휴대폰번호
+    , user_state number(38) default 0 -- 회원 0, 블랙리스트 1, 탈퇴회원 2, 카카오 회원 3, 비회원 4
+    , join_date date -- 가입 날짜(sysdate)
+    , del_date date -- 탈퇴 날짜(sysdate)
+    , del_cont varchar2(2000) -- 탈퇴사유
+    , mail_key varchar2(100) --메일 인증키
+    , mail_auth number(38) --1 이면 메일인증 0 이면 인증 X
 );
+drop table tbl_member;
 
--- 삭제 drop table tbl_reviews;
+--ALTER TABLE tbl_member
+--ADD CONSTRAINT unique_user_id UNIQUE (user_id);
 
--- 조회 
-select * from tbl_reviews;
--- 상품 조회 
-select * from tbl_product;
--- 더미데이터 
-insert into tbl_reviews values (re_no_seq.nextval, 3, 'test02', '리뷰제목01', '리뷰내용01', '이미지1', '이미지2', '이미지3', 3, sysdate); 
 
--- 상세내역 기준 리뷰: 구매한 상품,상품이미지(p), 결제날짜(o), 
-SELECT
-    p.product_title,
-    p.product_cont1,
-    o.order_date,
-    r.re_mem_id,
-    r.re_title,
-    r.re_content,
-    r.re_image1,
-    r.re_image2,
-    r.re_image3,
-    r.re_score,
-    r.re_date
-FROM
-    tbl_product p
-    LEFT JOIN tbl_order o ON o.order_product_title = p.product_title
-    LEFT JOIN tbl_reviews r ON r.re_pro_no = p.product_no
-    where r.re_mem_id='test02';
-
-SELECT c.cart_no, c.cart_mem_id, c.cart_pro_no, c.cart_cnt,
-       p.product_cont1, p.product_title, p.product_price
-FROM tbl_cart c
-JOIN tbl_product p ON c.cart_pro_no = p.product_no 
-where c.cart_mem_id='test01';
-
---저장 
-commit;
-
--- 쿠폰 시퀀스
-create sequence re_no_seq
+-- 멤버 시퀀스
+create sequence user_no_seq
     start with 1
     increment by 1
     nocache;
 
--- 고객게시판 table
+--더미데이터 관리자계정
+insert into tbl_member values(0, 'admin', '1234','1111', '관리자', '930309', '남자', '12345', '서울시 강남구', '1101호', 'admin@test.com', '010-0000-0000', 0, 1, sysdate, '', '');
+--더미데이터 : 페이징을 위한 데이터
+insert into tbl_member values(1, 'test01',  '1234', '1112', '김민정', '900506', '여자', '161651', '서울시 마포구', '1201호', 'winter@naber.com', '010-1234-5678', 0, 0, sysdate, '', '');
+insert into tbl_member values(2, 'test02',  '1234', '1113', '유지민', '000411', '여자', '171552', '서울시 서대문구', '1302호', 'karina@daum.com', '010-4857-4885', 0, 0, sysdate, '', '');
+insert into tbl_member values(3, 'test03',  '1234', '1114', '지젤', '001030', '여자', '143653', '인천시 동래구', '1421호', 'Giselle@naver.com', '010-9754-1842', 0, 0, sysdate, '', '');
+insert into tbl_member values(4, 'test04',  '1234', '1115', '닝닝', '021023', '여자', '133831', '서울시 강남구', '1531호', 'ningning@gmail.com', '010-4872-1514', 0, 0, sysdate, '', '');
+insert into tbl_member values(5, 'test05',  '1234', '1116', '에스쿱스', '950808', '남자', '348721', '대구시 탄현구', '2231호', 'scoups@gmail.com', '010-9872-8181', 0, 0, sysdate, '', '');
+insert into tbl_member values(6, 'test06',  '1234', '1117', '윤정한', '951004', '남자', '872426', '강원시 춘천', '5342호', 'Jeonghan@daum.com', '010-7851-4981', 0, 0, sysdate, '', '');
+insert into tbl_member values(7, 'test07',  '1234', '1118', '조슈아', '951230', '남자', '817615', '제주시 서귀포구', '6701호', 'Joshua@yahoo.com', '010-7814-7482', 0, 0, sysdate, '', '');
+insert into tbl_member values(8, 'test08',  '1234', '1119', '문준휘', '960610', '남자', '987181', '평양시 김정은구', '4231호', 'jun@naver.com', '010-9142-8744', 0, 0, sysdate, '', '');
+insert into tbl_member values(9, 'test09',  '1234', '1120', '길호시', '960615', '남자', '198756', '베이징 마오쩌둥', '8154호', 'hoshi@yahoo.com', '010-7185-6484', 0, 0, sysdate, '', '');
+insert into tbl_member values(10, 'test10',  '1234', '1121', '감원우', '960717', '남자', '651985', '블라디보스톡 푸틴구', '6814호', 'Wonwoo@hanmail.com', '010-9142-8744', 0, 0, sysdate, '', '');
+insert into tbl_member values(11, 'test11',  '1234', '1122', '진우지', '961122', '남자', '378182', '뉴욕시 맨하탄', '3131호', 'woozi@jjbar.com', '010-8451-1314', 0, 0, sysdate, '', '');
+
+delete from tbl_member where user_no =  7;
+    
+-- 멤버 테이블 조회
+select * from tbl_member;
+
+drop sequence user_no_seq;
+
+-- 저장
+commit;
+
+-- 상품 table
+CREATE TABLE tbl_product(
+    product_no   number(38) primary key , -- 상품 글 번호
+    product_title varchar2(100) NOT NULL ,-- 상품 명
+    product_price varchar2(4000) NOT NULL , -- 상품 가격
+    product_maker varchar2(100) NOT NULL , -- 제조사
+    product_type varchar2(100) NOT NULL ,-- 분류1
+    product_type2 varchar2(100) NOT NULL ,-- 분류2
+    product_cont1 varchar2(4000) NOT NULL , -- 상품사진
+    product_cont2 varchar2(4000) , -- 상품사진
+    product_cont3 varchar2(4000) , -- 상품사진
+    product_cont4 varchar2(4000) , -- 상품사진
+    product_cont5 varchar2(4000) NOT NULL , -- 상품내용사진
+    product_cont6 varchar2(4000) , -- 상품내용사진
+    product_cont7 varchar2(4000) ,-- 상품내용사진
+    product_cont8 varchar2(4000) ,  -- 상품내용사진
+    product_score varchar2(100) , -- 상품 평점 ( 리뷰 평균값 가져옴 )
+    product_count varchar2(1000) , -- 상품 재고
+    product_date date -- 상품 등록 날짜(sysdate)
+);
+ALTER TABLE tbl_product ADD CONSTRAINT uq_product_title UNIQUE (product_title);
+
+insert into tbl_product values(product_no_seq.nextval, '상품명01','1000', '제조사01', '분류a','분류aa', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  '5', '1', sysdate);
+insert into tbl_product values(product_no_seq.nextval, '상품명02','2000', '제조사02', '분류b','분류b', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  '2', '3', sysdate);
+insert into tbl_product values(product_no_seq.nextval, '상품명03','3030', '제조사03', '분류b','분류bb', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  '3', '5', sysdate);
+insert into tbl_product values(product_no_seq.nextval, '상품명04','4200', '제조사04', '분류c','분류cc', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  '4', '51', sysdate);
+insert into tbl_product values(product_no_seq.nextval, '상품명05','5400', '제조사05', '분류d','분류dd', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  '5', '23', sysdate);
+insert into tbl_product values(product_no_seq.nextval, '상품명06','19384', '제조사06', '분류e','분류ee', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  '1', '541', sysdate);
+insert into tbl_product values(product_no_seq.nextval, '상품명07','36497', '제조사07', '분류f','분류ff', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  '2', '231', sysdate);
+insert into tbl_product values(product_no_seq.nextval, '상품명08','12538', '제조사08', '분류g','분류gg', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  '3', '651', sysdate);
+insert into tbl_product values(product_no_seq.nextval, '상품명09','2376', '제조사09', '분류h','분류hh', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  '4', '46', sysdate);
+insert into tbl_product values(product_no_seq.nextval, '상품명10','3586', '제조사10', '분류i','분류ii', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  '2', '13', sysdate);
+insert into tbl_product values(product_no_seq.nextval, '상품명11','3553533', '제조사11', '분류j','분류jj', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '5', '341', sysdate);
+
+commit;
+
+
+
+-- 상품 시퀀스 
+create sequence product_no_seq
+ start with 1 --1부터 시작
+increment by 1 --1씩 증가옵션
+nocache;
+
+--상품 조회 
+select * from tbl_product;
+
+-- 저장 
+commit;
+
+
+
+-- 고객 게시판 테이블
 CREATE TABLE tbl_client (
    client_no number(38) primary key -- 고객 문의 글 번호
     , client_title varchar2(100) NOT NULL -- 고객 문의 글 제목
+    , contact_password varchar2(100) not null
+    , client_cont varchar2(4000) NOT NULL -- 고객 문의 글 내용
+    , client_cont_reply varchar2(4000) default ' ' -- 고객 문의 글 답변 내용
+    , client_category varchar2(50) NOT NULL -- 회원정보, 상품확인, 주문/결제, 배송, 교환/취소/반품, 서비스
+    , client_date date -- 고객 문의 글 작성 날짜(sysdate)
+    , user_id varchar2(100) not null -- 회원아이디(fk)
+    ,CONSTRAINT tbl_client_user_id_fk foreign key(user_id) REFERENCES tbl_member(user_id)
+);
+
+--ALTER TABLE tbl_client
+--ADD contact_password varchar2(100);
+
+insert into tbl_client values(1122, '비번좀', '뭐죠대체?', ' ', '로그인/정보', sysdate, 'test01');
+insert into tbl_client values(3123, '상품이말이죠', '왜이래요?', ' ', '상품', sysdate, 'test02');
+insert into tbl_client values(3232, '이게말이에요', '참나?', ' ', '주문/결제', sysdate, 'test03');
+insert into tbl_client values(3232, '야미야미', '잘오네', ' ', '배송문의', sysdate, 'test04');
+insert into tbl_client values(4232, '호롤롤로', '그대여', ' ', '교환/취소(반품)', sysdate, 'test05');
+insert into tbl_client values(42332, '호롤롤로', '그대여', '답변이다', '교환/취소(반품)', sysdate, 'test05');
+
+
+CREATE TABLE tbl_client_test  (
+   client_no number(38) primary key -- 고객 문의 글 번호
+    , client_title varchar2(100) NOT NULL -- 고객 문의 글 제목
+    , contact_password varchar2(100) not null
     , client_cont varchar2(4000) NOT NULL -- 고객 문의 글 내용
     , client_cont_reply varchar2(4000) default ' ' -- 고객 문의 글 답변 내용
     , client_category varchar2(50) NOT NULL -- 회원정보, 상품확인, 주문/결제, 배송, 교환/취소/반품, 서비스
@@ -459,19 +348,9 @@ CREATE TABLE tbl_client (
     , user_id varchar2(100) not null -- 회원아이디(fk)
 );
 
--- drop table tbl_client;
+commit;
 
-
-select * from tbl_client where user_id = 'test02' order by client_no asc;
-
---조회
-select * from tbl_client;
---where user_id='test02';
-
---저장 
-commit; 
-
--- 더미데이터 삭제 DELETE from tbl_client;
+select * from tbl_client_test;
 
 -- 고객 게시판 시퀀스
 create sequence client_no_seq
@@ -479,36 +358,31 @@ create sequence client_no_seq
     increment by 1
     nocache;
     
--- 시퀀스 삭제 drop sequence client_no_seq;
 
-
--- 고객게시판 답변
-create table tbl_client_reply(
-    client_no number(38) not null
-    ,client_cont_reply varchar2(4000) not null
-    ,CONSTRAINT tbl_client_reply_client_no_fk foreign key(client_no) REFERENCES tbl_client(client_no)
+    
+create table tbl_faq(
+    faq_no number(38) primary key
+    ,faq_category varchar2(100) not null
+    ,faq_title varchar2(1000) not null
+    ,faq_cont varchar2(4000) not null
 );
 
--- 조회 
-select * from tbl_faq;
-
--- 더미데이터 
 insert into tbl_faq values(1, '로그인/정보', '뭐죠대체?', '하놔 시부렝');
 insert into tbl_faq values(2, '상품', '박진영이라니!', '아니 나는 말이야');
 insert into tbl_faq values(3, '주문/결제', '저기요', '어케된거에요');
 insert into tbl_faq values(4, '배송문의', '헤헤헤', '잘왔어염');
 insert into tbl_faq values(5, '교환/취소(반품)', '이거 취소되나여', '미친거같은데;');
 
---저장 
 commit;
 
--- 시퀀스 
 create sequence faq_no_seq
     start with 1
     increment by 1
     nocache;
+    
+select * from tbl_faq;
 
--- 공지사항 table 
+
 create table tbl_notice(
     notice_no number(38) primary key
     , notice_title varchar2(1000) NOT NULL 
@@ -516,45 +390,470 @@ create table tbl_notice(
     , notice_date date
 );
 
--- 조회 
-select * from tbl_notice;
-
--- 더미데이터
 insert into tbl_notice values(11211, '공지사항1', '공지사항 1번에 대한 내용입니다', sysdate);
 insert into tbl_notice values(22232, '공지사항2', '공지사항 2번에 대한 내용입니다', sysdate);
 insert into tbl_notice values(6368, '공지사항3', '공지사항 3번에 대한 내용입니다', sysdate);
 
--- 저장
+
 commit;
 
--- 시퀀스 
+select * from tbl_notice;
+
+select count(notice_no) from tbl_notice;
+
+delete from tbl_notice where notice_no=1;
+
+commit;
+
 create sequence notice_no_seq
     start with 1
     increment by 1
     nocache;
-
--- 저장
- commit;   
- 
- create table tbl_product_qna (
-    qna_no NUMBER PRIMARY KEY , 
-    qna_product_no NUMBER(38) REFERENCES tbl_product(product_no) ,
-    qna_mem_id VARCHAR2(100) REFERENCES tbl_member(user_id) ,
-    qna_title VARCHAR2(100),
-    qna_content VARCHAR2(100),
-    qna_reply VARCHAR2(100),
-   qna_date date
+    
+    
+    create table tbl_product_qna (
+    qna_no NUMBER PRIMARY KEY 
+    , qna_product_no NUMBER(38) REFERENCES tbl_product(product_no) --상품 no
+    , qna_mem_id VARCHAR2(100) REFERENCES tbl_member(user_id) --유저 id
+    , qna_title VARCHAR2(100) --문의 제목
+    , qna_content VARCHAR2(100) --문의 내용
+    , qna_reply VARCHAR2(100)  --답변
+    , qna_date date -- 고객 문의 글 작성 날짜(sysdate)
 );
+    
+insert into tbl_product_qna values(qna_no_seq.nextval, 1,  'test02', '이게머에여', '예?', ' ', sysdate);
 
-select * from tbl_product_qna;
+commit;
 
-update tbl_product_qna set qna_reply='답변' where qna_mem_id='test02' ;
-
--- 시퀀스 
+select *from tbl_product_qna;
+    
 create sequence qna_no_seq
     start with 1
     increment by 1
     nocache;
+    
+--SELECT * FROM USER_TABLES;
+--drop table tbl_like;
+--drop table tbl_order_detail;
+--drop table tbl_notice;
+--drop table tbl_client_reply;
+--drop table tbl_client;
+--drop table tbl_cart;
+--drop table tbl_product_qna;
+--drop table tbl_refund;
+--drop table tbl_reviews;
+--drop table tbl_order;
+--drop table tbl_pay;
+--drop table tbl_product;
+--drop table tbl_addr;
+--drop table tbl_member;
+
+-- 상품 후기 table 
+create table reviews (
+    re_no NUMBER PRIMARY KEY , -- 후기 no
+    re_pro_no VARCHAR2(10) , --제품no : F
+    re_mem_id VARCHAR2(100) , -- 회원 아이디 
+    re_title VARCHAR2(100) , -- 리뷰 제목
+    re_content VARCHAR2(4000) ,  --리뷰 내용
+    re_image1 VARCHAR2(4000)  , --사진 등록1
+    re_image2 VARCHAR2(4000)  , -- 사진등록2
+    re_image3 VARCHAR2(4000)  , -- 사진등록3
+    re_star NUMBER(38) , --별점score
+    re_date DATE --등록일
+);
+
+-- 상품 후기 시퀀스
+create sequence re_no_seq
+    start with 1
+    increment by 1
+    nocache;
+
+-- 조회 
+select * from reviews;
+
+-- 저장 
+commit;
+
+-- 장바구니 table
+create table tbl_cart (
+   cart_no NUMBER PRIMARY KEY , -- 장바구니 no
+   cart_mem_id VARCHAR(100) , -- 회원 아이디 , 비회원 아이디 :랜덤값 
+   cart_pro_id VARCHAR(100) , -- 제품 고유번호 : F상품no
+   cart_cnt  NUMBER(38)  -- 구매 수량
+);
+
+-- 장바구니 시퀀스
+create sequence cart_no_seq
+    start with 1
+    increment by 1
+    nocache;
+
+-- 조회 
+select * from tbl_cart;
+
+-- 저장 
+commit;
+
+--  찜 목록 table 
+create table tbl_like (
+    like_no NUMBER PRIMARY KEY , -- 찜 no
+    like_mem_id VARCHAR(100) , -- 회원ID : F
+    like_pro_id VARCHAR(100)  -- 제품 고유번호 : F상풍no
+);
+
+-- 찜목록 시퀀스
+create sequence like_no_seq
+    start with 1
+    increment by 1
+    nocache;
+    
+-- 조회 
+select * from like;
+
+-- 저장 
+commit;
+
+CREATE TABLE tbl_order (
+    order_no NUMBER(38) PRIMARY KEY, -- 주문번호
+    order_product_title VARCHAR2(100) REFERENCES tbl_product(product_title), -- 상품명
+    order_date DATE, -- 주문 일자
+    order_cnt NUMBER, -- 수량
+    order_invoice VARCHAR2(100), -- 배송준비 완료시 : 송장번호 10자리 
+    order_total NUMBER(38),  -- 총 금액
+    user_id VARCHAR2(100) REFERENCES tbl_member(user_id) --회원 아이디
+);
+
+
+--alter table tbl_order add user_id varchar2(100);  -- 회원 아이디 추가
+
+-- 주문내역(주문 목록) 시퀀스 
+create sequence order_no_seq
+    start with 1 --1부터 시작
+    increment by 1 --1씩 증가옵션
+    nocache;
+
+--주문내역(주문 목록) table 생성 확인 
+select * from tbl_order;
+
+-- 저장 
+commit;
+
+-- 송장번호 랜덤값 10자리 (앞의 6자리 sysdate + 뒤의 4자리 랜덤값)
+-- INSERT INTO tbl_order (order_no, order_invoice) VALUES (1, TO_CHAR(SYSDATE, 'YYYYMMDD') || LPAD(TRUNC(DBMS_RANDOM.VALUE(1000, 9999)), 4, '0'));
+
+-- 더미데이터
+INSERT INTO tbl_order VALUES (order_no_seq.nextval, '상품명01', SYSDATE, 10, '3216549874', 321654, 'test01');
+INSERT INTO tbl_order VALUES (order_no_seq.nextval, '상품명01', SYSDATE, 2, '3216549875', 32241254, 'test01');
+INSERT INTO tbl_order VALUES (order_no_seq.nextval, '상품명02', SYSDATE, 8, '3216549871', 324634654, 'test02');
+INSERT INTO tbl_order VALUES (order_no_seq.nextval, '상품명03', SYSDATE, 5, '3216549872', 6685685, 'test10');
+INSERT INTO tbl_order VALUES (order_no_seq.nextval, '상품명04', SYSDATE, 6, '3216549873', 321654, 'test11');
+INSERT INTO tbl_order VALUES (order_no_seq.nextval, '상품명04', SYSDATE, 6, ' ', 321654, 'test11');
+INSERT INTO tbl_order VALUES (order_no_seq.nextval, '상품명07', SYSDATE, 6, ' ', 321654, 'test11');
+
+
+--주문내역(주문 목록) 조회 
+select * from tbl_order;
+
+-- 저장 
+commit;
+
+-- 저장 
+commit;
+
+-- 주문상세내역 table 
+-- 주문상세내역 재 table 
+create table tbl_order_detail (
+    order_detail_no NUMBER PRIMARY KEY , -- 주문 no
+    order_no NUMBER(38) REFERENCES tbl_order(order_no)  , -- 주문내역 no
+    order_detail_mid VARCHAR2(100) REFERENCES tbl_member(user_id) , --회원 아이디
+    order_detail_fno NUMBER(38)  REFERENCES tbl_product(product_no) , -- 상품번호
+    order_detail_cnt VARCHAR2(100)-- 수량 
+);
+select * from tbl_order_detail where order_no=79423205;
+select * from tbl_like;
+INSERT INTO tbl_order_detail VALUES (order_no_seq.nextval, 7 ,'test01',1,'상품명01' ,'10',321654);
+INSERT INTO tbl_order_detail VALUES (order_no_seq.nextval, 6 ,'test01',2,'상품명02' ,'3',6234634);
+INSERT INTO tbl_order_detail VALUES (order_no_seq.nextval, 9 ,'test02',2,'상품명02' ,'8', 324634654);
+INSERT INTO tbl_order_detail VALUES (order_no_seq.nextval, '상품명01', SYSDATE, 2, '3216549875', 32241254, 'test01');
+INSERT INTO tbl_order_detail VALUES (order_no_seq.nextval, '상품명02', SYSDATE, 8, '3216549871', 324634654, 'test02');
+INSERT INTO tbl_order_detail VALUES (order_no_seq.nextval, '상품명03', SYSDATE, 5, '3216549872', 6685685, 'test10');
+INSERT INTO tbl_order_detail VALUES (order_no_seq.nextval, '상품명04', SYSDATE, 6, '3216549873', 321654, 'test11');
+INSERT INTO tbl_order_detail VALUES (order_no_seq.nextval, '상품명04', SYSDATE, 6, ' ', 321654, 'test11');
+INSERT INTO tbl_order_detail VALUES (order_no_seq.nextval, '상품명07', SYSDATE, 6, ' ', 321654, 'test11');
+
+-- 조회 
+select * from tbl_order_detail;
+drop table tbl_order_detail;
+alter table tbl_cart rename column cart_pro_id to cart_pro_no;
+commit;
+
+
+SELECT * FROM tbl_order o INNER JOIN tbl_order_detail od ON od.order_no = o.order_no;
+
+SELECT *
+FROM tbl_order_detail od
+JOIN tbl_order o ON order_detail_no = order_no;
+
+
+-- 주문상세내역 시퀀스 생성 
+create sequence order_detail_no_seq
+    start with 1
+    increment by 1
+    nocache;
+    
+-- table 삭제 drop table tbl_order_detail;
+-- 시퀀스 삭제 DROP SEQUENCE order_detail_no_seq;
+
+--중간 저장
+commit;
+
+
+
+-- 교환, 환불 table : 신청용
+create table tbl_refund (
+    refund_no NUMBER PRIMARY KEY , -- 교환, 환불 no
+    refund_order_no NUMBER PRIMARY KEY , -- 주문번호 no : F상품no
+    refund_category VARCHAR2(100) , -- 카테고리 : 1.교환, 2. 환불, 3.기타
+    refund_cont VARCHAR2(4000) , -- 사유(내용) 
+    refund_image varchar2(1000) , --사진
+    refund_state varchar2(100) , -- 상태 : 1대기, 2접수중, 3접수완료 
+    refund_date DATE -- 등록일자
+);
+
+-- 교환,환불 시퀀스
+create sequence refund_no_seq
+    start with 1
+    increment by 1
+    nocache;
+
+-- 조회 
+select * from refund;
+
+-- 저장 
+commit;
+
+-- 쿠폰 table 
+create table tbl_coupon (
+    coupon_no NUMBER PRIMARY KEY , -- 쿠폰 no
+    coupon_name VARCHAR2(100) , --쿠폰명
+    coupon_dc NUMBER(38) ,-- 쿠폰
+    coupon_mem_id VARCHAR(100)  -- 회원 아이디 , 비회원 아이디 :랜덤값  : F
+);
+
+-- 쿠폰 시퀀스
+create sequence coupon_no_seq
+    start with 1
+    increment by 1
+    nocache;
+    
+-- 조회 
+select * from coupon;
+
+-- 저장 
+commit;
+
+-- 회원 table 
+CREATE TABLE tbl_member(
+    user_no number(38)  PRIMARY KEY -- 회원 수(unique)
+    , user_id varchar2(100) unique -- 회원 아이디
+    , user_pwd varchar2(100) -- 회원 비밀번호
+    , user_name varchar2(100) -- 회원 이름
+    , user_birth varchar2(100) -- 회원 생년월일
+    , user_gender varchar2(50) -- 회원 성별
+    , postcode varchar2(100) -- 회원 우편번호
+    , roadAddr varchar2(100) -- 회원 도로명 주소
+    , detailAddr varchar2(100) -- 회원 상세 주소
+    , user_email varchar2(100) unique -- 회원 이메일
+    , user_phone varchar2(100) -- 회원 휴대폰번호
+    , user_state number(38) default 0 -- 회원 0, 블랙리스트 1, 탈퇴회원 2, 카카오 회원 3, 비회원 4
+    , join_date date -- 가입 날짜(sysdate)
+    , del_date date -- 탈퇴 날짜(sysdate)
+    , del_cont varchar2(2000) -- 탈퇴사유
+    , mail_key varchar2(100) --메일 인증키
+    , mail_auth number(38) --1 이면 메일인증 0 이면 인증 X
+);
+
+select * from tbl_member;
 
 commit;
--- drop table tbl_product_qna;
+
+-- 멤버 시퀀스
+create sequence user_no_seq
+    start with 1
+    increment by 1
+    nocache;
+
+--더미데이터 관리자계정
+insert into tbl_member values(0, 'admin', '1234', '관리자', '111111', '남자', '11111', '하늘', '천국', 'admin@test.com', '010-0000-0000', 0, sysdate, '', '', '', 1);
+
+delete from tbl_member where user_no =  6;
+
+update tbl_member set mail_key='1hiogf'  where user_no = 0 ;
+    
+-- 멤버 테이블 조회
+select * from tbl_member;
+
+drop sequence user_no_seq;
+
+-- 저장
+commit;
+
+-- 상품 table
+CREATE TABLE tbl_product(
+    product_no   number(38) primary key , -- 상품 글 번호
+    product_title varchar2(100) unique NOT NULL ,-- 상품 명
+    product_price varchar2(4000) NOT NULL , -- 상품 가격
+    product_maker varchar2(100) NOT NULL , -- 제조사
+    product_type varchar2(100) NOT NULL ,-- 분류1
+    product_type2 varchar2(100) NOT NULL ,-- 분류2
+    product_cont1 varchar2(4000) NOT NULL , -- 상품사진
+    product_cont2 varchar2(4000) , -- 상품사진
+    product_cont3 varchar2(4000) , -- 상품사진
+    product_cont4 varchar2(4000) , -- 상품사진
+    product_cont5 varchar2(4000) NOT NULL , -- 상품내용사진
+    product_cont6 varchar2(4000) , -- 상품내용사진
+    product_cont7 varchar2(4000) ,-- 상품내용사진
+    product_cont8 varchar2(4000) ,  -- 상품내용사진
+    product_score varchar2(100) , -- 상품 평점 ( 리뷰 평균값 가져옴 )
+    product_count varchar2(1000) , -- 상품 재고
+    product_date date -- 상품 등록 날짜(sysdate)
+);
+
+ALTER TABLE tbl_product ADD CONSTRAINT uq_product_title UNIQUE (product_title);
+
+insert into tbl_product values(product_no_seq.nextval, '상품명01','1000', '제조사01', '분류a','분류aa', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  '5', '1', sysdate);
+insert into tbl_product values(product_no_seq.nextval, '상품명02','2000', '제조사02', '분류b','분류b', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  '2', '3', sysdate);
+insert into tbl_product values(product_no_seq.nextval, '상품명03','3030', '제조사03', '분류b','분류bb', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  '3', '5', sysdate);
+insert into tbl_product values(product_no_seq.nextval, '상품명04','4200', '제조사04', '분류c','분류cc', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  '4', '51', sysdate);
+insert into tbl_product values(product_no_seq.nextval, '상품명05','5400', '제조사05', '분류d','분류dd', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  '5', '23', sysdate);
+insert into tbl_product values(product_no_seq.nextval, '상품명06','19384', '제조사06', '분류e','분류ee', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  '1', '541', sysdate);
+insert into tbl_product values(product_no_seq.nextval, '상품명07','36497', '제조사07', '분류f','분류ff', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  '2', '231', sysdate);
+insert into tbl_product values(product_no_seq.nextval, '상품명08','12538', '제조사08', '분류g','분류gg', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  '3', '651', sysdate);
+insert into tbl_product values(product_no_seq.nextval, '상품명09','2376', '제조사09', '분류h','분류hh', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  '4', '46', sysdate);
+insert into tbl_product values(product_no_seq.nextval, '상품명10','3586', '제조사10', '분류i','분류ii', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진',  '2', '13', sysdate);
+insert into tbl_product values(product_no_seq.nextval, '상품명11','3553533', '제조사11', '분류j','분류jj', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '사진', '5', '341', sysdate);
+
+commit;
+
+
+
+-- 상품 시퀀스 
+create sequence product_no_seq
+ start with 1 --1부터 시작
+increment by 1 --1씩 증가옵션
+nocache;
+
+--상품 조회 
+select * from tbl_product;
+
+-- 저장 
+commit;
+
+
+
+-- 고객 게시판 테이블
+CREATE TABLE tbl_client (
+   client_no number(38) primary key -- 고객 문의 글 번호
+    , client_title varchar2(100) NOT NULL -- 고객 문의 글 제목
+    , contact_password varchar2(100) not null
+    , client_cont varchar2(4000) NOT NULL -- 고객 문의 글 내용
+    , client_cont_reply varchar2(4000) default ' ' -- 고객 문의 글 답변 내용
+    , client_category varchar2(50) NOT NULL -- 회원정보, 상품확인, 주문/결제, 배송, 교환/취소/반품, 서비스
+    , client_date date -- 고객 문의 글 작성 날짜(sysdate)
+    , user_id varchar2(100) not null -- 회원아이디(fk)
+    ,CONSTRAINT tbl_client_user_id_fk foreign key(user_id) REFERENCES tbl_member(user_id)
+);
+
+
+insert into tbl_client values(1122, '비번좀', '뭐죠대체?', ' ', '로그인/정보', sysdate, 'test01');
+insert into tbl_client values(3123, '상품이말이죠', '왜이래요?', ' ', '상품', sysdate, 'test02');
+insert into tbl_client values(3232, '이게말이에요', '참나?', ' ', '주문/결제', sysdate, 'test03');
+insert into tbl_client values(3232, '야미야미', '잘오네', ' ', '배송문의', sysdate, 'test04');
+insert into tbl_client values(4232, '호롤롤로', '그대여', ' ', '교환/취소(반품)', sysdate, 'test05');
+insert into tbl_client values(42332, '호롤롤로', '그대여', '답변이다', '교환/취소(반품)', sysdate, 'test05');
+
+delete from tbl_client where user_id='test01';
+
+commit;
+
+select * from tbl_client;
+
+-- 고객 게시판 시퀀스
+create sequence client_no_seq
+    start with 1
+    increment by 1
+    nocache;
+    
+
+    
+create table tbl_faq(
+    faq_no number(38) primary key
+    ,faq_category varchar2(100) not null
+    ,faq_title varchar2(1000) not null
+    ,faq_cont varchar2(4000) not null
+);
+
+insert into tbl_faq values(1, '로그인/정보', '뭐죠대체?', '하놔 시부렝');
+insert into tbl_faq values(2, '상품', '박진영이라니!', '아니 나는 말이야');
+insert into tbl_faq values(3, '주문/결제', '저기요', '어케된거에요');
+insert into tbl_faq values(4, '배송문의', '헤헤헤', '잘왔어염');
+insert into tbl_faq values(5, '교환/취소(반품)', '이거 취소되나여', '미친거같은데;');
+
+commit;
+
+create sequence faq_no_seq
+    start with 1
+    increment by 1
+    nocache;
+    
+select * from tbl_faq;
+
+
+create table tbl_notice(
+    notice_no number(38) primary key
+    , notice_title varchar2(1000) NOT NULL 
+    , notice_cont varchar2(4000) NOT NULL
+    , notice_date date
+);
+
+insert into tbl_notice values(11211, '공지사항1', '공지사항 1번에 대한 내용입니다', sysdate);
+insert into tbl_notice values(22232, '공지사항2', '공지사항 2번에 대한 내용입니다', sysdate);
+insert into tbl_notice values(6368, '공지사항3', '공지사항 3번에 대한 내용입니다', sysdate);
+
+
+commit;
+
+select * from tbl_notice;
+
+select count(notice_no) from tbl_notice;
+
+delete from tbl_notice where notice_no=1;
+
+commit;
+
+create sequence notice_no_seq
+    start with 1
+    increment by 1
+    nocache;
+    
+    
+    create table tbl_product_qna (
+    qna_no NUMBER PRIMARY KEY 
+    , qna_product_no NUMBER(38) REFERENCES tbl_product(product_no) --상품 no
+    , qna_mem_id VARCHAR2(100) REFERENCES tbl_member(user_id) --유저 id
+    , qna_title VARCHAR2(100) --문의 제목
+    , qna_content VARCHAR2(100) --문의 내용
+    , qna_reply VARCHAR2(100)  --답변
+    , qna_date date -- 고객 문의 글 작성 날짜(sysdate)
+);
+    
+insert into tbl_product_qna values(qna_no_seq.nextval, 1,  'test02', '이게머에여', '예?', ' ', sysdate);
+
+commit;
+
+select *from tbl_product_qna;
+    
+create sequence qna_no_seq
+    start with 1
+    increment by 1
+    nocache;

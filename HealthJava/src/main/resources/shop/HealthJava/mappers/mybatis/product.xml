@@ -8,7 +8,7 @@
 	
 	
 	
-	 <select id="new" resultType="shop.HealthJava.vo.ProductVO" parameterType="shop.HealthJava.vo.ProductVO">
+	   <select id="new" resultType="shop.HealthJava.vo.ProductVO" parameterType="shop.HealthJava.vo.ProductVO">
     SELECT *
     FROM (
         SELECT rowNum rNum, product_no, product_cont1, product_title, product_price
@@ -87,32 +87,33 @@
 
 	<update id="product_update" >
     	UPDATE tbl_product 
-		SET product_title=#{product_title}, 
-		    product_price=#{product_price}, 
-		    product_maker=#{product_maker}, 
-		    product_type=#{product_type}, 
-		    product_type2=#{product_type2}, 
-		    product_cont1=#{product_cont1}, 
-		    product_cont2=#{product_cont2}, 
-		    product_cont3=#{product_cont3}, 
-		    product_cont4=#{product_cont4}, 
-		    product_cont5=#{product_cont5}, 
-		    product_cont6=#{product_cont6}, 
-		    product_cont7=#{product_cont7}, 
-		    product_cont8=#{product_cont8} 
-		WHERE product_no=#{product_no}
+SET product_title=#{product_title}, 
+    product_price=#{product_price}, 
+    product_maker=#{product_maker}, 
+    product_type=#{product_type}, 
+    product_type2=#{product_type2}, 
+    product_cont1=#{product_cont1}, 
+    product_cont2=#{product_cont2}, 
+    product_cont3=#{product_cont3}, 
+    product_cont4=#{product_cont4}, 
+    product_cont5=#{product_cont5}, 
+    product_cont6=#{product_cont6}, 
+    product_cont7=#{product_cont7}, 
+    product_cont8=#{product_cont8} 
+WHERE product_no=#{product_no}
     </update>
     
-      
     
-    <select id="review_list" resultType="product2" >
+   
+    
+    <select id="review_list" resultType="shop.HealthJava.vo.ProductQnAVO" >
     	select * from tbl_product_qna where qna_product_no =#{product_no}
     </select>
   
     
-    <insert id="qna_insert" parameterType="shop.HealthJava.vo.ProductVO2">
-    	INSERT INTO tbl_product_qna (qna_no, qna_product_no, qna_mem_id, qna_title, qna_content, qna_date) 
-    VALUES (qna_no_seq.nextval, #{qna_product_no}, #{qna_mem_id}, #{qna_title}, #{qna_content}, sysdate)
+    <insert id="qna_insert" parameterType="shop.HealthJava.vo.ProductQnAVO">
+    	INSERT INTO tbl_product_qna (qna_no, qna_product_no, qna_mem_id, qna_title, qna_content) 
+    VALUES (qna_no_seq.nextval, #{qna_product_no}, #{qna_mem_id}, #{qna_title}, #{qna_content})
     </insert>
     
     

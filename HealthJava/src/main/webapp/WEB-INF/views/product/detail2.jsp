@@ -21,7 +21,7 @@
 <style type="text/css">
 
 #gume {
-	    background: #b21949;
+	    background: #FC5400;
 	    color: white;
 	    font-size: 22px;
 	    /* margin-left: 26px; */
@@ -296,7 +296,7 @@ ul,li,body,h1,h2,h3,h4,h5,h6{margin: 0; padding: 0;}
 	.shCMSshop .shopView .viewBody .contentNav li.active{background: #FC5400;}
 	.shCMSshop .shopView .viewBody .contentNav li.active a{
 	    color: white;
-    	background-color: #b21949;
+    	background-color: #FC5400;
 	}
 
 	/*테이블 기본 셋팅*/
@@ -703,7 +703,6 @@ function Click3() {
     <th width="5%" height="26">아이디</th>
     <th width="35%">질문제목</th>
     <th width="45%">질문내용</th>
-       <th width="5%">문의날짜</th>
     <th width="10%">답변상태</th>
   </tr>
   <c:forEach var="a" items="${detail2}">
@@ -711,7 +710,6 @@ function Click3() {
       <td>${a.qna_mem_id}</td>
       <td>${a.qna_title}</td>
       <td>${a.qna_content}</td>
-      <td>${a.qna_date.substring(0,10)}</td>
       <c:if test="${not empty a.qna_reply}">
         <th width="14%"><a href="javascript:void(0);" onclick="toggleReply(this);">답변완료</a></th>
       </c:if>

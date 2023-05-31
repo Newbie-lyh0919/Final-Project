@@ -10,6 +10,7 @@ import shop.HealthJava.vo.ProductQnAVO;
 
 public interface ProductDAO {
 	
+	
 
 	ProductVO getProductContent(int product_no);
 

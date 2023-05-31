@@ -370,6 +370,8 @@ public class MypageController {
 		public ModelAndView addr_add(AddrVO avo, HttpSession session, HttpServletRequest request,HttpServletResponse response) {
 			response.setContentType("text/html;charset=UTF-8");
 			
+			 
+			 
 			ModelAndView wm = new ModelAndView("mypage/addr_add");// 생성자 인자값으로 뷰페이지 경로 설정=>/WEB-INF/
 			return wm;
 		}
@@ -378,6 +380,10 @@ public class MypageController {
 	@RequestMapping("/addr_ok")
 	public ModelAndView addr_ok(AddrVO av ,HttpSession session,HttpServletRequest request, HttpServletResponse response ) throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
+		
+		 String user_id = (String) session.getAttribute("session_id");
+		  av.setUser_id(user_id);
+		  
 		
 		this.myPageService.insertAddr(av); //배송지 추가
 		//ModelAndView wm = new ModelAndView("mypage/addAddressPopup"); //생성자 인자값으로 뷰페이지 경로 설정=>/WEB-INF/

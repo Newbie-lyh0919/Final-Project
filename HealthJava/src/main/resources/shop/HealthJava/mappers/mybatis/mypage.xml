@@ -7,12 +7,12 @@
 <mapper namespace="Mypage">
 
 	<!-- // 주문 내역 list -->
-	<select id="orderList" resultType="order">
+	<select id="order_list" resultType="order">
 	select * from tbl_order where user_id = #{user_id} order by order_date
 	</select>
 
 	<!-- // 총 주문 건수 -->
-	<select id="orderCount" resultType="int">
+	<select id="order_count" resultType="int">
 		select count(order_no) from tbl_order where user_id=#{user_id}
 	</select>
 	
@@ -129,7 +129,6 @@
 		    r.re_image1,
 		    r.re_image2,
 		    r.re_image3,
-		    r.re_score,
 		    r.re_date
 		FROM
 		    tbl_product p

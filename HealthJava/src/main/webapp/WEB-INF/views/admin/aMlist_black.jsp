@@ -387,9 +387,11 @@
 			<a href="admin_main"><img width="150px" height="190px" align="left" alt="adminImage" src="<%=request.getContextPath()%>/images/admin.png"> </a>
 
 				<div class="meau" align="right" style="color: white;">
-					<a href="admin_member">회원 관리</a> | 
+					<a href="admin_main">회원 관리</a> | 
 					<a href="admin_CSBoard">문의 게시판</a> | 
-					<a href="admin_GsList">상품 목록</a> 
+					<a href="admin_GsList">상품 목록</a> | 
+					<a href="admin_GsQNAList">상품 QNA</a> | 
+					<a href="admin_OrderList">주문내역</a>  
 				 </div>
 				 
 				<h3 class="myinfo" align="left"><b>관리자 계정</b> <br>
@@ -505,7 +507,7 @@
 				</table><br><br>
 				<input id="btn" type="submit" value="수정" onclick="black_check();" />
 				&nbsp;					
-				<input id="btn" type="button" value="목록보기" onclick="location.href ='admin_member';" />
+				<input id="btn" type="button" value="목록보기" onclick="location.href ='admin_main';" />
 					
 				</form> 
 					<br><p>
@@ -519,7 +521,7 @@
 							if(answer == true){
 								alert("회원 유형 수정이 완료되었습니다.");
 								editForm.submit();
-								location.href='admin_member';
+								location.href='admin_main';
 								return true;
 							} else if (answer == false){
 								return false;

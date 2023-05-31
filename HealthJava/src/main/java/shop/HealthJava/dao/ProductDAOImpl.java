@@ -50,7 +50,8 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public List<ProductQnAVO> getReviewList(int product_no) {
 		return this.sqlSession.selectList("review_list",product_no);
-		//selectList()메서드는 복수개의 레코드를 검색해서 컬렉션 List로 반환한다. select 아이디명 board_li		
+		//selectList()메서드는 복수개의 레코드를 검색해서 컬렉션 List로
+		//반환한다. select 아이디명 board_li		
 	}//게시판 목록
 
 	@Override

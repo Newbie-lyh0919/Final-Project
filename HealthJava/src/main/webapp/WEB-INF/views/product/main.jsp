@@ -10,7 +10,7 @@
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script> <%-- CDN 절대링크 --%>
 <script src="<%=request.getContextPath()%>/js/orderInfo.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> <%-- CDN 절대링크 --%>
-<title>HealthJava Main</title>
+<title>PuppyHome 사료</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico" type="image/x-icon"> <%-- 파비콘 --%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/include/css/header.css"> <%-- header.css --%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/include/css/footer.css"> <%-- footer.css --%>
@@ -1057,8 +1057,8 @@ input#checkIcon {
 	</script>
 	
 	<script src="../../js/main.js"></script>
-	<script src="../../js/like_cart.js"></script>
-	<script src="../../js/qna.js"></script>
+	
+	
 	
 </body>
 </html>

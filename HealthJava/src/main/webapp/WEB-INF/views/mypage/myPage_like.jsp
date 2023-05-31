@@ -799,6 +799,7 @@
 								<table>
 										<tr height="40px;" style="border-bottom: 2px solid #e7e7e7;">
 											<th width="85px;">No</th>
+											<th width="100px;"></th>
 											<th width="500px;">제품명</th>
 											<th width="200px;">금액</th>
 											<th width="300px;">비고</th>
@@ -809,7 +810,10 @@
 											<td>${l.like_no}</td>
 											<td class="product-image">
 												<img src="/upload${l.product_cont1 }" alt="상품 이미지" class="product_frame"> 
-												<a href="product/detail/${l.product_no }">${l.product_title}</a>
+												
+											</td>
+											<td>
+											<a href="product/detail/${l.product_no }">${l.product_title}</a>
 											</td>
 											<td class="product_details"><span id="productTitle"><strong style="font-size: 20px;">${l.product_price} 원</strong></span></td>
 
