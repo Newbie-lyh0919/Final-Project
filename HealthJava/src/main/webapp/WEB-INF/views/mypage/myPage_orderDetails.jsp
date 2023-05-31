@@ -441,11 +441,11 @@
 				<nav>
 					<ul>
 						<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"><a href="myPage_Main" style="text-decoration: none; color: black;">나의 쇼핑</a></li>
-						<li><a href="myPage_orderCancel" class="liList">주문ㆍ배송</a></li>
+						<li><a href="myPage_order" class="liList">주문ㆍ배송</a></li>
 						<li><a href="myPage_orderDetails" class="liList" style="color: #B21948;">교환/반품/환불</a></li>
 						<li><a href="myPage_like" class="liList">찜 목록</a></li>
-						<li><a href="myPage_basket" class="liList">장바구니</a></li>
-						<li style="margin-bottom: 30px;"><a href="myPage_inquiry" class="liList">문의 내역</a></li>
+						<li><a href="myPage_cart" class="liList">장바구니</a></li>
+						<li><a href="myPage_review" class="liList">나의 상품후기</a></li>
 
 						<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
 						<li><a href="myPage_updateInfo" class="liList">회원정보 변경</a></li>
@@ -453,8 +453,7 @@
 						<li><a href="myPage_user_Withdrawal" class="liList">회원탈퇴</a></li>
 						<li style="margin-bottom: 30px;"><a href="myPage_updateAddress" class="liList">배송지 관리</a></li>
 						
-						<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 상품후기</li>
-						<li><a href="myPage_review" class="liList">나의 상품후기</a></li>
+						<!-- <li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 상품후기</li> -->
 					</ul>
 				</nav>
 			</aside>
@@ -467,7 +466,6 @@
 		<section class="notice">
 			<div class="page-title">
 				<b style="text-align: left; font-size: 20px;">주문 상세내역</b>
-			<b class="indent" style="font-size: 15px;">주문일자 : 2020.20.20</b><br>
 			</div>
 		<!-- board list area -->
 		<div id="board-list">
@@ -476,36 +474,40 @@
 					<thead>
 						<tr>
 							<th scope="col" class="th-title">제품명</th>
-							<th scope="col" class="th-price">개당 가격</th>
+							<th scope="col" class="th-price">판매가</th>
 							<th scope="col" class="th-date">주문 수량</th>
 							<th scope="col" class="th-total">합계</th>
 							<th scope="col" class="th-etc">비고</th>
 						</tr>
 					</thead>
 					<tbody>
-					<%-- <c:if test="${!empty list }" > --%>
+					<c:if test="${!empty orderDetailList }">
+					<c:forEach var="od" items="${orderDetailList }">
+						<input type="hidden" name="order_no" id="order_no" value="${od.order_detail_no}" />
 						<tr>
-							<th><a href="#" class="orderList">소고기맛 개껌입니다</a></th>
-							<td><div class="price">10,000원</div></td>
+							<th><a href="#" class="orderList">${od.order_detail_pname }</a></th>
+							<td><div class="price" name="order_total">${od.order_detail_price }</div></td>
 							<td><div class="quantity">
-								<input type="number" value="1" min="1" class="quantity-field">
+								${od.order_detail_cnt }
 								</div>
 							</td>
-							<td><div class="subtotal" id="sum">10000 원</div></td>
+							<td><div class="subtotal" id="sum">${od.order_detail_cnt * od.order_detail_price }</div></td>
 							<td>
 								<input id="btn" type="button" onclick="" value="교환">&nbsp;
 								<input id="btn" type="button" onclick="" value="반품">&nbsp;
 								<input id="btn" type="button" onclick="" value="환불">
 							</td>
 						</tr>
-						<script>
+					</c:forEach>
+					</c:if>
+						<!-- <script>
 						window.onload = function() {
 							  // 주문 수량이 변경될 때마다 합계 금액을 업데이트.
 							  var quantityField = document.querySelector(".quantity-field");
 							  var subtotalElement = document.getElementById("sum");
 							  var totalPriceElement = document.getElementById("totalPrice");
 							  
-							  var price = 10000; // 개당 가격 설정
+							  var price = 1000; // 개당 가격 설정
 
 							  quantityField.addEventListener("change", function() {
 							    var quantity = parseInt(quantityField.value);
@@ -530,23 +532,24 @@
 							  }
 							};
 
-						</script>
-					<%-- </c:if> --%>
-					
-					<%-- <c:if test="${empty list }">
+						</script> -->
+							
+					<c:if test="${empty orderDetailList }">
 						<tr>
 							<th colspan="5" class="nonList">현재 주문한 제품이 없습니다.</th>
 						</tr>
-					</c:if> --%>
+					</c:if> 
 					</tbody>
 				</table>	
 				<br>
 				
 				<div align="right" style="margin-right: 50px;">
-					<div class="totalPrice" style="font-size: 20px;"><b>총액 : <span id="totalPrice">0</span>원</div></b>
+					<div class="totalPrice" style="font-size: 20px;">
+						<b>총액 : &nbsp;<span id="totalPrice">${totalPrice }</span>원</b>
+					</div>
 				</div>
 				<br><br>
-				<input type="button" id="updateBtn" onclick="location.href='myPage_orderCancel'" value="주문내역 목록">
+				<input type="button" id="updateBtn" onclick="location.href='myPage_order'" value="주문내역 목록">
 			</div>
 		</div>
 		

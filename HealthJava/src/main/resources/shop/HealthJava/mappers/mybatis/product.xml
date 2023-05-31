@@ -106,12 +106,12 @@ WHERE product_no=#{product_no}
     
    
     
-    <select id="review_list" resultType="product2" >
+    <select id="review_list" resultType="shop.HealthJava.vo.ProductQnAVO" >
     	select * from tbl_product_qna where qna_product_no =#{product_no}
     </select>
   
     
-    <insert id="qna_insert" parameterType="shop.HealthJava.vo.ProductVO2">
+    <insert id="qna_insert" parameterType="shop.HealthJava.vo.ProductQnAVO">
     	INSERT INTO tbl_product_qna (qna_no, qna_product_no, qna_mem_id, qna_title, qna_content) 
     VALUES (qna_no_seq.nextval, #{qna_product_no}, #{qna_mem_id}, #{qna_title}, #{qna_content})
     </insert>

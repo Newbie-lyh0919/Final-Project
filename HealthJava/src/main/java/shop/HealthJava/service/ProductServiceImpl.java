@@ -10,7 +10,7 @@ import shop.HealthJava.vo.CartVO;
 import shop.HealthJava.vo.LikeVO;
 import shop.HealthJava.vo.OrderDetailVO;
 import shop.HealthJava.vo.ProductVO;
-import shop.HealthJava.vo.ProductVO2;
+import shop.HealthJava.vo.ProductQnAVO;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -47,13 +47,13 @@ public class ProductServiceImpl implements ProductService {
 
 
 	@Override
-	public List<ProductVO2> getReviewList(int product_no) {
+	public List<ProductQnAVO> getReviewList(int product_no) {
 		// TODO Auto-generated method stub
 		return this.productDao.getReviewList(product_no);
 	}
 
 	@Override
-	public void insertQna(ProductVO2 f) {
+	public void insertQna(ProductQnAVO f) {
 		// TODO Auto-generated method stub
 		this.productDao.insertQna(f);
 	}

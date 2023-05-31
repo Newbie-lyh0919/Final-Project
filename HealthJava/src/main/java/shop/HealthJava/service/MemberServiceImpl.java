@@ -59,7 +59,7 @@ public class MemberServiceImpl implements MemberService {
 						"<br>HealthJava에 오신것을 환영합니다!" +
 						"<br>아래 [이메일 인증 확인]을 눌러주세요." +
 						"<br><a href='http://localhost:8282/registerEmail?user_email=" + member.getUser_email() +
-						//"&mail_key=" + member.getMail_key() +
+						"&mail_key=" + member.getMail_key() +
 						"&mail_auth=" + 1 +
 				"' target='_blank'>이메일 인증 확인</a>");
 		try {

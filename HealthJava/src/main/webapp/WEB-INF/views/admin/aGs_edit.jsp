@@ -149,11 +149,13 @@ section {
 						 <img width="150px" height="190px" align="left" alt="adminImage" src="<%=request.getContextPath() %>/images/admin.png">
 						 </a>
 						 
-						<div class="meau" align="right" style="color: white;">
+				<div class="meau" align="right" style="color: white;">
 					<a href="admin_main">회원 관리</a> | 
 					<a href="admin_CSBoard">문의 게시판</a> | 
-					<a href="admin_GsList">상품 목록</a> 
-						 </div>
+					<a href="admin_GsList">상품 목록</a> | 
+					<a href="admin_GsQNAList">상품 QNA</a> | 
+					<a href="admin_OrderList">주문내역</a>  
+				 </div>
 						 
 						  <h3 class="myinfo" align="left"><b>관리자 계정</b> <br></h3>
 						  </div> <%-- end profile_img --%>

@@ -740,7 +740,6 @@
 					<div class="listTitleBox">
 						<span id="listTitle">찜 목록</span>
 					</div>
-					<%-- <div class="">총 개수 : ${ }개</div> --%>
 					<div class="basketcontentBox">
 						<div class="basket">
 							<div class="basket-labels">

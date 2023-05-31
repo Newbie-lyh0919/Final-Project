@@ -267,9 +267,8 @@
 	
 	.aside_right {
 		float: right;
-		position: fixed;
+		position: relative;
 		width: 30%;
-		padding-left: 830px;
 	}
 	
 	.summary {
@@ -587,41 +586,113 @@
 						</ul>
 					</nav>
 				</aside>
-				
-				<%-- 장바구니 --%>
-			<div class="wishBox">
-				<div class="listTitleBox">
-					<span id="listTitle">장바구니</span>
-				</div>
-				<div class="basketcontentBox">
-					<div class="basket">
-						<div class="basket-labels">
-							<ul>
-								<li class="item item-heading">상품명</li>
-								<li class="price">판매가</li>
-								<li class="quantity">수량</li>
-								<li class="subtotal">합계 금액</li>
-							</ul>
-						</div>
-						<div class="basket-product">
-							<div class="item">
-								<div class="product-image">
-									<img src="https://img-cf.kurly.com/cdn-cgi/image/width=676,format=auto/shop/data/goods/1637924624422l0.jpeg" alt="상품 이미지" class="product-frame">
+				<%-- 본문 영역(ui깨질시 본인이 ui 수정바람..) --%>
+				<div class="wishBox">
+					<div class="listTitleBox">
+						<span id="listTitle">장바구니</span>
+					</div>
+					<div class="basketcontentBox">
+						<div class="basket">
+							<div class="basket-labels">
+								<ul>
+									<li class="item item-heading">상품명</li>
+									<li class="price">판매가</li>
+									<li class="quantity">수량</li>
+									<li class="subtotal">합계 금액</li>
+								</ul>
+							</div>
+							<div class="basket-product">
+								<div class="item">
+									<div class="product-image">
+										<img src="https://img-cf.kurly.com/cdn-cgi/image/width=676,format=auto/shop/data/goods/1637924624422l0.jpeg" alt="상품 이미지" class="product-frame">
+									</div>
+									<div class="product-details">
+										<span id="productTitle"><strong>청송 사과 1.5kg(5~7입)</strong></span>
+									</div>
 								</div>
-								<div class="product-details">
-									<span id="productTitle"><strong>청송 사과 1.5kg(5~7입)</strong></span>
+								<div class="price">8900원</div>
+								<div class="quantity">
+									<input type="number" value="1" min="1" class="quantity-field">
+								</div>
+								<div class="subtotal">8900</div>
+								<div class="remove">
+									<button>삭제하기</button>
 								</div>
 							</div>
-							<div class="price">8,900원</div>
-							<div class="quantity">
-								<input type="number" value="1" min="1" class="quantity-field">
+							<div class="basket-product">
+								<div class="item">
+									<div class="product-image">
+										<img src="https://img-cf.kurly.com/cdn-cgi/image/width=676,format=auto/shop/data/goods/1657692098340l0.jpg" alt="상품 이미지2" class="product-frame">
+									</div>
+									<div class="product-details">
+										<span id="productTitle"><strong>[다향오리] 훈제오리 슬라이스 150g X 3개입</strong></span>
+									</div>
+								</div>
+								<div class="price">9900원</div>
+								<div class="quantity">
+									<input type="number" value="1" min="1" class="quantity-field">
+								</div>
+								<div class="subtotal">9900</div>
+								<div class="remove">
+									<button>삭제하기</button>
+								</div>
 							</div>
-							<div class="subtotal" id="sum">8,900원</div>
-							<div class="remove">
-								<button>삭제하기</button>
+							<div class="basket-product">
+								<div class="item">
+									<div class="product-image">
+										<img src="https://img-cf.kurly.com/cdn-cgi/image/width=676,format=auto/shop/data/goods/1637924624422l0.jpeg" alt="상품 이미지" class="product-frame">
+									</div>
+									<div class="product-details">
+										<span id="productTitle"><strong>청송 사과 1.5kg(5~7입)</strong></span>
+									</div>
+								</div>
+								<div class="price">8900원</div>
+								<div class="quantity">
+									<input type="number" value="1" min="1" class="quantity-field">
+								</div>
+								<div class="subtotal">8900</div>
+								<div class="remove">
+									<button>삭제하기</button>
+								</div>
+							</div>
+							<div class="basket-product">
+								<div class="item">
+									<div class="product-image">
+										<img src="https://img-cf.kurly.com/cdn-cgi/image/width=676,format=auto/shop/data/goods/1657692098340l0.jpg" alt="상품 이미지2" class="product-frame">
+									</div>
+									<div class="product-details">
+										<span id="productTitle"><strong>[다향오리] 훈제오리 슬라이스 150g X 3개입</strong></span>
+									</div>
+								</div>
+								<div class="price">9900원</div>
+								<div class="quantity">
+									<input type="number" value="1" min="1" class="quantity-field">
+								</div>
+								<div class="subtotal">9900</div>
+								<div class="remove">
+									<button>삭제하기</button>
+								</div>
+							</div>
+							<div class="basket-product">
+								<div class="item">
+									<div class="product-image">
+										<img src="https://img-cf.kurly.com/cdn-cgi/image/width=676,format=auto/shop/data/goods/1637924624422l0.jpeg" alt="상품 이미지" class="product-frame">
+									</div>
+									<div class="product-details">
+										<span id="productTitle"><strong>청송 사과 1.5kg(5~7입)</strong></span>
+									</div>
+								</div>
+								<div class="price">8900원</div>
+								<div class="quantity">
+									<input type="number" value="1" min="1" class="quantity-field">
+								</div>
+								<div class="subtotal" id="sum">8900</div>
+								<div class="remove">
+									<button>삭제하기</button>
+								</div>
 							</div>
 						</div>
-							
+					</div>
 					<!-- 결제 창 -->
 					<aside class="aside_right">
 						<div class="summary">
@@ -650,6 +721,7 @@
 							</div>
 						</div>
 					</aside>
+				</div>
 				
 				<%-- 페이징 처리 --%>
 				<div id="pagination">
@@ -659,7 +731,7 @@
 	                  PREV&nbsp;
 	                 </c:if>
 	                 <c:if test="${page>1}">
-	                  <a href="myPage_like?page=${page-1}">PREV</a>&nbsp;
+	                  <a href="like?page=${page-1}">PREV</a>&nbsp;
 	                 </c:if>
 	                 
 	                 <%--현재 쪽번호 출력 --%>
@@ -668,7 +740,7 @@
 	                      [&nbsp;${a}&nbsp;]
 	                   </c:if>
 	                   <c:if test="${a != page}"> <%--현재 쪽번호가 선택 안 된 경우--%>
-	                    <a href="myPage_like?page=${a}">[&nbsp;${a}&nbsp;]</a>&nbsp;
+	                    <a href="like?page=${a}">[&nbsp;${a}&nbsp;]</a>&nbsp;
 	                   </c:if>
 	                 </c:forEach>
 	                   
@@ -677,10 +749,9 @@
 	                  &nbsp;NEXT
 	                </c:if>
 	                <c:if test="${page < maxpage}">
-	                 <a href="myPage_like?page=${page+1}">NEXT</a>
+	                 <a href="like?page=${page+1}">NEXT</a>
 	                </c:if>
 	               </c:if>
-	               
 	               <!-- 검색 칸 공백 시 페이징 사라지지 않게 -->
 				    <%--검색 전 페이징 --%>
 				    <c:if test="${(empty find_field) && (empty find_name)}"> <%--검색필드와 검색어가 없는 경우 --%>
@@ -688,7 +759,7 @@
 				      PREV&nbsp;
 				     </c:if>
 				     <c:if test="${page>1}">
-				      <a href="myPage_like?page=${page-1}">PREV</a>&nbsp;
+				      <a href="like?page=${page-1}">PREV</a>&nbsp;
 				     </c:if>
 				     
 				     <%--현재 쪽번호 출력 --%>
@@ -697,7 +768,7 @@
 				       	[&nbsp;${a}&nbsp;]
 				       </c:if>
 				       <c:if test="${a != page}"> <%--현재 쪽번호가 선택 안 된 경우--%>
-				        <a href="myPage_like?page=${a}">[&nbsp;${a}&nbsp;]</a>&nbsp;
+				        <a href="like?page=${a}">[&nbsp;${a}&nbsp;]</a>&nbsp;
 				       </c:if>
 				     </c:forEach>
 				       
@@ -706,19 +777,19 @@
 				      &nbsp;NEXT
 				    </c:if>
 				    <c:if test="${page < maxpage}">
-				     <a href="myPage_like?page=${page+1}">NEXT</a>
+				     <a href="like?page=${page+1}">NEXT</a>
 				    </c:if>
 				   </c:if>
 				    
-				    <%-- <%--검색이후 페이징(쪽나누기) --%>
-				    <c:if test="${(!empty find_field) && (!empty find_name)}"> 검색필드와 검색어가 있는 경우
+				    <%--검색이후 페이징(쪽나누기) --%>
+				    <c:if test="${(!empty find_field) && (!empty find_name)}"> <%--검색필드와 검색어가 있는 경우 --%>
 				     <c:if test="${page <= 1}">
 				      PREV&nbsp;
 				     </c:if>
 				     <c:if test="${page>1}">
-				      <a href="myPage_like?page=${page-1}&find_field=${find_field}&find_name=${find_name}">PREV</a>&nbsp;
-				      &(엠퍼센트) 구분기호로 구분하면서 find_field=검색필드&find_name= 검색어를 get방식으로 전달해야 검색 이후 페이징 목록을 유지한다.그렇지 않으면 검색전 전체 페이징 목록으로 이동해서 검색 효과가 사라진다.
-				     </c:if> --%>
+				      <a href="like?page=${page-1}&find_field=${find_field}&find_name=${find_name}">PREV</a>&nbsp;
+				      <%-- &(엠퍼센트) 구분기호로 구분하면서 find_field=검색필드&find_name= 검색어를 get방식으로 전달해야 검색 이후 페이징 목록을 유지한다.그렇지 않으면 검색전 전체 페이징 목록으로 이동해서 검색 효과가 사라진다. --%>
+				     </c:if>
 				     
 				     <%--현재 쪽번호 출력 --%>
 				     <c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
@@ -726,7 +797,7 @@
 				        [&nbsp;${a}&nbsp;]
 				       </c:if>
 				       <c:if test="${a != page}"> <%--현재 쪽번호가 선택 안 된 경우--%>
-				        <a href="myPage_like?page=${a}&find_field=${find_field}&find_name=${find_name}">[&nbsp;${a}&nbsp;]</a>&nbsp;
+				        <a href="like?page=${a}&find_field=${find_field}&find_name=${find_name}">[&nbsp;${a}&nbsp;]</a>&nbsp;
 				       </c:if>
 				     </c:forEach>      
 				    
@@ -734,11 +805,10 @@
 				      &nbsp;NEXT
 				    </c:if>
 				    <c:if test="${page < maxpage}">
-				     <a href="myPage_like?page=${page+1}&find_field=${find_field}&find_name=${find_name}">NEXT</a>
+				     <a href="like?page=${page+1}&find_field=${find_field}&find_name=${find_name}">NEXT</a>
 				    </c:if>
 				   </c:if> 
 				   </div> <%-- end 페이징처리 --%>
-				</div>
 				</div>			
 			<%-- top버튼 삭제 X --%>
 			<div id="topBtn">
@@ -774,142 +844,162 @@
 		});
 		
 		<%-- 장바구니 부분 --%>
-		/* 장바구니 분 */
+		/* Set values + misc */
 		var promoCode;
 		var promoPrice;
 		var fadeTime = 300;
 
+		/* Assign actions */
 		$('.quantity input').change(function() {
-		  updateQuantity(this);
+			updateQuantity(this);
 		});
 
 		$('.remove button').click(function() {
-		  removeItem(this);
+			removeItem(this);
 		});
 
 		$(document).ready(function() {
-		  updateSumItems();
+			updateSumItems();
 		});
 
 		$(document).ready(function() {
-		  readyPrice();
+			readyPrice();
 		});
 
-		/* $('.promo-code-cta').click(function() {
-		  promoCode = $('#promo-code').val();
-		  if (promoCode == '10off' || promoCode == '10OFF') {
-		    //promoPrice에 값이 없으면 10OFF 프로모션 코드에 대해 10으로 설정합니다.
-		    if (!promoPrice) {
-		      promoPrice = 10;
-		    } else if (promoCode) {
-		      promoPrice = promoPrice * 1;
-		    }
-		  } else if (promoCode != '') {
-		    alert("Invalid Promo Code");
-		    promoPrice = 0;
-		  }
-		  //설정된 promoPrice가 있는 경우 프로모션 표시(유효한 promoCode 입력이 있음을 의미)
-		  if (promoPrice) {
-		    $('.summary-promo').removeClass('hide');
-		    $('.promo-value').text(new Intl.NumberFormat("ko-KR", { currency: "KRW", currencyDisplay: "symbol" }).format(promoPrice));
-		    recalculateCart(true);
-		  }
-		}); */
+		$('.promo-code-cta').click(function() {
+
+			promoCode = $('#promo-code').val();
+
+			if (promoCode == '10off' || promoCode == '10OFF') {
+				//If promoPrice has no value, set it as 10 for the 10OFF promocode
+				if (!promoPrice) {
+					promoPrice = 10;
+				} else if (promoCode) {
+					promoPrice = promoPrice * 1;
+				}
+			} else if (promoCode != '') {
+				alert("Invalid Promo Code");
+				promoPrice = 0;
+			}
+			//If there is a promoPrice that has been set (it means there is a valid promoCode input) show promo
+			if (promoPrice) {
+				$('.summary-promo').removeClass('hide');
+				$('.promo-value').text(promoPrice.toFixed(0) + "원");
+				recalculateCart(true);
+			}
+		});
 
 		/* 합계  */
 		function recalculateCart(onlyTotal) {
-		  var subtotal = 0;
+			var subtotal = 0;
 
-		  /* Sum up row totals */
-		  $('.basket-product').each(function() {
-		    subtotal += parseFloat($(this).children('.subtotal').text().replace("원", "").replace(",", ""));
-		  });
+			/* Sum up row totals */
+			$('.basket-product').each(function() {
+				subtotal += parseFloat($(this).children('.subtotal').text());
+			});
 
-		  /* Calculate totals */
-		  var total = subtotal;
+			/* Calculate totals */
+			var total = subtotal;
 
-		  //If there is a valid promoCode, and subtotal < 10 subtract from total
-		  var promoPrice = parseFloat($('.promo-value').text().replace("원", "").replace(",", ""));
-		  if (promoPrice) {
-		    if (subtotal >= 10) {
-		      total -= promoPrice;
-		    } else {
-		      alert('Order must be more than ₩10 for Promo code to apply.');
-		      $('.summary-promo').addClass('hide');
-		    }
-		  }
+			//If there is a valid promoCode, and subtotal < 10 subtract from total
+			var promoPrice = parseFloat($('.promo-value').text());
+			if (promoPrice) {
+				if (subtotal >= 10) {
+					total -= promoPrice;
+				} else {
+					alert('Order must be more than £10 for Promo code to apply.');
+					$('.summary-promo').addClass('hide');
+				}
+			}
 
-		  /*If switch for update only total, update only total display*/
-		  if (onlyTotal) {
-		    /* Update total display */
-		    $('.total-value').fadeOut(fadeTime, function() {
-		      $('#basket-total').html(new Intl.NumberFormat("ko-KR", { currency: "KRW", currencyDisplay: "symbol" }).format(total)+"원");
-		      $('.total-value').fadeIn(fadeTime);
-		    });
-		  } else {
-		    /* Update summary display. */
-		    $('.final-value').fadeOut(fadeTime, function() {
-		      $('#basket-subtotal').html(new Intl.NumberFormat("ko-KR", { currency: "KRW", currencyDisplay: "symbol" }).format(subtotal)+"원");
-		      $('#basket-total').html(new Intl.NumberFormat("ko-KR", { currency: "KRW", currencyDisplay: "symbol" }).format(total)+"원");
-		      if (total == 0) {
-		        $('.checkout-cta').fadeOut(fadeTime);
-		      } else {
-		        $('.checkout-cta').fadeIn(fadeTime);
-		      }
-		      $('.final-value').fadeIn(fadeTime);
-		    });
-		  }
+			/*If switch for update only total, update only total display*/
+			if (onlyTotal) {
+				/* Update total display */
+				$('.total-value').fadeOut(fadeTime, function() {
+					$('#basket-total').html(total.toFixed(0) + "원");
+					$('.total-value').fadeIn(fadeTime);
+				});
+			} else {
+				/* Update summary display. */
+				$('.final-value').fadeOut(fadeTime, function() {
+					$('#basket-subtotal').html(subtotal.toFixed(0) + "원");
+					$('#basket-total').html(total.toFixed(0) + "원");
+					if (total == 0) {
+						$('.checkout-cta').fadeOut(fadeTime);
+					} else {
+						$('.checkout-cta').fadeIn(fadeTime);
+					}
+					$('.final-value').fadeIn(fadeTime);
+				});
+			}
 		}
 
 		/* Update quantity */
 		function updateQuantity(quantityInput) {
-		  /* Calculate line price */
-		  var productRow = $(quantityInput).parent().parent();
-		  var price = parseFloat(productRow.children('.price').text().replace("원", "").replace(",", ""));
-		  var quantity = $(quantityInput).val();
-		  var linePrice = price * quantity;
+			/* Calculate line price */
+			var productRow = $(quantityInput).parent().parent();
+			var price = parseFloat(productRow.children('.price').text());
+			var quantity = $(quantityInput).val();
+			var linePrice = price * quantity;
 
-		  /* Update line price display and recalc cart totals */
-		  productRow.children('.subtotal').each(function() {
-		    $(this).fadeOut(fadeTime, function() {
-		      $(this).text(new Intl.NumberFormat("ko-KR", { currency: "KRW", currencyDisplay: "symbol" }).format(linePrice) + "원");
-		      recalculateCart();
-		      $(this).fadeIn(fadeTime);
-		    });
-		  });
+			/* Update line price display and recalc cart totals */
+			productRow.children('.subtotal').each(function() {
+				$(this).fadeOut(fadeTime, function() {
+					$(this).text(linePrice.toFixed(0) + "원");
+					recalculateCart();
+					$(this).fadeIn(fadeTime);
+				});
+			});
 
-		  productRow.find('.item-quantity').text(quantity);
-		  updateSumItems();
+			productRow.find('.item-quantity').text(quantity);
+			updateSumItems();
 		}
 
 		function updateSumItems() {
-		  var sumItems = 0;
-		  $('.quantity input').each(function() {
-		    sumItems += parseInt($(this).val());
-		  });
-		  $('.total-items').text(sumItems);
+			var sumItems = 0;
+			$('.quantity input').each(function() {
+				sumItems += parseInt($(this).val());
+			});
+			$('.total-items').text(sumItems);
 		}
-
+		
 		function readyPrice() {
-		  var content_div = document.getElementById("sum");
+			$('#sum').text();
 
-		  var sumPrice = 0;
-		  $(content_div.innerText).each(function() {
-		    sumPrice += parseInt($(content_div.innerText).val())+"원";
-		  });
-		  $('.total-price').text(new Intl.NumberFormat("ko-KR", { currency: "KRW", currencyDisplay: "symbol" }).format(sumPrice));
+			var content_div = document.getElementById("sum");
+			console.log(content_div.innerText);
+			
+			var sumPrice = 0;
+			$(content_div.innerText).each(function() {
+				sumPrice += parseInt($(content_div.innerText).val());
+			});
+			$('.total-price').text(sumPrice);
 		}
 
-		/* 장바구니 삭제 */
+		/* Remove item from cart */
 		function removeItem(removeButton) {
-		  /* Remove row from DOM and recalc cart total */
-		  var productRow = $(removeButton).parent().parent();
-		  productRow.slideUp(fadeTime, function() {
-		    productRow.remove();
-		    recalculateCart();
-		    updateSumItems();
-		  });
+			/* Remove row from DOM and recalc cart total */
+			var productRow = $(removeButton).parent().parent();
+			productRow.slideUp(fadeTime, function() {
+				productRow.remove();
+				recalculateCart();
+				updateSumItems();
+			});
 		}
+		
+		<%-- 리뷰 작성 페이지 부분 --%>
+		// 왼쪽 사이드바의 '나의 후기' 텍스트 클릭시 새창 열기
+		function openPopup_review_write() {
+	        var page_width = '490';
+	        var page_height = '900';
+	    
+	        // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
+	        var page_left = Math.ceil((window.screen.width - page_width)/2);
+	        var page_top = Math.ceil((window.screen.height - page_height)/2);
+	
+	    window.open("review_write.shop", "review_write",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
+	    
+	    }
 	</script>
 </body>
 </html>

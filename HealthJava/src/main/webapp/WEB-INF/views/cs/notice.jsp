@@ -149,6 +149,7 @@ section.notice {
 	line-height: 1.4;
 	word-break: break-all;
 	vertical-align: middle;
+	text-decoration: none;
 }
 
 .board-table a:hover {
@@ -267,7 +268,8 @@ section.notice {
 	height: 80px;
 	width: 100%;
 	margin: auto;
-	padding: 0px 0px 20px 0px;
+	
+	padding: 50px 0px 20px 0px;
 	display: inline-block;
 	font-size: 15px;
 	font-weight: 400;
@@ -355,7 +357,7 @@ p {
    #pagination a {
       position: relative;
       display: inline-block;
-      color: #FC5400; /* 글자색상 */
+      color: #b21949; /* 글자색상 */
       text-decoration: none;
       font-size: 1.2rem;
       padding: 8px 16px 10px;
@@ -369,14 +371,16 @@ p {
       content: "";
       top: 0;
       left: 0;
-      background-color: #FC5400;
+      background-color: #b21949;
       border-radius: 24px;
       -webkit-transform: scale(0);
       transform: scale(0);
       transition: all 0.2s;
+      
    }
    #pagination a:hover, #pagination a #pagination-active {
       color: #fff;
+      
    }
    
    #pagination a:hover:before, #pagination a #pagination-active:before {
@@ -421,10 +425,10 @@ p {
 <div class="main">
 <section class="notice">
 
-<div>
+<div style="margin-top: 10px;">
  <ul id="cs_faq_list">
   <li><a href="notice">공지사항</a></li>
-  <li><a href="FAQ">FAQ</a></li>
+  <li><a href="FAQ">자주 묻는 질문</a></li>
   <li><a href="contact">1:1문의</a></li>
  </ul>
  <hr id="label_hr">
@@ -474,9 +478,9 @@ p {
                     <td>${c.notice_date.substring(0,10)}</td>
                	</tr>
                 <tr class="hidden">
-                	<td style="background-color:white; color:#b21949;"></td>
-                	<td style="background-color:white; color:#b21949;">${c.notice_cont}</td>
-                	<td style="background-color:white; color:#b21949;"></td>
+                	<td style="background-color:#f1f1f1; color:#b21949;"></td>
+                	<td style="background-color:#f1f1f1; color:#b21949;">${c.notice_cont}</td>
+                	<td style="background-color:#f1f1f1; color:#b21949;"></td>
                 </tr>
 				</c:forEach>	
 						</c:if > 
@@ -584,10 +588,10 @@ p {
 				    </c:if>
 				   </c:if> 
 				   </div>
-<c:if test="${user_id=='admin' }">
- <div class="btn_contact">
+<c:if test="${session_id=='admin' }">
+ <div class="btn_contact" >
  <form action="">
-   <button type="button" class="btn_1" onclick="location='cs_addCSNotice.shop';">공지사항 추가</button>
+   <button type="button" class="btn_1" onclick="location='/notice_write';">공지사항 추가</button>
  </form>
 </div>
 </c:if>

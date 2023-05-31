@@ -4,35 +4,24 @@ import lombok.Data;
 
 @Data
 public class ProductVO {
-	
-	private int product_no;
-	
-	private String product_cont1 ;
-	private String product_cont2 ;
-	private String product_cont3 ;
-	private String product_cont4 ;
-	
-	private String product_cont5 ;
-	private String product_cont6 ;
-	private String product_cont7 ;
-	private String product_cont8 ;
-	
-	private String product_title;
-	
-	private String product_price;
-	
-	private String product_maker;
-	
-	private String product_type;
-	private String product_type2;
-	
-	private String product_score;
-	
-	private String product_count;
-	
-	
-	private String product_date;//등록날짜
-	
+
+	private int product_no; //상품 글번호
+	private String product_title; //상품명
+	private String product_price; //상품 가격
+	private String product_maker; //제조사
+	private String product_type; //대분류
+	private String product_type2; //소분류
+	private String product_cont1; // 상품 내용(사진)
+	private String product_cont2;
+	private String product_cont3;
+	private String product_cont4;
+	private String product_cont5;
+	private String product_cont6;
+	private String product_cont7;
+	private String product_cont8;
+	private String product_score; // 별점
+	private String product_count; // 재고
+	private String product_date; //상품 등록날짜
 
 	
 	//페이징 쪽나누기 관련변수
@@ -46,5 +35,5 @@ public class ProductVO {
     
     //
     private int page_count;
-	
+
 }

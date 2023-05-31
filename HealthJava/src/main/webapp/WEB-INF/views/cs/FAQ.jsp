@@ -142,6 +142,7 @@ section.notice {
 	line-height: 1.4;
 	word-break: break-all;
 	vertical-align: middle;
+	text-decoration: none;
 }
 
 .board-table a:hover {
@@ -260,7 +261,7 @@ section.notice {
 	height: 80px;
 	width: 100%;
 	margin: auto;
-	padding: 0px 0px 20px 0px;
+	padding: 30px 0px 20px 0px;
 	display: inline-block;
 	font-size: 15px;
 	font-weight: 400;
@@ -342,6 +343,7 @@ p {
 }
 
 
+
 </style>
 
 <script>
@@ -352,10 +354,10 @@ p {
 
 <section class="notice">
 
-<div>
+<div style="margin-top: 10px;">
  <ul id="cs_faq_list">
   <li><a href="notice">공지사항</a></li>
-  <li><a href="FAQ">FAQ</a></li>
+  <li><a href="FAQ">자주 묻는 질문</a></li>
   <li><a href="contact">1:1문의</a></li>
  </ul>
  <hr id="label_hr">
@@ -364,12 +366,11 @@ p {
 <div>
 
  <ul id="label">
-  <li><input type="text" value="전체" id="faq_category" size="10" onclick="location='FAQ';" readonly /></li>
-  <li><input type="text" value="로그인/정보" id="faq_category" size="10" onclick="location='FAQ?faq_category=로그인/정보';" readonly /></li>
-  <li><input type="text" value="상품" id="faq_category" size="6" onclick="location='FAQ?faq_category=상품';" readonly /></li>
-  <li><input type="text" value="주문/결제" id="faq_category" size="8" onclick="location='FAQ?faq_category=주문/결제';" readonly /></li>
-  <li><input type="text" value="배송문의" id="faq_category" size="8" onclick="location='FAQ?faq_category=배송문의';" readonly /></li>
-  <li><input type="text" value="교환/취소(반품)" id="faq_category" size="12" onclick="location='FAQ?faq_category=교환/취소(반품)';" readonly /></li>
+  <li><a href = "FAQ"><input type="text" value="전체" id="faq_category"  name="faq_category" size="10" style="cursor: pointer;" readonly /></a></li>
+  <li><a href = "FAQ?faq_category=로그인/정보"><input type="text" value="로그인/정보" id="faq_category" name="faq_category" size="10" style="cursor: pointer;" readonly /></a></li>
+  <li><a href = "FAQ?faq_category=주문/결제"><input type="text" value="주문/결제" id="faq_category" size="8" name="faq_category" style="cursor: pointer;" readonly /></a></li>
+  <li><a href = "FAQ?faq_category=배송문의"><input type="text" value="배송문의" id="faq_category" size="8" name="faq_category" style="cursor: pointer;" readonly /></a></li>
+  <li><a href = "FAQ?faq_category=교환/취소(반품)"><input type="text" value="교환/취소(반품)" id="faq_category" name="faq_category" size="12" style="cursor: pointer;" readonly /></a></li>
  </ul>
 </div>
 <br>
@@ -459,8 +460,8 @@ p {
             </table>
         </div>
     </div>
-     
-     <c:if test="${user_id=='admin' }">
+    
+     <c:if test="${session_id=='admin' }">
 <div class="btn_contact">
  <form action="">
    <button type="button" class="btn_1" onclick="location='FAQ_write';">FAQ 추가</button>
