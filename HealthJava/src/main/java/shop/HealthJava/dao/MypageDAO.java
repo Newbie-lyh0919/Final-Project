@@ -1,9 +1,9 @@
 package shop.HealthJava.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import shop.HealthJava.vo.AddrVO;
-import shop.HealthJava.vo.CSClientVO;
 import shop.HealthJava.vo.CartVO;
 import shop.HealthJava.vo.LikeVO;
 import shop.HealthJava.vo.MemberVO;
@@ -25,8 +25,6 @@ public interface MypageDAO {
 	CartVO getCartItem(int cart_no); //장바구니 체크박스 선택된 정보 조회
 	void insertOrder(OrderVO ovo); //주문 확정
 	void insertOrderDetail(OrderDetailVO odvo);//주문 상세 추가
-
-	List<AddrVO> getSelectedAddrList(AddrVO avo); //선택된 배송지 조회
 	
 	List<MemberVO> getMemberAddrList(MemberVO mvo); // 배송지 리스트
 	void insertAddr(AddrVO av); //배송지 추가
@@ -37,7 +35,12 @@ public interface MypageDAO {
 	void deleteAddr(int addr_no); //추가배송지 삭제
 	
 	void addReview(ReviewsVO rv); // 후기 작성
-	List<ReviewsVO> getReviewList(ReviewsVO rv); // 리뷰 조회
-	void upCartCnt(CartVO cvo); //장바구니 제품숫자 증가
+	//List<Object> getReviewList(String re_mem_id); // 리뷰 조회
+	List<Map<String, Object>> getReviewList(String re_mem_id); // 리뷰 조회
+	//List<ReviewsVO> getReviewList(ReviewsVO rv); // 리뷰 조회
+	ReviewsVO getOneReview(int re_no); // 리뷰 수정 등록됟 조회
+	void updateReview(ReviewsVO rv); // 리뷰 내용 저장
+	void delReview(int re_no); // 리뷰 삭제
 	
+	List<CartVO> getBuyOne(String id);
 }

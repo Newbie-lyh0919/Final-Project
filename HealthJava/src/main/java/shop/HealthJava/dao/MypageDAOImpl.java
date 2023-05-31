@@ -107,12 +107,6 @@ public class MypageDAOImpl implements MypageDAO {
 		this.sqlSession.insert("insertReview", rv);
 	}
 
-	// 리뷰 조회
-	@Override
-	public List<ReviewsVO> getReviewList(ReviewsVO rv) {
-		return this.sqlSession.selectList("reviewList",rv);
-	}
-
 	//장바구니 체크박스 선택된 정보 조회
 	@Override
 	public CartVO getCartItem(int cart_no) {
@@ -131,17 +125,33 @@ public class MypageDAOImpl implements MypageDAO {
 		this.sqlSession.insert("insertOrderDetail",odvo);
 		
 	}
-	//선택된 배송지 조회
-	@Override
-	public List<AddrVO> getSelectedAddrList(AddrVO avo) {
-		// TODO Auto-generated method stub
-		return this.sqlSession.selectList("getSelectedAddrList", avo);
+	
+	// 리뷰 조회
+	@Override 
+	public List<Map<String, Object>> getReviewList(String re_mem_id) {
+		return this.sqlSession.selectList("reviewList",re_mem_id); 
 	}
 
-	//장바구니 제품숫자 증가
+	// 리뷰 수정 등록됟 조회
 	@Override
-	public void upCartCnt(CartVO cvo) {
-		this.sqlSession.update("upCartCnt", cvo);
-		
+	public ReviewsVO getOneReview(int re_no) {
+		return (ReviewsVO) this.sqlSession.selectList("review_List", re_no);
+	}
+
+	// 리뷰 내용 저장
+	@Override
+	public void updateReview(ReviewsVO rv) {
+		this.sqlSession.update("updateReview", rv);
+	}
+
+	// 리뷰 삭제
+	@Override
+	public void delReview(int re_no) {
+		this.sqlSession.delete("delReview", re_no);
+	}
+
+	@Override
+	public List<CartVO> getBuyOne(String id) {
+		return this.sqlSession.selectOne("getBuyone", id);
 	}
 }

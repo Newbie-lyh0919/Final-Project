@@ -505,7 +505,6 @@ function cancel_btn() {
 						<ul>
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"><a href="myPage_Main" style="text-decoration: none; color: black;">나의 쇼핑</a></li>
 							<li><a href="myPage_order" class="liList" style="color: #B21948;">주문ㆍ배송</a></li>
-							<li><a href="myPage_orderDetails" class="liList">교환/반품/환불</a></li>
 							<li><a href="myPage_like" class="liList">찜 목록</a></li>
 							<li><a href="myPage_cart" class="liList">장바구니</a></li>
 							<li><a href="myPage_review" class="liList">나의 상품후기</a></li>
@@ -561,7 +560,7 @@ function cancel_btn() {
 											${o.order_invoice }</a>
 											</td>
 											<td>${o.order_total }원</td>
-											<td>배송중</td>
+											<td>결제완료</td>
 										</tr>
 									</c:forEach>
 								</c:if>

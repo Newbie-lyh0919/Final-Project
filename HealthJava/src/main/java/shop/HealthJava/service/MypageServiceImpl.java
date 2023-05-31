@@ -1,13 +1,13 @@
 package shop.HealthJava.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import shop.HealthJava.dao.MypageDAO;
 import shop.HealthJava.vo.AddrVO;
-import shop.HealthJava.vo.CSClientVO;
 import shop.HealthJava.vo.CartVO;
 import shop.HealthJava.vo.LikeVO;
 import shop.HealthJava.vo.MemberVO;
@@ -102,53 +102,54 @@ public class MypageServiceImpl implements MypageService {
 		this.mypageDao.deleteAddr(addr_no);
 	}
 
-	// 후기 작성
-	@Override
-	public void addReview(ReviewsVO rv) {
-		this.mypageDao.addReview(rv);
-	}
-
-	// 리뷰 조회
-	@Override
-	public List<ReviewsVO> getReviewList(ReviewsVO rv) {
-		return this.mypageDao.getReviewList(rv);
-	}
-
 	//장바구니 체크박스 선택된 정보 조회
 	@Override
 	public CartVO getCartItem(int cart_no) {
 		return this.mypageDao.getCartItem(cart_no);
 	}
 
+	// 리뷰 등록됟 조회
+	@Override
+	public ReviewsVO getOneReview(int re_no) {
+		return this.mypageDao.getOneReview(re_no);
+	}
 
-	//주문 확정 
+	// 리뷰 내용 저장
+	@Override
+	public void updateReview(ReviewsVO rv) {
+		this.mypageDao.updateReview(rv);
+	}
+
+	// 리뷰 삭제
+	@Override
+	public void delReview(int re_no) {
+		this.mypageDao.delReview(re_no);
+	}
+
 	@Override
 	public void insertOrder(OrderVO ovo) {
 		this.mypageDao.insertOrder(ovo);
-		
 	}
 
-	//주문 상세 추가
 	@Override
 	public void insertOrderDetail(OrderDetailVO odvo) {
 		this.mypageDao.insertOrderDetail(odvo);
-		
 	}
 
-	//선택된 배송지 조회
 	@Override
-	public List<AddrVO> getSelectedAddrList(AddrVO avo) {
-		// TODO Auto-generated method stub
-		return this.mypageDao.getSelectedAddrList(avo);
+	public List<Map<String, Object>> getReviewList(String re_mem_id) {
+		return this.mypageDao.getReviewList(re_mem_id);
 	}
 
-	//장바구니 제품숫자 증가
 	@Override
-	public void upCartCnt(CartVO cvo) {
-		this.mypageDao.upCartCnt(cvo);
-		
+	public void addReview(ReviewsVO rv) {
+		this.mypageDao.addReview(rv);
 	}
 
+	@Override
+	public List<CartVO> getBuyOne(String id) {
+		return this.mypageDao.getBuyOne(id);
+	}
 
 	
 }

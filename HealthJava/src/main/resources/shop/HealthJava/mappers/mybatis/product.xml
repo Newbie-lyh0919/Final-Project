@@ -87,24 +87,23 @@
 
 	<update id="product_update" >
     	UPDATE tbl_product 
-SET product_title=#{product_title}, 
-    product_price=#{product_price}, 
-    product_maker=#{product_maker}, 
-    product_type=#{product_type}, 
-    product_type2=#{product_type2}, 
-    product_cont1=#{product_cont1}, 
-    product_cont2=#{product_cont2}, 
-    product_cont3=#{product_cont3}, 
-    product_cont4=#{product_cont4}, 
-    product_cont5=#{product_cont5}, 
-    product_cont6=#{product_cont6}, 
-    product_cont7=#{product_cont7}, 
-    product_cont8=#{product_cont8} 
-WHERE product_no=#{product_no}
+		SET product_title=#{product_title}, 
+		    product_price=#{product_price}, 
+		    product_maker=#{product_maker}, 
+		    product_type=#{product_type}, 
+		    product_type2=#{product_type2}, 
+		    product_cont1=#{product_cont1}, 
+		    product_cont2=#{product_cont2}, 
+		    product_cont3=#{product_cont3}, 
+		    product_cont4=#{product_cont4}, 
+		    product_cont5=#{product_cont5}, 
+		    product_cont6=#{product_cont6}, 
+		    product_cont7=#{product_cont7}, 
+		    product_cont8=#{product_cont8} 
+		WHERE product_no=#{product_no}
     </update>
     
-    
-   
+      
     
     <select id="review_list" resultType="product2" >
     	select * from tbl_product_qna where qna_product_no =#{product_no}

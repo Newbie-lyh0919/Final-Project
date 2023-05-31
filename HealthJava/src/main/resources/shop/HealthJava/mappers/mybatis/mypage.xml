@@ -7,16 +7,12 @@
 <mapper namespace="Mypage">
 
 	<!-- // 주문 내역 list -->
-	<select id="order_list" resultType="order">
-<!-- 	SELECT DATE_FORMAT(order_date, '%Y-%m-%d') AS order_date, GROUP_CONCAT(order_product_title SEPARATOR ', ') AS product_titles, COUNT(*) AS total_count
-	FROM tbl_order
-	GROUP BY DATE_FORMAT(order_date, '%Y-%m-%d'), order_no
-	ORDER BY order_no DESC -->
+	<select id="orderList" resultType="order">
 	select * from tbl_order where user_id = #{user_id} order by order_date
 	</select>
 
 	<!-- // 총 주문 건수 -->
-	<select id="order_count" resultType="int">
+	<select id="orderCount" resultType="int">
 		select count(order_no) from tbl_order where user_id=#{user_id}
 	</select>
 	
@@ -34,37 +30,59 @@
 	
 	<!-- // 주문상세내역 list -->
 	<select id="orderDetail_list" resultType="orderdetail">
-		SELECT * FROM tbl_order_detail
+		SELECT d.order_detail_cnt, p.product_title, p.product_price FROM tbl_order_detail d
+		JOIN tbl_product p ON d.order_detail_fno = p.product_no
 		WHERE order_no= #{order_no}
 	</select>
 	
+	<!-- // 찜목록 -->
+	<select id="likeP_list" resultType="like">
+        <!-- select * from tbl_like -->
+        SELECT l.like_no, p.product_title, p.product_date, p.product_price, p.product_cont1
+        FROM tbl_like l
+        JOIN tbl_product p ON l.like_pro_no = p.product_no
+        where like_mem_id = #{like_mem_id}
+	</select>
+	
+	<!-- // 장바구니 목록 조회 -->
+	<select id="cart_list" resultType="cart" >
+		SELECT c.cart_no, c.cart_mem_id, c.cart_pro_no, c.cart_cnt,
+		p.product_cont1, p.product_title, p.product_price
+		FROM tbl_cart c
+		JOIN tbl_product p ON c.cart_pro_no = p.product_no
+		where c.cart_mem_id= #{cart_mem_id}
+	</select>
+	
+	<!-- //장바구니 삭제 -->
+	<delete id="cart_del">
+		delete from tbl_cart where cart_no=#{cart_no}
+	</delete>
+	
+	<!-- //장바구니 전체삭제 -->
+	<delete id="cart_delall">
+		delete from tbl_cart where cart_mem_id=#{cart_mem_id}
+	</delete>
+
+	<!-- //장바구니 체크박스 선택된 정보 조회 -->
+	<select id="selectCartItem" resultType="cart">
+		SELECT c.cart_no, c.cart_mem_id, c.cart_pro_no, c.cart_cnt, p.product_cont1, p.product_title, p.product_price
+		FROM tbl_cart c
+		JOIN tbl_product p ON c.cart_pro_no = p.product_no 
+		where c.cart_no= #{cart_no}
+	</select>
+		
 	<!-- //장바구니 제품숫자 증가 -->
 	<update id="upCartCnt">
 		update tbl_cart set cart_cnt=cart_cnt+1 where cart_no=#{cart_no} and cart_mem_id=#{cart_mem_id}
 	</update>
 	
-	
-	
-	
-	
-	<!-- // 찜목록 -->
-	<select id="likeP_list" resultType="like">
-        <!-- SELECT l.like_no, l.user_id, l.product_no, p.product_title, p.product_price, p.product_date
-        FROM tbl_like l
-        INNER JOIN tbl_product p ON l.product_no = p.product_no
-        WHERE l.user_id = #{user_id, jdbcType=VARCHAR} -->
-        select * from tbl_like
-	</select>
-	
-	<!-- // 장바구니 목록 조회 -->
-	<select id="cart_list" resultType="cart" >
-		<!-- select * from tbl_cart where cart_mem_id = #{cart_mem_id} -->
-		SELECT c.cart_no, c.cart_mem_id, c.cart_pro_no, c.cart_cnt, p.product_cont1, p.product_title, p.product_price
-FROM tbl_cart c
-JOIN tbl_product p ON c.cart_pro_no = p.product_no 
-where c.cart_mem_id= #{cart_mem_id}
-	</select>
-	
+	<select id="getBuyOne" resultType="cart">
+	   SELECT c.cart_no, c.cart_mem_id, c.cart_pro_no, c.cart_cnt, p.product_cont1, p.product_title, p.product_price
+		FROM tbl_cart c	
+		JOIN tbl_product p ON c.cart_pro_no = p.product_no 
+		where c.cart_no= (select max(cart_no) from tbl_cart) and cart_mem_id=#{c.cart_mem_id}
+    </select>
+			
 	<!-- // 배송지 리스트 조회 -->
 	<select id="memAddr_list" resultType="member">
 		select * from tbl_member where user_id = #{user_id}
@@ -80,23 +98,11 @@ where c.cart_mem_id= #{cart_mem_id}
 	<select id="addr_list" resultType="addr">
 		select * from tbl_addr where user_id = #{user_id}
 	</select>
-	
-	<!-- //장바구니 삭제 -->
-	<delete id="cart_del">
-		delete from tbl_cart where cart_no=#{cart_no}
-	</delete>
-	
-	<!-- //장바구니 전체삭제 -->
-	<delete id="cart_delall">
-		delete from tbl_cart where cart_mem_id=#{cart_mem_id}
-	</delete>
-	
-	
+		
 	<!-- //추가배송지 수정조회 -->
 	<select id="selectOneAddr" resultType="addr">
 		select * from tbl_addr where addr_no=#{addr_no}
 	</select>
-	
 	
 	<!-- //추가배송지 수정 -->
 	<update id="updateAddr">
@@ -104,22 +110,33 @@ where c.cart_mem_id= #{cart_mem_id}
 		 roadAddr=#{roadAddr}, detailAddr=#{detailAddr} where addr_no=#{addr_no}
 	</update>
 	
-	
 	<!-- //추가 배송지 삭제 -->
 	<delete id="deleteAddr">
 		delete from tbl_addr where addr_no=#{addr_no}
 	</delete>
-	
-	<!-- //장바구니 체크박스 선택된 정보 조회 -->
-	<select id="selectCartItem" resultType="cart">
-		<!-- select * from tbl_cart where cart_no = #{cart_no} -->
-		SELECT c.cart_no, c.cart_mem_id, c.cart_pro_no, c.cart_cnt, p.product_cont1, p.product_title, p.product_price
-FROM tbl_cart c
-JOIN tbl_product p ON c.cart_pro_no = p.product_no 
-where c.cart_no= #{cart_no}
 		
+	<!-- // 리뷰 조회 -->
+	<select id="reviewList" resultType="java.util.Map">
+		SELECT
+		    p.product_title,
+		    p.product_cont1,
+		    o.order_date,
+		    o.order_product_title,
+		    r.re_mem_id,
+		    r.re_title,
+		    r.re_content,
+		    r.re_image1,
+		    r.re_image2,
+		    r.re_image3,
+		    r.re_score,
+		    r.re_date
+		FROM
+		    tbl_product p
+		    LEFT JOIN tbl_order o ON o.order_product_title = p.product_title
+		    LEFT JOIN tbl_reviews r ON r.re_pro_no = p.product_no
+		WHERE r.re_mem_id=#{re_mem_id}
 	</select>
-	
+
 	<!-- // 후기 작성 -->
 	<insert id="insertReview">
 		insert into tbl_reviews
@@ -127,10 +144,6 @@ where c.cart_no= #{cart_no}
 		values (re_no_seq.nextval, #{re_pro_no}, #{re_mem_id}, #{re_title}, #{re_content}, #{re_image1}, #{re_image2}, #{re_image3}, #{re_score}, sysdate)
 	</insert>
 	
-	<!-- // 리뷰 조회 -->
-	<select id="reviewList" resultType="reviews">
-		select * from tbl_reviews where re_mem_id = #{re_mem_id}
-	</select>
 	
 </mapper>
 

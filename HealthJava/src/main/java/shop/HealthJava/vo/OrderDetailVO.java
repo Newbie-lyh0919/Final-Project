@@ -22,14 +22,16 @@ public class OrderDetailVO {
 	private int order_no; // 주문내역 no
 	private String order_detail_mid; //회원 아이디
 	private int order_detail_fno; // 상품 no
-	private String order_detail_cnt; // 수량
-	
-	
 	private String order_detail_pname; // 제품명
+	private String order_detail_cnt; // 수량
 	private String order_detail_price; // 금액
 	
 	private String user_id;
 	private int product_no;
 	private String order_detail_pcont;
+	
+	private String product_title;
+	private String product_price;
+
 
 }

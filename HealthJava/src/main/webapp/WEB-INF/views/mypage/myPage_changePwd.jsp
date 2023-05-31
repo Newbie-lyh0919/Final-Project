@@ -29,13 +29,8 @@
 	}
 	
 	section.notice {
-		padding: 20px 0;
-		/*추가*/
 		width: 1000px;
 		min-height: 200px;
-		margin: 2px;
-		/* border: solid 2px #000000;
-	        background-color: #c2ff73; */
 	}
 	
 	.aside_left {
@@ -45,15 +40,11 @@
 		min-height: 700px;
 		float: left;
 		text-align: left;
-		/*border: solid 2px #000000;
-		background-color: #c267ff;*/
 	}
 	
 	.aside_left nav {
 		min-height: 600px;
 		margin-bottom: 50px;
-		/*border: solid 2px #000000;
-		background-color: #67a9ff;*/
 	}
 	
 	.aside_left li {
@@ -378,17 +369,13 @@
 	
 	.main {
 		width: 1600px;
-		height: 1200px;
-		/* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / section이랑 px 맞춰야함 */
+		height: auto;
 		position: relative;
 		top: 105px;
 		left: 50%;
 		transform: translateX(-50%);
 	}
 	
-	section {
-		height: 1200px;
-	}
 	/* 클리어 */
 	.clear {
 		clear: both;
@@ -463,7 +450,6 @@
 						<ul>
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 쇼핑</li>
 							<li><a href="myPage_Main" class="liList">주문ㆍ배송</a></li>
-							<li><a href="myPage_order" class="liList">교환/반품/환불</a></li>
 							<li><a href="myPage_like" class="liList">찜 목록</a></li>
 							<li><a href="myPage_cart" class="liList">장바구니</a></li>
 							<li><a href="myPage_review" class="liList">나의 상품후기</a></li>

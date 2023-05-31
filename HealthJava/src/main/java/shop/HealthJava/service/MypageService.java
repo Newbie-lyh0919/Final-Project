@@ -1,9 +1,9 @@
 package shop.HealthJava.service;
 
 import java.util.List;
+import java.util.Map;
 
 import shop.HealthJava.vo.AddrVO;
-import shop.HealthJava.vo.CSClientVO;
 import shop.HealthJava.vo.CartVO;
 import shop.HealthJava.vo.LikeVO;
 import shop.HealthJava.vo.MemberVO;
@@ -25,20 +25,21 @@ public interface MypageService {
 	
 	List<MemberVO> getMemberAddrList(MemberVO mvo); // 배송지 리스트 조회
 	void insertAddr(AddrVO av); //배송지 추가
-	List<AddrVO> getAddrList(AddrVO avo); // 배송지 추가 리스트 조회
-	
+	List<AddrVO> getAddrList(AddrVO avo); // 배송지 추가 리스트 조회	
 	AddrVO getOneAddr(int addr_no); //배송지 수정조회
 	void updateAddr(AddrVO avo);//추가배송지 수정
 	void deleteAddr(int addr_no);//추가배송지 삭제
 
-	List<ReviewsVO> getReviewList(ReviewsVO rv); // 리뷰 조회
-	void addReview(ReviewsVO rv); // 후기 작성
-
-	void insertOrder(OrderVO ovo);
+	void insertOrder(OrderVO ovo); 
 	void insertOrderDetail(OrderDetailVO odvo);
-	List<AddrVO> getSelectedAddrList(AddrVO avo);
-	void upCartCnt(CartVO cvo);//장바구니 제품숫자 증가
 
-	 
+	//List<Object> getReviewList(String re_mem_id); // 리뷰 조회
+	List<Map<String, Object>> getReviewList(String re_mem_id); // 리뷰 조회
+	void addReview(ReviewsVO rv); // 후기 작성
+	ReviewsVO getOneReview(int re_no); // 리뷰 등록됟 조회
+	void updateReview(ReviewsVO rv); // 리뷰 내용 저장
+	void delReview(int re_no); // 리뷰 삭제
+
+	List<CartVO> getBuyOne(String id);	 
 	
 }

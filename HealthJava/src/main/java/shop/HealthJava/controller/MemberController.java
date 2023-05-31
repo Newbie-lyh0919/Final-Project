@@ -202,7 +202,7 @@ public class MemberController { // 사용자 관련 컨트롤러
 	public ModelAndView member_edit(HttpServletResponse response, HttpSession session) throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
 
-		String id = (String)session.getAttribute("id"); // 세션아이디를 구함
+		String id = (String)session.getAttribute("session_id"); // 세션아이디를 구함
 
 		if(isLogin(session, response)) { // 로그인 된 상태 : ture
 			MemberVO em = this.memberService.getMember(id); // 아이디에 해당하는 회원정보를 구함
@@ -219,7 +219,7 @@ public class MemberController { // 사용자 관련 컨트롤러
 	public ModelAndView member_update_ok(MemberVO m, HttpServletResponse response, HttpSession session) throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		String id=(String)session.getAttribute("id");
+		String id=(String)session.getAttribute("session_id");
 
 		if(isLogin(session, response)) {
 			m.setUser_id(id);
@@ -241,7 +241,7 @@ public class MemberController { // 사용자 관련 컨트롤러
 	public ModelAndView myPage_changePwd(HttpServletResponse response, HttpSession session) throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
 
-		String id = (String)session.getAttribute("id"); // 세션아이디를 구함
+		String id = (String)session.getAttribute("session_id"); // 세션아이디를 구함
 
 		if(isLogin(session, response)) { // 로그인 된 상태 : ture
 			MemberVO em = this.memberService.getMember(id); // 아이디에 해당하는 회원정보를 구함
@@ -295,7 +295,7 @@ public class MemberController { // 사용자 관련 컨트롤러
 	public ModelAndView myPage_changePwd_ok(MemberVO m, HttpServletResponse response, HttpSession session, String user_pwd, String new_pwd ) throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		String id=(String)session.getAttribute("id");
+		String id=(String)session.getAttribute("session_id");
 
 		if(isLogin(session, response)) {
 			user_pwd = PwdChange.getPassWordToXEMD5String(user_pwd);//비밀번호 암호화
@@ -330,7 +330,7 @@ public class MemberController { // 사용자 관련 컨트롤러
 	public ModelAndView member_del(HttpSession session, HttpServletResponse response) throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		String id = (String)session.getAttribute("id"); // 세션아이디를 구함
+		String id = (String)session.getAttribute("session_id"); // 세션아이디를 구함
 
 		if(id == null) {
 			out.println("<script>");
@@ -354,7 +354,7 @@ public class MemberController { // 사용자 관련 컨트롤러
 			String user_pwd, String del_cont) throws Exception{
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		String id = (String)session.getAttribute("id");
+		String id = (String)session.getAttribute("v");
 		
 		if(id == null) {
 			out.println("<script>");
@@ -387,7 +387,6 @@ public class MemberController { // 사용자 관련 컨트롤러
 		}		
 		return null;
 	}//member_del_ok()
-
 
 	// 로그인을 하지 않은 상황에서 주소창을 쳐서 들어가는것을 막고 로그인페이지로 넘기기
 	public static boolean isLogin(HttpSession session, HttpServletResponse response) throws Exception {

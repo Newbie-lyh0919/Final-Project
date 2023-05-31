@@ -105,7 +105,7 @@
       <%-- 헤더 영역 --%>
       <header>
          <%-- header include --%>
-         <jsp:include page="../include/header.jsp"/>
+         <jsp:include page="/page/include/header.jsp"/>
       </header>
 	<%-- 본문 영역(ui깨질시 본인이 ui 수정바람..) --%>
 	<div class="innerWrap" style="margin-left: 400px;">

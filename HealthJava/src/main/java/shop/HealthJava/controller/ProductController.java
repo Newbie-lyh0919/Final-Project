@@ -31,7 +31,7 @@ import shop.HealthJava.vo.CartVO;
 import shop.HealthJava.vo.LikeVO;
 import shop.HealthJava.vo.OrderDetailVO;
 import shop.HealthJava.vo.ProductVO;
-import shop.HealthJava.vo.ProductVO2;
+import shop.HealthJava.vo.ProductQnAVO;
 
 @Controller
 public class ProductController { // 상품 페이지 관련 컨트롤러
@@ -194,18 +194,7 @@ public class ProductController { // 상품 페이지 관련 컨트롤러
 			}
 
 			if (id == null) {
-				/*
-				 * String random_id = UUID.randomUUID().toString();
-				 * 
-				 * 
-				 * 
-				 * 
-				 * s.setCart_pro_no(Integer.parseInt(prodcut_no)); s.setCart_mem_id(random_id);
-				 * s.setCart_cnt(Integer.parseInt(cart_cnt));
-				 * 
-				 * 
-				 * this.productService.insertCart(s);
-				 */
+
 				return 5;
 			}
 
@@ -245,7 +234,7 @@ public class ProductController { // 상품 페이지 관련 컨트롤러
 	}
 
 	@RequestMapping(value = "/qna/add_ok")
-	public String qna_add(ProductVO2 f, HttpSession session, Model model, HttpServletRequest request,
+	public String qna_add(ProductQnAVO f, HttpSession session, Model model, HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 
 		String product_no = request.getParameter("product_no");
@@ -295,7 +284,7 @@ public class ProductController { // 상품 페이지 관련 컨트롤러
 		if (id == null) {
 			ProductVO detail = productService.getProductContent(product_no);
 
-			List<ProductVO2> detail2 = productService.getReviewList(product_no);
+			List<ProductQnAVO> detail2 = productService.getReviewList(product_no);
 
 			model.addAttribute("detail2", detail2);
 
@@ -308,7 +297,7 @@ public class ProductController { // 상품 페이지 관련 컨트롤러
 
 			ProductVO detail = productService.getProductContent(product_no);
 
-			List<ProductVO2> detail2 = productService.getReviewList(product_no);
+			List<ProductQnAVO> detail2 = productService.getReviewList(product_no);
 
 			model.addAttribute("detail2", detail2);
 

@@ -442,7 +442,6 @@
 					<ul>
 						<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"><a href="myPage_Main" style="text-decoration: none; color: black;">나의 쇼핑</a></li>
 						<li><a href="myPage_order" class="liList">주문ㆍ배송</a></li>
-						<li><a href="myPage_orderDetails" class="liList" style="color: #B21948;">교환/반품/환불</a></li>
 						<li><a href="myPage_like" class="liList">찜 목록</a></li>
 						<li><a href="myPage_cart" class="liList">장바구니</a></li>
 						<li><a href="myPage_review" class="liList">나의 상품후기</a></li>
@@ -471,6 +470,7 @@
 		<div id="board-list">
 			<div class="container">
 				<table class="board-table">
+				<input type="hidden" name="order_no" id="order_no" value="${od.order_detail_no}" />
 					<thead>
 						<tr>
 							<th scope="col" class="th-title">제품명</th>
@@ -483,57 +483,20 @@
 					<tbody>
 					<c:if test="${!empty orderDetailList }">
 					<c:forEach var="od" items="${orderDetailList }">
-						<input type="hidden" name="order_no" id="order_no" value="${od.order_detail_no}" />
 						<tr>
-							<th><a href="#" class="orderList">${od.order_detail_pname }</a></th>
-							<td><div class="price" name="order_total">${od.order_detail_price }</div></td>
-							<td><div class="quantity">
-								${od.order_detail_cnt }
-								</div>
+							<th><a href="#" class="orderList">${od.product_title }</a></th>
+							<td><div class="price" name="order_total">${od.product_price }원</div></td>
+							<td><div class="quantity">${od.order_detail_cnt } 개</div>
 							</td>
-							<td><div class="subtotal" id="sum">${od.order_detail_price }</div></td>
+							<td><div class="subtotal">${od.order_detail_cnt * od.product_price }원</div></td>
 							<td>
-								<input id="btn" type="button" onclick="" value="교환">&nbsp;
-								<input id="btn" type="button" onclick="" value="반품">&nbsp;
-								<input id="btn" type="button" onclick="" value="환불">
+								<input type="button" id="btn" value="후기작성" onclick="openPopup_myPage_review_write()">&nbsp;
+								<input id="btn" type="button" value="주문취소" onclick=""/>
 							</td>
 						</tr>
 					</c:forEach>
 					</c:if>
-						<!-- <script>
-						window.onload = function() {
-							  // 주문 수량이 변경될 때마다 합계 금액을 업데이트.
-							  var quantityField = document.querySelector(".quantity-field");
-							  var subtotalElement = document.getElementById("sum");
-							  var totalPriceElement = document.getElementById("totalPrice");
-							  
-							  var price = 1000; // 개당 가격 설정
-
-							  quantityField.addEventListener("change", function() {
-							    var quantity = parseInt(quantityField.value);
-							    var subtotal = quantity * price;
-
-							    // 합계 금액을 원화로 변환하여 출력.
-							    var formattedSubtotal = new Intl.NumberFormat("ko-KR", { currency: "KRW", currencyDisplay: "symbol" }).format(subtotal);
-							    subtotalElement.textContent = formattedSubtotal + "원";
-
-							    // 총액 계산
-							    var totalPrice = calculateTotalPrice(quantity);
-							    totalPriceElement.textContent = totalPrice;
-							  });
-
-							  // 총액 계산 함수
-							  function calculateTotalPrice(quantity) {
-							    var totalPrice = quantity * price;
-
-							    // 총액을 원화로 변환하여 반환합니다.
-							    var formattedTotalPrice = new Intl.NumberFormat("ko-KR", { currency: "KRW", currencyDisplay: "symbol" }).format(totalPrice);
-							    return formattedTotalPrice;
-							  }
-							};
-
-						</script> -->
-							
+						
 					<c:if test="${empty orderDetailList }">
 						<tr>
 							<th colspan="5" class="nonList">현재 주문한 제품이 없습니다.</th>
@@ -543,11 +506,6 @@
 				</table>	
 				<br>
 				
-				<div align="right" style="margin-right: 50px;">
-					<div class="totalPrice" style="font-size: 20px;">
-						<b>총액 : &nbsp;<span id="totalPrice">${totalPrice }</span>원</b>
-					</div>
-				</div>
 				<br><br>
 				<input type="button" id="updateBtn" onclick="location.href='myPage_order'" value="주문내역 목록">
 			</div>
@@ -590,7 +548,17 @@
 				$("#topBtn").css("opacity", 1); // TOP 버튼 나타내기
 			}
 		});
-
+		<%-- 리뷰 작성 페이지 --%>
+		function openPopup_myPage_review_write() {
+			var page_width = '505';
+			var page_height= '900';
+			
+			//팝업창 가운데 띄우기
+			var page_left = Math.ceil((window.screen.width - page_width)/2);
+			var page_top = Math.ceil((window.screen.height - page_height)/2);
+			
+			  window.open("/myPage_review_write", "review_write",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
+		}
 	</script>
 </body>
 </html>

@@ -418,23 +418,12 @@ function pwd_find() {
 </script>
 </head>
 <body>
-<%
-    
-    /*
-    	생성된 id_cookie쿠키를 검색하여 쿠키가 이미 존재한다면
-    	로그인 창 대신에 브라우저에 "이미 로그인한 사용자 입니다." 를 출력 후
-    	 welcome페이지로 이동할수 있는 링크를 제공하세요
-    	 
-    	 id_cookie가 있는 사용자는 로그인 입력창이 등장하도록 구성하세요
-    
-    */
-    
+	<%
+
     Cookie[] cookies = request.getCookies();
     
     boolean flag = false;
     String userId = "";
-    
-    
     
     if(cookies != null) {
     	for(Cookie c : cookies) {
@@ -445,11 +434,8 @@ function pwd_find() {
     	}
     }
     
-
-    
-    
     %>
-	
+
 
 
 	<%-- 전체 영역 --%>
@@ -459,6 +445,7 @@ function pwd_find() {
 			<%-- header include --%>
 			<jsp:include page="../include/header.jsp"/>
 		</header>
+		
 		<c:if test="${empty id}">
 		<form method="post" action="member_login_ok" onsubmit="return login_check();">
 		<div class="login-form">
@@ -469,26 +456,20 @@ function pwd_find() {
 			<input type="text" value="<%=userId%>" name="login_id" id="login_id" required>
 			
 			<label for="password">비밀번호</label>
-			<input type="password"  name="login_pwd" id="login_pwd" required>
-			
+			<input type="password"  name="login_pwd" id="login_pwd" required>			
 			
 			<div>
 			<label for="checkId">아이디 기억 <input type="checkbox" id="checkId" name="checkId"></label>
-			</div>
-		
+			</div>		
 		
 			<div class="login_button">
-			<button type="submit">로그인</button>
+				<button type="submit">로그인</button>
 			</div>
 			
 			
 			<div class="forgot-username">
 				<a href="find_id">아이디 찾기</a> | <a href="member_find_pw.shop">비밀번호 찾기</a>
 			</div>
-			
-			
-		
-		
 		<div class="signup">
 			<p>계정이 없으신가요? <a href="member_join">회원가입</a></p>
 		</div>
@@ -516,9 +497,6 @@ function pwd_find() {
 			</form>
 		</div>
 	</c:if>
-
-
-
 
 				<%-- top버튼 삭제 X --%>
 				<div id="topBtn">

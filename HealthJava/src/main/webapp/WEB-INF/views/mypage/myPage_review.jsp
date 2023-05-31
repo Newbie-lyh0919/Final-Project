@@ -17,698 +17,714 @@
 
 <style type="text/css">
 
-	/* 폰트 CSS */
-	@font-face {
-		font-family: 'KIMM_Bold';
-		src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2') format('woff2'); /* CDN 절대링크  */
-		font-weight: 700;
-		font-style: normal;
-	}
-	/* 되도록 안건드리는 영역 */
-	* {
-		box-sizing: border-box;
-		-webkit-box-sizing: border-box;
-		-moz-box-sizing: border-box;
-		font-family: 'KIMM_Bold', sans-serif;
-	}
-	
-	html {
-		height: 100%;
-	}
-	
-	body {
-		margin: 0px;
-		height: 100%;
-		padding: 0px;
-	}
-	
-	header {
-		width: 100%;
-		position: fixed;
-		z-index: 2;
-	}
-	
-	footer {
-		bottom: 0;
-		z-index: 5;
-		position: relative;
-	}
-	
-	.wrap {
-		margin-top: -110px;
-		min-height: 100%;
-		position: relative;
-	}
-	
-	.main {
-		width: 1600px;
-		height: 1200px;
-		/* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / section이랑 px 맞춰야함 */
-		position: relative;
-		top: 105px;
-		left: 50%;
-		transform: translateX(-50%);
-	}
-	
-	section {
-		height: 1200px;
-	}
-	/* 클리어 */
-	.clear {
-		clear: both;
-	}
-	/* 밑의 영역부터 css시작 */
-	.container {
-		width: 100%;
-	}
-	/******************/
-	p {
-		margin: 0.75rem 0 0;
-	}
-	
-	input, button {
-		border: 0 none;
-		outline: 0 none;
-	}
-	
-	.summary-checkout button {
-		background-color: #666;
-		color: #fff;
-	}
-	
-	.summary-checkout button:hover, .summary-checkout button:focus {
-		background-color: #555;
-	}
-	
-	.product-image img, .basket-labels, .basket-product {
-		width: 100%;
-	}
-	
-	input, .summary-checkout button, .basket, .basket-module, .basket-labels, .item, .price, .quantity, .subtotal, .basket-product, .product-image, .product-details {
-		float: left;
-	}
-	
-	.hide {
-		display: none;
-	}
-	
-	main {
-		clear: both;
-		font-size: 0.75rem;
-		margin: 0 auto;
-		overflow: hidden;
-		padding: 1rem 0;
-		width: 960px;
-	}
-	
-	.basket, .aside_right {
-		padding: 0 1rem;
-		-webkit-box-sizing: border-box;
-		-moz-box-sizing: border-box;
-		box-sizing: border-box;
-	}
-	
-	.basket {
-		width: 100%;
-		padding-bottom: 20px;
-		height: 900px;
-	}
-	
-	.basket-module {
-		color: #111;
-	}
-	
-	label {
-		display: block;
-		margin-bottom: 0.3125rem;
-	}
-	
-	.promo-code-field {
-		border: 1px solid #ccc;
-		padding: 0.5rem;
-		text-transform: uppercase;
-		transition: all 0.2s linear;
-		width: 48%;
-		-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-		-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-		-o-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-		box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-	}
-	
-	.promo-code-field:hover, .promo-code-field:focus {
-		border: 1px solid #999;
-	}
-	
-	.promo-code-cta {
-		border-radius: 4px;
-		font-size: 0.625rem;
-		margin-left: 0.625rem;
-		padding: 0.6875rem 1.25rem 0.625rem;
-	}
-	
-	.basket-labels {
-		border-top: 1px solid #ccc;
-		border-bottom: 1px solid #ccc;
-		margin-top: 1.625rem;
-	}
-	
-	.basket-labels ul {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-	}
-	
-	.basket-labels li {
-		color: #111;
-		display: inline-block;
-		padding: 0.625rem 0;
-	}
-	
-	.basket-labels li.price:before, .basket-labels li.subtotal:before {
-		content: '';
-	}
-	
-	.item {
-		width: 75%;
-	}
-	
-	.price, .quantity, .subtotal {
-		width: 15%;
-	}
-	
-	.subtotal {
-		text-align: right;
-	}
-	
-	.btnAdd {
-		margin-left: 50px;
-		font-size: 22px;
-	}
-	/* 삭제 버튼 */
-	.removeCart {
-		bottom: 1.125rem;
-		float: right;
-		position: absolute;
-		top: 10%;
-		right: 0;
-		text-align: right;
-		width: 3%;
-		height: 20%;
-		margin-right: 8px;
-		background-color: white;
-		font-size: 22px;
-		text-align: center;
-		border: 1px solid white;
-	}
-	
-	.removeCart:hover {
-		cursor: pointer;
-	}
-	
-	.removeText {
-		font-size: 15px;
-		/* color: #2f348f; */
-		position: relative;
-		top: -5%;
-		left: 10%
-	}
-	
-	#shopping_cartImg {
-		width: 25px;
-		height: 25px;
-		margin: 8px 10px 10px 15px;
-	}
-	
-	#shopping_deleteImg {
-		width: 25px;
-		height: 25px;
-		position: relative;
-		top: 8%;
-	}
-	
-	#allDelete {
-		cursor: pointer;
-    	margin-left: 150px;
-	}
-	
-	.remove button {
-		background-color: transparent;
-		float: none;
-		text-decoration: none;
-		text-transform: uppercase;
-	}
-	
-	.item-heading {
-		padding-left: 4.375rem;
-		-webkit-box-sizing: border-box;
-		-moz-box-sizing: border-box;
-		box-sizing: border-box;
-		text-align: left;
-	}
-	
-	.basket-product {
-		border-bottom: 1px solid #ccc;
-		padding: 1rem 0;
-		position: relative;
-	}
-	
-	.product-image {
-		width: 90px;
-	}
-	
-	.product-frame {
-		border: 1px solid #aaa;
-	}
-	
+/* 폰트 CSS */
+@font-face {
+	font-family: 'KIMM_Bold';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2')
+		format('woff2'); /* CDN 절대링크  */
+	font-weight: 700;
+	font-style: normal;
+}
+/* 되도록 안건드리는 영역 */
+* {
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	font-family: 'KIMM_Bold', sans-serif;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	margin: 0px;
+	height: 100%;
+	padding: 0px;
+}
+
+header {
+	width: 100%;
+	position: fixed;
+	z-index: 2;
+}
+
+footer {
+	bottom: 0;
+	z-index: 5;
+	position: relative;
+}
+
+.wrap {
+	margin-top: -110px;
+	min-height: 100%;
+	position: relative;
+}
+
+.main {
+	width: 1600px;
+	height: 1200px;
+	/* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / section이랑 px 맞춰야함 */
+	position: relative;
+	top: 105px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+section {
+	height: 1200px;
+}
+/* 클리어 */
+.clear {
+	clear: both;
+}
+/* 밑의 영역부터 css시작 */
+.container {
+	width: 100%;
+}
+/******************/
+p {
+	margin: 0.75rem 0 0;
+}
+
+input, button {
+	border: 0 none;
+	outline: 0 none;
+}
+
+.summary-checkout button {
+	background-color: #666;
+	color: #fff;
+}
+
+.summary-checkout button:hover, .summary-checkout button:focus {
+	background-color: #555;
+}
+
+.product-image img, .basket-labels, .basket-product {
+	width: 100%;
+}
+
+input, .summary-checkout button, .basket, .basket-module, .basket-labels,
+	.item, .price, .quantity, .subtotal, .basket-product, .product-image,
 	.product-details {
-		padding: 0 1.5rem;
-		-webkit-box-sizing: border-box;
-		-moz-box-sizing: border-box;
-		box-sizing: border-box;
-		width: 75%;
-		padding-left: 5px;
-		text-align: left;
-		margin: 5px 0px 0px 8px;
-	}
-	
-	.quantity-field {
-		background-color: #ccc;
-		border: 1px solid #aaa;
-		border-radius: 4px;
-		font-size: 0.625rem;
-		padding: 2px;
-		width: 3.75rem;
-		margin-left: 30px;
-	}
-	
-	.aside_right {
-		float: right;
-		position: relative;
-		width: 30%;
-	}
-	
-	.summary {
-		background-color: #eee;
-		border: 1px solid #aaa;
-		padding: 1rem;
-		position: fixed;
-		width: 250px;
-		-webkit-box-sizing: border-box;
-		-moz-box-sizing: border-box;
-		box-sizing: border-box;
-		margin-top: 25px;
-	}
-	
-	.summary-total-items {
-		color: #666;
-		font-size: 0.875rem;
-		text-align: center;
-	}
-	
-	.summary-subtotal, .summary-total {
-		border-top: 1px solid #ccc;
-		border-bottom: 1px solid #ccc;
-		clear: both;
-		margin: 1rem 0;
-		overflow: hidden;
-		padding: 0.5rem 0;
-	}
-	
-	.subtotal-title, .subtotal-value, .total-title, .total-value,
-		.promo-title, .promo-value {
-		color: #111;
-		float: left;
-		width: 50%;
-	}
-	
-	.summary-promo {
-		-webkit-transition: all .3s ease;
-		-moz-transition: all .3s ease;
-		-o-transition: all .3s ease;
-		transition: all .3s ease;
-	}
-	
-	.promo-title {
-		float: left;
-		width: 70%;
-	}
-	
-	.promo-value {
-		color: #8B0000;
-		float: left;
-		text-align: right;
-		width: 30%;
-	}
-	
-	.summary-delivery {
-		padding-bottom: 3rem;
-	}
-	
-	.subtotal-value, .total-value {
-		text-align: right;
-	}
-	
-	.total-title {
-		font-weight: bold;
-		text-transform: uppercase;
-	}
-	
-	.summary-checkout {
-		display: block;
-	}
-	
-	.checkout-cta {
-		display: block;
-		float: none;
-		font-size: 0.75rem;
-		text-align: center;
-		text-transform: uppercase;
-		padding: 0.625rem 0;
-		width: 100%;
-	}
-	
-	.summary-delivery-selection {
-		background-color: #ccc;
-		border: 1px solid #aaa;
-		border-radius: 4px;
-		display: block;
-		font-size: 0.625rem;
-		height: 34px;
-		width: 100%;
-	}
-	
-	.total-title {
-		text-align: left;
-	}
-	
-	.aside_left {
-		margin-top: 45px;
-		margin-left: 60px;
-		width: 180px;
-		min-height: 700px;
-		float: left;
-		text-align: left;
-	}
-	
-	.aside_left nav {
-		min-height: 600px;
-		margin-bottom: 50px;
-	}
-	
-	.aside_left li {
-		padding-top: 8.2px;
-		padding-bottom: 2px;
-		list-style: none;
-	}
-	
-	#subspan {
-		color: #808080;
-	}
-	
-	.memBasicInfo1 {
-		height: 120px;
-		width: 120px;
-		padding: 20px;
-		float: left;
-		margin-right: 200px;
-		margin-top: 0px;
-	}
-	
-	.memBasicInfo2 {
-		height: 80px;
-		width: 130px;
-		position: relative;
-		top: -40%;
-		left: 50%;
-	}
-	
-	.innerWrap {
-		width: 300px;
-		height: 220px;
-		padding: 20px;
-		float: left;
-		margin-left: 60px;
-		overflow: hidden;
-	}
-	
-	#mypageTitle {
-		font-size: 28px;
-		font-weight: 700;
-	}
-	
-	.mypageTitlebox {
-		float: left;
-		margin: 20px 0px 0px 5px;
-	}
-	
-	#user_id {
-		font-size: 20px;
-		font-weight: 700;
-	}
-	/* 찜 목록 */
-	.wishBox {
-		margin-left: 0;
-		width: 1200px;
-		position: relative;
-		left: 40%;
-		top: 4%;
-		transform: translateX(-50%);
-		overflow: hidden;
-		border-bottom: 2px solid rgb(217, 217, 217);
-	}
-	/* 찜한 상품 */
-	#listTitle {
-		font-size: 1.8em;
-		font-weight: bold;
-		margin-left: 15px;
-	}
-	
-	.listTitleBox {
-		width: 100%;
-		height: 60px;
-		border-bottom: 2px solid rgb(217, 217, 217);
-		text-align: left;
-	}
-	/* 체크박스 */
-	/*input 은 숨겨주기*/
-	input#chk_all {
-		display: none;
-	}
-	/*input 바로 다음의 label*/
-	input#chk_all+label {
-		cursor: pointer;
-	}
-	
-	/*input 바로 다음의 label:before 에 체크하기 전 CSS 설정*/
-	input#chk_all+label:before {
-		content: "";
-		display: inline-block;
-		width: 18px;
-		height: 18px;
-		line-height: 18px;
-		border: 1px solid #cbcbcb;
-		vertical-align: middle; /*체크 전과 체크 후 높이 차이 때문에 설정*/
-	}
-	
-	/*checked된 input 바로 다음의 label:before 에 체크 후 CSS 설정*/
-	input#chk_all:checked+label:before {
-		content: "\f00c"; /*폰트어썸 유니코드*/
-		font-family: "Font Awesome 5 free"; /*폰트어썸 아이콘 사용*/
-		font-weight: 900; /*폰트어썸 설정*/
-		color: #B21948;
-		border-color: #000;
-		font-size: 13px;
-		text-align: center;
-	}
-	
-	input#chk_select {
-		display: none;
-	}
-	/*input 바로 다음의 label*/
-	input#chk_select+label {
-		cursor: pointer;
-	}
-	
-	/*input 바로 다음의 label:before 에 체크하기 전 CSS 설정*/
-	input#chk_select+label:before {
-		content: "";
-		display: inline-block;
-		width: 18px;
-		height: 18px;
-		line-height: 18px;
-		border: 1px solid #cbcbcb;
-		vertical-align: middle; /*체크 전과 체크 후 높이 차이 때문에 설정*/
-	}
-	
-	/*checked된 input 바로 다음의 label:before 에 체크 후 CSS 설정*/
-	input#chk_select:checked+label:before {
-		content: "\f00c"; /*폰트어썸 유니코드*/
-		font-family: "Font Awesome 5 free"; /*폰트어썸 아이콘 사용*/
-		font-weight: 900; /*폰트어썸 설정*/
-		color: #B21948;
-		background-color: white;
-		border-color: #000;
-		font-size: 13px;
-		text-align: center;
-	}
-	/*checked된 input 바로 다음의 label:before 에 체크 후 CSS 설정*/
-	input#chk_all:checked+label:before {
-		content: "\f00c"; /*폰트어썸 유니코드*/
-		font-family: "Font Awesome 5 free"; /*폰트어썸 아이콘 사용*/
-		font-weight: 900; /*폰트어썸 설정*/
-		color: #B21948;
-		background-color: white;
-		border-color: #000;
-		font-size: 13px;
-		text-align: center;
-	}
-	
-	input#chk_select2 {
-		display: none;
-	}
-	/*input 바로 다음의 label*/
-	input#chk_select2+label {
-		cursor: pointer;
-	}
-	
-	/*input 바로 다음의 label:before 에 체크하기 전 CSS 설정*/
-	input#chk_select2+label:before {
-		content: "";
-		display: inline-block;
-		width: 18px;
-		height: 18px;
-		line-height: 18px;
-		border: 1px solid #cbcbcb;
-		vertical-align: middle; /*체크 전과 체크 후 높이 차이 때문에 설정*/
-	}
-	
-	/*checked된 input 바로 다음의 label:before 에 체크 후 CSS 설정*/
-	input#chk_select2:checked+label:before {
-		content: "\f00c"; /*폰트어썸 유니코드*/
-		font-family: "Font Awesome 5 free"; /*폰트어썸 아이콘 사용*/
-		font-weight: 900; /*폰트어썸 설정*/
-		color: blue;
-		background-color: white;
-		border-color: #000;
-		font-size: 13px;
-		text-align: center;
-	}
-	
-	#chk_selectLabel {
-		float: left;
-		margin-right: 10px;
-	}
-	
-	#chk_selectLabel2 {
-		float: left;
-		margin-right: 10px;
-	}
-	
-	.product-details a {
-		text-decoration: none;
-		color: black;
-	}
-	
-	.product-details a:hover {
-		text-decoration: underline;
-		color: black;
-	}
-	/* a 링크 : 메뉴바 */	
-	a:link.liList {
-		text-decoration: none;
-		color: #a399a2;
-	}
-	
-	a:visited.liList {
-		text-decoration: none;
-		color: #a399a2;
-	}
-	
-	a:hover.liList{
-		text-decoration: underline;
-		color: #B21948;
-	}
-	
-	a:active.liList {
-		text-decoration: none;
-		color: #B21948;
-	}
-				/* 페이징 처리 */
-	/* 페이징 전체 틀 */
-	.pagination-container {
-		margin: 10px auto;
-		display: flex;
-	    justify-content: center;
-	}
-	
-	.pagination {
-		position: relative;
-	}
-	/* 'PREV' 전체 틀 */
-	#pagination a {
-		position: relative;
-		display: inline-block;
-		color: #B21948; /* 글자색상 */
-		text-decoration: none;
-		font-size: 1.2rem;
-		padding: 8px 16px 10px;
-	}
-	/* 'PREV' 부분 */
-	#pagination a:before {
-		z-index: -1;
-		position: absolute;
-		height: 100%;
-		width: 100%;
-		content: "";
-		top: 0;
-		left: 0;
-		background-color: #B21948;
-		border-radius: 24px;
-		-webkit-transform: scale(0);
-		transform: scale(0);
-		transition: all 0.2s;
-	}
-	#pagination a:hover, #pagination a #pagination-active {
-		color: #fff;
-	}
-	
-	#pagination a:hover:before, #pagination a #pagination-active:before {
-		-webkit-transform: scale(1);
-		transform: scale(1);
-	}
-	
-	#pagination #pagination-active {
-		color: #fff;
-	}
-	
-	#pagination #pagination-active:before {
-		-webkit-transform: scale(1);
-		transform: scale(1);
-	}
-	/*'NEXT' 전체 틀 */
-	#pagination-newer {
-		margin-right: 50px;
-	}
-	
-	#pagination-older {
-		margin-left: 50px;
-	}
-	.productList tr{
-		border-bottom: 1px solid #B21948;
-	}
-	.meau {
-		padding-top: 30px;
-		padding-left: 800px;
-		font-family: 'KIMM_Bold';
-	}
-	
-	.meau a {
-		color: white;
-		text-decoration: none;
-	}
-	select {
-		padding : 5px 5px;
-	}
+	float: left;
+}
+
+.hide {
+	display: none;
+}
+
+main {
+	clear: both;
+	font-size: 0.75rem;
+	margin: 0 auto;
+	overflow: hidden;
+	padding: 1rem 0;
+	width: 960px;
+}
+
+.basket, .aside_right {
+	padding: 0 1rem;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.basket {
+	width: 100%;
+	padding-bottom: 20px;
+	height: 900px;
+}
+
+.basket-module {
+	color: #111;
+}
+
+label {
+	display: block;
+	margin-bottom: 0.3125rem;
+}
+
+.promo-code-field {
+	border: 1px solid #ccc;
+	padding: 0.5rem;
+	text-transform: uppercase;
+	transition: all 0.2s linear;
+	width: 48%;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-o-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+
+.promo-code-field:hover, .promo-code-field:focus {
+	border: 1px solid #999;
+}
+
+.promo-code-cta {
+	border-radius: 4px;
+	font-size: 0.625rem;
+	margin-left: 0.625rem;
+	padding: 0.6875rem 1.25rem 0.625rem;
+}
+
+.basket-labels {
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	margin-top: 1.625rem;
+}
+
+.basket-labels ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.basket-labels li {
+	color: #111;
+	display: inline-block;
+	padding: 0.625rem 0;
+}
+
+.basket-labels li.price:before, .basket-labels li.subtotal:before {
+	content: '';
+}
+
+.item {
+	width: 75%;
+}
+
+.price, .quantity, .subtotal {
+	width: 15%;
+}
+
+.subtotal {
+	text-align: right;
+}
+
+.btnAdd {
+	margin-left: 50px;
+	font-size: 22px;
+}
+/* 삭제 버튼 */
+.removeCart {
+	bottom: 1.125rem;
+	float: right;
+	position: absolute;
+	top: 10%;
+	right: 0;
+	text-align: right;
+	width: 3%;
+	height: 20%;
+	margin-right: 8px;
+	background-color: white;
+	font-size: 22px;
+	text-align: center;
+	border: 1px solid white;
+}
+
+.removeCart:hover {
+	cursor: pointer;
+}
+
+.removeText {
+	font-size: 15px;
+	/* color: #2f348f; */
+	position: relative;
+	top: -5%;
+	left: 10%
+}
+
+#shopping_cartImg {
+	width: 25px;
+	height: 25px;
+	margin: 8px 10px 10px 15px;
+}
+
+#shopping_deleteImg {
+	width: 25px;
+	height: 25px;
+	position: relative;
+	top: 8%;
+}
+
+#allDelete {
+	cursor: pointer;
+	margin-left: 150px;
+}
+
+.remove button {
+	background-color: transparent;
+	float: none;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.item-heading {
+	padding-left: 4.375rem;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	text-align: left;
+}
+
+.basket-product {
+	border-bottom: 1px solid #ccc;
+	padding: 1rem 0;
+	position: relative;
+}
+
+.product-image {
+	width: 90px;
+}
+
+.product-frame {
+	border: 1px solid #aaa;
+}
+
+.product-details {
+	padding: 0 1.5rem;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 75%;
+	padding-left: 5px;
+	text-align: left;
+	margin: 5px 0px 0px 8px;
+}
+
+.quantity-field {
+	background-color: #ccc;
+	border: 1px solid #aaa;
+	border-radius: 4px;
+	font-size: 0.625rem;
+	padding: 2px;
+	width: 3.75rem;
+	margin-left: 30px;
+}
+
+.aside_right {
+	float: right;
+	position: relative;
+	width: 30%;
+}
+
+.summary {
+	background-color: #eee;
+	border: 1px solid #aaa;
+	padding: 1rem;
+	position: fixed;
+	width: 250px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	margin-top: 25px;
+}
+
+.summary-total-items {
+	color: #666;
+	font-size: 0.875rem;
+	text-align: center;
+}
+
+.summary-subtotal, .summary-total {
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	clear: both;
+	margin: 1rem 0;
+	overflow: hidden;
+	padding: 0.5rem 0;
+}
+
+.subtotal-title, .subtotal-value, .total-title, .total-value,
+	.promo-title, .promo-value {
+	color: #111;
+	float: left;
+	width: 50%;
+}
+
+.summary-promo {
+	-webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-o-transition: all .3s ease;
+	transition: all .3s ease;
+}
+
+.promo-title {
+	float: left;
+	width: 70%;
+}
+
+.promo-value {
+	color: #8B0000;
+	float: left;
+	text-align: right;
+	width: 30%;
+}
+
+.summary-delivery {
+	padding-bottom: 3rem;
+}
+
+.subtotal-value, .total-value {
+	text-align: right;
+}
+
+.total-title {
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.summary-checkout {
+	display: block;
+}
+
+.checkout-cta {
+	display: block;
+	float: none;
+	font-size: 0.75rem;
+	text-align: center;
+	text-transform: uppercase;
+	padding: 0.625rem 0;
+	width: 100%;
+}
+
+.summary-delivery-selection {
+	background-color: #ccc;
+	border: 1px solid #aaa;
+	border-radius: 4px;
+	display: block;
+	font-size: 0.625rem;
+	height: 34px;
+	width: 100%;
+}
+
+.total-title {
+	text-align: left;
+}
+
+.aside_left {
+	margin-top: 45px;
+	margin-left: 60px;
+	width: 180px;
+	min-height: 700px;
+	float: left;
+	text-align: left;
+}
+
+.aside_left nav {
+	min-height: 600px;
+	margin-bottom: 50px;
+}
+
+.aside_left li {
+	padding-top: 8.2px;
+	padding-bottom: 2px;
+	list-style: none;
+}
+
+#subspan {
+	color: #808080;
+}
+
+.memBasicInfo1 {
+	height: 120px;
+	width: 120px;
+	padding: 20px;
+	float: left;
+	margin-right: 200px;
+	margin-top: 0px;
+}
+
+.memBasicInfo2 {
+	height: 80px;
+	width: 130px;
+	position: relative;
+	top: -40%;
+	left: 50%;
+}
+
+.innerWrap {
+	width: 300px;
+	height: 220px;
+	padding: 20px;
+	float: left;
+	margin-left: 60px;
+	overflow: hidden;
+}
+
+#mypageTitle {
+	font-size: 28px;
+	font-weight: 700;
+}
+
+.mypageTitlebox {
+	float: left;
+	margin: 20px 0px 0px 5px;
+}
+
+#user_id {
+	font-size: 20px;
+	font-weight: 700;
+}
+/* 찜 목록 */
+.wishBox {
+	margin-left: 0;
+	width: 1200px;
+	position: relative;
+	left: 40%;
+	top: 4%;
+	transform: translateX(-50%);
+	overflow: hidden;
+	border-bottom: 2px solid rgb(217, 217, 217);
+}
+/* 찜한 상품 */
+#listTitle {
+	font-size: 1.8em;
+	font-weight: bold;
+	margin-left: 15px;
+}
+
+.listTitleBox {
+	width: 100%;
+	height: 60px;
+	border-bottom: 2px solid rgb(217, 217, 217);
+	text-align: left;
+}
+/* 체크박스 */
+/*input 은 숨겨주기*/
+input#chk_all {
+	display: none;
+}
+/*input 바로 다음의 label*/
+input#chk_all+label {
+	cursor: pointer;
+}
+
+/*input 바로 다음의 label:before 에 체크하기 전 CSS 설정*/
+input#chk_all+label:before {
+	content: "";
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	line-height: 18px;
+	border: 1px solid #cbcbcb;
+	vertical-align: middle; /*체크 전과 체크 후 높이 차이 때문에 설정*/
+}
+
+/*checked된 input 바로 다음의 label:before 에 체크 후 CSS 설정*/
+input#chk_all:checked+label:before {
+	content: "\f00c"; /*폰트어썸 유니코드*/
+	font-family: "Font Awesome 5 free"; /*폰트어썸 아이콘 사용*/
+	font-weight: 900; /*폰트어썸 설정*/
+	color: #B21948;
+	border-color: #000;
+	font-size: 13px;
+	text-align: center;
+}
+
+input#chk_select {
+	display: none;
+}
+/*input 바로 다음의 label*/
+input#chk_select+label {
+	cursor: pointer;
+}
+
+/*input 바로 다음의 label:before 에 체크하기 전 CSS 설정*/
+input#chk_select+label:before {
+	content: "";
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	line-height: 18px;
+	border: 1px solid #cbcbcb;
+	vertical-align: middle; /*체크 전과 체크 후 높이 차이 때문에 설정*/
+}
+
+/*checked된 input 바로 다음의 label:before 에 체크 후 CSS 설정*/
+input#chk_select:checked+label:before {
+	content: "\f00c"; /*폰트어썸 유니코드*/
+	font-family: "Font Awesome 5 free"; /*폰트어썸 아이콘 사용*/
+	font-weight: 900; /*폰트어썸 설정*/
+	color: #B21948;
+	background-color: white;
+	border-color: #000;
+	font-size: 13px;
+	text-align: center;
+}
+/*checked된 input 바로 다음의 label:before 에 체크 후 CSS 설정*/
+input#chk_all:checked+label:before {
+	content: "\f00c"; /*폰트어썸 유니코드*/
+	font-family: "Font Awesome 5 free"; /*폰트어썸 아이콘 사용*/
+	font-weight: 900; /*폰트어썸 설정*/
+	color: #B21948;
+	background-color: white;
+	border-color: #000;
+	font-size: 13px;
+	text-align: center;
+}
+
+input#chk_select2 {
+	display: none;
+}
+/*input 바로 다음의 label*/
+input#chk_select2+label {
+	cursor: pointer;
+}
+
+/*input 바로 다음의 label:before 에 체크하기 전 CSS 설정*/
+input#chk_select2+label:before {
+	content: "";
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	line-height: 18px;
+	border: 1px solid #cbcbcb;
+	vertical-align: middle; /*체크 전과 체크 후 높이 차이 때문에 설정*/
+}
+
+/*checked된 input 바로 다음의 label:before 에 체크 후 CSS 설정*/
+input#chk_select2:checked+label:before {
+	content: "\f00c"; /*폰트어썸 유니코드*/
+	font-family: "Font Awesome 5 free"; /*폰트어썸 아이콘 사용*/
+	font-weight: 900; /*폰트어썸 설정*/
+	color: blue;
+	background-color: white;
+	border-color: #000;
+	font-size: 13px;
+	text-align: center;
+}
+
+#chk_selectLabel {
+	float: left;
+	margin-right: 10px;
+}
+
+#chk_selectLabel2 {
+	float: left;
+	margin-right: 10px;
+}
+
+.product-details a {
+	text-decoration: none;
+	color: black;
+}
+
+.product-details a:hover {
+	text-decoration: underline;
+	color: black;
+}
+/* a 링크 : 메뉴바 */
+a:link.liList {
+	text-decoration: none;
+	color: #a399a2;
+}
+
+a:visited.liList {
+	text-decoration: none;
+	color: #a399a2;
+}
+
+a:hover.liList {
+	text-decoration: underline;
+	color: #B21948;
+}
+
+a:active.liList {
+	text-decoration: none;
+	color: #B21948;
+}
+/* 페이징 처리 */
+/* 페이징 전체 틀 */
+.pagination-container {
+	margin: 10px auto;
+	display: flex;
+	justify-content: center;
+}
+
+.pagination {
+	position: relative;
+}
+/* 'PREV' 전체 틀 */
+#pagination a {
+	position: relative;
+	display: inline-block;
+	color: #B21948; /* 글자색상 */
+	text-decoration: none;
+	font-size: 1.2rem;
+	padding: 8px 16px 10px;
+}
+/* 'PREV' 부분 */
+#pagination a:before {
+	z-index: -1;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	content: "";
+	top: 0;
+	left: 0;
+	background-color: #B21948;
+	border-radius: 24px;
+	-webkit-transform: scale(0);
+	transform: scale(0);
+	transition: all 0.2s;
+}
+
+#pagination a:hover, #pagination a #pagination-active {
+	color: #fff;
+}
+
+#pagination a:hover:before, #pagination a #pagination-active:before {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+}
+
+#pagination #pagination-active {
+	color: #fff;
+}
+
+#pagination #pagination-active:before {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+}
+/*'NEXT' 전체 틀 */
+#pagination-newer {
+	margin-right: 50px;
+}
+
+#pagination-older {
+	margin-left: 50px;
+}
+
+.productList tr {
+	border-bottom: 1px solid #B21948;
+}
+
+.meau {
+	padding-top: 30px;
+	padding-left: 800px;
+	font-family: 'KIMM_Bold';
+}
+
+.meau a {
+	color: white;
+	text-decoration: none;
+}
+
+select {
+	padding: 5px 5px;
+}
+
+.nonList {
+	font-size: 15px;
+	border-top: 1px solid #e7e7e7;
+	text-align: center;
+	padding: 140px 0 36px;
+	background: url(../images/bg_no_list.png) no-repeat 50% 40px;
+}
 </style>
 </head>
 <body>
@@ -728,7 +744,6 @@
 						<ul>
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"><a href="myPage_Main" style="text-decoration: none; color: black;">나의 쇼핑</a></li>
 							<li><a href="myPage_order" class="liList">주문ㆍ배송</a></li>
-							<li><a href="myPage_orderDetails" class="liList">교환/반품/환불</a></li>
 							<li><a href="myPage_like" class="liList">찜 목록</a></li>
 							<li><a href="myPage_cart" class="liList">장바구니</a></li>
 							<li><a href="myPage_review" class="liList" style="color: #B21948;">나의 상품후기</a></li>
@@ -799,20 +814,41 @@
 								<input type="checkbox" id="chk_select" />
 								<label for="chk_select" id="chk_selectLabel"></label>
 								<%-- 체크 박스 끝 --%>
-								<div class="item">
-									<div class="product-image">
-										<img src="" alt="상품 이미지" class="product-frame">
-									</div>
-									<div class="product-details">
-										<span id="productTitle">2023.03.29</span>
-									</div>
-									<div class="product-details">
-										<span id="productTitle"><strong><a href="#" onclick="openReviewPopup(event)">청송 사과 1.5kg(5~7입)</a></strong></span>
-									</div>
-									<div class="product-details">
-										<span id="productTitle">빨갛고 맛있는 사과! 배송도 빠르네요!</span>
-									</div>
+								
+								<%-- 리뷰 작성 --%>
+								<input type="hidden" name="user_id" id="user_id" value="${user_id }" />
+								<c:if test="${!empty rlist }" >
+								<c:forEach var="rlist" items="${rlist }" >
+							    <div class="item">
+							        <div class="product-image"> <!-- 구매한 상품이미지 -->
+							            <img src="/upload${rlist.PRODUCT_CONT1 }" alt="상품이미지">
+							        </div>
+							        <div class="product-details"><!-- 구매 날짜 -->
+							            <span id="productTitle">${rlist.ORDER_DATE}</span>
+							        </div>
+							        <div class="product-details"> <!-- 구매한 상품명 -->
+							            <span id="productTitle"><strong>
+							            <a href="#" onclick="openReviewPopup(event)">${rlist.PRODUCT_TITLE}</a></strong></span>
+							        </div>
+							    </div>
+								</c:forEach>
+							    </c:if>
+								
+								<c:if test="${empty rlist }" >
+								<div class="nonList">
+									<span>현재 작성된 리뷰가 없습니다.</span>
 								</div>
+								</c:if>
+								
+								<c:forEach items="${rlist}" var="r">
+								    <div class="item">
+								        <div class="product-details">
+								            <span id="productTitle">${r.RE_TITLE}</span>
+								        </div>
+								    </div>
+								</c:forEach>
+
+								
 								<div class="remove">
 									<button class="removeCart">
 										<img id="shopping_deleteImg" src="<%=request.getContextPath()%>/images/X.png" alt="삭제">
