@@ -378,8 +378,9 @@ color:#fff
                 <input type="text" placeholder="우편번호" name="postCode" id="postCode">
                 <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
             </div>
-            <input type="text" placeholder="주소" name="roadAddr" id="roadAddr">
-            <input type="text" placeholder="상세주소" name="detailAddr" id="detailAddr">
+       		 	<input type="text" placeholder="주소" name="roadAddr" id="roadAddr">
+        	    <input type="text" placeholder="상세주소" name="detailAddr" id="detailAddr">
+				<input type="text" id="sample6_extraAddress" placeholder="참고항목">
         </div>
 
         <!-- 5. 이메일_전화번호 -->

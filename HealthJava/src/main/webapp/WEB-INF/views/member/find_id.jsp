@@ -85,21 +85,7 @@
 		left: 50%;
         transform: translateX( -50% );
 	}
-	.social-login b {
-		background-color: #FC5400;
-		color: #fff;
-		border: none;
-		padding: 10px 20px;
-		border-radius: 5px;
-		cursor: pointer;
-	}
-	
-	.login-form {
-		margin-top: 200px;
-	}
-	
-	
-	
+
 		/* 폰트 CSS */
 	@font-face {
 		font-family: 'KIMM_Bold';
@@ -158,14 +144,7 @@
 		left: 50%;
         transform: translateX( -50% );
 	}
-	.social-login b {
-		background-color: #FC5400;
-		color: #fff;
-		border: none;
-		padding: 10px 20px;
-		border-radius: 5px;
-		cursor: pointer;
-	}
+
 	
 	
 	
@@ -282,6 +261,7 @@ body{
     line-height: 1.5em;
     color : #222;
     margin: 0;
+    
 }
 
 a{
@@ -310,7 +290,7 @@ a{
 		</header>
 		
 		<div class="find-form">
-		<h1>아이디 찾기</h1>
+		<h1 style="font-family: 'KIMM_Bold'">아이디 찾기</h1>
 		<form method="post" action="find_id_ok" onsubmit="return id_check();">
 			<label for="username">이름</label>
 			<input type="text" id="username" name="username" >

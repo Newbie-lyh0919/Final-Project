@@ -13,170 +13,138 @@
 <title></title>
 
 <style type="text/css">
-/* 폰트 CSS */
-@font-face {
-	font-family: 'KIMM_Bold';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2')
-		format('woff2'); /* CDN 절대링크  */
-	font-weight: 700;
-	font-style: normal;
-}
-/* 되도록 안건드리는 영역 */
-* {
-	box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-}
+	/* 폰트 CSS */
+	@font-face {
+		font-family: 'KIMM_Bold';
+		src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2') format('woff2'); /* CDN 절대링크  */
+		font-weight: 700;
+		font-style: normal;
+	}
+	/* 되도록 안건드리는 영역 */
+	* {
+		box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+	}
+	html {
+		height: 100%;
+	}
+	body {
+		margin: 0px;
+		height: 100%;
+		padding: 0px;
+	}
+	header {
+		width: 100%;
+	    position: fixed;
+		z-index: 2;
+	}
+	.wrap {
+		margin-top: -110px;
+	}
+	.main { 
+		width: 1400px;
+		position : relative;
+		top: 105px;
+		left: 50%;
+        transform: translateX( -50% );
+		background-color: rgb(179, 255, 213);  /* 영역 보기 편하라고 배경색 지정함 : 연초록 */
+		margin: 0px;
+	}
+	section {
+		height: 100%;
+		background-color: rgb(236, 226, 202); /* 영역 보기 편하라고 배경색 지정함 : 연주황 */
+	}
+	/* 클리어 */
+	.clear {
+		clear: both;
+	}
+	/* 밑의 영역부터 css시작 */
+	.container {
+		width: 100%;
+		height: 935px;
+	}
+	/* 캐러셀 */
+	#carouselExampleControls {
+		width: 1100px;
+		position : relative;
+		left: 50%;
+        transform: translateX( -50% );
+	}
 
-html {
-	height: 100%;
-}
+		/* 폰트 CSS */
+	@font-face {
+		font-family: 'KIMM_Bold';
+		src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2') format('woff2'); /* CDN 절대링크  */
+		font-weight: 700;
+		font-style: normal;
+	}
+	/* 되도록 안건드리는 영역 */
+	* {
+		box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+	}
+	html {
+		height: 100%;
+	}
+	body {
+		margin: 0px;
+		height: 100%;
+		padding: 0px;
+	}
+	header {
+		width: 100%;
+	    position: fixed;
+		z-index: 2;
+	}
+	.wrap {
+		margin-top: -110px;
+	}
+	.main { 
+		width: 1400px;
+		position : relative;
+		top: 105px;
+		left: 50%;
+        transform: translateX( -50% );
+		background-color: rgb(179, 255, 213);  /* 영역 보기 편하라고 배경색 지정함 : 연초록 */
+		margin: 0px;
+	}
+	section {
+		height: 100%;
+		background-color: rgb(236, 226, 202); /* 영역 보기 편하라고 배경색 지정함 : 연주황 */
+	}
+	/* 클리어 */
+	.clear {
+		clear: both;
+	}
+	/* 밑의 영역부터 css시작 */
+	.container {
+		width: 100%;
+		height: 935px;
+	}
+	/* 캐러셀 */
+	#carouselExampleControls {
+		width: 1100px;
+		position : relative;
+		left: 50%;
+        transform: translateX( -50% );
+	}
 
-body {
-	margin: 0px;
-	height: 100%;
-	padding: 0px;
-}
-
-header {
-	width: 100%;
-	position: fixed;
-	z-index: 2;
-}
-
-.wrap {
-	margin-top: -110px;
-}
-
-.main {
-	width: 1400px;
-	position: relative;
-	top: 105px;
-	left: 50%;
-	transform: translateX(-50%);
-	background-color: rgb(179, 255, 213); /* 영역 보기 편하라고 배경색 지정함 : 연초록 */
-	margin: 0px;
-}
-
-section {
-	height: 100%;
-	background-color: rgb(236, 226, 202); /* 영역 보기 편하라고 배경색 지정함 : 연주황 */
-}
-/* 클리어 */
-.clear {
-	clear: both;
-}
-/* 밑의 영역부터 css시작 */
-.container {
-	width: 100%;
-	height: 935px;
-}
-/* 캐러셀 */
-#carouselExampleControls {
-	width: 1100px;
-	position: relative;
-	left: 50%;
-	transform: translateX(-50%);
-}
-
-.social-login b {
-	background-color: #FC5400;
-	color: #fff;
-	border: none;
-	padding: 10px 20px;
-	border-radius: 5px;
-	cursor: pointer;
-}
-
-.login-form {
-	margin-top: 200px;
-}
-
-/* 폰트 CSS */
-@font-face {
-	font-family: 'KIMM_Bold';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2')
-		format('woff2'); /* CDN 절대링크  */
-	font-weight: 700;
-	font-style: normal;
-}
-/* 되도록 안건드리는 영역 */
-* {
-	box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-}
-
-html {
-	height: 100%;
-}
-
-body {
-	margin: 0px;
-	height: 100%;
-	padding: 0px;
-}
-
-header {
-	width: 100%;
-	position: fixed;
-	z-index: 2;
-}
-
-.wrap {
-	margin-top: -110px;
-}
-
-.main {
-	width: 1400px;
-	position: relative;
-	top: 105px;
-	left: 50%;
-	transform: translateX(-50%);
-	background-color: rgb(179, 255, 213); /* 영역 보기 편하라고 배경색 지정함 : 연초록 */
-	margin: 0px;
-}
-
-section {
-	height: 100%;
-	background-color: rgb(236, 226, 202); /* 영역 보기 편하라고 배경색 지정함 : 연주황 */
-}
-/* 클리어 */
-.clear {
-	clear: both;
-}
-/* 밑의 영역부터 css시작 */
-.container {
-	width: 100%;
-	height: 935px;
-}
-/* 캐러셀 */
-#carouselExampleControls {
-	width: 1100px;
-	position: relative;
-	left: 50%;
-	transform: translateX(-50%);
-}
-
-.social-login b {
-	background-color: #FC5400;
-	color: #fff;
-	border: none;
-	padding: 10px 20px;
-	border-radius: 5px;
-	cursor: pointer;
-}
-
+	
+	
+	
+	
+	
+	
 .find-form {
 	background-color: #f2f2f2;
 	padding: 20px;
 	width: 450px;
 	margin: 0 auto;
-	margin-top: 200px;
-	margin-bottom: 100px;
-	text-align: left;
+	margin-top:200px;
+	margin-bottom:100px;
+	text-align:left;
 	border-radius: 5px;
 	box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
 }
@@ -190,9 +158,10 @@ section {
 	display: block;
 	font-weight: bold;
 	margin-bottom: 5px;
+	
 }
 
-.find-form input[type="text"] {
+.find-form input[type="text"]{
 	width: 410px;
 	padding: 5px;
 	margin-bottom: 20px;
@@ -202,6 +171,7 @@ section {
 	box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
 }
 
+
 .find-form button[type="submit"] {
 	background-color: #b21949;
 	color: #fff;
@@ -209,6 +179,7 @@ section {
 	padding: 10px 20px;
 	border-radius: 5px;
 	cursor: pointer;
+	
 }
 
 .find_button {
@@ -217,22 +188,29 @@ section {
 }
 
 .find_button button {
-	width: 410px;
+	width: 150px;
 	display: inline-block;
-	background-color: #FC5400;
+	background-color: #b21949;
 	color: #fff;
 	padding: 10px 20px;
 	border-radius: 5px;
 	text-decoration: none;
 	margin-right: 10px;
+	font-family: 'KIMM_Bold';
+	border: solid #b21949;
 }
 
-.forgot-userphone, .forgot-username {
+.login_pwd_find {
+	float_left: 10px;
+}
+.forgot-userphone,
+.forgot-username {
 	margin-top: 10px;
 	text-align: right;
 }
 
-.forgot-userphone a, .forgot-username a {
+.forgot-userphone a,
+.forgot-username a {
 	color: #999;
 	text-decoration: none;
 	font-size: 12px;
@@ -257,24 +235,31 @@ section {
 	margin-right: 10px;
 }
 
-* {
-	box-sizing: border-box; /*��泥댁�� 諛��ㅼ�ъ�댁�*/
-	outline: none; /*focus ������ ����由� ���ㅺ� */
+
+
+
+
+*{
+    box-sizing: border-box; /*��泥댁�� 諛��ㅼ�ъ�댁�*/
+    outline: none; /*focus ������ ����由� ���ㅺ� */
 }
 
-body {
-	font-family: 'Noto Sans KR', sans-serif;
-	font-size: 10px;
-	background-color: #f5f6f7;
-	line-height: 1.5em;
-	color: #222;
-	margin: 0;
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size:10px;
+    background-color: #f5f6f7;
+    line-height: 1.5em;
+    color : #222;
+    margin: 0;
+    
 }
 
-a {
-	text-decoration: none;
-	color: #222;
+a{
+    text-decoration: none;
+    color: #222;
 }
+
+	
 </style>
 
 
@@ -287,8 +272,8 @@ a {
 			<%-- header include --%>
 			<jsp:include page="../include/header.jsp"/>
 		</header>
-		
-		<div class="find-form">
+	<%-- 	
+	<div class="find-form">
 		
 		<h2 class="pOK_title">아이디찾기</h2>
 		<table id="pOK_t">
@@ -300,11 +285,20 @@ a {
 		<div id="pOK_menu">
 			<input type="button" value="로그인하기" onclick="location='member_login';" />
 			<input type="button" value="비밀번호 찾기" onclick="location='find_pw';" />
-			<%-- 자바스크립트에서 self.close();는 내자신 공지창을 닫는다. --%>
+			<%-- 자바스크립트에서 self.close();는 내자신 공지창을 닫는다. 
+		</div>--%>
+	
+	<div class="find-form">
+		<h1 style="font-family: 'KIMM_Bold'">아이디 찾기</h1>
+			<label for="username">아이디</label>
+			<input type="text" id="user_id" name="user_id" value="${findId}" readonly>
+		
+		<div class="find_button">
+			<button type="button"  onclick="location='member_login';">로그인하기</button>
+			<button type="button"  onclick="location='find_pw';">비밀번호 찾기</button>
 		</div>
-		
-		
 	</div>
+
 	<%-- top버튼 삭제 X --%>
 			<div id="topBtn">
 				<span class="fonti um-arrow-circle-up um-3x icon"></span>TOP
