@@ -141,7 +141,8 @@
 
 
 .find-form {
-	background-color: #f2f2f2;
+	background-color: white;
+	border: 2px solid #b21949;
 	padding: 20px;
 	width: 450px;
 	margin: 0 auto;
@@ -236,8 +237,9 @@
 
 
 *{
-    box-sizing: border-box; /*��泥댁�� 諛��ㅼ�ъ�댁�*/
-    outline: none; /*focus ������ ����由� ���ㅺ� */
+    box-sizing: border-box; 
+    outline: none;
+    font-family: KIMM_Bold;
 }
 
 body{

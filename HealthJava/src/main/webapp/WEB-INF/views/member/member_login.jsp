@@ -24,6 +24,7 @@
 		box-sizing: border-box;
 		-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;
+		    font-family: KIMM_Bold;
 	}
 	html {
 		height: 100%;
@@ -82,7 +83,8 @@
 	
 /* Login form styling */
 .login-form {
-	background-color: #f2f2f2;
+	background-color: white;
+	border: 2px solid #b21949;
 	padding: 20px;
 	width: 450px;
 	margin: 0 auto;
@@ -405,15 +407,6 @@ function pwd_find() {
 <body>
 <%
     
-    /*
-    	생성된 id_cookie쿠키를 검색하여 쿠키가 이미 존재한다면
-    	로그인 창 대신에 브라우저에 "이미 로그인한 사용자 입니다." 를 출력 후
-    	 welcome페이지로 이동할수 있는 링크를 제공하세요
-    	 
-    	 id_cookie가 있는 사용자는 로그인 입력창이 등장하도록 구성하세요
-    
-    */
-    
     Cookie[] cookies = request.getCookies();
     
   
@@ -429,7 +422,6 @@ function pwd_find() {
     		}
     	}
     }
-
     
     %>
 	
@@ -451,7 +443,7 @@ function pwd_find() {
 			<input type="text" value="<%=user_Id%>" name="login_id" id="login_id" required>
 			
 			<label for="password">비밀번호</label>
-			<input type="password"  name="login_pwd" id="login_pwd" required>
+			<input type="password"  name="login_pwd" id="login_pwd"  style="font-family: '맑은 고딕', Arial, sans-serif;" required>
 			
 			
 			<div>
@@ -469,7 +461,7 @@ function pwd_find() {
 			</div>
 			
 			<div class="forgot-username">
-				<a href="find_id">아이디 찾기</a> | <a href="find_pw">비밀번호 찾기</a>
+				<a href="find_id">아이디 찾기</a> | <a href="find_pw_loginform">비밀번호 찾기</a>
 			</div>
 			
 			

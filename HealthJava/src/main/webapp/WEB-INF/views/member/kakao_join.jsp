@@ -331,7 +331,7 @@ a{
  	
         <!-- 1. 로고 -->
         <div class="signup-form">
-        <h1>회원가입</h1>
+        <h1>카카오회원가입</h1>
 
         <!-- 2. 필드 -->
         <div class="field_id">
@@ -346,28 +346,19 @@ a{
             <span id="idcheck"></span>
             </div>
         </div>
-        <br>
         <div class="field">
             <b>비밀번호</b>
             <input class="userpw" type="password" name="user_pwd" id="user_pwd" style="font-family: '맑은 고딕', Arial, sans-serif;">
-            <tr>
-				<small class="td-infoPs" style="color:#b21949;">*비밀번호는 8자 이상 입력 해야합니다.</small>
-			</tr> 
         </div>
-        <br>
         <div class="field">
             <b>비밀번호 재확인</b>
             <input class="userpw-confirm" type="password" name="user_pwd2" id="user_pwd2" style="font-family: '맑은 고딕', Arial, sans-serif;" >
-            <tr>
-				<small class="td-infoPs" style="color:#b21949;">*비밀번호는 8자 이상 입력 해야합니다.</small>
-			</tr> 
         </div>
-        <br>
         <div class="field">
             <b>이름</b>
             <input type="text" name="user_name" id="user_name" value="${user_name}" >
         </div>
-		<br>
+
         <!-- 3. 필드(생년월일) -->
         <div class="field birth" >
             <b>생년월일</b>
@@ -375,7 +366,6 @@ a{
                 <input type="text" placeholder="ex) 990101" name="user_birth" id="user_birth"  >                
               
         </div>
-        <br>
         <!-- 3. 필드(성별) -->
         <div class="field gender" >
             <b>성별</b>
@@ -383,7 +373,7 @@ a{
                 <input type="text" placeholder="ex) male/female" name="user_gender" id="user_gender" value="${user_gender}">                
               
         </div>
-		<br>
+
         <!-- 4. 필드(주소) -->
         <div class="field address">
             <b>주소</b>
@@ -396,14 +386,13 @@ a{
         	    <input type="text" placeholder="상세주소" name="detailAddr" id="detailAddr">
 				<input type="hidden" id="sample6_extraAddress" placeholder="참고항목" value=" ">
         </div>
-		<br>
+
         <!-- 5. 이메일_전화번호 -->
         <div class="field">
-            <b>이메일</b>
-            <input type="email" placeholder="ex) abc123@naver.com" name="user_email" id="user_email" value="${user_email}">
-            
+            <b>이메일 변경불가</b>
+            <input type="email" placeholder="ex) abc123@naver.com" name="user_email" id="user_email" value="${user_email}" readonly>
         </div>
-        <br>
+        
         <div class="field tel-number">
             <b>휴대전화</b>
             
@@ -455,7 +444,7 @@ a{
 				$("#topBtn").css("opacity", 1); // TOP 버튼 나타내기
 			}
 		});
-		
+
 	</script>
 </body>
 </html>

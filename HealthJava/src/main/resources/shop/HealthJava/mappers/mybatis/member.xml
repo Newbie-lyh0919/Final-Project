@@ -24,7 +24,7 @@
  	<!-- 로그인 인증 처리 : 아이디와 user_state가 2가 아니고 메일인증키를 받았을 경우만 로그인 -->
 	<select id="m_loginCheck" resultType="member">
 		SELECT * FROM tbl_member WHERE
-		user_id = #{user_id} and user_state != 2 and mail_auth = 1
+		user_id = #{user_id} and user_state != 2
 	</select>
  
  	<!-- id 찾기 : 이름, 핸드폰번호로 찾기 -->
