@@ -195,14 +195,14 @@
 
 .signup-form input[type="button"],
 .signup-form input[type="submit"] {
-	background-color: #FC5400;
+	background-color: #b21949;
 	color: #fff;
 	border: none;
 	padding: 5px 20px;
 	border-radius: 5px;
 	cursor: pointer;
 	border: 1px solid #dadada;
-    
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
     width: 100%;
     margin-bottom: 5px;
 }
@@ -248,8 +248,9 @@ a{
 
 .member input[type=button],
 .member input[type=submit]{
-background-color: #FC5400;
-color:#fff
+	background-color: #b21949;
+	color:#fff;
+	box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .member input:focus, .member select:focus{
