@@ -269,7 +269,7 @@ section.notice {
 	width: 100%;
 	margin: auto;
 	
-	padding: 50px 0px 20px 0px;
+	padding: 30px 0px 20px 0px;
 	display: inline-block;
 	font-size: 15px;
 	font-weight: 400;

@@ -219,7 +219,7 @@
 <body>
    <div class="headerbox">
       <div class="menubox">
-         <a href="/product/main"> <img
+         <a href="/product/index"> <img
             src="<%=request.getContextPath()%>/images/logo1.png" id="logoImage"
             width="200" height="90" alt="로고 사진">
          </a>

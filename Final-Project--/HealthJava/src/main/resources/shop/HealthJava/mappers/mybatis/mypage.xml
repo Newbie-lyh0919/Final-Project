@@ -76,7 +76,7 @@
 		update tbl_cart set cart_cnt=cart_cnt+1 where cart_no=#{cart_no} and cart_mem_id=#{cart_mem_id}
 	</update>
 	
-	<select id="getBuyOne" resultType="cart">
+	<select id="getBuyOne" resultType="shop.HealthJava.vo.CartVO">
 	   SELECT c.cart_no, c.cart_mem_id, c.cart_pro_no, c.cart_cnt, p.product_cont1, p.product_title, p.product_price
 		FROM tbl_cart c	
 		JOIN tbl_product p ON c.cart_pro_no = p.product_no 

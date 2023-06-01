@@ -645,8 +645,8 @@
 							<p>
 							<p>
 
-								<input type="submit" value="수정" /> <input type="reset"
-									value="취소" onclick="location='productList.jsp'" />
+								<input type="submit" value="수정" /> <input type="button"
+									value="취소" onclick="goBack()" />
 						</div>
 						
 					<%-- end product--%></form>
@@ -732,6 +732,11 @@
         defaultOption.text = '선택';
         selectElement.appendChild(defaultOption);
     }
+</script>
+<script>
+  function goBack() {
+    history.back();
+  }
 </script>
 </body>
 </html>

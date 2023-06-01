@@ -124,7 +124,7 @@ public class ProductController { // 상품 페이지 관련 컨트롤러
 	public int showlist(HttpSession session,Model model,HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		
-		String id = (String)session.getAttribute("id");
+		String id = (String)session.getAttribute("session_id");
 		
 		
 		
@@ -145,7 +145,7 @@ public class ProductController { // 상품 페이지 관련 컨트롤러
 		String cart_cnt = request.getParameter("cart_cnt");
 		String prodcut_no = request.getParameter("product_no");
 		String kind = request.getParameter("kind");
-		String id = (String)session.getAttribute("id");
+		String id = (String)session.getAttribute("session_id");
 		
 		String order_detail_cnt = request.getParameter("order_detail_cnt");
 		String order_detail_price = request.getParameter("order_detail_price");
@@ -268,7 +268,7 @@ public class ProductController { // 상품 페이지 관련 컨트롤러
 		
 		
 		String product_no = request.getParameter("product_no");
-		String id = (String)session.getAttribute("id");
+		String id = (String)session.getAttribute("session_id");
 		String title = request.getParameter("qnaTitle");
 		String content = request.getParameter("qnaContent");
 		
@@ -315,7 +315,7 @@ public class ProductController { // 상품 페이지 관련 컨트롤러
 	@RequestMapping(value="/product/detail/{product_no}")
 	public String showProductDetail(@PathVariable int product_no, LikeVO f, HttpSession session, Model model,HttpServletRequest request, HttpServletResponse response)throws IOException {
 		
-		String id = (String)session.getAttribute("id");
+		String id = (String)session.getAttribute("session_id");
 		
 		
 		
@@ -407,8 +407,10 @@ public class ProductController { // 상품 페이지 관련 컨트롤러
 		
 			productService.deleteProduct(product_no);
 			
+			
+			
 		
-		return "redirect:../";
+		return "redirect:/admin_main";
 	}
 	
 	@RequestMapping(value="/product/edit/{product_no}",method=RequestMethod.GET)
@@ -821,7 +823,7 @@ public class ProductController { // 상품 페이지 관련 컨트롤러
 
 		this.productService.updateProduct(f);//자료실 저장
 
-		return "product/main";
+		return "redirect:/admin_main";
 		//return null;
 	}//food_write_ok()
 	
@@ -1051,7 +1053,7 @@ public class ProductController { // 상품 페이지 관련 컨트롤러
 		this.productService.insertProduct(f);//자료실 저장
 
 	
-		return "redirect:/product/main";
+		return "redirect:/admin_main";
 		//return null;
 	}//food_write_ok()
 }

@@ -427,7 +427,7 @@
 			<section class="notice">
 				<div class="page-title">
 					<b style="text-align: left; font-size: 20px;">&nbsp;&nbsp;주문내역</b>
-					<a href="myPage_orderCancel" class="liList" style="margin-left: 780px; text-decoration-line: none;">[더보기]</a><br>
+					<a href="myPage_order" class="liList" style="margin-left: 780px; text-decoration-line: none;">[더보기]</a><br>
 				</div>
 				<!-- board list area -->
 				<div id="board-list">

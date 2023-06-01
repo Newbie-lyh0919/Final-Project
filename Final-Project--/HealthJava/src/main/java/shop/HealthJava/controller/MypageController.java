@@ -559,7 +559,7 @@ public class MypageController {
 		this.myPageService.likeDel(like_no); // 리뷰 삭제
 		
 		ModelAndView wm = new ModelAndView();
-		wm.setViewName("mypage/myPage_like");
+		wm.setViewName("redirect:/myPage_like");
 		return wm;
 	}
 	

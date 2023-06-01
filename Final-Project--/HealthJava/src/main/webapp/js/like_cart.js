@@ -127,7 +127,7 @@ $('#buy').on('click', '.psbtn', function(e) {
 		
       
       if(data ==4) {
-		  alert('구매 등록됨.')
+		  //alert('구매 등록됨.')
 		  location.href="/PaymentOK";
 	  }
 	  

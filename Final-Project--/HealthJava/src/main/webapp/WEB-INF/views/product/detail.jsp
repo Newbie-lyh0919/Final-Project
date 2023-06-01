@@ -726,10 +726,10 @@ function Click3() {
       <td>${a.qna_title}</td>
       <td>${a.qna_content}</td>
       <td>${a.qna_date.substring(0,10)}</td>
-      <c:if test="${not empty a.qna_reply}">
+      <c:if test="${a.qna_reply != ' '}">
         <th width="14%"><a href="javascript:void(0);" onclick="toggleReply(this);">답변완료</a></th>
       </c:if>
-      <c:if test="${empty a.qna_reply}">
+      <c:if test="${a.qna_reply == ' '}">
         <th width="14%">답변대기</th>
       </c:if>
     </tr>

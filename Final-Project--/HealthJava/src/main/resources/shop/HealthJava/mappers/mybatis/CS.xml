@@ -30,7 +30,7 @@
             and notice_cont like '%' || #{search_field} || '%'
           </if>
         </where>
-        order by notice_no asc
+        order by notice_no desc
       )
     ) <![CDATA[where rNum>= #{startrow} and rNum<=#{endrow}]]>
   </select>

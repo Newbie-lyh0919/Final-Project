@@ -77,7 +77,7 @@
 	  color: #333333;
 	  font-weight: 400;
 	  text-align: center;
-	} */
+	} */ 
 	
 	/*  
 	.board-table tbody .hidden {
@@ -381,7 +381,7 @@
 	  }
 	
 	</script> --%>
-	<section class="notice">
+	<section class="notice" style="margin-bottom: 150px;">
 	
 	<div style="margin-top: 10px;">
 	 <ul id="cs_faq_list">
@@ -442,9 +442,9 @@
 	                	<button type="submit"  id="pwdCheckBtn">확인</button> 
 	                	
 	                	</form> 
-	                	<c:if test="${not empty errorMessage}">
+	                	<%--<c:if test="${not empty errorMessage}">
 	                    <p style="color: red;">${errorMessage}</p>
-	                	</c:if>
+	                	</c:if> --%>
 	                	</td>
 	                	<td></td>
 	                </tr>
@@ -466,7 +466,12 @@
 	    </div>
 	
 	</section>
-
+	
+<c:if test="${not empty errorMessage}">
+  <script>
+    alert("${errorMessage}");
+  </script>
+</c:if>
 	
 	<div class="btn_contact">
 	 <form action="">

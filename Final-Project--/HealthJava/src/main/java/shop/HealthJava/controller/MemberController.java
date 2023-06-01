@@ -82,18 +82,16 @@ public class MemberController { // 사용자 관련 컨트롤러
 
          // 비밀번호가 다른 경우
          if(!m.getUser_pwd().equals(PwdChange.getPassWordToXEMD5String(login_pwd))) {
-        	 System.out.println("비번오류");
             model.setViewName("forward:/member_login");
             return model;
          }else { // 비밀번호가 같은 경우
-        	 System.out.println("비번맞음");
+            
             if(m.getMail_auth() != 1) {
-            	
                model.setViewName("forward:/member_login");
                return model;
             }else {//로그인됬을때
                session.setAttribute("session_id", m.getUser_id()); //세션 id 키 이름에 아이디 저장
-               System.out.println("안넘어감");
+               
                model.setViewName("forward:/product/main");
                return model;
 
@@ -226,12 +224,12 @@ public class MemberController { // 사용자 관련 컨트롤러
             out.println("<script>");
             out.println("alert('인증키가 이메일로 전송되었습니다.');"); // \\n: 엔터키와 동일하다.
             out.println("</script>");            
-            model.setViewName("redirect:/member_login");
+            model.setViewName("forward:/member_login");
             
          } catch (Exception e) {
             out.println("<script>");
             out.println("alert('이메일 전송이 실패했습니다./n다시 회원가입해주세요!');"); // \\n: 엔터키와 동일하다.
-            out.println("location.href = 'member_login';");
+            out.println("location.href = '/member_login';");
             out.println("</script>");
          }
 

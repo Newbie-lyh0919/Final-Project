@@ -152,7 +152,7 @@ public class MypageDAOImpl implements MypageDAO {
 
 	@Override
 	public List<CartVO> getBuyOne(String id) {
-		return this.sqlSession.selectOne("getBuyone", id);
+		return this.sqlSession.selectList("getBuyOne", id);
 	}
 
 	//찜목록 삭제

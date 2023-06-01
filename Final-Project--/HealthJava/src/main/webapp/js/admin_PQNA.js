@@ -180,7 +180,7 @@ function GsQNA_reply_ok(){
 		answer=confirm("답변을 등록하시겠습니까?");
 							
 		if(answer == true){
-			CSBoard_reply_ok();
+			GsQNA_reply_ok();
 			return true;
 		} else if (answer == false){
 			return false;

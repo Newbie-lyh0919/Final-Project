@@ -352,7 +352,7 @@ p {
 	}
 </script>
 
-<section class="notice">
+<section class="notice" style="margin-bottom: 150px;">
 
 <div style="margin-top: 10px;">
  <ul id="cs_faq_list">
