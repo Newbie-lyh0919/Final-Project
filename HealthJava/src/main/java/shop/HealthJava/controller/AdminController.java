@@ -40,6 +40,7 @@ public class Admincontroller {
 
 	}
 
+
 	/*회원 목록 AJAX
 	 * 
 	 */
@@ -54,8 +55,9 @@ public class Admincontroller {
 		if(adminTab.equals("회원관리")) {
 		MemberVO mvo = new MemberVO();
 		mvo.setSearch_type(search_type); mvo.setSearch_field(search_field);
-		List<MemberVO> mlist = this.adminService.getMemberListBySearch(mvo);		
-		int member_count = this.adminService.getMemberCount(mvo);	
+		List<MemberVO> mlist = this.adminService.getMemberListBySearch(mvo); //전체 멤버를 리스트로 뽑아온것
+		int member_count = this.adminService.getMemberCount(mvo); //mvo기준으로 멤버의 수를 카운트	
+			
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("mlist", mlist);
 		paramMap.put("member_count", member_count);
@@ -319,5 +321,15 @@ public class Admincontroller {
 //		}
 //		return true; // 로그인 된 경우 
 //	} // end isLogin
-	
+	//관리자- 메인/회원관리
+	@RequestMapping("/location")
+	public String location(MemberVO mvo, Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("html/text;charset=UTF-8");
+		MemberController.isLogin(session, response);
+		
+		return "/util/location";
+		
+	}
+
 }

@@ -229,7 +229,7 @@ public class MemberController { // 사용자 관련 컨트롤러
          } catch (Exception e) {
             out.println("<script>");
             out.println("alert('이메일 전송이 실패했습니다./n다시 회원가입해주세요!');"); // \\n: 엔터키와 동일하다.
-            out.println("location.href = 'member_login';");
+            out.println("location.href = '/member_login';");
             out.println("</script>");
          }
 

@@ -43,6 +43,7 @@ function product_search(){
                 </select> 
                 <input id="search_field" name="search_field" size="20"> &nbsp;&nbsp;&nbsp;
                 <input type="button" id="btn" name="search" value="검색" onclick="product_search();" />
+                <input type="button" id="btn" name="search" value="상품등록" onclick="location.href='/product/add'" />
               </td>
             </tr>
           </table>

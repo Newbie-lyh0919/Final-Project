@@ -1,6 +1,6 @@
 package shop.HealthJava.controller;
 
-import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -203,11 +203,15 @@ public class CScontroller {
 			
 			return "/cs/contact_cont_user"; //내용보기
 			
-		} else {
-			model.addAttribute("errorMessage", "비밀번호가 틀렸습니다.");
-			return "forward:/contact";
+		} else if(!cvo.getContact_password().equals(contact_password)) {
+			//model.addAttribute("errorMessage", "비밀번호가 틀렸습니다.");
+			 String errorMessage = "비밀번호가 틀렸습니다.";
+			  model.addAttribute("errorMessage", errorMessage);
+			  return "forward:/contact?errorMessage=" + URLEncoder.encode(errorMessage, "UTF-8");
 			
 		}	
+		
+		return null;
 	}
 //	
 //	//CS - 1:1 문의글 내용보기
