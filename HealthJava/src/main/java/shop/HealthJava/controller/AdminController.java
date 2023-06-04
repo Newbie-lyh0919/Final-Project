@@ -40,6 +40,7 @@ public class Admincontroller {
 
 	}
 
+
 	/*회원 목록 AJAX
 	 * 
 	 */
@@ -54,8 +55,9 @@ public class Admincontroller {
 		if(adminTab.equals("회원관리")) {
 		MemberVO mvo = new MemberVO();
 		mvo.setSearch_type(search_type); mvo.setSearch_field(search_field);
-		List<MemberVO> mlist = this.adminService.getMemberListBySearch(mvo);		
-		int member_count = this.adminService.getMemberCount(mvo);	
+		List<MemberVO> mlist = this.adminService.getMemberListBySearch(mvo); //전체 멤버를 리스트로 뽑아온것
+		int member_count = this.adminService.getMemberCount(mvo); //mvo기준으로 멤버의 수를 카운트	
+			
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("mlist", mlist);
 		paramMap.put("member_count", member_count);
@@ -103,8 +105,7 @@ public class Admincontroller {
 			paramMap.put("olist", olist);
 			paramMap.put("order_counts", order_counts);	
 			return paramMap;
-		}
-		
+		}	
 		return null;
 	}
 	
@@ -168,7 +169,7 @@ public class Admincontroller {
 		//MemberController.isLogin(session, response);
 		
 		int client_no = Integer.parseInt(request.getParameter("client_no"));
-		System.out.println(client_no);
+		//System.out.println(client_no);
 		
 		CSClientVO cvo = this.adminService.getClientCont(client_no); // 2-2. 문의 게시판 : 내용보기 
 		
@@ -177,7 +178,7 @@ public class Admincontroller {
 		return cvo;
 	}
 	
-	//회원정보 수정 ok
+	//1대1문의 답글 ok
 	@ResponseBody
 	@RequestMapping(value = "/CSBoard_reply_ok")
 	public int CSBoard_reply_ok (Model model, HttpSession session, HttpServletRequest request, HttpServletResponse response
@@ -188,6 +189,7 @@ public class Admincontroller {
 		
 		int re = -1;
 		int client_no = Integer.parseInt(request.getParameter("client_no"));
+		System.out.println("클라넘버:" + client_no);
 		
 		CSClientVO cvo = new CSClientVO();
 		cvo.setClient_no(client_no);
@@ -210,7 +212,7 @@ public class Admincontroller {
 		
 		int qna_no = Integer.parseInt(request.getParameter("qna_no"));
 		
-		System.out.println(qna_no);
+		System.out.println("qna_no:"+qna_no);
 		
 		ProductQnAVO qvo = this.adminService.getGsQNACont(qna_no); // 2-2. 문의 게시판 : 내용보기 
 		
@@ -223,14 +225,14 @@ public class Admincontroller {
 	@ResponseBody
 	@RequestMapping(value = "/GsQNA_reply_ok")
 	public int Product_QNA_ok (Model model, HttpSession session, HttpServletRequest request, HttpServletResponse response
-		,String qna_title, String qna_cont, String qna_mem_id ,String qna_reply) throws Exception{
+		, String qna_title, String qna_cont, String qna_mem_id ,String qna_reply) throws Exception{
 
 		//MemberController.isLogin(session, response);
 		
 		int re = -1;
 		int qna_no = Integer.parseInt(request.getParameter("qna_no"));
 		int qna_product_no = Integer.parseInt(request.getParameter("qna_product_no"));
-		System.out.println(qna_product_no);		
+		System.out.println("qna_product_no:"+qna_product_no);		
 		
 		// 컨트롤러에서 모델 DAO로 여러개의 값을 하나의 객체로 만들어서 효율적으로 한꺼번에 전달함.
 		ProductQnAVO qvo = new ProductQnAVO();
@@ -319,5 +321,15 @@ public class Admincontroller {
 //		}
 //		return true; // 로그인 된 경우 
 //	} // end isLogin
-	
+	//관리자- 메인/회원관리
+	@RequestMapping("/location")
+	public String location(MemberVO mvo, Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("html/text;charset=UTF-8");
+		MemberController.isLogin(session, response);
+		
+		return "/util/location";
+		
+	}
+
 }

@@ -12,6 +12,16 @@ function join_check(){
       $("#user_id").val("").focus();
       return false;
    }
+   
+   // 아이디 중복 찾기 버튼을 눌렀는지 확인
+  var idDuplicateChecked = document.getElementById("idDuplicateChecked").value;
+ 
+  // 아이디 중복 찾기 버튼을 누르지 않은 경우
+  if (idDuplicateChecked !== "아이디 중복검사") {
+    alert("아이디 중복 찾기 버튼을 눌러주세요.");
+    return false; // 회원가입을 중단
+  }
+   
    $user_pwd=$.trim($("#user_pwd").val());
    $user_pwd2=$.trim($("#user_pwd2").val());
    if($user_pwd == ""){
@@ -87,6 +97,24 @@ function join_check(){
       $("#user_email").val("").focus();
       return false;
    } 
+
+      // 이메일인증 버튼을 눌렀는지 확인
+  var verifyEmail = document.getElementById("verifyEmail").value;
+
+  // 이메일인증 버튼을 누르지 않은 경우
+  if (verifyEmail !== "이메일 인증") {
+    alert("이메일인증 버튼을 눌러주세요.");
+    return false; // 회원가입을 중단
+  }
+     // 이메일인증확인 버튼을 눌렀는지 확인
+  var verifyEmailConfirm = document.getElementById("verifyEmailConfirm").value;
+
+  // 이메일인증확인 버튼을 누르지 않은 경우
+  if (verifyEmailConfirm !== "확인") {
+    alert("이메일인증확인 버튼을 눌러주세요.");
+    return false; // 회원가입을 중단
+  }
+  
    if($.trim($("#user_phone").val())==""){
       alert("폰번호를 입력하세요!");
       $("#user_phone").val("").focus();
@@ -99,7 +127,7 @@ function join_check(){
       return false;
    }
    
-   
+   return true;
 }
 
 //중복아이디 검색

@@ -8,6 +8,43 @@
 <title>PuppyHome 개인정보 처리방침</title>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico" type="image/x-icon"> <%-- 파비콘 --%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/util/css/privacy.css"> <%-- privacy.css --%>
+<style>
+/* privacy.jsp UI */
+.wrap {
+	background: #fff;
+}
+.privacy_titleBox {
+	width: 100%;
+	height: 120px;
+	margin-top: 15px;
+}
+#privacy_title {
+	font-weight: bolder;
+	font-size: 22px;
+	margin-left: 180px;
+}
+.privacy_downloadBox {
+	width: 502px;
+	height: 50px;
+	border: 1px solid rgb(162, 160, 160);
+	border-radius: 5px;
+	margin-top: 20px;
+	margin-left: 27px;
+}
+.privacy_body {
+	font-size: 13px;
+	font-weight: 500;
+}
+.privacy_dateBox {
+	margin: 12px 0px 10px 0px;
+}
+
+#privacy_date {
+	margin: 20px 0px 0px 10px;
+	color: rgb(162, 160, 160);
+	font-weight: 700;
+}
+</style>
 </head>
 <body>
 	<div class="wrap">

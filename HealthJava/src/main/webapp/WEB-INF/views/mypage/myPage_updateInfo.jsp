@@ -8,21 +8,63 @@
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script> <%-- CDN 절대링크 --%>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> <%-- CDN 절대링크 --%>
 <script type="text/javascript" src = "./js/jquery.js"></script>
-<script defer src="<%=request.getContextPath()%>/js/post.js"></script>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="<%=request.getContextPath()%>/js/updateInfo.js"></script>
-<script src="<%=request.getContextPath()%>/js/post2.js"></script>
-<script>Kakao.init('31d2f9dc79f327146c781ff55e8f8b76');</script>
 
 <title>HealthJava 마이페이지</title>
-
-<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico" type="image/x-icon"> <%-- 파비콘 --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/header.css"> <%-- header.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/footer.css"> <%-- footer.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/fontium/css/fontium.css"/>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/page/mypage/css/mypage.css">
 <%-- <link rel="stylesheet" href="./shop/puppyhome/controller_mypage/css/mypage.css">--%>
 
+<%-- 우편관련 --%>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                if(data.userSelectedType === 'R'){
+                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있고, 공동주택일 경우 추가한다.
+                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                    if(extraAddr !== ''){
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                    // 조합된 참고항목을 해당 필드에 넣는다.
+                    document.getElementById("sample6_extraAddress").value = extraAddr;
+                
+                } else {
+                    document.getElementById("sample6_extraAddress").value = '';
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('postCode').value = data.zonecode;
+                document.getElementById("roadAddr").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("detailAddr").focus();
+            }
+        }).open();
+    }
+</script>
+<%-- 우편 끝--%>
 
 <style type="text/css">
 
@@ -431,21 +473,19 @@
 				<aside class="aside_left">
 					<nav>
 						<ul>
-							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 쇼핑</li>
+							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"><a href="myPage_Main" style="text-decoration: none; color: #B21948;">나의 쇼핑</a></li>
 							<li><a href="myPage_Main" class="liList">주문ㆍ배송</a></li>
-							<li><a href="myPage_orderCancel" class="liList">교환/반품/환불</a></li>
-							<li><a href="like" class="liList">찜 목록</a></li>
-							<li><a href="basket" class="liList">장바구니</a></li>
-							<li style="margin-bottom: 30px;"><a href="inquiry" class="liList">문의 내역</a></li>
+							<li><a href="myPage_like" class="liList">찜 목록</a></li>
+							<li><a href="myPage_cart" class="liList">장바구니</a></li>
+							<li><a href="myPage_review" class="liList">나의 상품후기</a></li>
 
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
 							<li><a href="myPage_updateInfo" class="liList" style="color: #B21948;">회원정보 변경</a></li>
 							<li><a href="myPage_changePwd" class="liList">비밀번호 변경</a></li>
 							<li><a href="myPage_user_Withdrawal" class="liList">회원탈퇴</a></li>
 							<li style="margin-bottom: 30px;"><a href="myPage_updateAddress" class="liList">배송지 관리</a></li>
-							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 상품후기</li>
-							<li><a href="review" class="liList">나의 상품후기</a></li>
-						</ul>
+							
+							</ul>
 					</nav>
 				</aside>
 		<%-- 본문 영역(ui깨질시 본인이 ui 수정바람..) --%>
@@ -489,11 +529,11 @@
 						<th rowspan="2" class="th-list" >
 						생년월일 *</th>
 						<td class="td-inputInfo">
-								<input type="text" name="user_birth" id="user_birth" value="${em.user_birth}" size="70" placeholder="예)1999년 1월 1일 -> 19990101">
+								<input type="text" name="user_birth" id="user_birth" value="${em.user_birth}" size="70" placeholder="예)1999년 1월 1일 -> 990101">
 						</td>
 					
 					<tr>
-						<td class="td-infoPs"></td>
+						<td class="td-infoPs">* 1999년 1월 1일 -> 990101</td>
 					</tr>
 					
 					<!--성별-->
@@ -501,18 +541,18 @@
 						<th rowspan="2" class="th-list" >
 						성별 *</th>
 						<td class="td-inputInfo">
-								<input type="text" name="user_gender" id="user_gender" value="${em.user_gender}" size="70" placeholder="예)남자 or 여자">
+								<input type="text" name="user_gender" id="user_gender" value="${em.user_gender}" size="70" placeholder="예)male or female or 남자  or 여자">
 						</td>
 					
 					<tr>
-						<td class="td-infoPs"></td>
+						<td class="td-infoPs">* male or female or 남자  or 여자 (대소문자 구분안함)</td>
 					</tr>
 					
 					<!--주소-->
 					<tr>
 						<th rowspan="4" class="th-list">주소 *</th>
 						<td class="td-inputInfo"><input type="text" name="postCode" id="postCode" value="${em.postCode}" size="20" placeholder="우편번호"/>&nbsp;&nbsp;
-						<input type="button" value="주소검색" onclick="post()" style="font-weight: bold; padding: 2px; background: #b21949; border: 2px solid #b21949; color: white;"/>
+						<input type="button" value="우편번호 찾기" onclick="sample6_execDaumPostcode()" style="font-weight: bold; padding: 2px; background: #b21949; border: 2px solid #b21949; color: white;"/>
 						</td>
 					</tr>
 
@@ -525,12 +565,12 @@
 					</tr>
 					
 					<tr>
-						<td class="td-infoPs"></td>
+						<td class="td-infoPs"><input type="hidden" id="sample6_extraAddress" placeholder="참고항목" value=" "></td>
 					</tr>
-										
+					       
 					<!--이메일-->
 					<tr>
-						<th class="th-list" rowspan="2" >이메일 *</th>
+						<th class="th-list" rowspan="2" >이메일</th>
 						<td class="td-inputInfo"><input type="email" name="user_email" id="user_email" value="${em.user_email}"size="70" placeholder="예) abcdefg11@naver.com" readonly/>&nbsp;&nbsp;
 						<%-- <input type="button" value="이메일 중복 검색" onclick="findEmail()" style="font-weight: bold; padding: 2px; background: #b21949; border: 2px solid #b21949; color: white;"/>
 						</td>
@@ -538,7 +578,7 @@
 					</tr>
 					
 					<tr>
-						<td id="emailCheck"></td>
+						<td class="td-infoPs">* abcdefg11@naver.com</td>
 					</tr>
 					
 					<!--휴대전화-->
@@ -550,7 +590,7 @@
 					</tr>
 					
 					<tr>
-						<td class="td-infoPs"></td>
+						<td class="td-infoPs">* 010-1234-5678 -> 01012345678</td>
 					</tr>
 				</table>
 				

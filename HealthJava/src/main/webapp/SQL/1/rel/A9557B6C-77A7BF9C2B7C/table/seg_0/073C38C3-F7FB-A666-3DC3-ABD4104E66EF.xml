@@ -1,0 +1,161 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="073C38C3-F7FB-A666-3DC3-ABD4104E66EF" schemaObject="B7000150-9397-6475-AA99-3F3955780552" name="TBL_ORDER">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>HEALTHJAVA</sourceObjSchema>
+<sourceObjName>TBL_ORDER</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:50 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ORDER_NO" id="B2FA5364-212A-CF78-13C5-B6375F7D820D">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_ORDER</sourceObjSchema>
+<sourceObjName>ORDER_NO</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>38</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,38,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORDER_PRODUCT_TITLE" id="913B87E6-6568-D822-6FB1-78D62EC7003D">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_ORDER</sourceObjSchema>
+<sourceObjName>ORDER_PRODUCT_TITLE</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="3AB1E436-E46D-0516-D5E4-7B7A81BCFE14" referredColumn="22BE0C15-8BE1-86D6-5C2D-FF5C803A3F7C"/>
+</associations>
+</Column>
+<Column name="ORDER_DATE" id="658268B1-2F9B-5D87-CC2C-2D6F4FB15DCA">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_ORDER</sourceObjSchema>
+<sourceObjName>ORDER_DATE</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORDER_CNT" id="63E6558A-8611-4B9B-9DEB-1FA43D4D480E">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_ORDER</sourceObjSchema>
+<sourceObjName>ORDER_CNT</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORDER_INVOICE" id="DE4D7E96-4A6C-0BDB-16A4-F8AF37B3C9DB">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_ORDER</sourceObjSchema>
+<sourceObjName>ORDER_INVOICE</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORDER_TOTAL" id="04045704-E601-04C3-BD8F-D74D075BD28F">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_ORDER</sourceObjSchema>
+<sourceObjName>ORDER_TOTAL</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>38</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,38,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="USER_ID" id="D4B11A97-C950-7E21-B022-241F96C6BD86">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_ORDER</sourceObjSchema>
+<sourceObjName>USER_ID</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="6E5C7008-C53A-3A89-BF64-5A8E0F8D5370" referredColumn="342A01FC-A750-6F34-FFE3-966510AE98B0"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="7F488C5E-E8AF-9122-61F1-413E94135C26" schemaObject="B7000150-9397-6475-AA99-3F3955780552" name="TBL_ORDER_PK">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>HEALTHJAVA</sourceObjSchema>
+<sourceObjName>SYS_C008848</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B2FA5364-212A-CF78-13C5-B6375F7D820D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="619A5631-A612-A103-24DA-7B9A563BD17D" name="SYS_C008849">
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:52 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="913B87E6-6568-D822-6FB1-78D62EC7003D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F4A54DBE-6F18-0D1E-A2DB-5BB50D57B68E" name="SYS_C008850">
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:52 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D4B11A97-C950-7E21-B022-241F96C6BD86"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

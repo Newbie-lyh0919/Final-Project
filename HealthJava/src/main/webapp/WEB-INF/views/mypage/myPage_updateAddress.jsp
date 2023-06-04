@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,10 +9,11 @@
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script> <%-- CDN 절대링크 --%>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> <%-- CDN 절대링크 --%>
 <script type="text/javascript" src = "./js/jquery.js"></script>
-<script defer src="<%=request.getContextPath()%>/js/post.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="<%=request.getContextPath()%>/js/updateInfo.js"></script>
-<script src="<%=request.getContextPath()%>/js/post2.js"></script>
+<script src="./js/updateInfo.js"></script>
+<script src="./js/post2.js"></script>
+
+<script src="${pageContext.request.contextPath}/js/addr.js"></script>
 
 <title>HealthJava 마이페이지</title>
 
@@ -19,8 +21,6 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/header.css"> <%-- header.css --%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/footer.css"> <%-- footer.css --%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/fontium/css/fontium.css"/>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/page/mypage/css/mypage.css">
-<%-- <link rel="stylesheet" href="./shop/puppyhome/controller_mypage/css/mypage.css">--%>
 
 <style type="text/css">
 	/* 폰트 CSS */
@@ -44,7 +44,7 @@
 	
 	body {
 		margin: 0px;
-		height: 100%;
+		min-height: 100%;
 		padding: 0px;
 	}
 	
@@ -90,11 +90,8 @@
 		border-spacing: 0;
 	}
 	section.notice {
-		padding: 20px 0;
-		/*추가*/
 		width: 1000px;
 		min-height: 200px;
-		margin: 2px;
 	}
 	
 	.aside_left {
@@ -136,13 +133,6 @@
 		text-align: left;
 	}
 	
-	 h3.page-title {
-		font-size: 25px;
-		color: black;
-		font-weight: 400;
-		text-align: left;
-	}
-	
 	.memBasicInfo {
 		height: 120px;
 		padding: 20px;
@@ -174,90 +164,6 @@
 		text-align: center;
 	}
 	
-	table th.th-title {
-		font-size: 15px;
-		width: 200px;
-	}
-	
-	table td.td-title {
-		font-size: 13px;
-	}
-	
-	table th.th-date {
-		font-size: 15px;
-		width: 80px;
-	}
-	
-	table th.th-date1 {
-		font-size: 15px;
-		width: 50px;
-	}
-	
-	table th.th-date2 {
-		font-size: 15px;
-		width: 150px;
-	}
-	
-	
-	.board-table .th-inputInfo {
-		
-	}
-	
-	.board-table th, .board-table td {
-		padding-top: 14px;
-		padding-bottom: 14px;
-	}
-	
-	.board-table tbody td {
-		border-top: 1px solid #e7e7e7;
-		text-align: center;
-		font-size: 15px;
-	}
-	
-	.board-table tbody th {
-		font-size: 15px;
-		border-top: 1px solid #e7e7e7;
-		text-align: center;
-	}
-	
-	.board-table thead th {
-		text-align: center;
-	}
-	
-	.board-table tbody th p {
-		display: none;
-	}
-	
-	.th-list{
-	    text-align: center;
-	    margin-top: 20px;
-	    margin-bottom: 20px;
-	    padding: 10px;
-	    background-color: #B21948;;
-	    border-bottom-color: white;
-	    border-bottom-width: 0.2px;
-	    border-bottom-style: solid;
-	    color: white;
-	}
-	
-	.td-inputInfo{
-		text-align:left;
-		padding-left: 20px;
-		padding-top: 20px;
-	}
-	
-	.td-infoPs{
-		text-align : left;
-		padding-left: 20px;
-		padding-top: 5px;
-		padding-bottom: 15px;
-		border-bottom-color: gray;
-		border-bottom-width: 0.2px;
-		border-bottom-style: solid;
-		font-size: 12px; 
-		font-weight: bold;
-		color: red;
-	}
 	div.submitBtn{
 		float: left;
 		margin-left: 100px;
@@ -266,7 +172,7 @@
 	/* 배송지 수정 버튼 */
 	#updateBtn{
 	    padding: 20px 80px;
-	    background-color: #B21948;;
+	    background-color: #B21948;
 	    border: 1px solid white;
 	    color: white;
 	    font-size: 20px;
@@ -280,22 +186,6 @@
 	    font-size: 20px;
 	    font-weight: bold;
 	    color: #B21948;
-	}
-	
-	#withdrawalBtn{
-		padding: 20px 100px; 
-		background-color: #FC5400; 
-		border: 1px solid white; 
-		color: white; 
-		font-size: 20px; 
-		font-weight: bold
-	}
-	
-	#changePwdBtn{
-		padding: 20px 120px; 
-		background-color: #FC5400; 
-		border: 1px solid white; 
-		color: white; font-size: 20px; font-weight: bold
 	}
 	
 	/* reset */
@@ -329,8 +219,8 @@
 		min-height: 700px;
 		padding: 20px;
 		float: left;
-		margin-top: 100px;
-		margin-left: 100px;
+		margin-top: 25px;
+		margin-left: 50px;
 	}
 	
 	.blind {
@@ -387,6 +277,22 @@
 		text-decoration: none;
 		color: #FC5400;
 	}
+	.tr{
+		background-color: #B21948; 
+		color: white; 
+	}
+	.th-mlist {
+		padding: 10px;
+		border-color: inherit;
+    	border-style: solid;
+    	border-width: 0;
+	}
+	#btn{
+		background-color: #B21948; 
+		color: white;
+		border: 1px solid white; 
+		padding: 3px;
+	}
 </style>
 
 </head>
@@ -401,91 +307,82 @@
       <%-- 메뉴바 --%>
 		<section>
 			<div class="main">
-				<%-- main 화면 상단 캐러셀 (캐러셀 필요 없는 페이지는 삭제 바람!)--%>
 				<aside class="aside_left">
 					<nav>
 						<ul>
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"><a href="myPage_Main" style="text-decoration: none; color: black;">나의 쇼핑</a></li>
-							<li><a href="myPage_orderCancel" class="liList">주문ㆍ배송</a></li>
-							<li><a href="myPage_orderDetails" class="liList">교환/반품/환불</a></li>
+							<li><a href="myPage_order" class="liList">주문ㆍ배송</a></li>
 							<li><a href="myPage_like" class="liList">찜 목록</a></li>
-							<li><a href="myPage_basket" class="liList">장바구니</a></li>
-							<li style="margin-bottom: 30px;"><a href="myPage_inquiry" class="liList">문의 내역</a></li>
+							<li><a href="myPage_cart" class="liList">장바구니</a></li>
+							<li><a href="myPage_review" class="liList">나의 상품후기</a></li>
 	
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
 							<li><a href="myPage_updateInfo" class="liList">회원정보 변경</a></li>
 							<li><a href="myPage_changePwd" class="liList">비밀번호 변경</a></li>
 							<li><a href="myPage_user_Withdrawal" class="liList">회원탈퇴</a></li>
-							<li style="margin-bottom: 30px;"><a href="myPage_updateAddress" class="liList" style="color: #B21948;">배송지 관리</a></li>
+							<li style="margin-bottom: 30px;"><a href="myPage_updateAddress" class="liList" >배송지 관리</a></li>
 							
-							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 상품후기</li>
-							<li><a href="myPage_review" class="liList">나의 상품후기</a></li>
+							<!-- <li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 상품후기</li> -->
 						</ul>
 					</nav>
 				</aside>
-				
+			
 		<%-- 본문 영역(ui깨질시 본인이 ui 수정바람..) --%>
 		<div class="innerWrap">
 		<section class="notice">
 			<!-- board list area -->
 			<div class="page-title">
-			<b style="text-align: left; font-size: 20px; margin-left:50px;">배송지 관리</b>
+			<b style="text-align: left; font-size: 20px; margin-left:50px;">배송지 관리</b><br>
 			</div>
-			<br>
-			<div class="page-title" style="margin-left: 50px;">
-			<form method="post" action="updateaddr_ok.shop" onsubmit="return addr_check();">
-				<table>
-					<!--주소-->
-					<tr>
-						<th rowspan="5" class="th-list" width="170px"
-							style="border-top-color: black; border-top-style: solid; border-top-width: 3px;">
-							배송지 주소</th>
-							<th width="170px"
-							style="border-top-color: black; border-top-style: solid; border-top-width: 3px;">
-							</th>
-					</tr>
-					<tr>
-						<td class="td-inputInfo"><input type="text" name="postCode" id="postCode" size="20" placeholder="우편번호"/>&nbsp;&nbsp;
-						<input type="button" value="주소검색" onclick="post()" style="font-weight: bold; padding: 2px;"/>
-						</td>
-					</tr>
-					<tr>
-						<td class="td-inputInfo"><input type="text" name="roadAddr" id="roadAddr" size="70" placeholder="주소"></td>
-					</tr>
-
-					<tr>
-						<td class="td-inputInfo"><input type="text" name="detailAddr" id="detailAddr" size="70" placeholder="상세주소"></td>
-					</tr>
-					
-					<tr>
-						<td class="td-infoPs"></td>
-					</tr>
-					
-					<tr>
-						<td></td>
-					</tr>
-				</table>
-				
-			<br><br>
-			
-				<div class="submitBtn" style="margin-left: 200px;">
-				<input id="updateBtn" type="submit" value="배송지 수정">
-				<input id="resetBtn" type="reset" value="취소">
+			<!-- 배송지 리스트 : 기본/추가 -->
+			<table class="mlist" style="margin-left: 50px; margin-top: 20px; width:1000px; padding: 0px 10px; text-align: left;">
+			 <tr class="tr">
+				<th class="th-mlist">배송지 이름</th> 
+				<th>우편번호</th> 
+				<th>주소</th> 
+				<th>상세 주소</th> 
+				<th>비고</th>
+			</tr>
+			 <c:if test="${!empty mlist}">
+				<c:forEach var="m" items="${mlist }">
+				<tr>
+					<th class="th-mlist">기본주소 </th> 
+					<th>${m.postCode }</th> 
+					<th>${m.roadAddr }</th> 
+					<th>${m.detailAddr }</th> 
+					<th>
+						<input type="button" value="수정" id="btn" onclick="location='myPage_updateInfo'">
+					</th>
+				</tr>
+			</c:forEach >
+			<c:forEach var="a" items="${alist }">
+				<tr>
+					<th class="th-mlist">${a.addr_name } </th> 
+					<th>${a.postCode }</th> 
+					<th>${a.roadAddr }</th> 
+					<th>${a.detailAddr }</th>
+					<th>
+						<input type="button" id="btn" value="수정" onclick="location='addr_edit?addr_no=${a.addr_no}'">
+						<input type="button" id="btn" value="삭제" onclick="location='addr_del?addr_no=${a.addr_no}'">
+					</th>
+				</tr>
+			</c:forEach >
+			</c:if>
+			</table>			
+				<div class="submitBtn" style="margin-left: 450px; margin-top: 50px;">
+					<input type="submit" id="updateBtn" value="배송지 추가" onclick="location='addr_add'">
 				</div>
-				</form>
+			</section>
 			</div>
-
-		</section>
-		</div>
-		</div>
+		</div>	
 		
         <%-- top버튼 삭제 X --%>
          <div id="topBtn">
             <span class="fonti um-arrow-circle-up um-3x icon"></span>TOP
          </div>
-		</section>
 		<div class="clear"></div>
 		<%-- 푸터 영역 --%>
+		</section>
 		<footer>
 			<!-- footer -->
 			<jsp:include page="../include/footer.jsp"/>
@@ -511,148 +408,7 @@
 				$("#topBtn").css("opacity", 1); // TOP 버튼 나타내기
 			}
 		});
-		
-		<%-- 장바구니 부분 --%>
-		/* Set values + misc */
-		var promoCode;
-		var promoPrice;
-		var fadeTime = 300;
-
-		/* Assign actions */
-		$('.quantity input').change(function() {
-			updateQuantity(this);
-		});
-
-		$('.remove button').click(function() {
-			removeItem(this);
-		});
-
-		$(document).ready(function() {
-			updateSumItems();
-		});
-
-		$('.promo-code-cta').click(function() {
-
-			promoCode = $('#promo-code').val();
-
-			if (promoCode == '10off' || promoCode == '10OFF') {
-				//If promoPrice has no value, set it as 10 for the 10OFF promocode
-				if (!promoPrice) {
-					promoPrice = 10;
-				} else if (promoCode) {
-					promoPrice = promoPrice * 1;
-				}
-			} else if (promoCode != '') {
-				alert("Invalid Promo Code");
-				promoPrice = 0;
-			}
-			//If there is a promoPrice that has been set (it means there is a valid promoCode input) show promo
-			if (promoPrice) {
-				$('.summary-promo').removeClass('hide');
-				$('.promo-value').text(promoPrice.toFixed(0) + "원");
-				recalculateCart(true);
-			}
-		});
-
-		/* Recalculate cart */
-		function recalculateCart(onlyTotal) {
-			var subtotal = 0;
-
-			/* Sum up row totals */
-			$('.basket-product').each(function() {
-				subtotal += parseFloat($(this).children('.subtotal').text());
-			});
-
-			/* Calculate totals */
-			var total = subtotal;
-
-			//If there is a valid promoCode, and subtotal < 10 subtract from total
-			var promoPrice = parseFloat($('.promo-value').text());
-			if (promoPrice) {
-				if (subtotal >= 10) {
-					total -= promoPrice;
-				} else {
-					alert('Order must be more than £10 for Promo code to apply.');
-					$('.summary-promo').addClass('hide');
-				}
-			}
-
-			/*If switch for update only total, update only total display*/
-			if (onlyTotal) {
-				/* Update total display */
-				$('.total-value').fadeOut(fadeTime, function() {
-					$('#basket-total').html(total.toFixed(0) + "원");
-					$('.total-value').fadeIn(fadeTime);
-				});
-			} else {
-				/* Update summary display. */
-				$('.final-value').fadeOut(fadeTime, function() {
-					$('#basket-subtotal').html(subtotal.toFixed(0) + "원");
-					$('#basket-total').html(total.toFixed(0) + "원");
-					if (total == 0) {
-						$('.checkout-cta').fadeOut(fadeTime);
-					} else {
-						$('.checkout-cta').fadeIn(fadeTime);
-					}
-					$('.final-value').fadeIn(fadeTime);
-				});
-			}
-		}
-
-		/* Update quantity */
-		function updateQuantity(quantityInput) {
-			/* Calculate line price */
-			var productRow = $(quantityInput).parent().parent();
-			var price = parseFloat(productRow.children('.price').text());
-			var quantity = $(quantityInput).val();
-			var linePrice = price * quantity;
-
-			/* Update line price display and recalc cart totals */
-			productRow.children('.subtotal').each(function() {
-				$(this).fadeOut(fadeTime, function() {
-					$(this).text(linePrice.toFixed(0) + "원");
-					recalculateCart();
-					$(this).fadeIn(fadeTime);
-				});
-			});
-
-			productRow.find('.item-quantity').text(quantity);
-			updateSumItems();
-		}
-
-		function updateSumItems() {
-			var sumItems = 0;
-			$('.quantity input').each(function() {
-				sumItems += parseInt($(this).val());
-			});
-			$('.total-items').text(sumItems);
-		}
-
-		/* Remove item from cart */
-		function removeItem(removeButton) {
-			/* Remove row from DOM and recalc cart total */
-			var productRow = $(removeButton).parent().parent();
-			productRow.slideUp(fadeTime, function() {
-				productRow.remove();
-				recalculateCart();
-				updateSumItems();
-			});
-		}
-		
-		<%-- 리뷰 작성 페이지 부분 --%>
-		// 왼쪽 사이드바의 '나의 후기' 텍스트 클릭시 새창 열기
-		function openPopup_review_write() {
-	        var page_width = '490';
-	        var page_height = '900';
-	    
-	        // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
-	        var page_left = Math.ceil((window.screen.width - page_width)/2);
-	        var page_top = Math.ceil((window.screen.height - page_height)/2);
-	
-	    window.open("http://localhost:8046/MVC/page/mypage2/review_write.jsp", "review_write",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
-	    
-	    }
-		
+				
 	</script>
 </body>
 </html>

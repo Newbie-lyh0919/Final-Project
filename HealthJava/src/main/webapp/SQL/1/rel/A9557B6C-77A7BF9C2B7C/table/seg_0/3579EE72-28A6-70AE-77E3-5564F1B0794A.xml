@@ -1,0 +1,159 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="3579EE72-28A6-70AE-77E3-5564F1B0794A" schemaObject="B7000150-9397-6475-AA99-3F3955780552" name="TBL_CLIENT">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>HEALTHJAVA</sourceObjSchema>
+<sourceObjName>TBL_CLIENT</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:50 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="CLIENT_NO" id="ADDA3820-CBE9-C1EC-396B-F6AD4EB0F073">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_CLIENT</sourceObjSchema>
+<sourceObjName>CLIENT_NO</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>38</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,38,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CLIENT_TITLE" id="71D588F3-DBB6-0F36-F62B-46D59A5112DA">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_CLIENT</sourceObjSchema>
+<sourceObjName>CLIENT_TITLE</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CONTACT_PASSWORD" id="023DE74A-AE9A-8734-6D18-6393C6BFBBB7">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_CLIENT</sourceObjSchema>
+<sourceObjName>CONTACT_PASSWORD</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CLIENT_CONT" id="2DCC4915-7888-C695-A553-E51FB28D8D16">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_CLIENT</sourceObjSchema>
+<sourceObjName>CLIENT_CONT</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000 BYTE</dataTypeSize>
+<ownDataTypeParameters>4000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CLIENT_CONT_REPLY" id="F2A32BFF-0F42-9728-4C89-AABBB7DCFC49">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_CLIENT</sourceObjSchema>
+<sourceObjName>CLIENT_CONT_REPLY</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000 BYTE</dataTypeSize>
+<defaultValue>&apos; &apos; -- 고객 문의 글 답변 내용</defaultValue>
+<ownDataTypeParameters>4000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CLIENT_CATEGORY" id="A18AA12E-26E8-4BEB-0311-0A90F6E3B37C">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_CLIENT</sourceObjSchema>
+<sourceObjName>CLIENT_CATEGORY</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 BYTE</dataTypeSize>
+<ownDataTypeParameters>50 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CLIENT_DATE" id="4F0BDFA5-E3A7-7E4B-FEBE-72F131CB7EA3">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_CLIENT</sourceObjSchema>
+<sourceObjName>CLIENT_DATE</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="USER_ID" id="D9A20DA5-2B0E-B7F8-2D08-28AC3CE432FA">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_CLIENT</sourceObjSchema>
+<sourceObjName>USER_ID</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0F14A05B-C693-A8B7-AA83-20587A2CC93C" referredColumn="342A01FC-A750-6F34-FFE3-966510AE98B0"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2CE5513E-A49E-0065-4534-6D7A1AB027EC" schemaObject="B7000150-9397-6475-AA99-3F3955780552" name="TBL_CLIENT_PK">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>HEALTHJAVA</sourceObjSchema>
+<sourceObjName>SYS_C008867</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="ADDA3820-CBE9-C1EC-396B-F6AD4EB0F073"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D1B4C874-72F1-2D30-389A-60961A8D5310" name="TBL_CLIENT_USER_ID_FK">
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:52 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D9A20DA5-2B0E-B7F8-2D08-28AC3CE432FA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

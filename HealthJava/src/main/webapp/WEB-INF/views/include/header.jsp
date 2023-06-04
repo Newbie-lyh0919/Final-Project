@@ -214,12 +214,17 @@
 .clear {
    clear: both;
 }
+.location {
+	position: fixed;
+	bottom: -700%;
+	right: 0.7%;
+}
 </style>
 </head>
 <body>
    <div class="headerbox">
       <div class="menubox">
-         <a href="/product/main"> <img
+         <a href="/product/index"> <img
             src="<%=request.getContextPath()%>/images/logo1.png" id="logoImage"
             width="200" height="90" alt="로고 사진">
          </a>
@@ -264,6 +269,11 @@
 
          </div>
       </div>
+    <!-- 채팅 include(로고 나타나고 클릭 시 채팅으로 넘어가야함) -->
+	<div class="location">
+		<jsp:include page="../chat/chatting.jsp"/>
+	</div>
+	
    </div>
 
    <script type="text/javascript">

@@ -1,21 +1,11 @@
 package shop.HealthJava.dao;
 
-import java.net.URI;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.UUID;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.RequestEntity;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.client.RestTemplate;
-
-import com.fasterxml.jackson.databind.JsonNode;
 
 import shop.HealthJava.vo.MemberVO;
 
@@ -85,10 +75,15 @@ public class MemberDAOImpl implements MemberDAO {
       return this.sqlSession.update("updateMailKey", memberVo);
    }
 
-    @Override
-    public MemberVO getMemberByEmail(String user_email) {
-        return sqlSession.selectOne("getMemberByEmail", user_email);
-    }
+   @Override
+   public MemberVO getMemberByEmail(String user_email, String user_id, String user_name) {
+       Map<String, Object> paramMap = new HashMap<>();
+       paramMap.put("user_email", user_email);
+       paramMap.put("user_id", user_id);
+       paramMap.put("user_name", user_name);
+       return sqlSession.selectOne("getMemberByEmail", paramMap);
+   }
+
  
    @Override
    public int searchEmail(Object user_email) {

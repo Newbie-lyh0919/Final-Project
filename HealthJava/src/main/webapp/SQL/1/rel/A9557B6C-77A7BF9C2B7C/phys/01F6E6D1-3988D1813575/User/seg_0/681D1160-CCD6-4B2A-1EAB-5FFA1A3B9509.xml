@@ -1,0 +1,9 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<UserOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UserOraclev10g" name="HEALTHJAVA" directorySegmentName="seg_0" id="681D1160-CCD6-4B2A-1EAB-5FFA1A3B9509">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjName>HEALTHJAVA</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:50 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<schemaObject>B7000150-9397-6475-AA99-3F3955780552</schemaObject>
+</UserOraclev10g>

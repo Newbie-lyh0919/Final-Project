@@ -83,15 +83,15 @@ jQuery(document).ready(function(){
 	}
 	.main { 
 		width: 1400px;
-		height: 3000px; /* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / section이랑 px 맞춰야함 */
+		height: auto; /* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / section이랑 px 맞춰야함 */
 		position : relative;
 		top: 105px;
-		left: 50%;
+		left: 60%;
         transform: translateX( -50% );
 		
 	}
 	section {
-		height: 3000px; /* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / .main이랑 px 맞춰야함 */
+		height: 1500px; /* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / .main이랑 px 맞춰야함 */
 		
 	}
 	/* 클리어 */
@@ -932,7 +932,7 @@ input#checkIcon {
 					<div class="product_kind_button">
 							<ul class="menuCategory">
 								
-								<li style="display:;" class="xans-element- xans-product xans-product-displaycategory selected xans-record-" data-tab="짐볼" id="default">
+								<li style="display:; cursor: pointer" class="xans-element- xans-product xans-product-displaycategory selected xans-record-" data-tab="짐볼" id="default">
 								전체
 								
 									
@@ -940,20 +940,20 @@ input#checkIcon {
 								
 								
 								
-								<li style="display:;" class="xans-element- xans-product xans-product-displaycategory selected xans-record-" data-tab="케이짐볼">
+								<li style="display:;  cursor: pointer" class="xans-element- xans-product xans-product-displaycategory selected xans-record-" data-tab="케이짐볼">
 								케이짐볼
 								
 									
 								</li>
 								
 								
-								<li style="display:;"
+								<li style="display:;  cursor: pointer"
 									class="xans-element- xans-product xans-product-displaycategory  xans-record-" data-tab="마사지볼">마사지볼 
 									
 								</li>
 								
 								
-								<li style="display:;"
+								<li style="display:;  cursor: pointer"
 									class="xans-element- xans-product xans-product-displaycategory  xans-record-" data-tab="웨이트볼">웨이트볼 
 								</li>
 								
@@ -971,8 +971,8 @@ input#checkIcon {
 <div class="function" id="Product_ListMenu">
             <p class="prdCount">등록 제품 : <strong>224</strong>개</p>
             <ul id="type" class="xans-element- xans-product xans-product-orderby">
-<li class="xans-record-" data-tab="낮은가격순">낮은가격순</li>
-<li class="xans-record-" data-tab="높은가격순">높은가격순</li>
+<li  style="cursor: pointer" class="xans-record-" data-tab="낮은가격순">낮은가격순</li>
+<li style="cursor: pointer" class="xans-record-" data-tab="높은가격순">높은가격순</li>
 </ul>
 </div>
 
@@ -1057,8 +1057,16 @@ input#checkIcon {
 	</script>
 	
 	<script src="../../js/main.js"></script>
+	<script src="../../js/like_cart.js"></script>
+	<script src="../../js/qna.js"></script>
 	
 	
+	<script>
+  var priceElement = document.getElementById("formattedPrice");
+  var price = parseInt(priceElement.innerText);
+  var formattedPrice = (price / 1000).toLocaleString() + "원";
+  priceElement.innerText = formattedPrice;
+</script>
 	
 </body>
 </html>

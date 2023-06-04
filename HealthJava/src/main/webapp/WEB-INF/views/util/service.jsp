@@ -8,6 +8,42 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script> <%-- CDN 절대링크 --%>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico" type="image/x-icon"> <%-- 파비콘 --%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/util/css/service.css"> <%-- service.css --%>
+<style>
+/* service.jsp UI */
+.wrap {
+	background: #fff;
+}
+.service_titleBox {
+	width: 100%;
+	height: 120px;
+	margin-top: 15px;
+}
+#service_title {
+	font-weight: bolder;
+	font-size: 22px;
+	margin-left: 180px;
+}
+.service_downloadBox {
+	width: 502px;
+	height: 50px;
+	border: 1px solid rgb(162, 160, 160);
+	border-radius: 5px;
+	margin-top: 20px;
+	margin-left: 27px;
+}
+.service_body {
+	font-size: 13px;
+	font-weight: 500;
+}
+.service_dateBox {
+	margin: 12px 0px 10px 0px;
+}
+#service_date {
+	margin: 20px 0px 0px 10px;
+	color: rgb(162, 160, 160);
+	font-weight: 700;
+}
+</style>
 </head>
 <body>
 <div class="wrap">

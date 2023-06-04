@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri= "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +21,7 @@
 <style type="text/css">
 
 #gume {
-	    background: #FC5400;
+	    background: #b21949;
 	    color: white;
 	    font-size: 22px;
 	    /* margin-left: 26px; */
@@ -73,15 +73,16 @@
 	}
 	.main { 
 		width: 1400px;
-		height: 2000px; /* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / section이랑 px 맞춰야함 */
+		height: auto; /* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / section이랑 px 맞춰야함 */
 		position : relative;
 		top: 105px;
-		left: 50%;
+		left: 40%;
         transform: translateX( -50% );
+        margin: 200px;
 		
 	}
 	section {
-		height: 2000px; /* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / .main이랑 px 맞춰야함 */
+		height: auto; /* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / .main이랑 px 맞춰야함 */
 		
 	}
 	/* 클리어 */
@@ -108,7 +109,7 @@ ul,li,body,h1,h2,h3,h4,h5,h6{margin: 0; padding: 0;}
 	.shCMSshop .shopView .viewHeader .productImg .mainImg{
 		width: 500px; 
 		height:500px; 
-		background: #011;
+		
 	}
 	.shCMSshop .shopView .viewHeader .productImg ul{margin-top: 35px;}
 	.shCMSshop .shopView .viewHeader .productImg ul li{
@@ -276,7 +277,7 @@ ul,li,body,h1,h2,h3,h4,h5,h6{margin: 0; padding: 0;}
 	.shCMSshop .shopView .viewBody .contentNav li{
 		width: 31%;
 	    float: left;
-	    background: #F4A460;
+	    background: #b21949;
 	    border: 1px solid white;
 	    box-sizing: border-box;
 	    text-align: center;
@@ -287,7 +288,7 @@ ul,li,body,h1,h2,h3,h4,h5,h6{margin: 0; padding: 0;}
 	    display: block;
     	padding: 20px 0px;
     	color: white;
-    	background-color: #F4A460;
+    	background-color: #b21949;
     	border: 2px solid white;
     	
 	}
@@ -301,8 +302,8 @@ ul,li,body,h1,h2,h3,h4,h5,h6{margin: 0; padding: 0;}
 
 	/*테이블 기본 셋팅*/
 	.shCMSshop .shopView .viewBody table{
-	    border-top: 3px solid #FC5400;
-	    border-bottom: 1px solid #F4A460;
+	    border-top: 3px solid #b21949;
+	    border-bottom: 1px solid #b21949;
 	    width: 100%;
 	    margin: 60px 0 40px 0;
 	    border-collapse: collapse;
@@ -446,7 +447,7 @@ var	price = ${detail.product_price};
 
   init += 1;
   document.querySelector("#num").innerText = init;
-  totalcost = price * init;
+  totalcost = ((price * init)).toLocaleString();
   document.querySelector(".totalcost").innerText = totalcost;
   //document.querySelector(".totalcost").innerText = init * price;
   
@@ -460,7 +461,7 @@ function minus() {
 	
   init < 1 ? (init = 0) : (init -= 1);
   document.querySelector("#num").innerText = init;
-  totalcost = price * init;
+  totalcost = ((price * init)).toLocaleString();
   document.querySelector(".totalcost").innerText = totalcost;
   //document.querySelector(".totalcost").innerText = init * price;
 }
@@ -548,6 +549,11 @@ function Click3() {
   function changeImage(img) {
     document.getElementById("main-image").src = img.querySelector('img').src;
   }
+
+  function hoverImage(img) {
+    var mainImage = document.getElementById("main-image");
+    mainImage.src = img.querySelector('img').src;
+  }
 </script>
 </head>
 
@@ -565,7 +571,8 @@ function Click3() {
 			<div class="main">
 				<div class="container">
 
-					
+			
+				
 <%-- 본문시작 --%>
 	<div class="shCMSshop">
 		<div class="shopView">
@@ -574,32 +581,32 @@ function Click3() {
 				<%--<form action="location='" method="get"> --%>
 				<div class="productImg">
 					<div class="mainImg">
-						<div id="main-image-container">
-      <img id="main-image" src="/upload${detail.product_cont1}" width="500" height="500" alt="음식 이미지1">
+		<div id="main-image-container">
+  <img id="main-image" src="/upload${detail.product_cont1}" width="500" height="500" alt="음식 이미지1">
+</div>
+
+<div class="thumbnail-container">
+  <c:if test="${!empty detail.product_cont1}">
+    <div class="thumbnail" onclick="changeImage(this);" onmouseover="hoverImage(this);">
+      <img src="/upload${detail.product_cont1}" width="125" height="100" alt="음식 이미지1">
     </div>
-    
+  </c:if>
+  <c:if test="${!empty detail.product_cont2}">
+    <div class="thumbnail" onclick="changeImage(this);" onmouseover="hoverImage(this);">
+      <img src="/upload${detail.product_cont2}" width="125" height="100" alt="음식 이미지2">
     </div>
-    <div class =thumbnail-container>
-    <c:if test="${!empty detail.product_cont1}">
-      <div class="thumbnail" onclick="changeImage(this);">
-        <img src="/upload${detail.product_cont1}" width="125" height="100" alt="음식 이미지1">
-      </div>
-      </c:if>
-      <c:if test="${!empty detail.product_cont2}">
-      <div class="thumbnail" onclick="changeImage(this);">
-        <img src="/upload${detail.product_cont2}" width="125" height="100" alt="음식 이미지2">
-      </div>
-      </c:if>
-     <c:if test="${!empty detail.product_cont3}">
-     <div class="thumbnail" onclick="changeImage(this);">
-        <img src="/upload${detail.product_cont3}"  width="125" height="100" alt="음식 이미지3">
-      </div>
-      </c:if>
-     <c:if test="${!empty detail.product_cont4}">
-     <div class="thumbnail" onclick="changeImage(this);">
-        <img src="/upload${detail.product_cont4}" width="125" height="100" alt="음식 이미지4">
-      </div>
-      </c:if>
+  </c:if>
+  <c:if test="${!empty detail.product_cont3}">
+    <div class="thumbnail" onclick="changeImage(this);" onmouseover="hoverImage(this);">
+      <img src="/upload${detail.product_cont3}" width="125" height="100" alt="음식 이미지3">
+    </div>
+  </c:if>
+  <c:if test="${!empty detail.product_cont4}">
+    <div class="thumbnail" onclick="changeImage(this);" onmouseover="hoverImage(this);">
+      <img src="/upload${detail.product_cont4}" width="125" height="100" alt="음식 이미지4">
+    </div>
+  </c:if>
+</div>
 					
 					
 					
@@ -622,8 +629,10 @@ function Click3() {
 				<div class="productInfo">
 					<h1 id="name">${detail.product_title}</h1>
 					<div class="price">
-						<span class="sale-price" style="margin-left: 10px;" id="cost">${detail.product_price}원</span>
-					</div>
+  <span class="sale-price" style="margin-left: 10px;" id="cost">
+    <fmt:formatNumber type="number" value="${detail.product_price}" pattern="#,###원" />
+  </span>
+</div>
 					
 					
 					<div class="star-ratings">평점       	<span >${detail.product_score}</span></div>
@@ -638,7 +647,9 @@ function Click3() {
 							<%-- <a href="" class="plus" style="border: none; background: white;" onclick="plus()">+</a>--%>
 						</span>
 					</div>
-					<div class="all-price">총 상품금액        <span id="price" class="totalcost">${detail.product_price}</span>원</div>
+					<div class="all-price">총 상품금액        <span id="price" class="totalcost"><fmt:formatNumber type="number" value="${detail.product_price}" pattern="#,###" /></span>원</div>
+					
+					
 
 					<div class="btn">
 						<div class="first" id="buy">
@@ -660,6 +671,7 @@ function Click3() {
 			</div>
 			<%--</form> --%>
 			
+			
 <div class="viewBody">
   <div class="container">
     <ul class="contentNav">
@@ -667,6 +679,7 @@ function Click3() {
       <li><a>리뷰</a></li>
       <li><a>Q&A</a></li>
     </ul>
+    
     <div class="tab_cont">
       <div class="on">
         <div id="tab1Content" class="tab-content">
@@ -675,16 +688,16 @@ function Click3() {
           <ul>
             <li><h2></h2></li>
             <c:if test="${!empty detail.product_cont5}">
-              <li><img src="/upload${detail.product_cont5}" style="height: 1000px; width: 800px;"></li>
+              <li><img src="/upload${detail.product_cont5}" style="height: auto; width: 800px;"></li>
             </c:if>
             <c:if test="${!empty detail.product_cont6}">
-              <li><img src="/upload${detail.product_cont6}" style="height: 1000px; width: 800px;"></li>
+              <li><img src="/upload${detail.product_cont6}" style="height: auto; width: 800px;"></li>
             </c:if>
             <c:if test="${!empty detail.product_cont7}">
-              <li><img src="/upload${detail.product_cont7}" style="height: 1000px; width: 800px;"></li>
+              <li><img src="/upload${detail.product_cont7}" style="height: auto; width: 800px;"></li>
             </c:if>
             <c:if test="${!empty detail.product_cont8}">
-              <li><img src="/upload${detail.product_cont8}" style="height: 1000px; width: 800px;"></li>
+              <li><img src="/upload${detail.product_cont8}" style="height: auto; width: 800px;"></li>
             </c:if>
           </ul>
         </div>
@@ -702,18 +715,21 @@ function Click3() {
   <tr>
     <th width="5%" height="26">아이디</th>
     <th width="35%">질문제목</th>
-    <th width="45%">질문내용</th>
+    <th width="40%">질문내용</th>
+    <th width="10%">문의날짜</th>
     <th width="10%">답변상태</th>
+    
   </tr>
   <c:forEach var="a" items="${detail2}">
     <tr>
       <td>${a.qna_mem_id}</td>
       <td>${a.qna_title}</td>
       <td>${a.qna_content}</td>
-      <c:if test="${not empty a.qna_reply}">
+      <td>${a.qna_date.substring(0,10)}</td>
+      <c:if test="${a.qna_reply != ' '}">
         <th width="14%"><a href="javascript:void(0);" onclick="toggleReply(this);">답변완료</a></th>
       </c:if>
-      <c:if test="${empty a.qna_reply}">
+      <c:if test="${a.qna_reply == ' '}">
         <th width="14%">답변대기</th>
       </c:if>
     </tr>
@@ -738,6 +754,7 @@ function Click3() {
 	<div id="topBtn">
 		<span class="fonti um-arrow-circle-up um-3x icon"></span>TOP
 	</div>
+	
 	<%-- 푸터 영역 --%>
 	<footer>
 		<jsp:include page="../include/footer.jsp"/>

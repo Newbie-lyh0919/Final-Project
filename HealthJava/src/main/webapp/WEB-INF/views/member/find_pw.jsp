@@ -7,15 +7,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script> <%-- CDN 절대링크 --%>
 <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script> <%-- CDN 절대링크 --%>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> <%-- CDN 절대링크 --%>
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-<script defer src="<%=request.getContextPath()%>/js/kakao.js"></script>
-<script>Kakao.init('31d2f9dc79f327146c781ff55e8f8b76');</script>
-<title>PuppyHome 메인</title>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/header.css"> <%-- header.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/footer.css"> <%-- footer.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/fontium/css/fontium.css"/>
-<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico" type="image/x-icon"> <%-- 파비콘 --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/member/css/login.css"> <%-- login.css --%>
+<script src="../js/find.js"></script>
+<title>pwd찾기</title>
+
+
 <style type="text/css">
 	/* 폰트 CSS */
 	@font-face {
@@ -24,6 +19,7 @@
 		font-weight: 700;
 		font-style: normal;
 	}
+	
 	/* 되도록 안건드리는 영역 */
 	* {
 		box-sizing: border-box;
@@ -63,6 +59,8 @@
 	.clear {
 		clear: both;
 	}
+	
+	
 	/* 밑의 영역부터 css시작 */
 	.container {
 		width: 100%;
@@ -75,21 +73,7 @@
 		left: 50%;
         transform: translateX( -50% );
 	}
-	.social-login b {
-		background-color: #FC5400;
-		color: #fff;
-		border: none;
-		padding: 10px 20px;
-		border-radius: 5px;
-		cursor: pointer;
-	}
-	
-	.login-form {
-		margin-top: 200px;
-	}
-	
-	
-	
+
 		/* 폰트 CSS */
 	@font-face {
 		font-family: 'KIMM_Bold';
@@ -148,22 +132,11 @@
 		left: 50%;
         transform: translateX( -50% );
 	}
-	.social-login b {
-		background-color: #FC5400;
-		color: #fff;
-		border: none;
-		padding: 10px 20px;
-		border-radius: 5px;
-		cursor: pointer;
-	}
-	
-	
-	
-	
-	
-	
+
+
 .find-form {
-	background-color: #f2f2f2;
+	background-color: white;
+	border: 2px solid #b21949;
 	padding: 20px;
 	width: 450px;
 	margin: 0 auto;
@@ -257,12 +230,10 @@
 }
 
 
-
-
-
 *{
-    box-sizing: border-box; /*��泥댁�� 諛��ㅼ�ъ�댁�*/
-    outline: none; /*focus ������ ����由� ���ㅺ� */
+    box-sizing: border-box; 
+    outline: none;
+    font-family: KIMM_Bold;
 }
 
 body{
@@ -279,16 +250,9 @@ a{
     color: #222;
 }
 
-
-
-
-
-
-
-
-
-	
 </style>
+
+
 </head>
 <body>
 	<%-- 전체 영역 --%>
@@ -299,27 +263,31 @@ a{
 			<jsp:include page="../include/header.jsp"/>
 		</header>
 		
-		<div class="login-form">
-		<h1>비밀번호 찾기</h1>
-		<form method="get" action="find_pw_ok">
+		
+		
+		<div class="find-form">
+		<h1 style="font-family: 'KIMM_Bold'">비밀번호 찾기</h1>
+		<form method="get" action="find_pw_ok" onsubmit="return findpwd_check();">
 			<label for="user_id">아이디</label>
-			<input type="text" id="user_id" name="user_id" required>
+			<input type="text" id="user_id" name="user_id" value="${user_id}">
 			
 			<label for="user_name">이름</label>
-			<input type="text" id="user_name" name="user_name" required>
+			<input type="text" id="user_name" name="user_name">
 			
 			<label for="user_email">이메일</label>
-			<input type="text" id="user_email" name="user_email" required>
+			<input type="text" id="user_email" name="user_email">
 			
 			
-			<div class="login_button">
+			<div class="find_button">
 			<button type="submit">찾기</button>
 			</div>
 			
 		</form>
-		
-		
 	</div>
+	
+	
+	
+	
 	<%-- top버튼 삭제 X --%>
 			<div id="topBtn">
 				<span class="fonti um-arrow-circle-up um-3x icon"></span>TOP

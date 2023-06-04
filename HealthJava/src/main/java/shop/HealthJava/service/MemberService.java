@@ -26,9 +26,9 @@ public interface MemberService {
 	void updatePwd(MemberVO m); //비밀번호 수정
 
 	
-	void sendRandomPasswordByEmail(String user_email) throws MessagingException; //비밀번호 찾을 때 랜덤화된 비밀번호 이메일로 발송
+	void sendRandomPasswordByEmail(String user_email, String user_id, String user_name) throws MessagingException; //비밀번호 찾을 때 랜덤화된 비밀번호 이메일로 발송
 	
-	void emailCertification(MemberVO member) throws MessagingException;//이메일인증키 보내기
+	// void emailCertification(MemberVO member) throws MessagingException;//이메일인증키 보내기
 
 	int updateMailAuth(MemberVO memberVo);//메일 인증키 확인 누르면 mail_auth = 1로 변경
 
@@ -47,4 +47,14 @@ public interface MemberService {
 	String getIdKakao(Object user_email);//이메일 기준으로 카카오 회원 아이디 가져오기
 
 	MemberVO emailCheck(String user_email);//이메일 중복검사
+
+	String emailCertification(String user_email) throws MessagingException;
+
+	boolean verifyEmailKey(String userKey, String savedKey);
+
+	//void emailCertification(MemberVO member) throws MessagingException;
+
+	//MemberVO getMemberByEmail(String user_email, String user_id, String user_name);
+
+
 }
