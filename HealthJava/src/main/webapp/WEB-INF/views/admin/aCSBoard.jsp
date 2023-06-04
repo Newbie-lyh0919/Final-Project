@@ -13,14 +13,6 @@
 
 <title>HealthJava 관리자 문의게시판</title>
 
-<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico" type="image/x-icon"> <%-- 파비콘 --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/header.css"> <%-- header.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/footer.css"> <%-- footer.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/admin/css/admin.css"> <%-- admin 계정.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/admin/css/aCSBoard.css"> <%-- adminMemBoard.css --%>
-
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/fontium/css/fontium.css"/>
-
 <script>
 $(document).ready(function(){
 	CSBoard_search();
@@ -367,7 +359,9 @@ $(document).ready(function(){
 				<div class="meau" align="right" style="color: white;">
 					<a href="admin_main">회원 관리</a> | 
 					<a href="admin_CSBoard">문의 게시판</a> | 
-					<a href="admin_GsList">상품 목록</a> 
+					<a href="admin_GsList">상품 목록</a> | 
+					<a href="admin_GsQNAList">상품 QNA</a> | 
+					<a href="admin_OrderList">주문내역</a>  
 				 </div>
 
 				<h3 class="myinfo" align="left"><b>관리자 계정</b> <br>
@@ -376,7 +370,7 @@ $(document).ready(function(){
 				
 			<%-- 전체 문의 게시판 --%>
 			<div class="board">
-				<h3 align="center">&nbsp;문의&nbsp;게시판</h3>
+				<h3 align="center">&nbsp;상품&nbsp;QNA&nbsp;게시판</h3>
 					
 			<%--검색 테이블 --%>
 				<table align="center">
@@ -425,94 +419,7 @@ $(document).ready(function(){
 					</table> <p>
 					<%-- end boardMember --%>
 					
-					<%-- 페이징 처리 --%>
-					<div id="pagination">
-					<!-- 검색 칸 공백 시 페이징 사라지지 않게 -->
-	               <c:if test="${find_name == ''}"> <%--검색필드와 검색어가 없는 경우 --%>
-	                 <c:if test="${page <= 1}">
-	                  PREV&nbsp;
-	                 </c:if>
-	                 <c:if test="${page>1}">
-	                  <a href="csboard.shop?page=${page-1}">PREV</a>&nbsp;
-	                 </c:if>
-	                 
-	                 <%--현재 쪽번호 출력 --%>
-	                 <c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
-	                   <c:if test="${a == page}"> <%-- 현재 페이지가 선택된 경우 --%>
-	                      [&nbsp;${a}&nbsp;]
-	                   </c:if>
-	                   <c:if test="${a != page}"> <%--현재 쪽번호가 선택 안 된 경우--%>
-	                    <a href="csboard.shop?page=${a}">[&nbsp;${a}&nbsp;]</a>&nbsp;
-	                   </c:if>
-	                 </c:forEach>
-	                   
-	                
-	                <c:if test="${page >= maxpage}">
-	                  &nbsp;NEXT
-	                </c:if>
-	                <c:if test="${page < maxpage}">
-	                 <a href="csboard.shop?page=${page+1}">NEXT</a>
-	                </c:if>
-	               </c:if>
-               		<!-- end 검색 칸 공백 시 페이징 사라지지 않게 -->
-				    <%--검색 전 페이징 --%>
-				    <c:if test="${(empty find_field) && (empty find_name)}"> <%--검색필드와 검색어가 없는 경우 --%>
-				     <c:if test="${page <= 1}">
-				      PREV&nbsp;
-				     </c:if>
-				     <c:if test="${page>1}">
-				      <a href="csboard.shop?page=${page-1}">PREV</a>&nbsp;
-				     </c:if>
-				     
-				     <%--현재 쪽번호 출력 --%>
-				     <c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
-				       <c:if test="${a == page}"> <%-- 현재 페이지가 선택된 경우 --%>
-				       	[&nbsp;${a}&nbsp;]
-				       </c:if>
-				       <c:if test="${a != page}"> <%--현재 쪽번호가 선택 안 된 경우--%>
-				        <a href="csboard.shop?page=${a}">[&nbsp;${a}&nbsp;]</a>&nbsp;
-				       </c:if>
-				     </c:forEach>
-				       
-				    
-				    <c:if test="${page >= maxpage}">
-				      &nbsp;NEXT
-				    </c:if>
-				    <c:if test="${page < maxpage}">
-				     <a href="csboard.shop?page=${page+1}">NEXT</a>
-				    </c:if>
-				   </c:if>
-				    
-				    <%--검색이후 페이징(쪽나누기) --%>
-				    <c:if test="${(!empty find_field) && (!empty find_name)}"> <%--검색필드와 검색어가 있는 경우 --%>
-				     <c:if test="${page <= 1}">
-				      PREV&nbsp;
-				     </c:if>
-				     <c:if test="${page>1}">
-				      <a href="csboard.shop?page=${page-1}&find_field=${find_field}&find_name=${find_name}">PREV</a>&nbsp;
-				      <%-- &(엠퍼센트) 구분기호로 구분하면서 find_field=검색필드&find_name= 검색어를 get방식으로 전달해야 검색 이후 페이징 목록을 유지한다.그렇지 않으면 검색전 전체 페이징 목록으로 이동해서 검색 효과가 사라진다. --%>
-				     </c:if>
-				     
-				     <%--현재 쪽번호 출력 --%>
-				     <c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
-				       <c:if test="${a == page}"> <%-- 현재 페이지가 선택된 경우 --%>
-				        [&nbsp;${a}&nbsp;]
-				       </c:if>
-				       <c:if test="${a != page}"> <%--현재 쪽번호가 선택 안 된 경우--%>
-				        <a href="csboard.shop?page=${a}&find_field=${find_field}&find_name=${find_name}">[&nbsp;${a}&nbsp;]</a>&nbsp;
-				       </c:if>
-				     </c:forEach>      
-				    
-				    <c:if test="${page >= maxpage}">
-				      &nbsp;NEXT
-				    </c:if>
-				    <c:if test="${page < maxpage}">
-				     <a href="csboard.shop?page=${page+1}&find_field=${find_field}&find_name=${find_name}">NEXT</a>
-				    </c:if>
-				   </c:if> 
-				   </div>
-				<%-- 페이징처리 끝 --%>
-					
+
 				</div> <%-- end board --%>
 				
 			</div><%-- main 끝 --%>

@@ -5,9 +5,73 @@
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> <%-- CDN 절대링크 --%>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script> <%-- CDN 절대링크 --%>
-<title>PuppyHome NICEPAY</title>
-<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico" type="image/x-icon"> <%-- 파비콘 --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/util/css/certificate.css"> <%-- certificate.css --%> 
+<title>HealthJava NICEPAY</title>
+<style>
+	/* certificate.jsp UI */
+	/* 메인 컨텐츠 부분 */
+	#wrap {
+		width: 510px;
+		height: 390px;
+	}
+	/* 상단 박스 관련 */
+	#headerBox {
+	    width: 100%;
+	    height: 60px;
+	    border-bottom: 1px solid lightgray;
+	    margin-top: 10px;
+	}
+	#checkIcon {
+		float: left;
+	    margin-left: 5px;
+	}
+	#checkTitle {
+	    float: right;
+	}
+	/* 테이블 박스 관련 */
+	#tableBox {
+	    margin-top: 20px;
+	    font-weight: bold;
+	}
+	#table {
+	    font-size: 14px;
+	    margin: auto;
+	    width: 90%;
+	}
+	#table th {
+	    border-bottom: 1px solid black;
+	}
+	#table td {
+	    border-bottom: 1px solid black;
+	}
+	/* 테이블 안의 특정구역 색상 지정 */
+	#textBlue {
+	    color: rgb(0, 84, 166);
+	    background-color: rgb(233, 240, 246);
+	}
+	/* 테이블 밑의 텍스트 관련 */
+	#innertextBox {
+	    height: 140px;
+	    font-size: 13px;
+	    font-weight: bolder;
+	    text-align: center;
+	    margin-top: 10px;
+	}
+	#usecheckIcon {
+	    margin-top: 30px;
+	}
+	/* 하단 박스 관련 */
+	#footerbox {
+	    width: 100%;
+	    height: 35px;
+	    border-top: 1px solid lightgray;
+	    font-size: 12px;
+	    line-height: 35px;
+	}
+	#checkIcon2 {
+	    margin: 5px 200px 0px 5px;
+	    float: left;
+	}
+</style>
 </head>
 <body>
 	<div id="wrap">
@@ -19,7 +83,7 @@
             <table border="1" id="table">
             		<tr>
                 		<th id="textBlue">&nbsp; 상호명</th>
-                		<th>&nbsp; 주식회사 퍼피홈&nbsp;</th>
+                		<th>&nbsp; 주식회사 헬스자바&nbsp;</th>
                 </tr>
                 <tr>
                     <td id="textBlue">&nbsp; 사업자등록번호</td>
@@ -27,7 +91,7 @@
                 </tr>
                 <tr>
                     <td id="textBlue">&nbsp; URL</td>
-                    <td>&nbsp; https://puppyhome.co.kr</td>
+                    <td>&nbsp; https://healthjava.co.kr</td>
                 </tr>
                 <tr>
                     <td id="textBlue">&nbsp; 에스크로 가입여부</td>

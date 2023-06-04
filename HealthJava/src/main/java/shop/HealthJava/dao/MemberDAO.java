@@ -1,5 +1,7 @@
 package shop.HealthJava.dao;
 
+import java.util.HashMap;
+
 import shop.HealthJava.vo.MemberVO;
 
 public interface MemberDAO {
@@ -19,5 +21,18 @@ public interface MemberDAO {
 
 	void updatePwd(MemberVO m); //비밀번호 수정
 
+	int updateMailAuth(MemberVO memberVo); //메일 인증키 누르면 mail_auth = 1로 수정
+
+
+	int updateMailKey(MemberVO memberVo); //회원정보에 메일 인증키 저장
+ 
+	MemberVO getMemberByEmail(String user_email, String user_id, String user_name); //일반회원이메일을 기준으로 회원정보가져오기 
+
+
+	int searchEmail(Object user_email); //이메일 기준으로 카카오 회원가입되있는지 확인
+
+	String getIdKakao(Object user_email);//이메일 기준으로 카카오 회원 아이디 가져오기
+
+	MemberVO emailCheck(String user_email);// 이메일 중복값확인
 
 }

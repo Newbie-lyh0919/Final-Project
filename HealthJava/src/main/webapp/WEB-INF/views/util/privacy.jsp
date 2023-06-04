@@ -5,9 +5,46 @@
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> <%-- CDN 절대링크 --%>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script> <%-- CDN 절대링크 --%>
+
 <title>PuppyHome 개인정보 처리방침</title>
-<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico" type="image/x-icon"> <%-- 파비콘 --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/util/css/privacy.css"> <%-- privacy.css --%>
+
+<style>
+	/* privacy.jsp UI */
+	.wrap {
+		background: #fff;
+	}
+	.privacy_titleBox {
+		width: 100%;
+		height: 120px;
+		margin-top: 15px;
+	}
+	#privacy_title {
+		font-weight: bolder;
+		font-size: 22px;
+		margin-left: 180px;
+	}
+	.privacy_downloadBox {
+		width: 502px;
+		height: 50px;
+		border: 1px solid rgb(162, 160, 160);
+		border-radius: 5px;
+		margin-top: 20px;
+		margin-left: 27px;
+	}
+	.privacy_body {
+		font-size: 13px;
+		font-weight: 500;
+	}
+	.privacy_dateBox {
+		margin: 12px 0px 10px 0px;
+	}
+	
+	#privacy_date {
+		margin: 20px 0px 0px 10px;
+		color: rgb(162, 160, 160);
+		font-weight: 700;
+	}
+</style>
 </head>
 <body>
 	<div class="wrap">
@@ -23,13 +60,13 @@
 	     		</div>
 	     	</div>
           	<div class="privacy_body">
-				&nbsp;&nbsp;(주)퍼피홈은 이용자의 개인정보를 보호하고 이와 관련한 고충을 신속하고 원활하게<br>
+				&nbsp;&nbsp;(주)헬스자바은 이용자의 개인정보를 보호하고 이와 관련한 고충을 신속하고 원활하게<br>
 				&nbsp;&nbsp;처리할 수 있도록 다음과 같이 개인정보 처리방침을 수립·공개하며, 본 개인정보 처리방침을<br>
 				&nbsp;&nbsp;홈페이지 첫 화면에 공개함으로써 이용자들이 언제나 용이하게 보실 수 있도록 조치하고<br>
 				&nbsp;&nbsp;있습니다. 개인정보 처리방침은 정부의 법률 및 지침 변경이나 회사의 내부 방침 변경 등으로<br>
 				&nbsp;&nbsp;인하여 수시로 변경될 수 있고, 이에 따른 개인정보 처리방침의 지속적인 개선을 위하여<br>
 				&nbsp;&nbsp;필요한 절차를 정하고 있습니다. 이용자들께서는 사이트 방문 시 수시로 확인하시기 바랍니다.<br><br>
-				&nbsp;&nbsp;(주)퍼피홈의 개인정보 처리방침은 다음과 같은 내용을 담고 있습니다.<br><br>
+				&nbsp;&nbsp;(주)헬스자바의 개인정보 처리방침은 다음과 같은 내용을 담고 있습니다.<br><br>
 				&nbsp;&nbsp;1. 개인정보 수집에 대한 동의<br>
 				&nbsp;&nbsp;2. 수집하는 개인정보 항목 및 수집방법<br>
 				&nbsp;&nbsp;3. 개인정보의 수집 및 이용목적<br>

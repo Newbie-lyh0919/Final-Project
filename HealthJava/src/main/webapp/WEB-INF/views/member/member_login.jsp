@@ -7,16 +7,11 @@
 <link rel="stylesheet" href="style.css">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> <%-- CDN 절대링크 --%>
-<!-- <script type="text/javascript" src="./js/jquery.js"></script> -->
 
 <title>HealthJava 로그인</title>
 
-<%--<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico?ver1" type="image/x-icon">  파비콘 --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/views/include/css/header.css"> <%-- header.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/views/include/css/footer.css"> <%-- footer.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/fontium/css/fontium.css" /> 
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/views/member/css/login.css" /> 
 <style type="text/css">
+
 	/* 폰트 CSS */
 	@font-face {
 		font-family: 'KIMM_Bold';
@@ -29,6 +24,7 @@
 		box-sizing: border-box;
 		-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;
+		    font-family: KIMM_Bold;
 	}
 	html {
 		height: 100%;
@@ -56,7 +52,7 @@
 		margin: 0px;
 	}
 	section {
-		height: auto;
+		height: 100%;
 		background-color: rgb(236, 226, 202); /* 영역 보기 편하라고 배경색 지정함 : 연주황 */
 	}
 	/* 클리어 */
@@ -85,13 +81,10 @@
 	}
 	
 	
-	
-	
-	
-	
-	@charset "EUC-KR";/* Login form styling */
+/* Login form styling */
 .login-form {
-	background-color: #f2f2f2;
+	background-color: white;
+	border: 2px solid #b21949;
 	padding: 20px;
 	width: 450px;
 	margin: 0 auto;
@@ -145,7 +138,7 @@
 }
 
 .login_button button {
-	width: 410px;
+	width: 300px;
 	display: inline-block;
 	background-color: #FC5400;
 	color: #fff;
@@ -387,12 +380,6 @@ color:#fff
     flex:1;
 }
 
-
-
-
-
-
-	
 </style>
 <script type="text/javascript">
 
@@ -418,24 +405,26 @@ function pwd_find() {
 </script>
 </head>
 <body>
-	<%
-
+<%
+    
     Cookie[] cookies = request.getCookies();
     
-    boolean flag = false;
-    String userId = "";
+  
+    String user_Id = "";
+    
+    
     
     if(cookies != null) {
     	for(Cookie c : cookies) {
     		
-    		if(c.getName().equals("remember_id")) {
-    			userId = c.getValue();
+    		if(c.getName().equals("login_id")) {
+    			user_Id = c.getValue();
     		}
     	}
     }
     
     %>
-
+	
 
 
 	<%-- 전체 영역 --%>
@@ -445,58 +434,48 @@ function pwd_find() {
 			<%-- header include --%>
 			<jsp:include page="../include/header.jsp"/>
 		</header>
-		
-		<c:if test="${empty id}">
 		<form method="post" action="member_login_ok" onsubmit="return login_check();">
 		<div class="login-form">
 		
 		<h1>로그인</h1>
 		
 			<label for="username">아이디</label>
-			<input type="text" value="<%=userId%>" name="login_id" id="login_id" required>
+			<input type="text" value="<%=user_Id%>" name="login_id" id="login_id" required>
 			
 			<label for="password">비밀번호</label>
-			<input type="password"  name="login_pwd" id="login_pwd" required>			
+			<input type="password"  name="login_pwd" id="login_pwd"  style="font-family: '맑은 고딕', Arial, sans-serif;" required>
+			
 			
 			<div>
-			<label for="checkId">아이디 기억 <input type="checkbox" id="checkId" name="checkId"></label>
-			</div>		
+			<label for="checkId">아이디 기억 <input type="checkbox" id="checkId" name="checkId" <% if(user_Id != null && !user_Id.isEmpty()) { %>checked<% } %>></label>
+			</div>
 		
-			<div class="login_button">
-				<button type="submit">로그인</button>
+		
+			<div class="login_button" >
+			<button type="submit">로그인</button>
 			</div>
 			
+			<div class="kakao_button button" style="margin-left: 50px;">
+			<a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=aaaaee1f55c91d357e2043134c2a017c&redirect_uri=http://localhost:8282/kakao_callback">
+			<img src="../images/kakao_button.png" /></a>
+			</div>
 			
 			<div class="forgot-username">
-				<a href="find_id">아이디 찾기</a> | <a href="member_find_pw.shop">비밀번호 찾기</a>
+				<a href="find_id">아이디 찾기</a> | <a href="find_pw_loginform">비밀번호 찾기</a>
 			</div>
+			
+			
+		
+		
 		<div class="signup">
 			<p>계정이 없으신가요? <a href="member_join">회원가입</a></p>
 		</div>
 	</div>
 	</form>
 
-</c:if>
 
-<c:if test="${!empty id}">
-		<%--로그인 이후 화면 --%>
-		<div id="Index_wrap">
-			<h2 class="Index_title">로그인 후 메인화면</h2>
-			<form method="post" action="member_logout">
-				<table id="Index_t">
-					<tr>
-						<th>
-						<input type="button" value="정보수정" onclick="location='member_edit';" /> 
-						<input type="button" value="회원탈퇴" onclick="location='member_del';" /> 
-						<input type="submit" value="로그아웃" /></th>
-					</tr>
-					<tr>
-						<th>${id}님로그인을환영합니다.</th>
-					</tr>
-				</table>
-			</form>
-		</div>
-	</c:if>
+
+
 
 				<%-- top버튼 삭제 X --%>
 				<div id="topBtn">

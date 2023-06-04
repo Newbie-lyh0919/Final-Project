@@ -23,7 +23,7 @@
   <!--  -->
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet"> 
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-  <script src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script> 
+  <script src=" https://cdnjs.cloudflare.com/ajax/libs//0.8.18/lang/summernote-ko-KR.min.js"></script> 
 <title>Insert title here</title>
 
 <style>
@@ -39,9 +39,9 @@
 }
 .inquire-table-div{
 	width: 90%;
-  	max-width: 700px;
+  	max-width: 800px;
   	padding: 40px 20px;
-  	border: 2px solid #f5ad56;
+  	border: 2px solid #b21949;
   	border-radius: 16px;
   	margin: 20px auto;
   	font-family: 'KIMM_Bold';
@@ -57,14 +57,20 @@
     height: 40px;
     width: 1400px;
 }
+
+ul{
+	list-style-type: none;
+
+}
+
 #notice1{
-	color:red;
+	color: #b21949;
 	font-family: 'KIMM_Bold';
 }
 hr{
 	border: 3px;
  	height: 2px; /* hr 높이 설정 */
- 	background-color: #f5ad56; /* hr 색상 설정 */
+ 	background-color: #b21949; /* hr 색상 설정 */
  	margin: 25px 10px; /* hr 위아래 간격 설정 */
 }
 p{
@@ -81,7 +87,7 @@ p{
 #button1 {
   font-size: 0.9rem;
   letter-spacing: -.02rem;
-  width: 180px;
+  width: 150px;
   margin: 0 auto;
   padding: .6rem;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -89,8 +95,13 @@ p{
   transition: 0.1s;
   cursor: pointer;
   font-family: 'KIMM_Bold';
-  background: #FC5400;
+  background: #b21949;
   color: white;
+}
+
+.summernote{
+	height: 200px;
+	width: 600px;
 }
 
 #button1:hover {
@@ -168,6 +179,10 @@ input[type="text"] {
   font-family: 'KIMM_Bold';
 }
 
+input[type="password"] {
+  font-family: 'serif';
+}
+
 #inquire_select{
 	width:100%;
 	max-width:600px;
@@ -199,11 +214,11 @@ function change_category(a){
 <div class="inquire-notice-div">
 
  <ul id="inquire_notice_list">
-  <li><a id="notice1"> - 안내사항 입니다. 제품사용, 오염, 전용박스 손상등 교환/환불 불가합니다.</a></li>
-  <li><a id="notice1"> - 교환을 원하는 상품의 재고가 부족 시, 교환 불가합니다.</a></li>
-  <li><a> - 고객의 주문내역을 선택, 질문이 필요한 상품을 선택하시면 1:1상담이 가능합니다.</a></li>
-  <li><a> - 주문 취소/교환/환불은 <strong id="inquiremypage">마이페이지>주문내역</strong>에서 확인할수 있습니다.</a></li>
-  <li><a> - 안내사항 입니다.</a></li>
+  <li><a id="notice1">- 안내사항 입니다. 제품사용, 오염, 전용박스 손상등 교환/환불 불가합니다.</a></li>
+  <li><a id="notice1">- 교환을 원하는 상품의 재고가 부족 시, 교환 불가합니다.</a></li>
+  <li><a>- 고객의 주문내역을 선택, 질문이 필요한 상품을 선택하시면 1:1상담이 가능합니다.</a></li>
+  <li><a>- 주문 취소/교환/환불은 <strong id="inquiremypage">마이페이지>주문내역</strong>에서 확인할수 있습니다.</a></li>
+  <li><a>- 안내사항 입니다.</a></li>
  </ul>
 </div>
 <br>   
@@ -213,52 +228,53 @@ function change_category(a){
   <br>
   
   <div class="inquire-table-div">
-  <form action="contact_write_ok" method="post">
+  <form action="contact_write_ok" method="post" onsubmit="return write_check();">
    <table class="inquire-table">
     <tr>
-     <th rowspan="3" align="center">문의 유형</th>
+     <th rowspan="4" align="center">문의 유형</th>
      <td>
      	<input id="button1" type="button" value="로그인/정보" onclick="change_category('로그인/정보');">
-     	<button id="button1" type="button" onclick="change_category('상품');">상품</button>
        	<button id="button1" type="button" onclick="change_category('주문/결제');">주문/결제</button>
+       	  <button id="button1" type="button" onclick="change_category('배송문의');">배송문의</button>
+     	<button id="button1" type="button" onclick="change_category('교환/취소(반품)');">교환/취소(반품)</button>
      </td>
     </tr>
-    <tr>
-     <td>
-     	<button id="button1" type="button" onclick="change_category('배송문의');">배송문의</button>
-     	<button id="button1" type="button" onclick="change_category('교환/취소(반품)');">교환/취소(반품)</button> 
-     </td>
-    </tr>
+
+
+
     <tr>
     <td><input type="text" id="client_category" name="client_category" value="문의 유형을 선택해 주세요."></td>
     </tr>
-    
+    	
+	<tr></tr><tr></tr>
      
     <tr>
-     <th>작성자</th>
-     <td><input type="text" name="user_id" ></td>
+     <th rowspan="2" align="center">작성자</th>
+     <td><input type="text" name="user_id" value="${session_id}" readonly="readonly" style="background-color: lightgray;"></td>
     </tr>
+	<tr></tr>
 
     <tr>
-    <th>제목</th>
+     <th rowspan="2" align="center">글 비밀번호</th>
+     <td><input type="password" name="contact_password" size="50" placeholder="글 조회에 필요한 비밀번호를 입력해주세요"></td>
+    </tr>
+	<tr></tr>
+
+    <tr>
+    <th rowspan="2" align="center">제목</th>
     <td><input type="text" class="rag-title" name="reg-title" placeholder="제목을 입력하세요"></td>
     </tr>
+	<tr></tr>
+	    
     <tr>
-     <th>문의내용</th>
+     <th rowspan="5" align="center">문의내용</th>
      <td>
        <!-- <textarea placeholder="문의내용을 입력해주세요." maxlength="2000" rows="6" id="texts" spellcheck="false"></textarea> -->
         <textarea id="summernote" class="summernote" name="editordata"></textarea>      
      </td>
     </tr>
-    <tr>
-     <th>사진</th>
-     <td>
-       <div class="file-box">
-              <input type="file" name="reg-file" id="reg-file-1" class="upload-name">
-              <label for="reg-file-1">+</label>
-            </div>
-     </td>
-    </tr>
+	<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+	
     <tr>
     <th></th>
     <td>
@@ -300,29 +316,42 @@ function change_category(a){
 	});
  */
  
- $('.summernote').summernote({
+<%-- $('.summernote').summernote({
 	  toolbar: [
 	    // [groupName, [list of button]]
 	    ['style', ['bold', 'italic', 'underline', 'clear']],
-	    /* ['font', ['strikethrough', 'superscript', 'subscript']], */
 	    ['fontsize', ['fontsize']],
 	    ['color', ['color']],
 	    ['para', ['ul', 'ol', 'paragraph']],
 	    ['height', ['height']]
 	  ],
-	  height: 200,                 // 에디터 높이
-		//width:400,					
-		  minHeight: null,             // 최소 높이
-		  maxHeight: null,             // 최대 높이
-		  focus: false,                  // 에디터 로딩후 포커스를 맞출지 여부
-		  lang: "ko-KR",					// 한글 설정
-		  placeholder: '문의내용을 입력해주세요. \n최대 2048자까지 쓸 수 있습니다'	//placeholder 설정
-	});
+	  height: 200,
+	  minHeight: null,
+	  maxHeight: null,
+	  focus: false,
+	  lang: "ko-KR",
+	  placeholder: '문의내용을 입력해주세요. \n최대 2048자까지 쓸 수 있습니다'
+	});--%>
 	
 
 </script>
   
 </section>
+<script>
+
+function write_check() {
+	var answer;
+	answer=confirm("문의글을 등록 하시겠습니까?");
+						
+	if(answer == true){
+		alert('글 등록에 성공했습니다.');
+		return true;
+	} else if (answer == false){
+		return false;
+	}
+}
+
+</script>
 
 		<%-- 푸터 영역 --%>
 			<footer>

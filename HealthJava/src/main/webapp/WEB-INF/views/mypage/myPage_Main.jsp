@@ -10,11 +10,6 @@
 
 <title>HealthJava 마이페이지</title>
 
-<%--<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico?ver1" type="image/x-icon">  파비콘 --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/views/include/css/header.css"> <%-- header.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/views/include/css/footer.css"> <%-- footer.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/fontium/css/fontium.css" /> 
-
 <style type="text/css">
 	/* 메인 컨텐츠 부분 */
 	#wrap {
@@ -427,7 +422,7 @@
 			<section class="notice">
 				<div class="page-title">
 					<b style="text-align: left; font-size: 20px;">&nbsp;&nbsp;주문내역</b>
-					<a href="myPage_orderCancel" class="liList" style="margin-left: 780px; text-decoration-line: none;">[더보기]</a><br>
+					<a href="myPage_order" class="liList" style="margin-left: 780px; text-decoration-line: none;">[더보기]</a><br>
 				</div>
 				<!-- board list area -->
 				<div id="board-list">

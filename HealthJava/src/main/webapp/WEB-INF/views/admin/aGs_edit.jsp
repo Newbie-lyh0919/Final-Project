@@ -11,13 +11,6 @@
 
 <title>HealthJava 상품 수정</title>
 
-<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico" type="image/x-icon"> <%-- 파비콘 --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/header.css"> <%-- header.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/footer.css"> <%-- footer.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/admin/css/admin.css"> <%-- admin 계정.css --%>
-
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/fontium/css/fontium.css"/>
-
 <style type="text/css">
 /* 폰트 CSS */
 @font-face {
@@ -149,11 +142,13 @@ section {
 						 <img width="150px" height="190px" align="left" alt="adminImage" src="<%=request.getContextPath() %>/images/admin.png">
 						 </a>
 						 
-						<div class="meau" align="right" style="color: white;">
+				<div class="meau" align="right" style="color: white;">
 					<a href="admin_main">회원 관리</a> | 
 					<a href="admin_CSBoard">문의 게시판</a> | 
-					<a href="admin_GsList">상품 목록</a> 
-						 </div>
+					<a href="admin_GsList">상품 목록</a> | 
+					<a href="admin_GsQNAList">상품 QNA</a> | 
+					<a href="admin_OrderList">주문내역</a>  
+				 </div>
 						 
 						  <h3 class="myinfo" align="left"><b>관리자 계정</b> <br></h3>
 						  </div> <%-- end profile_img --%>

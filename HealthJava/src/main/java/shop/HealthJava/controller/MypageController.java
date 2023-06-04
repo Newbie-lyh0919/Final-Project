@@ -123,15 +123,6 @@ public class MypageController {
 		return "mypage/myPage_like";
 	}
 	
-	//마이페이지 장바구니 : tbl_cart'
-	/*
-	 * public List<Map<String, Object>> ProductCart(ProductVO pvo, CartVO cvo) {
-	 * List<Map<String, Object>> resultList = new ArrayList<>(); Map<String, Object>
-	 * paramMap = new HashMap<>(); paramMap = this.myPageService.getCartList(cvo);
-	 * paramMap.put("pvo", pvo); paramMap.put("cvo", cvo); resultList.add(paramMap);
-	 * return resultList; }
-	 */
-	
 	@RequestMapping("/myPage_cart")
 	public String myPage_basket(@ModelAttribute CartVO cvo, Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session ) {
 		System.out.println("장바구니 접속중");
@@ -370,6 +361,8 @@ public class MypageController {
 		public ModelAndView addr_add(AddrVO avo, HttpSession session, HttpServletRequest request,HttpServletResponse response) {
 			response.setContentType("text/html;charset=UTF-8");
 			
+			 
+			 
 			ModelAndView wm = new ModelAndView("mypage/addr_add");// 생성자 인자값으로 뷰페이지 경로 설정=>/WEB-INF/
 			return wm;
 		}
@@ -378,6 +371,10 @@ public class MypageController {
 	@RequestMapping("/addr_ok")
 	public ModelAndView addr_ok(AddrVO av ,HttpSession session,HttpServletRequest request, HttpServletResponse response ) throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
+		
+		 String user_id = (String) session.getAttribute("session_id");
+		  av.setUser_id(user_id);
+		  
 		
 		this.myPageService.insertAddr(av); //배송지 추가
 		//ModelAndView wm = new ModelAndView("mypage/addAddressPopup"); //생성자 인자값으로 뷰페이지 경로 설정=>/WEB-INF/
@@ -529,7 +526,7 @@ public class MypageController {
 		this.myPageService.updateReview(rv); // 리뷰 내용 저장
 		
 		ModelAndView wm = new ModelAndView();
-		wm.setViewName("redirect/myPage_review");
+		wm.setViewName("redirect:/myPage_review");
 		return wm;
 	}
 	
@@ -541,7 +538,20 @@ public class MypageController {
 		this.myPageService.delReview(re_no); // 리뷰 삭제
 		
 		ModelAndView wm = new ModelAndView();
-		wm.setViewName("redirect/myPage_review");
+		wm.setViewName("redirect:/myPage_review");
 		return wm;
 	}
+	
+	//찜목록 삭제
+	@RequestMapping("likeDel")
+	public ModelAndView likeDel(HttpServletRequest request) {
+		int like_no = Integer.parseInt(request.getParameter("like_no"));
+		
+		this.myPageService.likeDel(like_no); // 리뷰 삭제
+		
+		ModelAndView wm = new ModelAndView();
+		wm.setViewName("redirect:/myPage_like");
+		return wm;
+	}
+	
 }

@@ -10,12 +10,7 @@
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script defer src="<%=request.getContextPath()%>/js/kakao.js"></script>
 <script>Kakao.init('31d2f9dc79f327146c781ff55e8f8b76');</script>
-<title>PuppyHome 메인</title>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/header.css"> <%-- header.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/footer.css"> <%-- footer.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/fontium/css/fontium.css"/>
-<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico" type="image/x-icon"> <%-- 파비콘 --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/member/css/login.css"> <%-- login.css --%>
+<title></title>
 
 <style type="text/css">
 	/* 폰트 CSS */
@@ -76,21 +71,7 @@
 		left: 50%;
         transform: translateX( -50% );
 	}
-	.social-login b {
-		background-color: #FC5400;
-		color: #fff;
-		border: none;
-		padding: 10px 20px;
-		border-radius: 5px;
-		cursor: pointer;
-	}
-	
-	.login-form {
-		margin-top: 200px;
-	}
-	
-	
-	
+
 		/* 폰트 CSS */
 	@font-face {
 		font-family: 'KIMM_Bold';
@@ -149,14 +130,7 @@
 		left: 50%;
         transform: translateX( -50% );
 	}
-	.social-login b {
-		background-color: #FC5400;
-		color: #fff;
-		border: none;
-		padding: 10px 20px;
-		border-radius: 5px;
-		cursor: pointer;
-	}
+
 	
 	
 	
@@ -164,12 +138,13 @@
 	
 	
 .find-form {
-	background-color: #f2f2f2;
+	background-color: white;
+	border: 2px solid #b21949;
 	padding: 20px;
 	width: 450px;
 	margin: 0 auto;
 	margin-top:200px;
-	margin-bottom:100px;
+	margin-bottom:225px;
 	text-align:left;
 	border-radius: 5px;
 	box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
@@ -205,6 +180,7 @@
 	padding: 10px 20px;
 	border-radius: 5px;
 	cursor: pointer;
+	height: 48.75px;
 	
 }
 
@@ -214,17 +190,21 @@
 }
 
 .find_button button {
-	width: 410px;
+	width: 150px;
 	display: inline-block;
-	background-color: #FC5400;
+	background-color: #b21949;
 	color: #fff;
 	padding: 10px 20px;
 	border-radius: 5px;
 	text-decoration: none;
 	margin-right: 10px;
+	font-family: 'KIMM_Bold';
+	border: solid #b21949;
 }
 
-
+.login_pwd_find {
+	float_left: 10px;
+}
 .forgot-userphone,
 .forgot-username {
 	margin-top: 10px;
@@ -264,6 +244,7 @@
 *{
     box-sizing: border-box; /*��泥댁�� 諛��ㅼ�ъ�댁�*/
     outline: none; /*focus ������ ����由� ���ㅺ� */
+        font-family: KIMM_Bold;
 }
 
 body{
@@ -273,6 +254,7 @@ body{
     line-height: 1.5em;
     color : #222;
     margin: 0;
+    
 }
 
 a{
@@ -280,16 +262,10 @@ a{
     color: #222;
 }
 
-
-
-
-
-
-
-
-
 	
 </style>
+
+
 </head>
 <body>
 	<%-- 전체 영역 --%>
@@ -299,28 +275,20 @@ a{
 			<%-- header include --%>
 			<jsp:include page="../include/header.jsp"/>
 		</header>
+	
+	<div class="find-form">
+		<h1 style="font-family: 'KIMM_Bold'">아이디 찾기</h1>
+		<form method="post" action="find_pw;">
+			<label for="username">아이디</label>
+			<input type="text" id="user_id" name="user_id" value="${findId}" readonly>
 		
-		<div class="find-form">
-		
-		<h2 class="pOK_title">아이디찾기</h2>
-		<table id="pOK_t">
-			<tr>
-				<th>아이디 : </th>
-				<td>${findId}</td>
-			</tr>
-		</table>
-		<div id="pOK_menu">
-			<input type="button" value="로그인하기" onclick="location='member_login';" />
-			<input type="button" value="비밀번호 찾기" onclick="location='find_pw';" />
-			<%-- 자바스크립트에서 self.close();는 내자신 공지창을 닫는다. --%>
+		<div class="find_button">
+			<button type="button"  onclick="location='member_login';">로그인하기</button>
+			<button type="submit" >비밀번호 찾기</button>
 		</div>
-		
-		
+		</form>
 	</div>
-	<%-- top버튼 삭제 X --%>
-			<div id="topBtn">
-				<span class="fonti um-arrow-circle-up um-3x icon"></span>TOP
-			</div>
+
 	<%-- 푸터 영역 --%>
 	<footer>
 	
@@ -330,26 +298,6 @@ a{
 	</footer>
 	
 	</div>
-	<script type="text/javascript">
-	
-		<%-- top버튼 부분 --%>
-		// 클릭 이벤트 핸들러
-		$("#topBtn").click(function(e) {
-			e.stopPropagation();
-			$("html, body").animate({
-				scrollTop : 0
-			}, 'fast', 'easeOutCubic');
-		});
 
-		// 스크롤 이벤트 핸들러
-		$(window).scroll(function() {
-			if ($(window).scrollTop() == 0) {
-				$("#topBtn").css("opacity", 0); // TOP 버튼 숨기기
-			} else {
-				$("#topBtn").css("opacity", 1); // TOP 버튼 나타내기
-			}
-		});
-		
-	</script>
 </body>
 </html>

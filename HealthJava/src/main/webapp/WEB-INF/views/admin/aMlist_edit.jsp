@@ -13,13 +13,6 @@
 
 <title>HealthJava 관리자 회원관리 Page</title>
 
-<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico" type="image/x-icon"> <%-- 파비콘 --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/header.css"> <%-- header.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/footer.css"> <%-- footer.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/admin/css/admin.css"> <%-- admin 계정.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/admin/css/aMlist2.css"> <%-- adminMemList2.css --%>
-
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/fontium/css/fontium.css"/>
 
 <style type="text/css">
 	/* 폰트 CSS */
@@ -387,9 +380,11 @@
 			<a href="admin_main"><img width="150px" height="190px" align="left" alt="adminImage" src="<%=request.getContextPath()%>/images/admin.png"> </a>
 
 				<div class="meau" align="right" style="color: white;">
-					<a href="admin_member">회원 관리</a> | 
+					<a href="admin_main">회원 관리</a> | 
 					<a href="admin_CSBoard">문의 게시판</a> | 
-					<a href="admin_GsList">상품 목록</a> 
+					<a href="admin_GsList">상품 목록</a> | 
+					<a href="admin_GsQNAList">상품 QNA</a> | 
+					<a href="admin_OrderList">주문내역</a>  
 				 </div>
 				 
 				<h3 class="myinfo" align="left"><b>관리자 계정</b> <br>
@@ -491,9 +486,9 @@
 					</tr>
 					
 				</table><br><br>
-				<input id="btn" type="submit" value="수정" onclick="edit_check();" />
+				<input id="btn" type="submit" value="수정" onclick="return edit_check();" />
 				&nbsp;					
-				<input id="btn" type="button" value="목록보기" onclick="location.href ='admin_member';" />
+				<input id="btn" type="button" value="목록보기" onclick="location.href ='admin_main';" />
 					
 				</form> 
 					<br><p>
@@ -507,7 +502,7 @@
 							if(answer == true){
 								alert("회원수정이 완료되었습니다.");
 								editForm.submit();
-								location.href='admin_member';
+								location.href='admin_main';
 								return true;
 							} else if (answer == false){
 								return false;

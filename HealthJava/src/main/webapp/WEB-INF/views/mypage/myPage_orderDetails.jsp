@@ -12,12 +12,9 @@
 
 <title>HealthJava 마이페이지</title>
 
-<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico" type="image/x-icon"> <%-- 파비콘 --%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/header.css"> <%-- header.css --%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/footer.css"> <%-- footer.css --%>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/fontium/css/fontium.css"/>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/page/mypage/css/mypage.css">
-<%-- <link rel="stylesheet" href="./shop/puppyhome/controller_mypage/css/mypage.css">--%>
 
 <style type="text/css">
 	/*MyPage CSS*/
@@ -469,8 +466,9 @@
 		<!-- board list area -->
 		<div id="board-list">
 			<div class="container">
+			<input type="hidden" name="order_no" id="order_no" value="${od.order_detail_no}" />
 				<table class="board-table">
-				<input type="hidden" name="order_no" id="order_no" value="${od.order_detail_no}" />
+				
 					<thead>
 						<tr>
 							<th scope="col" class="th-title">제품명</th>
@@ -490,7 +488,7 @@
 							</td>
 							<td><div class="subtotal">${od.order_detail_cnt * od.product_price }원</div></td>
 							<td>
-								<input type="button" id="btn" value="후기작성" onclick="openPopup_myPage_review_write()">&nbsp;
+								<input type="button" id="btn" value="후기작성" onclick="openPopup_review_write()">&nbsp;
 								<input id="btn" type="button" value="주문취소" onclick=""/>
 							</td>
 						</tr>
@@ -549,15 +547,15 @@
 			}
 		});
 		<%-- 리뷰 작성 페이지 --%>
-		function openPopup_myPage_review_write() {
-			var page_width = '505';
-			var page_height= '900';
+		function openPopup_review_write() {
+			var page_width = '490px';
+			var page_height= '760px';
 			
 			//팝업창 가운데 띄우기
 			var page_left = Math.ceil((window.screen.width - page_width)/2);
 			var page_top = Math.ceil((window.screen.height - page_height)/2);
 			
-			  window.open("/myPage_review_write", "review_write",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
+			  window.open("/review_write", "review_write",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
 		}
 	</script>
 </body>

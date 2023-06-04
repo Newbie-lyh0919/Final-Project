@@ -11,8 +11,6 @@
 <script type="text/javascript" src = "./js/jquery.js"></script>
 
 <title>HealthJava 문의내역</title>
-<link rel="stylesheet" type="text/css" 	href="<%=request.getContextPath()%>/page/include/css/header.css"> <%-- header.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/footer.css"> <%-- footer.css --%>
 
 <style type="text/css">
 	/* 폰트 CSS */

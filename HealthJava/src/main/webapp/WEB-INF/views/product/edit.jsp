@@ -3,128 +3,101 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-	crossorigin="anonymous">
-<%-- CDN 절대링크 --%>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-	crossorigin="anonymous"></script>
-<%-- CDN 절대링크 --%>
-<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-<%-- CDN 절대링크 --%>
-<script
-	src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-<%-- CDN 절대링크 --%>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> <%-- CDN 절대링크 --%>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script> <%-- CDN 절대링크 --%>
+<script src="https://code.jquery.com/jquery-3.6.3.js"></script> <%-- CDN 절대링크 --%>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> <%-- CDN 절대링크 --%>
 <title>PuppyHome 상품등록</title>
-<link rel="shortcut icon"
-	href="<%=request.getContextPath()%>/images/favicon.ico"
-	type="image/x-icon">
-<%-- 파비콘 --%>
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/page/include/css/header.css">
-<%-- header.css --%>
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/page/include/css/footer.css">
-<%-- footer.css --%>
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/fontium/css/fontium.css" />
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/page/product/css/productRegister.css" />
-<style type="text/css">
-@charset "UTF-8";
-/* admin계정 UI */
 
-/* 관리자 메인이미지  */
-.adminMainpage {
-	width: 1400px;
-	height: 100px;
-	position: relative;
-	left: 50%;
-	transform: translateX(-50%);
-}
+<style>
 
-.profile_img {
-	width: 1400px;
-	height: 200px;
-	padding-left: 50px;
-	padding-right: 100px;
-	background-color: #fc9300;
-}
-
-/*Admin Page 지정*/
-.name {
-	padding-top: 30px;
-	padding-left: 10px;
-	padding-right: 1000px;
-	font-family: 'KIMM_Bold';
-}
-
-.myinfo {
-	padding-left: 170px;
-	padding-right: 100px;
-	font-family: 'KIMM_Bold';
-	color: white;
-}
-
-.myinfo_date {
-	padding-left: 170px;
-	padding-right: 100px;
-	font-family: 'KIMM_Bold';
-	color: white;
-}
-
-.meau {
-	padding-top: 30px;
-	padding-left: 800px;
-	font-family: 'KIMM_Bold';
-}
-
-.meau a {
-	color: white;
-	text-decoration: none;
-}
-/* 상품 등록 리스트 테두리 */
-.productTitle {
-	width: 1400px;
-	height: 180px;
-	padding-top: 100px;
-	padding-left: 50px;
-	padding-right: 100px;
-	font-family: 'KIMM_Bold';
-}
-
-.productForm {
-	font-family: 'KIMM_Bold';
-	width: 1100px;
-	height: 1100px;
-	border: none;
-	border-top: 5px solid #FC5400;
-	border-bottom: 5px solid #FC5400;
-}
-
-.table_div table {
-	border-collapse: collapse;
-}
-
-.productForm th, td {
-	text-align: centen;
-	font-family: 'KIMM_Bold';
-}
-
-.input {
-	font-family: 'KIMM_Bold';
-}
-
-#btn {
-	border-color: #FC5400;
-	background-color: #FC5400;
-	color: #fff;
-}
-@font-face {
+	/* 관리자 메인이미지  */
+	.adminMainpage {
+		width: 1400px;
+		height: 100px;
+		position: relative;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+	
+	.profile_img {
+		width: 1400px;
+		height: 200px;
+		padding-left: 50px;
+		padding-right: 100px;
+		background-color: #b21949;
+	}
+	
+	/*Admin Page 지정*/
+	.name {
+		padding-top: 30px;
+		padding-left: 10px;
+		padding-right: 1000px;
+		font-family: 'KIMM_Bold';
+	}
+	
+	.myinfo {
+		padding-left: 170px;
+		padding-right: 100px;
+		font-family: 'KIMM_Bold';
+		color: white;
+	}
+	
+	.myinfo_date {
+		padding-left: 170px;
+		padding-right: 100px;
+		font-family: 'KIMM_Bold';
+		color: white;
+	}
+	
+	.meau {
+		padding-top: 30px;
+		padding-left: 800px;
+		font-family: 'KIMM_Bold';
+	}
+	
+	.meau a {
+		color: white;
+		text-decoration: none;
+	}
+	/* 상품 등록 리스트 테두리 */
+	.productTitle {
+		width: 1400px;
+		height: 180px;
+		padding-top: 100px;
+		padding-left: 50px;
+		padding-right: 100px;
+		font-family: 'KIMM_Bold';
+	}
+	
+	.productForm {
+		font-family: 'KIMM_Bold';
+		width: 1100px;
+		height: 1100px;
+		border: none;
+		border-top: 5px solid #b21949;
+		border-bottom: 5px solid #b21949;
+	}
+	
+	.table_div table {
+		border-collapse: collapse;
+	}
+	
+	.productForm th, td {
+		text-align: centen;
+		font-family: 'KIMM_Bold';
+	}
+	
+	.input {
+		font-family: 'KIMM_Bold';
+	}
+	
+	#btn {
+		border-color: #FC5400;
+		background-color: #FC5400;
+		color: #fff;
+	}
+	@font-face {
 		font-family: 'KIMM_Bold';
 		src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KIMM_Bold.woff2') format('woff2'); /* CDN 절대링크  */
 		font-weight: 700;
@@ -169,7 +142,7 @@
 		
 	}
 	section {
-		height: 2000px; /* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / .main이랑 px 맞춰야함 */
+		height: 2500px; /* UI 개발할 때 각 페이지에 맡게 해당 영역 px수치 수정해야함 / .main이랑 px 맞춰야함 */
 		
 	}
 	/* 클리어 */
@@ -233,8 +206,8 @@
 		width: 1100px; 
 		height: 1100px;
 		border:none;   
-	    border-top: 5px solid #FC5400;
-	    border-bottom: 5px solid #FC5400;
+	    border-top: 5px solid #b21949;
+	    border-bottom: 5px solid #b21949;
 	}
 	.table_div table {
 		border-collapse: collapse;
@@ -269,18 +242,18 @@
 
 
 						<%-- admin 계정 --%>
-						<h1 class="name" style="color: #fc9300">Admin Page</h1>
+						<h1 class="name" style="color: #b21949">Admin Page</h1>
 						<div class="profile_img" align="center">
 							<%-- 이미지 클릭시 관리자 메인화면으로 이동 --%>
-							<a href="adminMain.shop"><img width="150px" height="190px"
-								align="left" alt="adminImage"
-								src="<%=request.getContextPath()%>/images/admin.png"> </a>
+							
 
 							<div class="meau" align="right" style="color: white;">
-								<a href="mlist.shop">회원 관리</a> | <a href="csboard.shop">문의
-									게시판</a> | <a href="gslist.shop">상품 목록</a> | <a href="aSales.shop">매출
-									관리</a>
-							</div>
+								<a href="admin_main">회원 관리</a> | 
+								<a href="admin_CSBoard">문의 게시판</a> | 
+								<a href="admin_GsList">상품 목록</a> | 
+								<a href="admin_GsQNAList">상품 QNA</a> | 
+								<a href="admin_OrderList">주문내역</a>  
+							 </div>
 
 							<h3 class="myinfo" align="left">
 								<b>관리자 계정</b> <br>
@@ -333,26 +306,27 @@
 								</tr>
 								<p>
 								<tr>
-    <th>카테고리1</th>
-    <td align="left">
-        <label>분류</label>
-        <select name="product_type" onchange="handleCategory1Change(this)" >
-            <option value="${detail.product_type}">현재 : ${detail.product_type}</option>
-            <option value="매트">매트</option>
-            <option value="짐볼">짐볼</option>
-            <option value="소도구">소도구</option>
-        </select>
-    </td>
-</tr>
-<tr>
-    <th>카테고리2</th>
-    <td align="left">
-        <label>분류</label>
-        <select name="product_type2" id="category2Select">
-            <option value="${detail.product_type2}">현재 :${detail.product_type2}</option>
-        </select>
-    </td>
-</tr>
+								    <th>카테고리1</th>
+								    <td align="left">
+								        <label>분류</label>
+								        <select name="product_type" onchange="handleCategory1Change(this)" >
+								            <option value="${detail.product_type}">현재 : ${detail.product_type}</option>
+								            <option value="매트">매트</option>
+								            <option value="짐볼">짐볼</option>
+								            <option value="소도구">소도구</option>
+								        </select>
+								    </td>
+								</tr>
+								<tr>
+								    <th>카테고리2</th>
+								    <td align="left">
+								        <label>분류</label>
+								        <select name="product_type2" id="category2Select">
+								            <option value="${detail.product_type2}">현재 :${detail.product_type2}</option>
+								        </select>
+								    </td>
+								</tr>
+												
 								<p>
 								<tr>
 									<th></th>
@@ -366,24 +340,16 @@
 										<br> ${detail.product_cont1} <br>
 										<div class="select_img01" style="margin: 10px;">
 											<img src="" style="height: 100px; width:auto; ">
-										</div> <script type="text/javascript">
-											$("#image01")
-													.change(
-															function() {
-																if (this.files
-																		&& this.files[0]) {
-																	var reader = new FileReader;
-																	reader.onload = function(
-																			data) {
-																		$(
-																				".select_img01 img")
-																				.attr(
-																						"src",
-																						data.target.result)
-																				;
-																	}
-																	reader
-																			.readAsDataURL(this.files[0]);
+										</div> 
+										<script type="text/javascript">
+											$("#image01") .change(
+													function() {
+														if (this.files && this.files[0]) {
+															var reader = new FileReader;
+															reader.onload = function(data) {
+																$(".select_img01 img").attr("src",data.target.result);
+															}
+															reader.readAsDataURL(this.files[0]);
 																}
 															});
 											function fileCheck01() {
@@ -397,8 +363,8 @@
 												console.log(filePath);
 												$('#imagesrc01').val(filePath);
 											}
-										</script> <br> 경로 : <input id="imagesrc01" type="text"
-										name="product_cont1" size="60" readonly="readonly"></td>
+										</script> <br> 
+										경로 : <input id="imagesrc01" type="text" name="product_cont1" size="60" readonly="readonly"></td>
 										</tr>
 										<tr>
 									<th>상품<br>이미지2
@@ -409,25 +375,16 @@
 										<div class="select_img02" style="margin: 10px;">
 											<img src="" style="height: 100px; width: auto;">
 										</div> <script type="text/javascript">
-											$("#image02")
-													.change(
-															function() {
-																if (this.files
-																		&& this.files[0]) {
-																	var reader = new FileReader;
-																	reader.onload = function(
-																			data) {
-																		$(
-																				".select_img02 img")
-																				.attr(
-																						"src",
-																						data.target.result)
-																				;
-																	}
-																	reader
-																			.readAsDataURL(this.files[0]);
-																}
-															});
+										$("#image02") .change(
+												function() {
+													if (this.files && this.files[0]) {
+														var reader = new FileReader;
+														reader.onload = function(data) {
+															$(".select_img02 img").attr("src",data.target.result);
+														}
+														reader.readAsDataURL(this.files[0]);
+															}
+														});
 											function fileCheck02() {
 												var file = document
 														.getElementById("image02");
@@ -439,8 +396,8 @@
 												console.log(filePath);
 												$('#imagesrc02').val(filePath);
 											}
-										</script> <br> 경로 : <input id="imagesrc02" type="text"
-										name="product_cont2" size="60" readonly="readonly"></td>
+										</script> <br> 
+										경로 : <input id="imagesrc02" type="text" name="product_cont2" size="60" readonly="readonly"></td>
 										</tr>
 										<tr>
 									<th>상품<br>이미지3
@@ -451,25 +408,16 @@
 										<div class="select_img03" style="margin: 10px;">
 											<img src="" style="height: 100px; width: auto;">
 										</div> <script type="text/javascript">
-											$("#image03")
-													.change(
-															function() {
-																if (this.files
-																		&& this.files[0]) {
-																	var reader = new FileReader;
-																	reader.onload = function(
-																			data) {
-																		$(
-																				".select_img03 img")
-																				.attr(
-																						"src",
-																						data.target.result)
-																				;
-																	}
-																	reader
-																			.readAsDataURL(this.files[0]);
-																}
-															});
+										$("#image03") .change(
+												function() {
+													if (this.files && this.files[0]) {
+														var reader = new FileReader;
+														reader.onload = function(data) {
+															$(".select_img03 img").attr("src",data.target.result);
+														}
+														reader.readAsDataURL(this.files[0]);
+															}
+														});
 											function fileCheck03() {
 												var file = document
 														.getElementById("image03");
@@ -492,26 +440,18 @@
 										<br> ${detail.product_cont4} <br>
 										<div class="select_img04" style="margin: 10px;">
 											<img src="" style="height: 100px; width: auto;">
-										</div> <script type="text/javascript">
-											$("#image04")
-													.change(
-															function() {
-																if (this.files
-																		&& this.files[0]) {
-																	var reader = new FileReader;
-																	reader.onload = function(
-																			data) {
-																		$(
-																				".select_img04 img")
-																				.attr(
-																						"src",
-																						data.target.result)
-																				;
-																	}
-																	reader
-																			.readAsDataURL(this.files[0]);
-																}
-															});
+										</div> 
+										<script type="text/javascript">
+										$("#image04") .change(
+												function() {
+													if (this.files && this.files[0]) {
+														var reader = new FileReader;
+														reader.onload = function(data) {
+															$(".select_img04 img").attr("src",data.target.result);
+														}
+														reader.readAsDataURL(this.files[0]);
+															}
+														});
 											function fileCheck04() {
 												var file = document
 														.getElementById("image04");
@@ -523,8 +463,8 @@
 												console.log(filePath);
 												$('#imagesrc04').val(filePath);
 											}
-										</script> <br> 경로 : <input id="imagesrc04" type="text"
-										name="product_cont4" size="60" readonly="readonly"></td>
+										</script> <br> 
+										경로 : <input id="imagesrc04" type="text" name="product_cont4" size="60" readonly="readonly"></td>
 										</tr>
 								<tr>
 									<th>상세페이지<br>이미지01
@@ -553,8 +493,8 @@
 												console.log(filePath);
 												$('#imagesrc05').val(filePath);
 											}
-										</script><br> 경로 : <input id="imagesrc05" type="text"
-										name="product_cont5" size="60" readonly="readonly"></td>
+										</script><br> 
+										경로 : <input id="imagesrc05" type="text" name="product_cont5" size="60" readonly="readonly"></td>
 								</tr>
 								<tr>
 									<th>상세페이지<br>이미지02
@@ -583,7 +523,8 @@
 												console.log(filePath);
 												$('#imagesrc06').val(filePath);
 											}
-										</script> <br> 경로 : <input id="imagesrc06" type="text"	name="product_cont6" size="60" readonly="readonly"></td>
+										</script> <br> 
+										경로 : <input id="imagesrc06" type="text"	name="product_cont6" size="60" readonly="readonly"></td>
 								</tr>
 								<tr>
 									<th>상세페이지<br>이미지03
@@ -612,7 +553,8 @@
 												console.log(filePath);
 												$('#imagesrc07').val(filePath);
 											}
-										</script> <br> 경로 : <input id="imagesrc07" type="text"	name="product_cont7" size="60" readonly="readonly"></td>
+										</script> <br> 
+										경로 : <input id="imagesrc07" type="text"	name="product_cont7" size="60" readonly="readonly"></td>
 								</tr>
 								<tr>
 									<th>상세페이지<br>이미지04
@@ -641,14 +583,15 @@
 												console.log(filePath);
 												$('#imagesrc08').val(filePath);
 											}
-										</script> <br> 경로 : <input id="imagesrc08" type="text"	name="product_cont8" size="60" readonly="readonly"></td>
+										</script> <br> 
+										경로 : <input id="imagesrc08" type="text"	name="product_cont8" size="60" readonly="readonly"></td>
 								</tr>
 							</table>
 							<p>
 							<p>
 
-								<input type="submit" value="수정" /> <input type="reset"
-									value="취소" onclick="location='productList.jsp'" />
+								<input type="submit" value="수정" /> <input type="button"
+									value="취소" onclick="goBack()" />
 						</div>
 						
 					<%-- end product--%></form>
@@ -734,6 +677,11 @@
         defaultOption.text = '선택';
         selectElement.appendChild(defaultOption);
     }
+</script>
+<script>
+  function goBack() {
+    history.back();
+  }
 </script>
 </body>
 </html>

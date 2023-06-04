@@ -23,7 +23,7 @@
 	width: 90%;
 	max-width: 700px;
 	padding: 40px 20px;
-	border: 2px solid #f5ad56;
+	border: 2px solid #b21949;
 	border-radius: 16px;
 	margin: 20px auto;
 	font-family: 'KIMM_Bold';
@@ -49,7 +49,7 @@
 hr {
 	border: 3px;
 	height: 2px; /* hr 높이 설정 */
-	background-color: #f5ad56; /* hr 색상 설정 */
+	background-color: #b21949; /* hr 색상 설정 */
 	margin: 25px 10px; /* hr 위아래 간격 설정 */
 }
 
@@ -76,7 +76,7 @@ p {
 	transition: 0.1s;
 	cursor: pointer;
 	font-family: 'KIMM_Bold';
-	background: #FC5400;
+	background: #b21949;
 	color: white;
 }
 
@@ -224,7 +224,7 @@ input[type="text"] {
 						<div class="flex-box">
 							<button id="button1" class="btn-rank2" onclick="write_check();">등록하기</button>
 							<button type="reset" id="button1" class="btn-default"
-								onclick="location='cs_FAQ.shop';">취소</button>
+								onclick="location='/FAQ';">취소</button>
 						</div>
 					</td>
 				</tr>

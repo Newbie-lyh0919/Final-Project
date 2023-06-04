@@ -13,10 +13,6 @@
 
 <title>PuppyHome 관리자 문의게시판</title>
 
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/header.css"> <%-- header.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/footer.css"> <%-- footer.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/admin/css/admin.css"> <%-- admin 계정.css --%>
-
 </head>
 <body>
 <%-- 전체 영역 --%>
@@ -39,7 +35,9 @@
 				<div class="meau" align="right" style="color: white;">
 					<a href="admin_main">회원 관리</a> | 
 					<a href="admin_CSBoard">문의 게시판</a> | 
-					<a href="admin_GsList">상품 목록</a> 
+					<a href="admin_GsList">상품 목록</a> | 
+					<a href="admin_GsQNAList">상품 QNA</a> | 
+					<a href="admin_OrderList">주문내역</a>  
 				 </div>
 
 				<h3 class="myinfo" align="left"><b>관리자 계정</b> <br>

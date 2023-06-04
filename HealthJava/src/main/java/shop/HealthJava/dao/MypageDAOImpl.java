@@ -1,6 +1,5 @@
 package shop.HealthJava.dao;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import shop.HealthJava.vo.AddrVO;
-import shop.HealthJava.vo.CSClientVO;
 import shop.HealthJava.vo.CartVO;
 import shop.HealthJava.vo.LikeVO;
 import shop.HealthJava.vo.MemberVO;
@@ -152,6 +150,13 @@ public class MypageDAOImpl implements MypageDAO {
 
 	@Override
 	public List<CartVO> getBuyOne(String id) {
-		return this.sqlSession.selectOne("getBuyone", id);
+		return this.sqlSession.selectList("getBuyOne", id);
+	}
+
+	//찜목록 삭제
+	@Override
+	public void likeDel(int like_no) {
+		this.sqlSession.delete("likeDel", like_no);
+		
 	}
 }

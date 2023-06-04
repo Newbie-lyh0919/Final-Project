@@ -6,32 +6,24 @@
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> <%-- CDN 절대링크 --%>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script> <%-- CDN 절대링크 --%>
-<!-- <script src="https://code.jquery.com/jquery-3.6.3.js"></script> --> <%-- CDN 절대링크 --%>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> <%-- CDN 절대링크 --%>
-<!-- <script type="text/javascript" src = "./js/jquery.js"></script> -->
 <script defer src="<%=request.getContextPath()%>/js/post.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="<%=request.getContextPath()%>/js/updateInfo.js"></script>
 <script src="<%=request.getContextPath()%>/js/post2.js"></script>
 <script	src="../js/mypage.js"></script>
 <!--<script>Kakao.init('31d2f9dc79f327146c781ff55e8f8b76');</script> -->
- <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
     
 <script>
-$(document).ready(function(){
-	myPagePayment_addr();
-});
+	$(document).ready(function(){
+		myPagePayment_addr();
+	});
 </script>
 
 <title>HealthJava 마이페이지</title>
 
-<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico" type="image/x-icon"> <%-- 파비콘 --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/header.css"> <%-- header.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/footer.css"> <%-- footer.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/fontium/css/fontium.css"/>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/page/mypage/css/mypage.css">
-<%-- <link rel="stylesheet" href="./shop/puppyhome/controller_mypage/css/mypage.css">--%>
 
 <style type="text/css">
 
@@ -432,18 +424,17 @@ $(document).ready(function(){
 					<nav>
 						<ul>
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"><a href="myPage_Main" style="text-decoration: none; color: black;">나의 쇼핑</a></li>
-							<li><a href="myPgae_order" class="liList">주문ㆍ배송</a></li>
+							<li><a href="myPage_order" class="liList">주문ㆍ배송</a></li>
 							<li><a href="myPage_like" class="liList">찜 목록</a></li>
 							<li><a href="myPage_cart" class="liList">장바구니</a></li>
-							<li style="margin-bottom: 30px;"><a href="inquiry" class="liList">문의 내역</a></li>
+							<li><a href="myPage_review" class="liList">나의 상품후기</a></li>
 
 							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 회원 정보</li>
 							<li><a href="myPage_updateInfo" class="liList" style="color: #B21948;">회원정보 변경</a></li>
 							<li><a href="myPage_changePwd" class="liList">비밀번호 변경</a></li>
 							<li><a href="myPage_user_Withdrawal" class="liList">회원탈퇴</a></li>
 							<li style="margin-bottom: 30px;"><a href="myPage_updateAddress" class="liList">배송지 관리</a></li>
-							<li style="font-weight: bold; font-size: 20px; border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: black;"> 나의 상품후기</li>
-							<li><a href="review" class="liList">나의 상품후기</a></li>
+							
 						</ul>
 					</nav>
 				</aside>
@@ -531,12 +522,7 @@ $(document).ready(function(){
 				<tr>
 					<td class="td-infoPs"></td>
 				</tr>
-				
-				
-
-
-					
-										
+														
 					<!--이메일-->
 					<tr>
 						<th class="th-list" rowspan="2" >이메일 *</th>
@@ -632,12 +618,8 @@ $(document).ready(function(){
         
         var title = document.getElementById('order_product_title').value;
         
-
         function requestPay() {
-        	
-        	alert("${id}");
-            alert(document.getElementById('order_product_title').value);
-            
+        	            
             IMP.request_pay({
                 pg : 'kcp',
                 pay_method : 'card',
@@ -656,7 +638,6 @@ $(document).ready(function(){
                     console.log(rsp);
                     console.log("결제 성공");
                     document.getElementById('frm').submit();
-                    /* location.href='http://localhost:8282/order_insert_ok'; */
                 } else {
                     console.log(rsp);
                     console.log("결제 실패");

@@ -22,6 +22,7 @@ public class CartVO {
 	private String cart_mem_id; // 회원아이디, 비회원일 때 : 랜덤값
 	private int cart_pro_no; // 제품 no
 	private int cart_cnt; // 구매 수량
+	
 	private String product_cont1; // 상품이미지1
 	private String product_title; // 상품명
 	private String product_price; //가격

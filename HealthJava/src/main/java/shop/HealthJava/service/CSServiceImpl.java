@@ -9,6 +9,7 @@ import shop.HealthJava.dao.CSDAO;
 import shop.HealthJava.vo.CSClientVO;
 import shop.HealthJava.vo.CSFAQVO;
 import shop.HealthJava.vo.CSNoticeVO;
+import shop.HealthJava.vo.MemberVO;
 
 @Service
 public class CSServiceImpl implements CSService {
@@ -57,6 +58,14 @@ public class CSServiceImpl implements CSService {
 	public void insertContact(CSClientVO cvo) {
 		this.csDao.insertContact(cvo);
 	}
+
+	//CS - 1대1 문의글 내용보기
+	@Override
+	public CSClientVO getClientCont(int client_no) {
+		return this.csDao.getClientCont(client_no);
+	}
+
+
 
 	
 }

@@ -11,7 +11,6 @@ public class ProductVO2 {
 	 private String qna_title;
 	 private String qna_content;
 	 private String qna_reply;
-	 private String  qna_date;
 	 
 	 
 }

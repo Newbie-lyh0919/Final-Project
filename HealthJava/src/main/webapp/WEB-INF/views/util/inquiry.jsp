@@ -5,9 +5,66 @@
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> <%-- CDN 절대링크 --%>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script> <%-- CDN 절대링크 --%>
-<title>PuppyHome 입점/제휴 문의</title>
-<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico" type="image/x-icon"> <%-- 파비콘 --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/util/css/inquiry.css"> <%-- inquiry.css --%>
+
+<title>HealthJava 입점/제휴 문의</title>
+<style>
+	/* inquiry.jsp UI */
+	/* 입점/제휴 문의 모달 관련*/
+	.wrap {
+		background: #fff;
+	}
+	.inquiry_titleBox {
+		width: 100%;
+		height: 120px;
+		margin-left: 20px;
+	}
+	/* 입점/제휴 문의 모달 창 제목 */
+	#inquiry_title {
+		font-weight: bolder;
+		font-size: 22px;
+		margin-left: 155px;
+	}
+	.inquiry_body {
+		font-size: 13px;
+		font-weight: 500;
+		margin-left: 20px;
+	}
+	.inquiry_dateBox {
+		margin-bottom: 10px;
+	}
+	#inquiry_date {
+		color: rgb(162, 160, 160);
+	}
+	.inquiry_downloadBox {
+		width: 505px;
+		height: 50px;
+		border: 1px solid rgb(162, 160, 160);
+		border-radius: 5px;
+		margin-left: 10px;
+	}
+	.inquiry_downloadBox2 {
+		margin-top: 10px;
+	}
+	.inquiry_downloadBox3 {
+		position: fixed;
+		top: 82px;
+		left: 88px;
+	}
+	#inquiry_xlsx {
+		color: black;
+		text-decoration: none;
+	}
+	#inquiry_xlsx:hover {
+		text-decoration: underline;
+	}
+	#attachIcon {
+		margin-left: 15px;
+	}
+	#exampleModalLong {
+		overflow-y: auto;
+	}
+
+</style>
 </head>
 <body style="overflow-x:hidden; overflow-y:hidden;">
 	<div class="wrap">
@@ -35,9 +92,9 @@
 			&nbsp;&nbsp;&nbsp;<strong>1. 제휴 신청서 접수</strong><br>
 			&nbsp;&nbsp;&nbsp;입점 및 제휴 제안서를 작성하신 후 아래 메일로 보내주세요.​
 			<ul>
-				<li>상품 입점 문의 : md@puppyhome.co.kr</li>
-				<li>마케팅 제휴 문의 : marketing@puppyhome.co.kr</li>
-				<li>오픈팜 도매 및 B2B 사업자 전용 쇼핑몰 가입 문의 : bizsales@puppyhome.co.kr</li>
+				<li>상품 입점 문의 : md@healthjava.co.kr</li>
+				<li>마케팅 제휴 문의 : marketing@healthjava.co.kr</li>
+				<li>오픈팜 도매 및 B2B 사업자 전용 쇼핑몰 가입 문의 : bizsales@healthjava.co.kr</li>
 			</ul>
 			&nbsp;&nbsp;&nbsp;메일 제목은 아래와 같이 통일해주시면 보다 빠른 처리가 가능합니다.<br>
 			&nbsp;&nbsp;&nbsp;<strong>[제휴종류]입점 및 제휴 제안서_업체명</strong><br><br>

@@ -12,12 +12,6 @@
 
 <title>HealthJava 관리자 상품목록 Page</title>
 
-<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico" type="image/x-icon"> <%-- 파비콘 --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/header.css"> <%-- header.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/footer.css"> <%-- footer.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/admin/css/admin.css"> <%-- admin 계정.css --%>
-
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/fontium/css/fontium.css"/>
 
 <script	src="../js/admin.js"></script>
 <script>
@@ -405,9 +399,11 @@ $(document).ready(function(){
 			<a href="admin_main"><img width="150px" height="190px" align="left" alt="adminImage" src="<%=request.getContextPath()%>/images/admin.png"> </a>
 
 				<div class="meau" align="right" style="color: white;">
-					<a href="admin_member">회원 관리</a> | 
+					<a href="admin_main">회원 관리</a> | 
 					<a href="admin_CSBoard">문의 게시판</a> | 
-					<a href="admin_GsList">상품 목록</a> 
+					<a href="admin_GsList">상품 목록</a> | 
+					<a href="admin_GsQNAList">상품 QNA</a> | 
+					<a href="admin_OrderList">주문내역</a>  
 				 </div>
 
 				<h3 class="myinfo" align="left"><b>관리자 계정</b> <br>
@@ -430,9 +426,9 @@ $(document).ready(function(){
 								<option value="product_maker" 
 								<c:if test="${search_type == 'product_maker'}" >${'selected'}</c:if>>제조사</option>
 								<option value="product_type" 
-								<c:if test="${search_type == 'product_type'}" >${'selected'}</c:if>>분류1</option>
+								<c:if test="${search_type == 'product_type'}" >${'selected'}</c:if>>대분류</option>
 								<option value="product_type2" 
-								<c:if test="${search_type == 'product_type2'}" >${'selected'}</c:if>>분류2</option>
+								<c:if test="${search_type == 'product_type2'}" >${'selected'}</c:if>>소분류</option>
 							</select>
 								<input id="search_field" name="search_field" onkeyup="product_search()" size="20"> &nbsp;&nbsp;&nbsp;
 								<input type="button" id="btn" name="search" onclick="product_search();" value="검색"  />
@@ -449,8 +445,8 @@ $(document).ready(function(){
 					<th width="50">No</th> 
 					<th width="400">상품명</th>  
 					<th width="200">제조사</th>  
-					<th width="300">분류1</th> 
-					<th width="300">분류2</th> 
+					<th width="300">대분류</th> 
+					<th width="300">소분류</th> 
 					<th width="200">가격</th>
 					<th width="200">등록날짜</th> 
 					<th width="100">비고</th> <%-- 수정버튼 --%>
@@ -465,94 +461,7 @@ $(document).ready(function(){
 				
 				<p><br>
 				<input id="btn" type="button" value="상품등록" onclick="location='product_register.shop'"/>
-
-					<%-- 페이징 처리 --%>
-					<div id="pagination">
-					<!-- 검색 칸 공백 시 페이징 사라지지 않게 -->
-	               <c:if test="${find_name == ''}"> <%--검색필드와 검색어가 없는 경우 --%>
-	                 <c:if test="${page <= 1}">
-	                  PREV&nbsp;
-	                 </c:if>
-	                 <c:if test="${page>1}">
-	                  <a href="gslist.shop?page=${page-1}">PREV</a>&nbsp;
-	                 </c:if>
-	                 
-	                 <%--현재 쪽번호 출력 --%>
-	                 <c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
-	                   <c:if test="${a == page}"> <%-- 현재 페이지가 선택된 경우 --%>
-	                      [&nbsp;${a}&nbsp;]
-	                   </c:if>
-	                   <c:if test="${a != page}"> <%--현재 쪽번호가 선택 안 된 경우--%>
-	                    <a href="gslist.shop?page=${a}">[&nbsp;${a}&nbsp;]</a>&nbsp;
-	                   </c:if>
-	                 </c:forEach>
-	                   
-	                
-	                <c:if test="${page >= maxpage}">
-	                  &nbsp;NEXT
-	                </c:if>
-	                <c:if test="${page < maxpage}">
-	                 <a href="gslist.shop?page=${page+1}">NEXT</a>
-	                </c:if>
-	               </c:if>
-	               <!-- 검색 칸 공백 시 페이징 사라지지 않게 -->
-				    <%--검색 전 페이징 --%>
-				    <c:if test="${(empty find_field) && (empty find_name)}"> <%--검색필드와 검색어가 없는 경우 --%>
-				     <c:if test="${page <= 1}">
-				      PREV&nbsp;
-				     </c:if>
-				     <c:if test="${page>1}">
-				      <a href="gslist.shop?page=${page-1}">PREV</a>&nbsp;
-				     </c:if>
-				     
-				     <%--현재 쪽번호 출력 --%>
-				     <c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
-				       <c:if test="${a == page}"> <%-- 현재 페이지가 선택된 경우 --%>
-				       	[&nbsp;${a}&nbsp;]
-				       </c:if>
-				       <c:if test="${a != page}"> <%--현재 쪽번호가 선택 안 된 경우--%>
-				        <a href="gslist.shop?page=${a}">[&nbsp;${a}&nbsp;]</a>&nbsp;
-				       </c:if>
-				     </c:forEach>
-				       
-				    
-				    <c:if test="${page >= maxpage}">
-				      &nbsp;NEXT
-				    </c:if>
-				    <c:if test="${page < maxpage}">
-				     <a href="gslist.shop?page=${page+1}">NEXT</a>
-				    </c:if>
-				   </c:if>
-				    
-				    <%--검색이후 페이징(쪽나누기) --%>
-				    <c:if test="${(!empty find_field) && (!empty find_name)}"> <%--검색필드와 검색어가 있는 경우 --%>
-				     <c:if test="${page <= 1}">
-				      PREV&nbsp;
-				     </c:if>
-				     <c:if test="${page>1}">
-				      <a href="gslist.shop?page=${page-1}&find_field=${find_field}&find_name=${find_name}">PREV</a>&nbsp;
-				      <%-- &(엠퍼센트) 구분기호로 구분하면서 find_field=검색필드&find_name= 검색어를 get방식으로 전달해야 검색 이후 페이징 목록을 유지한다.그렇지 않으면 검색전 전체 페이징 목록으로 이동해서 검색 효과가 사라진다. --%>
-				     </c:if>
-				     
-				     <%--현재 쪽번호 출력 --%>
-				     <c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
-				       <c:if test="${a == page}"> <%-- 현재 페이지가 선택된 경우 --%>
-				        [&nbsp;${a}&nbsp;]
-				       </c:if>
-				       <c:if test="${a != page}"> <%--현재 쪽번호가 선택 안 된 경우--%>
-				        <a href="gslist.shop?page=${a}&find_field=${find_field}&find_name=${find_name}">[&nbsp;${a}&nbsp;]</a>&nbsp;
-				       </c:if>
-				     </c:forEach>      
-				    
-				    <c:if test="${page >= maxpage}">
-				      &nbsp;NEXT
-				    </c:if>
-				    <c:if test="${page < maxpage}">
-				     <a href="gslist.shop?page=${page+1}&find_field=${find_field}&find_name=${find_name}">NEXT</a>
-				    </c:if>
-				   </c:if> 
-				   </div>
-				   <%-- end 페이징처리 --%>			
+	
 								
 				</div> <%-- end product --%>
 					

@@ -11,14 +11,7 @@
 <script	src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script><%-- CDN 절대링크 --%>
 <script	src="../js/admin.js"></script>
 
-<title>PuppyHome 관리자 회원관리 Page</title>
-
-<link rel="shortcut icon"	href="<%=request.getContextPath()%>/images/favicon.ico"	type="image/x-icon"><%-- 파비콘 --%>
-<link rel="stylesheet" type="text/css"	href="<%=request.getContextPath()%>/page/include/css/header.css"><%-- header.css --%>
-<link rel="stylesheet" type="text/css"	href="<%=request.getContextPath()%>/page/include/css/footer.css"><%-- footer.css --%>
-<link rel="stylesheet" type="text/css"	href="<%=request.getContextPath()%>/page/admin/css/admin.css"><%-- admin 계정.css --%>
-<link rel="stylesheet" type="text/css"	href="<%=request.getContextPath()%>/page/admin/css/aMlist.css"><%-- adminMemList.css --%>
-<link rel="stylesheet" type="text/css"	href="<%=request.getContextPath()%>/fontium/css/fontium.css" />
+<title>PuppyHome 관리자 회원관리 Page</title> 
 
 <style type="text/css">
 	/* 폰트 CSS */
@@ -263,6 +256,7 @@
 $(document).ready(function(){
 	member_search();
 });
+
 </script>
 
 </head>
@@ -285,11 +279,18 @@ $(document).ready(function(){
 			<a href="admin_main"><img width="150px" height="190px" align="left" alt="adminImage" src="<%=request.getContextPath()%>/images/admin.png"> </a>
 
 				<div class="meau" align="right" style="color: white;">
-					<a href="admin_main">회원 관리</a> | 
-					<a href="admin_CSBoard">문의 게시판</a> | 
-					<a href="admin_GsList">상품 목록</a> 
+				<ul>
+					<li id="adminTab" value="회원관리" onclick="TabList();">회원 관리  |</li>
+					<li id="adminTab" value="문의게시판" onclick="TabList();">문의 게시판 |</li> 
+					<li id="adminTab" value="상품목록" onclick="TabList();">상품 목록 |</li> 
+					<li id="adminTab" value="상품QNA" onclick="TabList();">상품 QNA |</li>
+					<li id="adminTab" value="주문내역" onclick="TabList();">주문내역 |</li> 
+					</ul>  
 				 </div>
 
+<script type="text/javascript">
+
+</script>
 				<h3 class="myinfo" align="left"><b>관리자 계정</b> <br>
 			</div> <%-- end profile_img : 이미지 div --%>
 			</div> <%-- end adminMainpage : 관리자 계정 고정 --%>
@@ -310,8 +311,8 @@ $(document).ready(function(){
    									<option value="user_email" <c:if test="${search_type == 'user_email'}"> ${'selected'}</c:if>>이메일</option>
    									<option value="user_phone" <c:if test="${search_type == 'user_phone'}"> ${'selected'}</c:if>>전화번호</option>
 								</select> 
-								<input id="search_field" name="search_field" onkeyup="member_search()" size="20"> &nbsp;&nbsp;&nbsp;
-								<input type="button" id="btn" name="search" onclick="member_search();" value="검색"  />
+								<input id="search_field" name="search_field"  size="20"> &nbsp;&nbsp;&nbsp;
+								<input type="button" id="btn" name="search"  value="검색" onclick="TabList();"  />
 								</td>
 						</tr>
 					</table>
@@ -323,13 +324,14 @@ $(document).ready(function(){
 				<thead>
 					<tr>
 						<th width="50" height="50">&nbsp;</th>
-						<th width="100">No</th>
-						<th width="100">이름</th>
+						<th width="50">No</th>
 						<th width="100">아이디</th>
+						<th width="100">이름</th>
 						<th width="100">생년월일</th>
-						<th width="100">가입날짜</th>
+						<th width="100">이메일</th>
 						<th width="200">전화번호</th>
-						<th width="250">비고</th>
+						<th width="120">가입날짜</th>
+						<th width="280">비고</th>
 						<%-- 수정 버튼 --%>
 					</tr>
 				</thead>
@@ -361,102 +363,6 @@ $(document).ready(function(){
 				</script>
 				<p>
 
-				<%-- 페이징 처리 --%>
-				<div id="pagination">
-						<!-- 검색 칸 공백 시 페이징 사라지지 않게 -->
-	               <c:if test="${find_name == ''}"> <%--검색필드와 검색어가 없는 경우 --%>
-	                 <c:if test="${page <= 1}">
-	                  PREV&nbsp;
-	                 </c:if>
-	                 <c:if test="${page>1}">
-	                  <a href="mlist.shop.shop?page=${page-1}">PREV</a>&nbsp;
-	                 </c:if>
-	                 
-	                 <%--현재 쪽번호 출력 --%>
-	                 <c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
-	                   <c:if test="${a == page}"> <%-- 현재 페이지가 선택된 경우 --%>
-	                      [&nbsp;${a}&nbsp;]
-	                   </c:if>
-	                   <c:if test="${a != page}"> <%--현재 쪽번호가 선택 안 된 경우--%>
-	                    <a href="mlist.shop.shop?page=${a}">[&nbsp;${a}&nbsp;]</a>&nbsp;
-	                   </c:if>
-	                 </c:forEach>
-	                   
-	                
-	                <c:if test="${page >= maxpage}">
-	                  &nbsp;NEXT
-	                </c:if>
-	                <c:if test="${page < maxpage}">
-	                 <a href="mlist.shop.shop?page=${page+1}">NEXT</a>
-	                </c:if>
-	               </c:if>
-	               <!-- 검색 칸 공백 시 페이징 사라지지 않게 -->
-					<%--검색 전 페이징 --%>
-					<c:if test="${(empty find_field) && (empty find_name)}">
-						<%--검색필드와 검색어가 없는 경우 --%>
-						<c:if test="${page <= 1}">
-			      PREV&nbsp;
-			     </c:if>
-						<c:if test="${page>1}">
-							<a href="mlist.shop?page=${page-1}">PREV</a>&nbsp;
-			     </c:if>
-
-						<%--현재 쪽번호 출력 --%>
-						<c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
-							<c:if test="${a == page}">
-								<%-- 현재 페이지가 선택된 경우 --%>
-			       	[&nbsp;${a}&nbsp;]
-			       </c:if>
-							<c:if test="${a != page}">
-								<%--현재 쪽번호가 선택 안 된 경우--%>
-								<a href="mlist.shop?page=${a}">[&nbsp;${a}&nbsp;]</a>&nbsp;
-			       </c:if>
-						</c:forEach>
-
-
-						<c:if test="${page >= maxpage}">
-			      &nbsp;NEXT
-			    </c:if>
-						<c:if test="${page < maxpage}">
-							<a href="mlist.shop?page=${page+1}">NEXT</a>
-						</c:if>
-					</c:if>
-
-					<%--검색이후 페이징(쪽나누기) --%>
-					<c:if test="${(!empty find_field) && (!empty find_name)}">
-						<%--검색필드와 검색어가 있는 경우 --%>
-						<c:if test="${page <= 1}">
-			      PREV&nbsp;
-			     </c:if>
-						<c:if test="${page>1}">
-							<a
-								href="mlist.shop?page=${page-1}&find_field=${find_field}&find_name=${find_name}">PREV</a>&nbsp;
-			      <%-- &(엠퍼센트) 구분기호로 구분하면서 find_field=검색필드&find_name= 검색어를 get방식으로 전달해야 검색 이후 페이징 목록을 유지한다.그렇지 않으면 검색전 전체 페이징 목록으로 이동해서 검색 효과가 사라진다. --%>
-						</c:if>
-
-						<%--현재 쪽번호 출력 --%>
-						<c:forEach var="a" begin="${startpage}" end="${endpage}" step="1">
-							<c:if test="${a == page}">
-								<%-- 현재 페이지가 선택된 경우 --%>
-			        [&nbsp;${a}&nbsp;]
-			       </c:if>
-							<c:if test="${a != page}">
-								<%--현재 쪽번호가 선택 안 된 경우--%>
-								<a
-									href="mlist.shop?page=${a}&find_field=${find_field}&find_name=${find_name}">[&nbsp;${a}&nbsp;]</a>&nbsp;
-			       </c:if>
-						</c:forEach>
-
-						<c:if test="${page >= maxpage}">
-			      &nbsp;NEXT
-			    </c:if>
-						<c:if test="${page < maxpage}">
-							<a
-								href="mlist.shop?page=${page+1}&find_field=${find_field}&find_name=${find_name}">NEXT</a>
-						</c:if>
-					</c:if>
-				</div>
-				<%-- end 페이징처리  --%>
 
 			</div> <%-- 회원 테이블 끝 --%>
 

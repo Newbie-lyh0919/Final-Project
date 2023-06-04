@@ -11,9 +11,12 @@ import org.springframework.stereotype.Repository;
 import shop.HealthJava.vo.CSClientVO;
 import shop.HealthJava.vo.CSFAQVO;
 import shop.HealthJava.vo.CSNoticeVO;
+import shop.HealthJava.vo.MemberVO;
 
 @Repository
 public class CSDAOImpl implements CSDAO {
+	
+	
 	
 	@Autowired
 	private SqlSession sqlSession;
@@ -69,6 +72,11 @@ public class CSDAOImpl implements CSDAO {
 		this.sqlSession.insert("contact_write", cvo);
 	}
 
+	//CS - 1대1 문의글 내용보기
+	@Override
+	public CSClientVO getClientCont(int client_no) {
+		return this.sqlSession.selectOne("contact_cont", client_no);
+	}
 
-
+	
 }

@@ -7,19 +7,19 @@
 <mapper namespace="Mypage">
 
 	<!-- // 주문 내역 list -->
-	<select id="orderList" resultType="order">
+	<select id="order_list" resultType="order">
 	select * from tbl_order where user_id = #{user_id} order by order_date
 	</select>
 
 	<!-- // 총 주문 건수 -->
-	<select id="orderCount" resultType="int">
+	<select id="order_count" resultType="int">
 		select count(order_no) from tbl_order where user_id=#{user_id}
 	</select>
 	
 	<!-- // 주문 확정 -->
 	<insert id="insertOrder">
-		insert into tbl_order (order_no, order_product_title, order_date, order_cnt, order_total, user_id)
-		values (#{order_no}, #{order_product_title}, sysdate, #{order_cnt}, #{order_total}, #{user_id})
+		insert into tbl_order (order_no, order_product_title, order_date, order_cnt, order_invoice ,order_total, user_id)
+		values (#{order_no}, #{order_product_title}, sysdate, #{order_cnt}, ' ' ,#{order_total}, #{user_id})
 	</insert>
 	
 	<!-- // 주문 상세 추가 -->
@@ -38,7 +38,7 @@
 	<!-- // 찜목록 -->
 	<select id="likeP_list" resultType="like">
         <!-- select * from tbl_like -->
-        SELECT l.like_no, p.product_title, p.product_date, p.product_price, p.product_cont1
+        SELECT l.like_no, p.product_no, p.product_title, p.product_date, p.product_price, p.product_cont1
         FROM tbl_like l
         JOIN tbl_product p ON l.like_pro_no = p.product_no
         where like_mem_id = #{like_mem_id}
@@ -76,7 +76,7 @@
 		update tbl_cart set cart_cnt=cart_cnt+1 where cart_no=#{cart_no} and cart_mem_id=#{cart_mem_id}
 	</update>
 	
-	<select id="getBuyOne" resultType="cart">
+	<select id="getBuyOne" resultType="shop.HealthJava.vo.CartVO">
 	   SELECT c.cart_no, c.cart_mem_id, c.cart_pro_no, c.cart_cnt, p.product_cont1, p.product_title, p.product_price
 		FROM tbl_cart c	
 		JOIN tbl_product p ON c.cart_pro_no = p.product_no 
@@ -120,6 +120,7 @@
 		SELECT
 		    p.product_title,
 		    p.product_cont1,
+		    p.product_no,
 		    o.order_date,
 		    o.order_product_title,
 		    r.re_mem_id,
@@ -128,7 +129,6 @@
 		    r.re_image1,
 		    r.re_image2,
 		    r.re_image3,
-		    r.re_score,
 		    r.re_date
 		FROM
 		    tbl_product p
@@ -143,6 +143,11 @@
 		(re_no, re_pro_no, re_mem_id, re_title, re_content, re_image1, re_image2, re_image3, re_score, re_date)
 		values (re_no_seq.nextval, #{re_pro_no}, #{re_mem_id}, #{re_title}, #{re_content}, #{re_image1}, #{re_image2}, #{re_image3}, #{re_score}, sysdate)
 	</insert>
+	
+	<!-- //찜목록 삭제 -->
+	<delete id="likeDel">
+		delete from tbl_like where like_no=#{like_no}
+	</delete>
 	
 	
 </mapper>

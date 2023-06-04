@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,9 +9,8 @@
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script> <%-- CDN 절대링크 --%>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"> <%-- CDN 절대링크 --%>
 
-<title>PuppyHome 리뷰 작성</title>
+<title>HealthJava 리뷰 작성</title>
 
-<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico" type="image/x-icon"> <%-- 파비콘 --%>
 <link rel="stylesheet" type="text/css" href=""> <%-- certificate.css --%>
 <style type="text/css">
 	/* 폰트 CSS */
@@ -25,7 +25,6 @@
 	}
 	.wrap {
 		width: 490px;
-		height: 880px;
 	}
 	.headerBox {
 		width: 100%;
@@ -38,7 +37,7 @@
 	}
 	#titleText {
 		font-size: 20px;
-		font-weight: 700;
+		font-weight: 700px;
 	}
 	.productBox {
 		height: 110px;
@@ -231,40 +230,45 @@
 	}
 </style>
 </head>
-<body style="overflow-x:hidden; overflow-y:hidden;">
+<body>
 	<div class="wrap">
 		<div class="headerBox">
 				<span id="titleText">리뷰쓰기</span>
 			</div>
 		</div>
+		<form action="myPage_review_write_ok" method="post">
+		<c:if test="${!empty rlist }" >
+		<c:forEach var="rlist" items="${rlist }" >
 		<div class="productBox">
 			<div class="basket-product">
 				<div class="item">
 					<div class="detailsBox1">
 						<div class="product-image">
-							<img src="https://img-cf.kurly.com/cdn-cgi/image/width=676,format=auto/shop/data/goods/1637924624422l0.jpeg" alt="상품 이미지" id="product-frame" class="product-frame">
+							<img src="${rlist.PRODUCT_CONT1 }" alt="상품 이미지" id="product-frame" class="product-frame">
 						</div>
 					</div>
 					<div class="detailsBox2">
 						<div class="product-details">
-							<span id="productTitle">2023.03.29</span>
+							<span id="productTitle">${rlist.ORDER_DATE }</span> <%-- 주문날짜 --%>
 						</div>
 						<div class="product-details">
-							<span id="productTitle"><strong>청송 사과 1.5kg(5~7입)</strong></span>
+							<span id="productTitle"><strong>${rlist.ORDER_PRODUCT_TITEL }</strong></span><%-- 상품명 --%>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="vacuumBox">
+		</c:forEach>
+		</c:if>
 		
+		<div class="vacuumBox">
 		</div>
 		<div class="questionBox">
 			<div class="questionBox2">
 				<span id="questionText">상품은 만족하셨나요?</span>
 			</div>
 		</div>
-		<form class="mb-3" name="myform" id="myform" method="post">
+		<form action="review_write_ok" class="mb-3" name="myform" id="myform" method="post">
 		<div class="starBox">
 			<div class="starInputBox">
 				<div class="starInputBox2">
@@ -283,8 +287,6 @@
 			</div>
 		</div>
 		<div class="question-reviewBox">
-			<div class="question-reviewBox2">
-				<span id="question-reviewText">만족도 3점을 주셨네요.</span>
 				<div class="question-reviewBox3">
 					<span id="question-reviewText">어떤 점이 좋았나요?</span>
 				</div>
@@ -305,14 +307,16 @@
 			</div>
 		</div>
 		</form>
+	    
 	    <div class="footerBox">
 			<div class="buttonBox">
 				<div class="buttonBox2">
-					<button id="cancelBtn" onclick="closeWindow();">취소</button>
-					<button id="okBtn">등록</button>
+					<input type="reset" id="cancelBtn" value="취소" onclick="closeWindow();">
+					<input type="submit" id="okBtn" value="등록" />
 				</div>
 			</div>
 	    </div>
+	    </form>
 	</div>
 </body>
 <script>

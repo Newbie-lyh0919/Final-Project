@@ -10,11 +10,6 @@
 
 <title>HealthJava 나의 상품 후기</title>
 
-<%-- <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico" type="image/x-icon"> 파비콘
-<link rel="stylesheet" type="text/css" href="/page/include/css/header.css"> header.css
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/page/include/css/footer.css"> footer.css --%>
-
-
 <style type="text/css">
 
 /* 폰트 CSS */
@@ -796,7 +791,7 @@ select {
 													});
 											   
 													$.ajax({
-														url : "deleteOK.shop", // deleteOK?
+														url : "deleteOK", // deleteOK?
 														type : "post",
 														data : { chbox : checkArr },
 														success : function(){
@@ -860,7 +855,7 @@ select {
 									 });
 									 function openReviewPopup() {
 										 event.preventDefault(); // <a> 태그의 기본 동작 방지
-										 window.open("myPage_review_write", "리뷰 작성", "width=330,height=600");
+										 window.open("review_write", "리뷰 작성", "width=500,height=700");
 									 }
 								</script>
 							</div>
@@ -932,15 +927,16 @@ select {
 		<%-- 리뷰 작성 페이지 부분 --%>
 		// 왼쪽 사이드바의 '나의 후기' 텍스트 클릭시 새창 열기
 		function openPopup_review_write() {
-	        var page_width = '490';
-	        var page_height = '900';
+	        var page_width = '500';
+	        var page_height = '700';
 	    
 	        // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
 	        var page_left = Math.ceil((window.screen.width - page_width)/2);
 	        var page_top = Math.ceil((window.screen.height - page_height)/2);
+	        
+	        var url = "/review_write?re_mem_id=" + re_mem_id;
 	
-	    window.open("review_write", "review_write",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
-	    
+	    	window.open(url, "review_write",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
 	    }
 		
 	</script>

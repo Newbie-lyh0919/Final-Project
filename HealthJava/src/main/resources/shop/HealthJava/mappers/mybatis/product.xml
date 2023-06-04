@@ -5,59 +5,63 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Product">
-	
-	
-	
-	 <select id="new" resultType="shop.HealthJava.vo.ProductVO" parameterType="shop.HealthJava.vo.ProductVO">
-    SELECT *
-    FROM (
-        SELECT rowNum rNum, product_no, product_cont1, product_title, product_price
-        FROM (
-            SELECT *
-            FROM tbl_product
-            <where>
-                <if test="kind != null">
-                    (product_type2 = #{kind} OR product_type = #{kind})
-                </if>
-                <if test="f.search_type == 'All' and f.search_field != null and f.search_field != ''">
-                    AND (product_title LIKE #{f.search_field} OR product_maker LIKE #{f.search_field})
-                </if>
-                <if test="f.search_type == 'product_title' and f.search_field != null and f.search_field != ''">
-                    AND product_title LIKE #{f.search_field}
-                </if>
-                <if test="f.search_type == 'product_maker' and f.search_field != null and f.search_field != ''">
-                    AND product_maker LIKE #{f.search_field}
-                </if>
-                <if test="kind2 != null and kind2 == '낮은가격순'">
-                    ORDER BY product_price ASC
-                </if>
-                <if test="kind2 != null and kind2 == '높은가격순'">
-                    ORDER BY product_price DESC
-                </if>
-            </where>
-        )
-    )
-    WHERE rNum &gt;= #{f.startrow} AND rNum &lt;= #{f.endrow}
-</select>
+
+	<select id="new" resultType="shop.HealthJava.vo.ProductVO"
+	parameterType="shop.HealthJava.vo.ProductVO">
+	SELECT *
+	FROM (
+	SELECT rowNum rNum, product_no, product_cont1, product_title, product_price,
+	product_maker
+	FROM (
+	SELECT *
+	FROM tbl_product
+	<where>
+		<if test="kind != null">
+			(product_type2 = #{kind} OR product_type = #{kind})
+		</if>
+		<if
+			test="f.search_type == 'All' and f.search_field != null and f.search_field != ''">
+			AND (product_title LIKE #{f.search_field} OR product_maker LIKE
+			#{f.search_field})
+		</if>
+		<if
+			test="f.search_type == 'product_title' and f.search_field != null and f.search_field != ''">
+			AND product_title LIKE #{f.search_field}
+		</if>
+		<if
+			test="f.search_type == 'product_maker' and f.search_field != null and f.search_field != ''">
+			AND product_maker LIKE #{f.search_field}
+		</if>
+		<if test="kind2 != null and kind2 == '낮은가격순'">
+			ORDER BY product_price ASC
+		</if>
+		<if test="kind2 != null and kind2 == '높은가격순'">
+			ORDER BY product_price DESC
+		</if>
+	</where>
+	)
+	)
+	WHERE rNum &gt;= #{f.startrow} AND rNum &lt;= #{f.endrow}
+	</select>
 
 	
 	<select id="count" resultType="int" parameterType="shop.HealthJava.vo.ProductVO">
     SELECT COUNT(*) FROM tbl_product
-    <where>
-        <if test="kind != null">
-            (product_type2 = #{kind} OR product_type = #{kind})
-        </if>
-        <if test="f.search_type == 'All' and f.search_field != null and f.search_field != ''">
-            AND (product_title LIKE #{f.search_field} OR product_maker LIKE #{f.search_field})
-        </if>
-        <if test="f.search_type == 'product_title' and f.search_field != null and f.search_field != ''">
-            AND product_title LIKE #{f.search_field}
-        </if>
-        <if test="f.search_type == 'product_maker' and f.search_field != null and f.search_field != ''">
-            AND product_maker LIKE #{f.search_field}
-        </if>
-    </where>
-</select>
+	    <where>
+	        <if test="kind != null">
+	            (product_type2 = #{kind} OR product_type = #{kind})
+	        </if>
+	        <if test="f.search_type == 'All' and f.search_field != null and f.search_field != ''">
+	            AND (product_title LIKE #{f.search_field} OR product_maker LIKE #{f.search_field})
+	        </if>
+	        <if test="f.search_type == 'product_title' and f.search_field != null and f.search_field != ''">
+	            AND product_title LIKE #{f.search_field}
+	        </if>
+	        <if test="f.search_type == 'product_maker' and f.search_field != null and f.search_field != ''">
+	            AND product_maker LIKE #{f.search_field}
+	        </if>
+	    </where>
+	</select>
 	
 
 	<select id="product_content" resultType="product">
@@ -81,9 +85,6 @@
     <delete id="product_delete">
     	delete from tbl_product where product_no=#{product_no}
     </delete>
-    
-
-
 
 	<update id="product_update" >
     	UPDATE tbl_product 
@@ -103,16 +104,14 @@
 		WHERE product_no=#{product_no}
     </update>
     
-      
-    
-    <select id="review_list" resultType="product2" >
+    <select id="review_list" resultType="shop.HealthJava.vo.ProductQnAVO" >
     	select * from tbl_product_qna where qna_product_no =#{product_no}
     </select>
   
     
-    <insert id="qna_insert" parameterType="shop.HealthJava.vo.ProductVO2">
-    	INSERT INTO tbl_product_qna (qna_no, qna_product_no, qna_mem_id, qna_title, qna_content, qna_date) 
-    VALUES (qna_no_seq.nextval, #{qna_product_no}, #{qna_mem_id}, #{qna_title}, #{qna_content}, sysdate)
+    <insert id="qna_insert" parameterType="shop.HealthJava.vo.ProductQnAVO">
+    	INSERT INTO tbl_product_qna (qna_no, qna_product_no, qna_mem_id, qna_title, qna_content, qna_reply, qna_date) 
+    VALUES (qna_no_seq.nextval, #{qna_product_no}, #{qna_mem_id}, #{qna_title}, #{qna_content}, ' ' , sysdate)
     </insert>
     
     
@@ -142,8 +141,5 @@
     INSERT INTO  tbl_order_detail ( order_detail_no,  order_detail_mid,  order_detail_fno, order_detail_pname,order_detail_cnt, order_detail_price)  
     VALUES (order_detail_no_seq.nextval, #{order_detail_mid}, #{order_detail_fno}, #{order_detail_pname}, #{order_detail_cnt}, #{order_detail_price})
     </insert>
-    
-    
-    
     
 </mapper>

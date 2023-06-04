@@ -7,16 +7,108 @@
 <link rel="stylesheet" href="style.css">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> <%-- CDN 절대링크 --%>
-<script src="<%=request.getContextPath()%>/js/join.js"></script>
-<!-- <script type="text/javascript" src="./js/jquery.js"></script> -->
+<script src="../js/join.js"></script>
 
 <title>HealthJava회원가입</title>
 
-<%--<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/favicon.ico?ver1" type="image/x-icon">  파비콘 --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/views/include/css/header.css"> <%-- header.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/views/include/css/footer.css"> <%-- footer.css --%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/fontium/css/fontium.css" /> 
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/views/member/css/join.css" /> 
+<%-- 우편관련 --%>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                if(data.userSelectedType === 'R'){
+                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있고, 공동주택일 경우 추가한다.
+                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                    if(extraAddr !== ''){
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                    // 조합된 참고항목을 해당 필드에 넣는다.
+                    document.getElementById("sample6_extraAddress").value = extraAddr;
+                
+                } else {
+                    document.getElementById("sample6_extraAddress").value = '';
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('postCode').value = data.zonecode;
+                document.getElementById("roadAddr").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("detailAddr").focus();
+            }
+        }).open();
+    }
+</script>
+<%-- 우편 끝--%>
+<script type="text/javascript">
+
+// 회원가입 페이지에서 이메일 인증 버튼을 누를 때 호출되는 함수
+function sendEmailVerification() {
+  var userEmail = document.getElementById("user_email").value;
+
+  // AJAX 요청
+  $.ajax({
+    type: 'POST',
+    url: '/emailCertification',
+    data: {
+      user_email: userEmail
+    },
+    success: function(response) {
+       alert('이메일 전송이 완료되었습니다. 인증해주세요.');
+    }
+    ,
+    error: function() {
+      alert('이메일 전송이 실패했습니다. 다시 회원가입해주세요!');
+    }
+  });
+}
+
+// 인증 키 확인 버튼을 눌렀을 때 호출되는 함수
+function verifyEmailKey() {
+  var userKey = document.getElementById("verification_key").value;
+
+  // AJAX 요청
+  $.ajax({
+    type: 'POST',
+    url: '/verifyEmailKey',
+    data: {
+      verification_key: userKey
+    },
+    success: function(response) {
+    	alert('인증이 완료되었습니다!');
+    }
+    ,
+    error: function() {
+    	alert('인증 키가 올바르지 않습니다. 다시 확인해주세요.');
+    }
+  });
+}
+</script>
+
+
 <style type="text/css">
 	/* 폰트 CSS */
 	@font-face {
@@ -83,7 +175,8 @@
 
 
 .signup-form {
-	background-color: #f2f2f2;
+	background-color: white;
+	border: 2px solid #b21949;
 	padding: 20px;
 	width: 450px;
 	margin: 0 auto;
@@ -148,14 +241,14 @@
 
 .signup-form input[type="button"],
 .signup-form input[type="submit"] {
-	background-color: #FC5400;
+	background-color: #b21949;
 	color: #fff;
 	border: none;
 	padding: 5px 20px;
 	border-radius: 5px;
 	cursor: pointer;
 	border: 1px solid #dadada;
-    
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3); 	
     width: 100%;
     margin-bottom: 5px;
 }
@@ -163,6 +256,8 @@
 *{
     box-sizing: border-box; /*�쟾泥댁뿉 諛뺤뒪�궗�씠吏�*/
     outline: none; /*focus �뻽�쓣�븣 �뀒�몢由� �굹�삤寃� */
+    font-family: KIMM_Bold;
+
 }
 
 a{
@@ -201,8 +296,9 @@ a{
 
 .member input[type=button],
 .member input[type=submit]{
-background-color: #FC5400;
-color:#fff
+	background-color: #b21949;
+	color:#fff;
+	box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .member input:focus, .member select:focus{
@@ -254,12 +350,6 @@ color:#fff
 .field.address div input:nth-child(2){
     flex:1;
 }
-
-
-
-
-
-
 	
 </style>
 </head>
@@ -273,73 +363,99 @@ color:#fff
 			<jsp:include page="../include/header.jsp"/>
 		</header>
 <div class="member" >
-<form name="m" method="post" action="member_join_ok"  onsubmit="return join_check();">
+<form name="m" method="post" action="member_join_ok" 
+    onsubmit="return join_check();" >
+	<input type="hidden"  name="access_token"  id="access_token" value="${access_token}">
+	<input type="hidden"  name="user_state"  id="user_state" value="${user_state}">
+ 	
         <!-- 1. 로고 -->
         <div class="signup-form">
         <h1>회원가입</h1>
 
         <!-- 2. 필드 -->
         <div class="field_id">
-            <b>아이디</b>
+            <b>아이디*</b>
             <div>
-            	<input type="text" placeholder="" name="user_id" id="user_id">
+            	<input type="text" placeholder="" name="user_id" id="user_id" value="${user_id}">
             	
-                <input type="button" value="아이디 중복검사" onclick="id_check();" >
+                <input type="button" value="아이디 중복검사" id="idDuplicateChecked" onclick="id_check();" >
+                <script type="text/javascript">
+                var idDuplicateChecked = document.getElementById("idDuplicateChecked").value;
+                console.log(idDuplicateChecked);
+                </script>
                 
             </div>
             <div>
             <span id="idcheck"></span>
             </div>
         </div>
+        <br>
         <div class="field">
-            <b>비밀번호</b>
-            <input class="userpw" type="password" name="user_pwd" id="user_pwd">
+            <b>비밀번호*</b>
+            <input class="userpw" type="password" name="user_pwd" id="user_pwd" style="font-family: '맑은 고딕', Arial, sans-serif;">
+            <tr>
+				<small class="td-infoPs" style="color:#b21949;">*비밀번호는 8자 이상 입력 해야합니다.</small>
+			</tr> 
         </div>
+        <br>
         <div class="field">
-            <b>비밀번호 재확인</b>
-            <input class="userpw-confirm" type="password" name="user_pwd2" id="user_pwd2"  >
+            <b>비밀번호 확인*</b>
+            <input class="userpw-confirm" type="password" name="user_pwd2" id="user_pwd2" style="font-family: '맑은 고딕', Arial, sans-serif;" >
+            <tr>
+				<small class="td-infoPs" style="color:#b21949;">*비밀번호는 8자 이상 입력 해야합니다.</small>
+			</tr> 
         </div>
+        <br>
         <div class="field">
-            <b>이름</b>
-            <input type="text" name="user_name" id="user_name">
+            <b>이름*</b>
+            <input type="text" placeholder="ex) 2자 ~ 4자" name="user_name" id="user_name" value="${user_name}" >
         </div>
-
+		<br>
         <!-- 3. 필드(생년월일) -->
         <div class="field birth" >
-            <b>생년월일</b>
+            <b>생년월일*</b>
     
-                <input type="text" placeholder="ex) 990101" name="user_birth" id="user_birth">                
+                <input type="text" placeholder="ex) 1999년 01월 01일 -> 990101" name="user_birth" id="user_birth"  >                
               
         </div>
+        <br>
         <!-- 3. 필드(성별) -->
         <div class="field gender" >
-            <b>성별</b>
+            <b>성별*</b>
     
-                <input type="text" placeholder="ex) 990101" name="user_gender" id="user_gender">                
+                <input type="text" placeholder="ex) male/female/남자/여자(대소문자 구분없음)" name="user_gender" id="user_gender" value="${user_gender}">                
               
         </div>
-
-        <!-- 4. 필드(성별) -->
+		<br>
+        <!-- 4. 필드(주소) -->
         <div class="field address">
-            <b>주소</b>
+            <b>주소*</b>
             
             <div>
                 <input type="text" placeholder="우편번호" name="postCode" id="postCode">
-                <input type="button" onclick="post()" value="우편번호 찾기">
+                <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
             </div>
-            <input type="text" placeholder="주소" name="roadAddr" id="roadAddr">
-            <input type="text" placeholder="상세주소" name="detailAddr" id="detailAddr">
+       		 	<input type="text" placeholder="주소" name="roadAddr" id="roadAddr">
+        	    <input type="text" placeholder="상세주소" name="detailAddr" id="detailAddr">
+				<input type="hidden" id="sample6_extraAddress" placeholder="참고항목" value=" ">
         </div>
-
+		<br>
         <!-- 5. 이메일_전화번호 -->
         <div class="field">
-            <b>이메일</b>
-            <input type="email" placeholder="ex) abc123@naver.com" name="user_email" id="user_email">
-            
-        </div>
+            <b>이메일*</b>
+            <div>
+           		<input type="email" placeholder="ex) abc123@naver.com" name="user_email" id="user_email" value="${user_email}">
+		 		<input type="button" value="이메일 인증" id="verifyEmail" onclick="sendEmailVerification();" >
+       		</div>
         
+       		<div>
+            	<input type="text" id="verification_key" name="verification_key" >
+            	<input type="button" value="확인" id="verifyEmailConfirm" onclick="verifyEmailKey();" >
+        	</div>
+        </div>
+        <br>
         <div class="field tel-number">
-            <b>휴대전화</b>
+            <b>휴대전화*</b>
             
             <div>
                 <input type="tel" placeholder="ex) 01011112222" name="user_phone" id="user_phone">
@@ -371,7 +487,8 @@ color:#fff
 	</div>
 	<script type="text/javascript">
 	
-		<%-- top버튼 부분 --%>
+		<%-- top버튼 부
+		분 --%>
 		// 클릭 이벤트 핸들러
 		$("#topBtn").click(function(e) {
 			e.stopPropagation();
@@ -389,58 +506,6 @@ color:#fff
 			}
 		});
 		
-		<%-- footer 부분 --%>
-		// 서비스 이용약관 텍스트 클릭시 새창 열기
-		function openPopup_service() {
-	        var page_width = '525';
-	        var page_height = '650';
-	    
-	        // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
-	        var page_left = Math.ceil((window.screen.width - page_width)/2);
-	        var page_top = Math.ceil((window.screen.height - page_height)/2);
-	
-	    window.open("http://localhost:8046/Shopping_Mall/util/service.jsp", "service",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
-	    
-	    }
-	    
-		// 개인정보 처리 텍스트 클릭시 새창 열기
-		function openPopup_privacy() {
-	        var page_width = '525';
-	        var page_height = '555';
-	    
-	        // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
-	        var page_left = Math.ceil((window.screen.width - page_width)/2);
-	        var page_top = Math.ceil((window.screen.height - page_height)/2);
-	
-	    window.open("http://localhost:8046/Shopping_Mall/util/privacy.jsp", "privacy",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
-	    
-	    }
-		
-		// 입점/제휴 문의 텍스트 클릭시 새창 열기
-		function openPopup_inquiry() {
-	        var page_width = '525';
-	        var page_height = '555';
-	    
-	        // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
-	        var page_left = Math.ceil((window.screen.width - page_width)/2);
-	        var page_top = Math.ceil((window.screen.height - page_height)/2);
-	
-	    window.open("http://localhost:8046/Shopping_Mall/util/inquiry.jsp", "inquiry",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
-	    
-	    }
-		
-		// 인증 마크 클릭시 새창 열기
-	    function openPopup_certificate() {
-	        var page_width = '460';
-	        var page_height = '380';
-	    
-	        // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
-	        var page_left = Math.ceil((window.screen.width - page_width)/2);
-	        var page_top = Math.ceil((window.screen.height - page_height)/2);
-	
-	    window.open("http://localhost:8046/Shopping_Mall/util/certificate.jsp", "certificate",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
-	    
-	    }
 	</script>
 </body>
 </html>

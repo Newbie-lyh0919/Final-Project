@@ -5,6 +5,7 @@ import java.util.List;
 import shop.HealthJava.vo.CSClientVO;
 import shop.HealthJava.vo.CSFAQVO;
 import shop.HealthJava.vo.CSNoticeVO;
+import shop.HealthJava.vo.MemberVO;
 
 public interface CSDAO {
 
@@ -28,6 +29,9 @@ public interface CSDAO {
 
 	//CS - 1대1 문의글 작성
 	void insertContact(CSClientVO cvo);
+
+	//CS - 1대1 문의글 내용보기
+	CSClientVO getClientCont(int client_no);
 
 	
 	
