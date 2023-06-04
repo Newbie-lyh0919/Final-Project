@@ -1,0 +1,88 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D5D42334-F2A6-D785-DAB1-C5F1A4645FE6" schemaObject="B7000150-9397-6475-AA99-3F3955780552" name="TBL_NOTICE">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>HEALTHJAVA</sourceObjSchema>
+<sourceObjName>TBL_NOTICE</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:50 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="NOTICE_NO" id="8DE2AA74-27E0-FE93-87C7-F8698BFF2CAC">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_NOTICE</sourceObjSchema>
+<sourceObjName>NOTICE_NO</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>38</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,38,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NOTICE_TITLE" id="78940DFB-04BC-C523-BE85-8A75FFD925BC">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_NOTICE</sourceObjSchema>
+<sourceObjName>NOTICE_TITLE</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1000 BYTE</dataTypeSize>
+<ownDataTypeParameters>1000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NOTICE_CONT" id="C630ACF1-EB8E-F0E8-750E-100F10516D2E">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_NOTICE</sourceObjSchema>
+<sourceObjName>NOTICE_CONT</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000 BYTE</dataTypeSize>
+<ownDataTypeParameters>4000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NOTICE_DATE" id="43610ACE-06B0-5D3F-8898-38B780FA14A7">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_NOTICE</sourceObjSchema>
+<sourceObjName>NOTICE_DATE</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="629F874D-2347-FBAB-547E-17F7343A8349" schemaObject="B7000150-9397-6475-AA99-3F3955780552" name="TBL_NOTICE_PK">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>HEALTHJAVA</sourceObjSchema>
+<sourceObjName>SYS_C008861</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8DE2AA74-27E0-FE93-87C7-F8698BFF2CAC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

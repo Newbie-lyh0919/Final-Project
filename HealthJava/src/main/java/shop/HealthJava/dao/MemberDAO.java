@@ -26,7 +26,7 @@ public interface MemberDAO {
 
 	int updateMailKey(MemberVO memberVo); //회원정보에 메일 인증키 저장
  
-	MemberVO getMemberByEmail(String user_email); //일반회원이메일을 기준으로 회원정보가져오기 
+	MemberVO getMemberByEmail(String user_email, String user_id, String user_name); //일반회원이메일을 기준으로 회원정보가져오기 
 
 
 	int searchEmail(Object user_email); //이메일 기준으로 카카오 회원가입되있는지 확인

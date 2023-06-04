@@ -26,7 +26,7 @@ $('#like_cart').on('click', '.like', function(e) {
         
           <a class="like2" data-tab="2">찜 취소</a>
         
-          <a>장바구니</a>
+         <a data-tab="3" class="cart">장바구니</a>
         
       `;
 
@@ -59,7 +59,7 @@ $('#like_cart').on('click', '.like2', function(e) {
         
           <a class="like" data-tab="1">찜 하기</a>
         
-          <a>장바구니</a>
+          <a data-tab="3" class="cart">장바구니</a>
         
       `;
       $('#like_cart').append(html);
@@ -106,36 +106,29 @@ $('#like_cart').on('click', '.cart', function(e) {
 
 
 $('#buy').on('click', '.psbtn', function(e) {
-  var kind = $(e.target).attr('data-tab');
+ var kind = $(e.target).attr('data-tab');
   var url = window.location.href;
   var product_no = url.substring(url.lastIndexOf('/') + 1);
 
 	var numTag = document.getElementById('num');
-	var price = document.getElementById('price');
-	var name = document.getElementById('name');
-	
-    var order_detail_cnt = numTag.innerHTML;
-    var order_detail_price = price.innerHTML;
-    var order_detail_pname = name.innerHTML;
-
+    var cart_cnt = numTag.innerHTML;
 	
   $.ajax({
     type: 'POST',
     url: '/product/like',
     data: {
 		
-      "kind": kind,
+     "kind": kind,
       "product_no": product_no,
-      "order_detail_cnt": order_detail_cnt,
-      "order_detail_price":order_detail_price,
-      "order_detail_pname":order_detail_pname
+      "cart_cnt":cart_cnt
     },
     dataType: 'json',
     success: function(data) {
 		
       
       if(data ==4) {
-		  alert('구매상세 테이블 등록됨.')
+		  //alert('구매 등록됨.')
+		  location.href="/PaymentOK";
 	  }
 	  
 	  if(data ==5) {

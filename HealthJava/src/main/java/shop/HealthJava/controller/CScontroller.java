@@ -18,7 +18,7 @@ import shop.HealthJava.vo.CSFAQVO;
 import shop.HealthJava.vo.CSNoticeVO;
 
 @Controller
-public class CScontroller {
+public class CSController {
 
 	@Autowired
 	private CSService csService;
@@ -28,9 +28,7 @@ public class CScontroller {
 	public String notice(CSNoticeVO nvo, Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("html/text;charset=UTF-8");
-		
-		MemberController.isLogin(session, response);
-		
+
 		String session_id = (String)session.getAttribute("session_id"); // 세션아이디를 구함
 		
 		int page = 1;
@@ -49,15 +47,18 @@ public class CScontroller {
 		}
 
 		nvo.setSearch_type(search_type);
-		//		nvo.setSearch_field("%" + search_field + "%");
 		nvo.setSearch_field(search_field);
 
 		int listcount = this.csService.getNoticeListCount(nvo);
-		System.out.println(listcount);
 		List<CSNoticeVO> nlist = this.csService.getCSNoticeList(page, limit, nvo);
-
-		System.out.println(nlist);
-
+		
+		//줄바꿈 대체
+		for (CSNoticeVO notice : nlist) {
+		    String noticeCont = notice.getNotice_cont();
+		    String modifiedCont = noticeCont.replace("\n", "<br><br>");
+		    notice.setNotice_cont(modifiedCont);
+		}
+		
 		// 페이징
 		int maxpage = (int) ((double) listcount / limit + 0.95); // 총 페이지수
 		int startpage = (((int) ((double) page / 10 + 0.9)) - 1) * 10 + 1; // 시작페이지
@@ -81,6 +82,7 @@ public class CScontroller {
 	//CS - 공지사항 글 작성 VIEW
 	@RequestMapping("/notice_write")
 	public String notice_write(CSNoticeVO nvo, Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
+		MemberController.isLogin(session, response);
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("html/text;charset=UTF-8");
 		
@@ -122,6 +124,13 @@ public class CScontroller {
 
 		List<CSFAQVO> clist = this.csService.getCSFAQList(faq_category);
 		System.out.println(clist);
+		
+		for (CSFAQVO FAQ : clist) {
+		    String FAQCont = FAQ.getFaq_cont();
+		    String modifiedCont = FAQCont.replace("\n", "<br><br>");
+		    FAQ.setFaq_cont(modifiedCont);
+		}
+		
 		model.addAttribute("clist", clist);
 		model.addAttribute("session_id", session_id);
 		return "/cs/FAQ";
@@ -163,7 +172,6 @@ public class CScontroller {
 	public String contact(CSClientVO cvo, Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception{
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("html/text;charset=UTF-8");
-		//MemberController.isLogin(session, response);
 
 		String session_id = (String)session.getAttribute("session_id"); // 세션아이디를 구함
 		
@@ -172,7 +180,6 @@ public class CScontroller {
 		model.addAttribute("clist", clist);
 		model.addAttribute("session_id", session_id);
 		
-		//System.out.println(clist);
 		return "/cs/contact";
 	}
 	
@@ -181,38 +188,29 @@ public class CScontroller {
 	public String admin_CSBoard_cont(CSClientVO cvo, Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception{
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("html/text;charset=UTF-8");
-		//MemberController.isLogin(session, response);
-
-		//PrintWriter out = response.getWriter();
 		
 		String contact_password = request.getParameter("contact_password");
 		
-		System.out.println(contact_password);
-		
 		int client_no = Integer.parseInt(request.getParameter("client_no")); 
-		System.out.println(client_no);
 
 		cvo = this.csService.getClientCont(client_no); // 2-2. 문의 게시판 : 내용보기
-		System.out.println(cvo.getContact_password());
-		System.out.println(cvo.getClient_category());
 		
 		if(cvo.getContact_password().equals(contact_password)) {
-			//System.out.println(client_no);
 			model.addAttribute("cvo", cvo);
-			System.out.println(cvo.getClient_category());
 			
 			return "/cs/contact_cont_user"; //내용보기
 			
 		} else if(!cvo.getContact_password().equals(contact_password)) {
-			//model.addAttribute("errorMessage", "비밀번호가 틀렸습니다.");
-			 String errorMessage = "비밀번호가 틀렸습니다.";
+			  String errorMessage = "비밀번호가 틀렸습니다.";
 			  model.addAttribute("errorMessage", errorMessage);
-			  return "forward:/contact?errorMessage=" + URLEncoder.encode(errorMessage, "UTF-8");
-			
+			  return "forward:/contact";
 		}	
 		
 		return null;
 	}
+	
+	
+	
 //	
 //	//CS - 1:1 문의글 내용보기
 //	@RequestMapping("/contact_cont_user")

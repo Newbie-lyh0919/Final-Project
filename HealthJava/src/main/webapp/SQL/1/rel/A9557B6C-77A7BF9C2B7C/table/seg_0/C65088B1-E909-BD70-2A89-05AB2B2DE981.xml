@@ -1,0 +1,291 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C65088B1-E909-BD70-2A89-05AB2B2DE981" schemaObject="B7000150-9397-6475-AA99-3F3955780552" name="TBL_PRODUCT">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>HEALTHJAVA</sourceObjSchema>
+<sourceObjName>TBL_PRODUCT</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:50 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="PRODUCT_NO" id="8D953A45-E7AC-2E5C-0E0D-BC06B3F433CE">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_PRODUCT</sourceObjSchema>
+<sourceObjName>PRODUCT_NO</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>38</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,38,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PRODUCT_TITLE" id="22BE0C15-8BE1-86D6-5C2D-FF5C803A3F7C">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_PRODUCT</sourceObjSchema>
+<sourceObjName>PRODUCT_TITLE</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PRODUCT_PRICE" id="14C90C20-BE61-18F8-1360-D9C0AC923167">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_PRODUCT</sourceObjSchema>
+<sourceObjName>PRODUCT_PRICE</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000 BYTE</dataTypeSize>
+<ownDataTypeParameters>4000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PRODUCT_MAKER" id="A6658FC1-EC51-5E8F-477C-950114E16837">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_PRODUCT</sourceObjSchema>
+<sourceObjName>PRODUCT_MAKER</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PRODUCT_TYPE" id="7C7A7E19-5403-B815-FB3B-AFD236FF495E">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_PRODUCT</sourceObjSchema>
+<sourceObjName>PRODUCT_TYPE</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PRODUCT_TYPE2" id="926DC81F-D6C6-B6BE-F427-4172F99B9AF3">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_PRODUCT</sourceObjSchema>
+<sourceObjName>PRODUCT_TYPE2</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PRODUCT_CONT1" id="FF70FC45-A8FC-66D7-BB9A-58147FFD6D1D">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_PRODUCT</sourceObjSchema>
+<sourceObjName>PRODUCT_CONT1</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000 BYTE</dataTypeSize>
+<ownDataTypeParameters>4000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PRODUCT_CONT2" id="B3326018-5985-31A4-AE31-59AA19929D0E">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_PRODUCT</sourceObjSchema>
+<sourceObjName>PRODUCT_CONT2</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000 BYTE</dataTypeSize>
+<ownDataTypeParameters>4000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PRODUCT_CONT3" id="B24E5CA2-599F-BE32-3B1E-7A19EB9BA1A8">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_PRODUCT</sourceObjSchema>
+<sourceObjName>PRODUCT_CONT3</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000 BYTE</dataTypeSize>
+<ownDataTypeParameters>4000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PRODUCT_CONT4" id="A08F10C7-9442-CA21-3293-BE86D6DE83FC">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_PRODUCT</sourceObjSchema>
+<sourceObjName>PRODUCT_CONT4</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000 BYTE</dataTypeSize>
+<ownDataTypeParameters>4000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PRODUCT_CONT5" id="BC7AED51-F3A5-384C-5FEE-26C85D5403EF">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_PRODUCT</sourceObjSchema>
+<sourceObjName>PRODUCT_CONT5</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000 BYTE</dataTypeSize>
+<ownDataTypeParameters>4000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PRODUCT_CONT6" id="760F9635-F300-D375-68DB-5158A5809BDF">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_PRODUCT</sourceObjSchema>
+<sourceObjName>PRODUCT_CONT6</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000 BYTE</dataTypeSize>
+<ownDataTypeParameters>4000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PRODUCT_CONT7" id="CBD139F2-C1BA-278F-ADCC-6703AB1C2BA0">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_PRODUCT</sourceObjSchema>
+<sourceObjName>PRODUCT_CONT7</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000 BYTE</dataTypeSize>
+<ownDataTypeParameters>4000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PRODUCT_CONT8" id="18DDAC5E-C77A-7CE7-8DE6-E4791F4C4C86">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_PRODUCT</sourceObjSchema>
+<sourceObjName>PRODUCT_CONT8</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000 BYTE</dataTypeSize>
+<ownDataTypeParameters>4000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PRODUCT_SCORE" id="024D7FD4-8382-CF22-86C6-CB07D76E4BAA">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_PRODUCT</sourceObjSchema>
+<sourceObjName>PRODUCT_SCORE</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PRODUCT_COUNT" id="8EFB8823-F21F-AAAA-5FA0-0DC484D08E1F">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_PRODUCT</sourceObjSchema>
+<sourceObjName>PRODUCT_COUNT</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1000 BYTE</dataTypeSize>
+<ownDataTypeParameters>1000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PRODUCT_DATE" id="989A41D5-A4F3-266D-BA69-F82A0E2B63B7">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_PRODUCT</sourceObjSchema>
+<sourceObjName>PRODUCT_DATE</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="8487CBA1-696F-4799-4786-F9789AA800E8" schemaObject="B7000150-9397-6475-AA99-3F3955780552" name="TBL_PRODUCT_PK">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>HEALTHJAVA</sourceObjSchema>
+<sourceObjName>SYS_C008829</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8D953A45-E7AC-2E5C-0E0D-BC06B3F433CE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BCC47C02-2599-D11F-73DB-169FB8317D7A" schemaObject="B7000150-9397-6475-AA99-3F3955780552" name="TBL_PRODUCT_PRODUCT_TITLE_UN">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>HEALTHJAVA</sourceObjSchema>
+<sourceObjName>SYS_C008830</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="22BE0C15-8BE1-86D6-5C2D-FF5C803A3F7C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

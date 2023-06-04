@@ -24,6 +24,8 @@
 		<typeAlias type="shop.HealthJava.vo.CouponVO" alias="coupon" /> <!-- 쿠폰 -->
 		<typeAlias type="shop.HealthJava.vo.ReviewsVO" alias="reviews" /> <!-- 후기 -->
 		<typeAlias type="shop.HealthJava.vo.AddrVO" alias="addr" /> <!-- 배송지 -->
+		<typeAlias type="shop.HealthJava.vo.ChatMessageVO" alias="chatmessage" /> <!-- 채팅 메세지-->
+		<typeAlias type="shop.HealthJava.vo.ChatRoomVO" alias="chatroom" /> <!-- 채팅방 -->
  
  	<!-- CS --><!-- CS --><!-- CS --><!-- CS --><!-- CS --><!-- CS --><!-- CS --><!-- CS --><!-- CS --><!-- CS --><!-- CS -->
   	<typeAlias alias="csNotice" type="shop.HealthJava.vo.CSNoticeVO" />

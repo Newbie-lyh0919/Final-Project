@@ -136,7 +136,7 @@ function GsQNA_reply(qna_no){
 				    </td>
 				    </tr>
      				</table>
-     				<input id="btn" type="submit" value="등록" onclick="return reply_check();"> &nbsp;
+     				<input id="btn" type="button" value="등록" onclick="return GsReply_check();"> &nbsp;
      				<input id="btn" type="button" value="취소" onclick="GsQNA_search();" >
      			</div>
 				
@@ -175,12 +175,12 @@ function GsQNA_reply_ok(){
 };
 
 
-	function reply_check() {
+	function GsReply_check() {
 		var answer;
 		answer=confirm("답변을 등록하시겠습니까?");
 							
 		if(answer == true){
-			CSBoard_reply_ok();
+			GsQNA_reply_ok();
 			return true;
 		} else if (answer == false){
 			return false;

@@ -1,0 +1,77 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev20c class="oracle.dbtools.crest.model.design.storage.oracle.v20c.TableProxyOraclev20c" name="TBL_ORDER" directorySegmentName="seg_0" id="073C38C3-F7FB-A666-3DC3-ABD4104E66EF">
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:50 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<schemaObject>B7000150-9397-6475-AA99-3F3955780552</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>BC54250A-9FE4-15D1-712D-AE04BB865B98</segment>
+<tableSpace>DB0FB43F-1179-01FB-2A3A-909C66A335F6</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="ORDER_TOTAL" id="04045704-E601-04C3-BD8F-D74D075BD28F">
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ORDER_CNT" id="63E6558A-8611-4B9B-9DEB-1FA43D4D480E">
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ORDER_DATE" id="658268B1-2F9B-5D87-CC2C-2D6F4FB15DCA">
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ORDER_PRODUCT_TITLE" id="913B87E6-6568-D822-6FB1-78D62EC7003D">
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ORDER_NO" id="B2FA5364-212A-CF78-13C5-B6375F7D820D">
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="USER_ID" id="D4B11A97-C950-7E21-B022-241F96C6BD86">
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ORDER_INVOICE" id="DE4D7E96-4A6C-0BDB-16A4-F8AF37B3C9DB">
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SYS_C008849" id="619A5631-A612-A103-24DA-7B9A563BD17D">
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:52 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SYS_C008850" id="F4A54DBE-6F18-0D1E-A2DB-5BB50D57B68E">
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:52 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="TBL_ORDER_PK" id="7F488C5E-E8AF-9122-61F1-413E94135C26">
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<schemaObject>B7000150-9397-6475-AA99-3F3955780552</schemaObject>
+<segment>DDE05AA1-219D-2594-7712-C5AD09E64204</segment>
+<tableSpace>DB0FB43F-1179-01FB-2A3A-909C66A335F6</tableSpace>
+<indexSegment>DDE05AA1-219D-2594-7712-C5AD09E64204</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev20c>

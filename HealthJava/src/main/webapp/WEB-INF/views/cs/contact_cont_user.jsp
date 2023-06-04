@@ -275,11 +275,11 @@ input[type="text"] {
 				    <th>문의 답글</th>
 				    <td>
 					    <c:if test="${cvo.client_cont_reply  != ' '}">
-					    <textarea cols="30" rows="3" name="client_cont_reply" >${cvo.client_cont_reply}</textarea>
+					    <textarea cols="30" rows="3" name="client_cont_reply" readonly >${cvo.client_cont_reply}</textarea>
 					    </c:if>
 					    
 					     <c:if test="${cvo.client_cont_reply == ' ' }">
-					    <textarea cols="30" rows="3" placeholder="아직 답변이 등록되지 않았습니다." name="client_cont_reply" ></textarea>
+					    <textarea cols="30" rows="3" placeholder="아직 답변이 등록되지 않았습니다." name="client_cont_reply" readonly ></textarea>
 					    </c:if>					    
 				    </td>
 				    </tr>

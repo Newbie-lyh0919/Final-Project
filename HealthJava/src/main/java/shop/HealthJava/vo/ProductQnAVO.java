@@ -3,6 +3,7 @@ package shop.HealthJava.vo;
 import lombok.Data;
 
 @Data
+//<<<<<<< Updated upstream
 public class ProductQnAVO {
 
 	private int qna_no;
@@ -16,5 +17,7 @@ public class ProductQnAVO {
 	//검색필드
 	private String search_type; //검색 필터(타입)
 	private String search_field; //검색 입력필드
+
+//=======
 
 }

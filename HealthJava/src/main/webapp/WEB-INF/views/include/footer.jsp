@@ -122,7 +122,7 @@
            var page_left = Math.ceil((window.screen.width - page_width)/2);
            var page_top = Math.ceil((window.screen.height - page_height)/2);
    
-       window.open("service.shop", "service",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
+       window.open("service", "service",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
        
        }
        
@@ -135,7 +135,7 @@
            var page_left = Math.ceil((window.screen.width - page_width)/2);
            var page_top = Math.ceil((window.screen.height - page_height)/2);
    
-       window.open("privacy.shop", "privacy",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
+       window.open("privacy", "privacy",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
        
        }
       
@@ -148,7 +148,7 @@
            var page_left = Math.ceil((window.screen.width - page_width)/2);
            var page_top = Math.ceil((window.screen.height - page_height)/2);
    
-       window.open("inquiry.shop", "inquiry",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
+       window.open("inquiry", "inquiry",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
        
        }
       
@@ -161,7 +161,7 @@
            var page_left = Math.ceil((window.screen.width - page_width)/2);
            var page_top = Math.ceil((window.screen.height - page_height)/2);
    
-       window.open("certificate.shop", "certificate",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
+       window.open("certificate", "certificate",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
        
        }
       
@@ -174,7 +174,7 @@
            var page_left = Math.ceil((window.screen.width - page_width)/2);
            var page_top = Math.ceil((window.screen.height - page_height)/2);
    
-       window.open("company_introduce.shop", "company_introduce",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
+       window.open("company_introduce", "company_introduce",'width='+ page_width +', height='+ page_height +', left=' + page_left + ', top='+ page_top);
        
        }
    </script>

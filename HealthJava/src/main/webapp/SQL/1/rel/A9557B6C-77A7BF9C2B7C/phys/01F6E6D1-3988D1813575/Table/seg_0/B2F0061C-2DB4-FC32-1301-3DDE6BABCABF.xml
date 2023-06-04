@@ -1,0 +1,80 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev20c class="oracle.dbtools.crest.model.design.storage.oracle.v20c.TableProxyOraclev20c" name="REVIEWS" directorySegmentName="seg_0" id="B2F0061C-2DB4-FC32-1301-3DDE6BABCABF">
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:50 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<schemaObject>B7000150-9397-6475-AA99-3F3955780552</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>BC54250A-9FE4-15D1-712D-AE04BB865B98</segment>
+<tableSpace>DB0FB43F-1179-01FB-2A3A-909C66A335F6</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="RE_TITLE" id="03175C7D-4E8C-47F0-0AD9-C31FC917E31D">
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="RE_CONTENT" id="4538C969-2AFA-2B0E-4CFA-F04B5C6D411F">
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="RE_IMAGE2" id="4DA15776-DC77-0BDF-7942-EBAA99855084">
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="RE_IMAGE3" id="4FCAE2B2-AD0B-AC0F-92C7-F57FE9E1CAEB">
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="RE_PRO_NO" id="6569E4CB-48EE-0E02-1797-0E16EAC985D3">
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="RE_IMAGE1" id="68A55FD4-2D34-094F-54AB-CABD95985EE5">
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="RE_NO" id="8E6950E9-DB27-159A-7AAD-6B4007411913">
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="RE_MEM_ID" id="C2651216-5416-CB42-7490-6A5963E85013">
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="RE_STAR" id="D70AD348-9420-AFA6-A048-9879D7A825AC">
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="RE_DATE" id="E6A20E64-3584-729F-4AEC-0C21DF5BEF99">
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="REVIEWS_PK" id="03511AA5-7C12-D95B-1431-240923C11CA3">
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<schemaObject>B7000150-9397-6475-AA99-3F3955780552</schemaObject>
+<segment>DDE05AA1-219D-2594-7712-C5AD09E64204</segment>
+<tableSpace>DB0FB43F-1179-01FB-2A3A-909C66A335F6</tableSpace>
+<indexSegment>DDE05AA1-219D-2594-7712-C5AD09E64204</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev20c>

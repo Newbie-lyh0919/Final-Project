@@ -11,7 +11,7 @@
 	   <select id="new" resultType="shop.HealthJava.vo.ProductVO" parameterType="shop.HealthJava.vo.ProductVO">
     SELECT *
     FROM (
-        SELECT rowNum rNum, product_no, product_cont1, product_title, product_price
+        SELECT rowNum rNum, product_no, product_cont1, product_title, product_price, product_maker
         FROM (
             SELECT *
             FROM tbl_product
@@ -112,8 +112,8 @@ WHERE product_no=#{product_no}
   
     
     <insert id="qna_insert" parameterType="shop.HealthJava.vo.ProductQnAVO">
-    	INSERT INTO tbl_product_qna (qna_no, qna_product_no, qna_mem_id, qna_title, qna_content) 
-    VALUES (qna_no_seq.nextval, #{qna_product_no}, #{qna_mem_id}, #{qna_title}, #{qna_content})
+    	INSERT INTO tbl_product_qna (qna_no, qna_product_no, qna_mem_id, qna_title, qna_content, qna_reply, qna_date) 
+    VALUES (qna_no_seq.nextval, #{qna_product_no}, #{qna_mem_id}, #{qna_title}, #{qna_content}, ' ' , sysdate)
     </insert>
     
     

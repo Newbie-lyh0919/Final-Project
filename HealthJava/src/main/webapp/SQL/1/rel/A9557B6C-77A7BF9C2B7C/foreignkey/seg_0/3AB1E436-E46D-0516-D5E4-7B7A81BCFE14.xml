@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="3AB1E436-E46D-0516-D5E4-7B7A81BCFE14" containerWithKeyObject="073C38C3-F7FB-A666-3DC3-ABD4104E66EF" localFKIndex="619A5631-A612-A103-24DA-7B9A563BD17D" name="SYS_C008849">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>HEALTHJAVA</sourceObjSchema>
+<sourceObjName>SYS_C008849</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:52 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<referredTableLongName>HEALTHJAVA.TBL_PRODUCT</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>C65088B1-E909-BD70-2A89-05AB2B2DE981</referredTableID>
+<keyObject>BCC47C02-2599-D11F-73DB-169FB8317D7A</keyObject>
+<referredKeyID>BCC47C02-2599-D11F-73DB-169FB8317D7A</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>PRODUCT_TITLE</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>
