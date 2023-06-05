@@ -1,0 +1,179 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B2F0061C-2DB4-FC32-1301-3DDE6BABCABF" schemaObject="B7000150-9397-6475-AA99-3F3955780552" name="REVIEWS">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>HEALTHJAVA</sourceObjSchema>
+<sourceObjName>REVIEWS</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:50 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="RE_NO" id="8E6950E9-DB27-159A-7AAD-6B4007411913">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>REVIEWS</sourceObjSchema>
+<sourceObjName>RE_NO</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RE_PRO_NO" id="6569E4CB-48EE-0E02-1797-0E16EAC985D3">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>REVIEWS</sourceObjSchema>
+<sourceObjName>RE_PRO_NO</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10 BYTE</dataTypeSize>
+<ownDataTypeParameters>10 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RE_MEM_ID" id="C2651216-5416-CB42-7490-6A5963E85013">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>REVIEWS</sourceObjSchema>
+<sourceObjName>RE_MEM_ID</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RE_TITLE" id="03175C7D-4E8C-47F0-0AD9-C31FC917E31D">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>REVIEWS</sourceObjSchema>
+<sourceObjName>RE_TITLE</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RE_CONTENT" id="4538C969-2AFA-2B0E-4CFA-F04B5C6D411F">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>REVIEWS</sourceObjSchema>
+<sourceObjName>RE_CONTENT</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000 BYTE</dataTypeSize>
+<ownDataTypeParameters>4000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RE_IMAGE1" id="68A55FD4-2D34-094F-54AB-CABD95985EE5">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>REVIEWS</sourceObjSchema>
+<sourceObjName>RE_IMAGE1</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000 BYTE</dataTypeSize>
+<ownDataTypeParameters>4000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RE_IMAGE2" id="4DA15776-DC77-0BDF-7942-EBAA99855084">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>REVIEWS</sourceObjSchema>
+<sourceObjName>RE_IMAGE2</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000 BYTE</dataTypeSize>
+<ownDataTypeParameters>4000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RE_IMAGE3" id="4FCAE2B2-AD0B-AC0F-92C7-F57FE9E1CAEB">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>REVIEWS</sourceObjSchema>
+<sourceObjName>RE_IMAGE3</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000 BYTE</dataTypeSize>
+<ownDataTypeParameters>4000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RE_STAR" id="D70AD348-9420-AFA6-A048-9879D7A825AC">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>REVIEWS</sourceObjSchema>
+<sourceObjName>RE_STAR</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>38</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,38,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RE_DATE" id="E6A20E64-3584-729F-4AEC-0C21DF5BEF99">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>REVIEWS</sourceObjSchema>
+<sourceObjName>RE_DATE</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="03511AA5-7C12-D95B-1431-240923C11CA3" schemaObject="B7000150-9397-6475-AA99-3F3955780552" name="REVIEWS_PK">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>HEALTHJAVA</sourceObjSchema>
+<sourceObjName>SYS_C008857</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8E6950E9-DB27-159A-7AAD-6B4007411913"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,314 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="FF3AA7EF-4DFE-FD2D-858A-162B249044EE" schemaObject="B7000150-9397-6475-AA99-3F3955780552" name="TBL_MEMBER">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>HEALTHJAVA</sourceObjSchema>
+<sourceObjName>TBL_MEMBER</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:50 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="USER_NO" id="2EB5A8FB-4A98-EF47-1210-C7ECA0A54911">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_MEMBER</sourceObjSchema>
+<sourceObjName>USER_NO</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>38</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,38,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="USER_ID" id="342A01FC-A750-6F34-FFE3-966510AE98B0">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_MEMBER</sourceObjSchema>
+<sourceObjName>USER_ID</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="USER_PWD" id="18E7499F-7648-9536-B3F2-ABD190614A02">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_MEMBER</sourceObjSchema>
+<sourceObjName>USER_PWD</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="USER_NAME" id="65B6E07D-88C6-A0C5-38A0-8362C020F76E">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_MEMBER</sourceObjSchema>
+<sourceObjName>USER_NAME</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="USER_BIRTH" id="CE02DDBA-BBF9-45F3-BC6F-FA649A6DFDFC">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_MEMBER</sourceObjSchema>
+<sourceObjName>USER_BIRTH</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="USER_GENDER" id="D65A484E-BAA8-3A3B-46EB-2E0F277B042A">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_MEMBER</sourceObjSchema>
+<sourceObjName>USER_GENDER</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 BYTE</dataTypeSize>
+<ownDataTypeParameters>50 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="POSTCODE" id="81DDBA08-081F-8614-10F5-0D37EDA9481F">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_MEMBER</sourceObjSchema>
+<sourceObjName>POSTCODE</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ROADADDR" id="B771E172-C035-2A1F-3D42-85C920FFE6FF">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_MEMBER</sourceObjSchema>
+<sourceObjName>ROADADDR</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DETAILADDR" id="332B3398-BE46-DF62-4454-8E3936A533E5">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_MEMBER</sourceObjSchema>
+<sourceObjName>DETAILADDR</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="USER_EMAIL" id="8B1A1478-1AA2-0F11-D934-68FBB6081621">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_MEMBER</sourceObjSchema>
+<sourceObjName>USER_EMAIL</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="USER_PHONE" id="127627A7-6036-6CD0-EC89-B80A2663A659">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_MEMBER</sourceObjSchema>
+<sourceObjName>USER_PHONE</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="USER_STATE" id="8641F4C5-FBB3-E88B-3135-9AB51EA48356">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_MEMBER</sourceObjSchema>
+<sourceObjName>USER_STATE</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>38</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<defaultValue>0 -- 회원 0, 블랙리스트 1, 탈퇴회원 2, 카카오 회원 3, 비회원 4</defaultValue>
+<ownDataTypeParameters>,38,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="JOIN_DATE" id="681478C7-A16F-4B1E-1548-874D001FA8E7">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_MEMBER</sourceObjSchema>
+<sourceObjName>JOIN_DATE</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DEL_DATE" id="DFC2F349-E7CF-4635-4069-7940A0EF9C86">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_MEMBER</sourceObjSchema>
+<sourceObjName>DEL_DATE</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DEL_CONT" id="C9BDE173-0A19-785D-A257-3778613E188C">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_MEMBER</sourceObjSchema>
+<sourceObjName>DEL_CONT</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2000 BYTE</dataTypeSize>
+<ownDataTypeParameters>2000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MAIL_KEY" id="FEF06C55-C814-6BD9-BD84-05BC1480D454">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_MEMBER</sourceObjSchema>
+<sourceObjName>MAIL_KEY</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MAIL_AUTH" id="68021554-EF08-4287-8546-2862BA3D1192">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_MEMBER</sourceObjSchema>
+<sourceObjName>MAIL_AUTH</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>38</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,38,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="8E6506BD-4496-503E-1D9D-3D5FD72700C7" schemaObject="B7000150-9397-6475-AA99-3F3955780552" name="TBL_MEMBER_PK">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>HEALTHJAVA</sourceObjSchema>
+<sourceObjName>SYS_C008819</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2EB5A8FB-4A98-EF47-1210-C7ECA0A54911"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="67A927F0-671A-798B-7D31-64D5E779376A" schemaObject="B7000150-9397-6475-AA99-3F3955780552" name="TBL_MEMBER_USER_ID_UN">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>HEALTHJAVA</sourceObjSchema>
+<sourceObjName>SYS_C008820</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="342A01FC-A750-6F34-FFE3-966510AE98B0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6C690D4C-2B31-18D5-A3C0-EE56F01354EF" schemaObject="B7000150-9397-6475-AA99-3F3955780552" name="TBL_MEMBER_USER_EMAIL_UN">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>HEALTHJAVA</sourceObjSchema>
+<sourceObjName>SYS_C008821</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8B1A1478-1AA2-0F11-D934-68FBB6081621"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

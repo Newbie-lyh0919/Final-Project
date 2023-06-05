@@ -1,0 +1,73 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="CC07F123-F1AE-951B-44A4-EECB84FC19BE" schemaObject="B7000150-9397-6475-AA99-3F3955780552" name="TBL_LIKE">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>HEALTHJAVA</sourceObjSchema>
+<sourceObjName>TBL_LIKE</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:50 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="LIKE_NO" id="54DF687E-D572-638C-F9C2-8AC0D300B59D">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_LIKE</sourceObjSchema>
+<sourceObjName>LIKE_NO</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LIKE_MEM_ID" id="2CCD3B04-C4A6-222B-3D73-041BDA8BEBDF">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_LIKE</sourceObjSchema>
+<sourceObjName>LIKE_MEM_ID</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LIKE_PRO_ID" id="83F83AD0-EEB2-E774-1B65-F42A6BC6C1E7">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>TBL_LIKE</sourceObjSchema>
+<sourceObjName>LIKE_PRO_ID</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="20B2D528-F3CB-7C8B-82B4-12C4D1ECAFCF" schemaObject="B7000150-9397-6475-AA99-3F3955780552" name="TBL_LIKE_PK">
+<sourceConnName>HealthJava</sourceConnName>
+<sourceObjSchema>HEALTHJAVA</sourceObjSchema>
+<sourceObjName>SYS_C008855</sourceObjName>
+<createdBy>newte</createdBy>
+<createdTime>2023-06-04 10:51:51 UTC</createdTime>
+<ownerDesignName>1</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="54DF687E-D572-638C-F9C2-8AC0D300B59D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
